@@ -17,23 +17,47 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { configure, addDecorator } from '@storybook/react';
 import React from 'react';
+import { css } from '@emotion/core';
 
-import { ThemeProvider } from '../src';
+import Button from 'src/Button';
 
-const req = require.context('../src', true, /.stories\.tsx$/);
-function loadStories() {
-  req.keys().forEach((filename) => req(filename));
-}
+type FileSelectButtonProps = Omit<React.ComponentProps<typeof Button>, 'onClick'> & {
+  inputProps?: Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>;
+  onFilesSelect: (files: FileList) => void;
+};
+const FileSelectButton: React.ComponentType<FileSelectButtonProps> = ({
+  children,
+  inputProps,
+  onFilesSelect,
+  ...rest
+}) => {
+  const fileInputRef = React.createRef<HTMLInputElement>();
 
-addDecorator((Story) => {
-  const StoryComponent = Story as React.ComponentType;
+  const selectFile = () => {
+    const fp = fileInputRef.current;
+    if (fp) {
+      fp.click();
+    }
+  };
+
   return (
-    <ThemeProvider>
-      <StoryComponent />
-    </ThemeProvider>
+    <Button {...rest} onClick={selectFile}>
+      <input
+        type="file"
+        ref={fileInputRef}
+        accept=".tsv"
+        onChange={(e) => {
+          onFilesSelect(e.target.files);
+        }}
+        css={css`
+          display: none;
+        `}
+        {...inputProps}
+      />
+      {children}
+    </Button>
   );
-});
+};
 
-configure(loadStories, module);
+export default FileSelectButton;

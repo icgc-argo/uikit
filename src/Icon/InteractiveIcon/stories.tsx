@@ -17,23 +17,35 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { configure, addDecorator } from '@storybook/react';
 import React from 'react';
+import { storiesOf } from '@storybook/react';
 
-import { ThemeProvider } from '../src';
+import { select, boolean, text } from '@storybook/addon-knobs';
 
-const req = require.context('../src', true, /.stories\.tsx$/);
-function loadStories() {
-  req.keys().forEach((filename) => req(filename));
-}
+import InteractiveIcon from '.';
+import icons, { UikitIconNames } from '../icons';
+import defaultTheme from 'src/theme/defaultTheme';
+import { css } from '@emotion/core';
 
-addDecorator((Story) => {
-  const StoryComponent = Story as React.ComponentType;
+const InteractiveIconStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+  const knobs = {
+    text: text('value', 'confused?'),
+    fill: select('fill', [null, '#00f', ...Object.keys(defaultTheme.colors)], null),
+    name: select('name', Object.keys(icons) as UikitIconNames[], 'question'),
+    disabled: boolean('disabled', false),
+    position: select('position', ['top', 'bottom', 'left', 'right'], 'bottom'),
+  };
   return (
-    <ThemeProvider>
-      <StoryComponent />
-    </ThemeProvider>
+    <div
+      css={css`
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+      `}
+    >
+      <InteractiveIcon html={<span>{knobs.text}</span>} {...knobs}></InteractiveIcon>
+    </div>
   );
 });
 
-configure(loadStories, module);
+export default InteractiveIconStories;

@@ -17,23 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { configure, addDecorator } from '@storybook/react';
+import { ThemeProvider } from 'emotion-theming';
+import theme from './theme/defaultTheme';
 import React from 'react';
 
-import { ThemeProvider } from '../src';
+export const wrapTheme = (component) => <ThemeProvider theme={theme}>{component}</ThemeProvider>;
 
-const req = require.context('../src', true, /.stories\.tsx$/);
-function loadStories() {
-  req.keys().forEach((filename) => req(filename));
-}
+export const asyncDummyFunc = (data) =>
+  new Promise((resolve) => setTimeout(() => resolve(data), 2500));
 
-addDecorator((Story) => {
-  const StoryComponent = Story as React.ComponentType;
-  return (
-    <ThemeProvider>
-      <StoryComponent />
-    </ThemeProvider>
-  );
-});
-
-configure(loadStories, module);
+export const placeholderImageURLRoot = 'http://placekitten.com/';

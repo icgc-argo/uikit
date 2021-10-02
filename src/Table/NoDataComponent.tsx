@@ -17,23 +17,22 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { configure, addDecorator } from '@storybook/react';
 import React from 'react';
+import css from '@emotion/css';
+import ContentPlaceholder from 'src/ContentPlaceholder';
 
-import { ThemeProvider } from '../src';
-
-const req = require.context('../src', true, /.stories\.tsx$/);
-function loadStories() {
-  req.keys().forEach((filename) => req(filename));
-}
-
-addDecorator((Story) => {
-  const StoryComponent = Story as React.ComponentType;
+export default function ContentPlaceholderComponent(props) {
   return (
-    <ThemeProvider>
-      <StoryComponent />
-    </ThemeProvider>
+    <div
+      css={css`
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 32px 0;
+      `}
+    >
+      {props.loading ? null : <ContentPlaceholder />}
+    </div>
   );
-});
-
-configure(loadStories, module);
+}

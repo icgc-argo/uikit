@@ -17,23 +17,35 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { configure, addDecorator } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import React from 'react';
+import { action } from '@storybook/addon-actions';
 
-import { ThemeProvider } from '../src';
+import Button from '../../Button';
+import Hook from '.';
+import readme from './readme.md';
 
-const req = require.context('../src', true, /.stories\.tsx$/);
-function loadStories() {
-  req.keys().forEach((filename) => req(filename));
-}
+const HookStories = storiesOf(`${__dirname}`, module).add(
+  'Basic',
+  () => (
+    <Hook
+      initialState={0}
+      effect={action('effect')}
+      watch={(num) => [num]}
+      render={([num, setNum]) => (
+        <div>
+          <div>{num}</div>
+          <Button onClick={() => setNum(num + 1)}>Increment</Button>
+          <Button onClick={() => setNum(num - 1)}>Decrement</Button>
+        </div>
+      )}
+    />
+  ),
+  {
+    info: {
+      text: `${readme}`,
+    },
+  },
+);
 
-addDecorator((Story) => {
-  const StoryComponent = Story as React.ComponentType;
-  return (
-    <ThemeProvider>
-      <StoryComponent />
-    </ThemeProvider>
-  );
-});
-
-configure(loadStories, module);
+export default HookStories;

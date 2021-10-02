@@ -17,23 +17,31 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { configure, addDecorator } from '@storybook/react';
-import React from 'react';
+import Adapter from 'enzyme-adapter-react-16';
+import Enzyme from 'enzyme';
+import { JSDOM } from 'jsdom';
 
-import { ThemeProvider } from '../src';
+Enzyme.configure({ adapter: new Adapter() });
 
-const req = require.context('../src', true, /.stories\.tsx$/);
-function loadStories() {
-  req.keys().forEach((filename) => req(filename));
+const jsdom = new JSDOM('<!doctype html><html><body></body></html>');
+const { window } = jsdom;
+
+function copyProps(src, target) {
+  Object.defineProperties(target, {
+    ...Object.getOwnPropertyDescriptors(src),
+    ...Object.getOwnPropertyDescriptors(target),
+  });
 }
 
-addDecorator((Story) => {
-  const StoryComponent = Story as React.ComponentType;
-  return (
-    <ThemeProvider>
-      <StoryComponent />
-    </ThemeProvider>
-  );
-});
-
-configure(loadStories, module);
+(global as any).window = window;
+(global as any).document = window.document;
+(global as any).navigator = {
+  userAgent: 'node.js',
+};
+(global as any).requestAnimationFrame = function (callback) {
+  return setTimeout(callback, 0);
+};
+(global as any).cancelAnimationFrame = function (id) {
+  clearTimeout(id);
+};
+copyProps(window, global);

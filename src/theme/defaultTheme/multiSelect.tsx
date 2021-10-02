@@ -17,23 +17,14 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { configure, addDecorator } from '@storybook/react';
-import React from 'react';
+import colors from './colors';
 
-import { ThemeProvider } from '../src';
-
-const req = require.context('../src', true, /.stories\.tsx$/);
-function loadStories() {
-  req.keys().forEach((filename) => req(filename));
-}
-
-addDecorator((Story) => {
-  const StoryComponent = Story as React.ComponentType;
-  return (
-    <ThemeProvider>
-      <StoryComponent />
-    </ThemeProvider>
-  );
-});
-
-configure(loadStories, module);
+export default {
+  option: {
+    hoverColor: colors.secondary_4,
+  },
+  listBorderColor: colors.grey_1,
+  placeHolderColor: colors.grey,
+  disabledTextColor: colors.grey,
+  disabledBackgroundColor: '#f6f6f7',
+};

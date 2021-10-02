@@ -17,23 +17,61 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { configure, addDecorator } from '@storybook/react';
 import React from 'react';
+import { css } from '@emotion/core';
+import styled from '@emotion/styled';
 
-import { ThemeProvider } from '../src';
+import noDataSvg from 'src/assets/noData.svg';
+import Typography from '../Typography';
 
-const req = require.context('../src', true, /.stories\.tsx$/);
-function loadStories() {
-  req.keys().forEach((filename) => req(filename));
-}
+const Container = styled('div')`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0;
+`;
 
-addDecorator((Story) => {
-  const StoryComponent = Story as React.ComponentType;
-  return (
-    <ThemeProvider>
-      <StoryComponent />
-    </ThemeProvider>
-  );
-});
+type ContentPlaceholderProps = {
+  title?: string;
+  subtitle?: string;
+  link?: React.ReactNode;
+} & React.ComponentProps<typeof Container>;
 
-configure(loadStories, module);
+const ContentPlaceholder: React.ComponentType<ContentPlaceholderProps> = ({
+  children = <img alt="no data found" src={noDataSvg} />,
+  title = 'No Data Found.',
+  subtitle,
+  link,
+  ...rest
+}) => (
+  <Container {...rest}>
+    {children}
+    <Typography
+      css={css`
+        margin-top: 14px;
+        margin-bottom: 0;
+      `}
+      color="grey"
+      variant="navigation"
+      as="p"
+      bold
+    >
+      {title}
+    </Typography>
+    <Typography
+      css={css`
+        margin-top: 10px;
+        margin-bottom: 0;
+      `}
+      color="grey"
+      variant="data"
+      as="p"
+    >
+      {subtitle}
+    </Typography>
+    {link}
+  </Container>
+);
+
+export default ContentPlaceholder;

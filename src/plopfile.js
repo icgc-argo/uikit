@@ -17,23 +17,27 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { configure, addDecorator } from '@storybook/react';
-import React from 'react';
-
-import { ThemeProvider } from '../src';
-
-const req = require.context('../src', true, /.stories\.tsx$/);
-function loadStories() {
-  req.keys().forEach((filename) => req(filename));
-}
-
-addDecorator((Story) => {
-  const StoryComponent = Story as React.ComponentType;
-  return (
-    <ThemeProvider>
-      <StoryComponent />
-    </ThemeProvider>
-  );
-});
-
-configure(loadStories, module);
+module.exports = function (plop) {
+  plop.setGenerator('UIKit', {
+    description: 'Generate UIKit component skeleton',
+    prompts: [
+      {
+        type: 'input',
+        name: 'name',
+        message: 'Component name please',
+      },
+    ],
+    actions: [
+      {
+        type: 'add',
+        path: './{{properCase name}}/index.tsx',
+        templateFile: './template/index.hbs',
+      },
+      {
+        type: 'add',
+        path: './{{properCase name}}/stories.tsx',
+        templateFile: './template/stories.hbs',
+      },
+    ],
+  });
+};

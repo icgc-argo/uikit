@@ -17,23 +17,33 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { configure, addDecorator } from '@storybook/react';
-import React from 'react';
+import { css } from '@emotion/core';
 
-import { ThemeProvider } from '../src';
+import Table from 'src/Table';
 
-const req = require.context('../src', true, /.stories\.tsx$/);
-function loadStories() {
-  req.keys().forEach((filename) => req(filename));
-}
+type MappedTableData = Array<{ key: string; val: any }>;
 
-addDecorator((Story) => {
-  const StoryComponent = Story as React.ComponentType;
+export default ({ data }) => {
+  const tableData: MappedTableData = Object.keys(data).map((k) => ({ key: k, val: data[k] }));
+
   return (
-    <ThemeProvider>
-      <StoryComponent />
-    </ThemeProvider>
+    <div
+      css={css`
+        width: 100%;
+      `}
+    >
+      <Table
+        highlight={false}
+        TheadComponent={(props) => null}
+        parentRef={{ current: null }}
+        showPagination={false}
+        withOutsideBorder
+        data={tableData}
+        columns={[
+          { sortable: false, accessor: 'key', style: { whiteSpace: 'unset' } },
+          { accessor: 'val', style: { whiteSpace: 'unset' } },
+        ]}
+      />
+    </div>
   );
-});
-
-configure(loadStories, module);
+};

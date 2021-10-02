@@ -17,23 +17,31 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { configure, addDecorator } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import React from 'react';
+import DropdownButton from '.';
+import { select, boolean } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
+import { createKnobs as createButtonKnobs } from 'src/Button/stories';
+import Button from 'src/Button';
 
-import { ThemeProvider } from '../src';
-
-const req = require.context('../src', true, /.stories\.tsx$/);
-function loadStories() {
-  req.keys().forEach((filename) => req(filename));
-}
-
-addDecorator((Story) => {
-  const StoryComponent = Story as React.ComponentType;
+const DropdownButtonStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+  const knobs = createButtonKnobs();
+  const menuShown = boolean('menuShown', false);
   return (
-    <ThemeProvider>
-      <StoryComponent />
-    </ThemeProvider>
+    <DropdownButton
+      onItemClick={action('onItemClick')}
+      menuItems={[
+        { display: <strong>Some Text</strong>, value: '1' },
+        { display: 'Some Text', value: '2' },
+        { display: <Button size="sm">Some Text</Button>, value: '4' },
+      ]}
+      menuShown={menuShown}
+      {...knobs}
+    >
+      Click me!
+    </DropdownButton>
   );
 });
 
-configure(loadStories, module);
+export default DropdownButtonStories;

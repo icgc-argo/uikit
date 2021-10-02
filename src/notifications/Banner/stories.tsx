@@ -17,23 +17,22 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { configure, addDecorator } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import React from 'react';
+import { select, text } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
-import { ThemeProvider } from '../src';
+import Banner, { BANNER_VARIANTS, BANNER_SIZE } from '.';
 
-const req = require.context('../src', true, /.stories\.tsx$/);
-function loadStories() {
-  req.keys().forEach((filename) => req(filename));
-}
-
-addDecorator((Story) => {
-  const StoryComponent = Story as React.ComponentType;
-  return (
-    <ThemeProvider>
-      <StoryComponent />
-    </ThemeProvider>
+const BannerStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+  const variant = select('variant', [undefined, ...Object.values(BANNER_VARIANTS)], undefined);
+  const size = select('size', [undefined, ...Object.values(BANNER_SIZE)], undefined);
+  const title = text('title', 'Hipster Ipsum');
+  const content = text(
+    'content',
+    'Lorem ipsum dolor amet helvetica post-ironic fingerstache trust fund pitchfork tofu venmo live-edge',
   );
+  return <Banner variant={variant} title={title} content={content} size={size} />;
 });
 
-configure(loadStories, module);
+export default BannerStories;

@@ -17,23 +17,25 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { configure, addDecorator } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import React from 'react';
+import Radio from '.';
+import { boolean, button } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
-import { ThemeProvider } from '../src';
+const createKnobs = () => {
+  const checked = boolean('checked', false);
+  const ariaChecked = boolean('checked', false);
+  const disabled = boolean('disabled', false);
 
-const req = require.context('../src', true, /.stories\.tsx$/);
-function loadStories() {
-  req.keys().forEach((filename) => req(filename));
-}
+  return {
+    checked,
+    'aria-checked': ariaChecked.toString(),
+    disabled,
+  };
+};
+const RadioStories = storiesOf(`${__dirname}`, module).add('Basic', () => (
+  <Radio {...createKnobs()} onChange={action('radio on change')} aria-label="radio" />
+));
 
-addDecorator((Story) => {
-  const StoryComponent = Story as React.ComponentType;
-  return (
-    <ThemeProvider>
-      <StoryComponent />
-    </ThemeProvider>
-  );
-});
-
-configure(loadStories, module);
+export default RadioStories;

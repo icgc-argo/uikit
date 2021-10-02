@@ -17,23 +17,19 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { configure, addDecorator } from '@storybook/react';
 import React from 'react';
+import Typography from '../Typography';
+import { styled } from '..';
 
-import { ThemeProvider } from '../src';
+const Mail = styled('a')`
+  color: ${({ theme }) => theme.colors.black};
+  text-decoration: none;
+`;
 
-const req = require.context('../src', true, /.stories\.tsx$/);
-function loadStories() {
-  req.keys().forEach((filename) => req(filename));
-}
+const MailTo = ({ children, link }) => (
+  <Typography variant="data">
+    <Mail href={`mailto:${link}`}>{children}</Mail>
+  </Typography>
+);
 
-addDecorator((Story) => {
-  const StoryComponent = Story as React.ComponentType;
-  return (
-    <ThemeProvider>
-      <StoryComponent />
-    </ThemeProvider>
-  );
-});
-
-configure(loadStories, module);
+export default MailTo;
