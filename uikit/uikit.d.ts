@@ -17,9 +17,6 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/// <reference types="next" />
-/// <reference types="next/types/global" />
-
 declare module '*.svg' {
   const content: string;
   export default content;

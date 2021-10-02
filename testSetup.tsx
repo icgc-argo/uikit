@@ -20,11 +20,6 @@
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { JSDOM } from 'jsdom';
-// @ts-ignore there's a ts type missing in next/config package
-import { setConfig } from 'next/config';
-import config from './next.config';
-
-setConfig(config);
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -43,10 +38,10 @@ function copyProps(src, target) {
 (global as any).navigator = {
   userAgent: 'node.js',
 };
-(global as any).requestAnimationFrame = function(callback) {
+(global as any).requestAnimationFrame = function (callback) {
   return setTimeout(callback, 0);
 };
-(global as any).cancelAnimationFrame = function(id) {
+(global as any).cancelAnimationFrame = function (id) {
   clearTimeout(id);
 };
 copyProps(window, global);
