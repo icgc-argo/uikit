@@ -17,23 +17,22 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { configure, addDecorator } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import React from 'react';
+import InstructionBox from '.';
+import Typography from 'src/Typography';
 
-import { ThemeProvider } from '../src';
+const InstructionBoxStories = storiesOf(`${__dirname}`, module).add('Basic', () => (
+  <div style={{ background: 'white' }}>
+    <InstructionBox
+      footer={<Typography variant="paragraph">Footer</Typography>}
+      steps={[
+        <Typography variant="paragraph">Item 1</Typography>,
+        <Typography variant="paragraph">Item 2</Typography>,
+        <Typography variant="paragraph">Item 3</Typography>,
+      ]}
+    />
+  </div>
+));
 
-const req = require.context('../src', true, /.stories\.tsx$/);
-function loadStories() {
-  req.keys().forEach((filename) => req(filename));
-}
-
-addDecorator((Story) => {
-  const StoryComponent = Story as React.ComponentType;
-  return (
-    <ThemeProvider>
-      <StoryComponent />
-    </ThemeProvider>
-  );
-});
-
-configure(loadStories, module);
+export default InstructionBoxStories;

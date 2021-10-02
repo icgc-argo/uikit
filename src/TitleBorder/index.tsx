@@ -17,23 +17,17 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { configure, addDecorator } from '@storybook/react';
+import styled from '@emotion/styled';
 import React from 'react';
+import defaultTheme from 'src/theme/defaultTheme';
 
-import { ThemeProvider } from '../src';
+const TitleBorder = styled<'hr', { width?: string; color: keyof typeof defaultTheme.colors }>('hr')`
+  border: 0;
+  width: ${({ width }) => (width ? width : 'auto')};
+  height: 3px;
+  border-radius: 1.5px;
+  background-color: ${({ theme, color }) => theme.colors[color]};
+  margin: 0;
+`;
 
-const req = require.context('../src', true, /.stories\.tsx$/);
-function loadStories() {
-  req.keys().forEach((filename) => req(filename));
-}
-
-addDecorator((Story) => {
-  const StoryComponent = Story as React.ComponentType;
-  return (
-    <ThemeProvider>
-      <StoryComponent />
-    </ThemeProvider>
-  );
-});
-
-configure(loadStories, module);
+export default TitleBorder;

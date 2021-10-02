@@ -17,23 +17,14 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { configure, addDecorator } from '@storybook/react';
-import React from 'react';
+import elementResizeDetectorMaker from 'element-resize-detector';
+import memoize from 'lodash/memoize';
 
-import { ThemeProvider } from '../src';
-
-const req = require.context('../src', true, /.stories\.tsx$/);
-function loadStories() {
-  req.keys().forEach((filename) => req(filename));
-}
-
-addDecorator((Story) => {
-  const StoryComponent = Story as React.ComponentType;
-  return (
-    <ThemeProvider>
-      <StoryComponent />
-    </ThemeProvider>
-  );
-});
-
-configure(loadStories, module);
+export default memoize(
+  elementResizeDetectorMaker as () => {
+    listenTo: <T extends HTMLElement>(el: T, cb: (el?: T) => void) => void;
+    removeListener: <T extends HTMLElement>(el: T, cb: (el?: T) => void) => void;
+    removeAllListener: <T extends HTMLElement>(el: T) => void;
+    uninstall: <T extends HTMLElement>(el: T) => void;
+  },
+);
