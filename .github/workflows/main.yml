@@ -25,11 +25,14 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: Install dependencies
+        run: npm ci
+
       # Runs a single command using the runners shell
-      - name: build
+      - name: Build
         run: npm run build
 
-      - name: unit tests
+      - name: Unit tests
         run: npm run test
 
       # Runs a set of commands using the runners shell
