@@ -1,21 +1,35 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
+    "allowJs": false,
     "skipLibCheck": true,
     "strict": false,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
+    "noEmit": false,
     "esModuleInterop": true,
-    "module": "esnext",
+    "module": "es6",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
+    "resolveJsonModule": false,
+    "isolatedModules": false,
     "jsx": "preserve",
     "baseUrl": "./",
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "outDir": "./dist",
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": true
   },
-  "exclude": ["node_modules", "scripts/*", "**/*.test.ts"],
-  "include": ["**/*.ts", "**/*.tsx", ".storybook/storybook-env.d.ts"]
+  "exclude": [
+    "node_modules",
+    "scripts /*",
+    "**/*.test.ts",
+    "**/testSetup.*",
+    "**/*.test.*",
+    "**/testUtil.*",
+    "**/plopfile.js",
+    "**/*.stories.*",
+    "**/stories.*"
+  ],
+  "include": [".storybook/storybook-env.d.ts", "./src/**/*"]
 }
