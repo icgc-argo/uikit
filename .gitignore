@@ -75,6 +75,6 @@ chromedriver.log
 
 .graphqlconfig
 .cache
-src/dist
+dist
 
 **/.DS_STORE

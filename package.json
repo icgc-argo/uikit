@@ -10,11 +10,11 @@
     "type-check": "tsc -p ./tsconfig.json",
     "test": "NODE_PATH=./ ts-mocha -p ./tsconfig.test.json ./testSetup.tsx src/testSetup.tsx src/**/*.test.tsx",
     "test:watch": "NODE_PATH=./ ts-mocha --watch -p ./tsconfig.test.json ./testSetup.tsx src/testSetup.tsx src/**/*.test.tsx",
-    "build::assets": "cp ./src/package.release.json ./src/dist/package.json && cp -r ./src/assets ./src/dist/assets && cp ./src/readme.md ./src/dist/readme.md && cp ./src/.npmrc ./src/dist/.npmrc",
+    "build::assets": "cp ./src/package.release.json ./dist/package.json && cp -r ./src/assets ./dist/assets && cp ./src/readme.md ./dist/readme.md && cp ./src/.npmrc ./dist/.npmrc",
     "build::ts": "tsc -p ./src/tsconfig.json",
-    "build::babel": "cp ./.babelrc ./src/dist/.babelrc && babel ./src/dist --out-dir ./src/dist && rm ./src/dist/.babelrc",
-    "build::cleanup": "rm ./src/dist/**/*.jsx ./src/dist/*.jsx",
-    "build": "rm -rf ./src/dist && npm run build::ts && npm run build::babel && npm run build::assets && npm run build::cleanup",
+    "build::babel": "cp ./.babelrc ./dist/.babelrc && babel ./dist --out-dir ./dist && rm ./dist/.babelrc",
+    "build::cleanup": "rm ./dist/**/*.jsx ./dist/*.jsx",
+    "build": "rm -rf ./dist && npm run build::ts && npm run build::babel && npm run build::assets && npm run build::cleanup",
     "publish-uikit": "cd uikit/dist && npm publish --access public"
   },
   "bin": {
