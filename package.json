@@ -12,7 +12,7 @@
     "test:watch": "NODE_PATH=./ ts-mocha --watch -p ./tsconfig.test.json ./testSetup.tsx src/testSetup.tsx src/**/*.test.tsx",
     "build::assets": "cp ./src/package.release.json ./src/dist/package.json && cp -r ./src/assets ./src/dist/assets && cp ./src/readme.md ./src/dist/readme.md && cp ./src/.npmrc ./src/dist/.npmrc",
     "build::ts": "tsc -p ./src/tsconfig.json",
-    "build::babel": "cp ./src/.babelrc.json ./src/dist/.babelrc && babel ./src/dist --out-dir ./src/dist && rm ./src/dist/.babelrc",
+    "build::babel": "cp ./.babelrc ./src/dist/.babelrc && babel ./src/dist --out-dir ./src/dist && rm ./src/dist/.babelrc",
     "build::cleanup": "rm ./src/dist/**/*.jsx ./src/dist/*.jsx",
     "build": "rm -rf ./src/dist && npm run build::ts && npm run build::babel && npm run build::assets && npm run build::cleanup",
     "publish-uikit": "cd uikit/dist && npm publish --access public"
