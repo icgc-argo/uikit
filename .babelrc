@@ -15,10 +15,10 @@
       "module-resolver",
       {
         "root": [
-          "./src/dist"
+          "./dist"
         ],
         "alias": {
-          "src": "./src/dist"
+          "src": "./dist"
         }
       }
     ]
