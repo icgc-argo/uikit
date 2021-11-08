@@ -21,7 +21,7 @@
     "build": "rm -rf ./dist && npm run build::ts && npm run build::babel && npm run build::assets && npm run build::cleanup",
     "publish-uikit": "cd dist && npm publish --access public",
     "prewatch": "rm -rf dist && mkdir dist && cd dist && npm link react react-dom",
-    "watch": "tsc-watch -p ./tsconfig.json --onSuccess \"npm run build::babel\"",
+    "watch": "rm -rf ./dist && tsc-watch -p ./tsconfig.json --onSuccess \"npm run build::babel\"",
     "postwatch": "rm -r dist"
   },
   "peerDependencies": {
