@@ -7,9 +7,9 @@
 
 Reusable UI components for Argo.
 
-## Development
+# Development
 
-## Local
+### Local
 
 Both local development and building for publishing write to the dist folder. We use `npm link` for local development and avoid adding it to `package.json`.
 `npm run watch` will point to the consuming projects react libs in the global node folder. If you get an error about multiple versions of react, chances are something went wrong here.
