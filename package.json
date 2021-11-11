@@ -14,7 +14,7 @@
     "type-check": "tsc -p ./tsconfig.json",
     "test": "NODE_PATH=./ ts-mocha -p ./tsconfig.test.json ./testSetup.tsx src/testSetup.tsx src/**/*.test.tsx",
     "test:watch": "NODE_PATH=./ ts-mocha --watch -p ./tsconfig.test.json ./testSetup.tsx src/testSetup.tsx src/**/*.test.tsx",
-    "build::assets": "cp ./package.json ./dist/package.json && cp -r ./src/assets ./dist/assets && cp ./readme.md ./dist/readme.md && cp ./.npmrc ./dist/.npmrc",
+    "build::assets": "cp ./package.json ./dist/package.json && cp -r ./src/assets ./dist/assets && cp ./README.md ./dist/README.md",
     "build::ts": "tsc -p ./tsconfig.json",
     "build::babel": "babel ./dist --out-dir ./dist",
     "build::cleanup": "rm ./dist/**/*.jsx ./dist/*.jsx",
@@ -28,7 +28,6 @@
     "react": "16.x.x || 17.x.x",
     "react-dom": "16.x.x || 17.x.x"
   },
-
   "dependencies": {
     "@babel/runtime-corejs2": "^7.7.2",
     "@emotion/core": "^10.0.10",
