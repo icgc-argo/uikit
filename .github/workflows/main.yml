@@ -24,7 +24,9 @@ jobs:
     steps:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.4.1
-      
+        with:
+          node-version: "lts/gallium"
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout code
         uses: actions/checkout@v2
