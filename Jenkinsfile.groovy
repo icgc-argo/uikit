@@ -18,8 +18,7 @@
  */
 
 def dockerRegistry = "ghcr.io"
-def githubRepo = "icgc-argo/platform-ui"
-def commit = "UNKNOWN"
+def githubRepo = "icgc-argo/uikit"
 def version = "UNKNOWN"
 def uikitVersion = "UNKNOWN"
 
@@ -63,13 +62,7 @@ spec:
         stage('Prepare') {
             steps {
                 script {
-                    commit = sh(returnStdout: true, script: 'git describe --always').trim()
-                }
-                script {
-                    version = sh(returnStdout: true, script: 'cat ./package.json | grep version | cut -d \':\' -f2 | sed -e \'s/"//\' -e \'s/",//\'').trim()
-                }
-                script {
-                    uikitVersion = sh(returnStdout: true, script: 'cat ./uikit/package.release.json | grep version | cut -d \':\' -f2 | sed -e \'s/"//\' -e \'s/",//\'').trim()
+                    uikitVersion = sh(returnStdout: true, script: 'cat ./uikit/package.json | grep version | cut -d \':\' -f2 | sed -e \'s/"//\' -e \'s/",//\'').trim()
                 }
             }
         }
@@ -77,49 +70,13 @@ spec:
             steps {
                 container('node') {
                     sh "npm ci"
-                    sh "npm run test"
                     sh "npm run build-uikit"
                 }
-                container('node') {
-                    sh "GATEWAY_API_ROOT=https://argo-gateway.dev.argo.cancercollaboratory.org/ npm run test-gql-validation"
-                }
             }
         }
-
-        stage('Build container') {
-            steps {
-                container('docker') {
-                    // DNS error if --network is default
-                    sh "docker build --network=host -f Dockerfile . -t ${dockerRegistry}/${githubRepo}:${commit}"
-                }
-            }
-        }
-
-        stage('Deploy to argo-dev') {
-            when {
-                branch "develop"
-            }
-            steps {
-                container('node') {
-                    sh "GATEWAY_API_ROOT=https://argo-gateway.dev.argo.cancercollaboratory.org/ npm run test-gql-validation"
-                }
-                container('docker') {
-                    withCredentials([usernamePassword(credentialsId:'argoContainers', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                        sh "docker login ${dockerRegistry} -u $USERNAME -p $PASSWORD"
-                    }
-                    sh "docker tag ${dockerRegistry}/${githubRepo}:${commit} ${dockerRegistry}/${githubRepo}:${version}-${commit}"
-                    sh "docker push ${dockerRegistry}/${githubRepo}:${version}-${commit}"
-                }
-                build(job: "/ARGO/provision/platform-ui", parameters: [
-                     [$class: 'StringParameterValue', name: 'AP_ARGO_ENV', value: 'dev' ],
-                     [$class: 'StringParameterValue', name: 'AP_ARGS_LINE', value: "--set-string image.tag=${version}-${commit}" ]
-                ])
-            }
-        }
-
         stage('Publish uikit') {
             when {
-                branch "develop"
+                branch "main"
             }
             steps {
                 container('node') {
@@ -144,33 +101,7 @@ spec:
             }
         }
 
-        stage('Deploy to argo-qa') {
-            when {
-                branch "master"
-            }
-            steps {
-                container('node') {
-                    sh "GATEWAY_API_ROOT=https://argo-gateway.qa.argo.cancercollaboratory.org/ npm run test-gql-validation"
-                }
-                container('docker') {
-                    withCredentials([usernamePassword(credentialsId: 'argoGithub', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                        sh "git tag ${version}"
-                        sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${githubRepo} --tags"
-                    }
-                    withCredentials([usernamePassword(credentialsId:'argoContainers', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                        sh "docker login ${dockerRegistry} -u $USERNAME -p $PASSWORD"
-                    }
-                    sh "docker tag ${dockerRegistry}/${githubRepo}:${commit} ${dockerRegistry}/${githubRepo}:${version}"
-                    sh "docker tag ${dockerRegistry}/${githubRepo}:${commit} ${dockerRegistry}/${githubRepo}:latest"
-                    sh "docker push ${dockerRegistry}/${githubRepo}:${version}"
-                    sh "docker push ${dockerRegistry}/${githubRepo}:latest"
-                }
-                build(job: "/ARGO/provision/platform-ui", parameters: [
-                     [$class: 'StringParameterValue', name: 'AP_ARGO_ENV', value: 'qa' ],
-                     [$class: 'StringParameterValue', name: 'AP_ARGS_LINE', value: "--set-string image.tag=${version}" ]
-                ])
-            }
-        }
+  
     }
     post {
         unsuccessful {
