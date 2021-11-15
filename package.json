@@ -21,13 +21,14 @@
     "build": "rm -rf ./dist && npm run build::ts && npm run build::babel && npm run build::assets && npm run build::cleanup",
     "publish-uikit": "cd dist && npm publish --access public",
     "prewatch": "rm -rf dist && mkdir dist && cd dist && npm link react react-dom",
-    "watch": "tsc-watch -p ./tsconfig.json --onSuccess \"npm run build::babel\"",
+    "watch": "rm -rf ./dist && tsc-watch -p ./tsconfig.json --onSuccess \"npm run build::babel\"",
     "postwatch": "rm -r dist"
   },
   "peerDependencies": {
     "react": "16.x.x || 17.x.x",
     "react-dom": "16.x.x || 17.x.x"
   },
+
   "dependencies": {
     "@babel/runtime-corejs2": "^7.7.2",
     "@emotion/core": "^10.0.10",
