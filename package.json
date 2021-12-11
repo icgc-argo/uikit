@@ -28,7 +28,6 @@
     "react": "16.x.x || 17.x.x",
     "react-dom": "16.x.x || 17.x.x"
   },
-
   "dependencies": {
     "@babel/runtime-corejs2": "^7.7.2",
     "@emotion/core": "^10.0.10",
@@ -63,15 +62,27 @@
     "@babel/preset-typescript": "^7.16.0",
     "@babel/register": "^7.4.0",
     "@emotion/babel-preset-css-prop": "^10.0.9",
+    "@storybook/addon-a11y": "^6.4.9",
+    "@storybook/addon-actions": "^6.4.9",
+    "@storybook/addon-essentials": "^6.4.9",
+    "@storybook/addon-info": "^5.3.21",
+    "@storybook/addon-knobs": "^6.4.0",
+    "@storybook/addon-links": "^6.4.9",
+    "@storybook/addon-options": "^5.3.21",
+    "@storybook/addon-viewport": "^6.4.9",
+    "@storybook/addons": "^6.4.9",
+    "@storybook/react": "^6.4.9",
     "babel-loader": "^8.0.5",
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-preset-env": "^1.7.0",
-    "ts-node-dev": "^1.1.8",
-    "tsc-watch": "^4.5.0",
-    "typescript": "^3.9.5",
+    "husky": "^2.2.0",
     "plop": "^2.3.0",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
-    "husky": "^2.2.0"
+    "react-docgen-typescript-loader": "^3.7.2",
+    "react-json-view": "^1.21.3",
+    "ts-node-dev": "^1.1.8",
+    "tsc-watch": "^4.5.0",
+    "typescript": "^3.9.5"
   }
 }
