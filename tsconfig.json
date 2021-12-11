@@ -21,15 +21,14 @@
     "declaration": true
   },
   "exclude": [
+    "dist",
     "node_modules",
-    "scripts /*",
+    "scripts/*",
     "**/*.test.ts",
     "**/testSetup.*",
     "**/*.test.*",
     "**/testUtil.*",
-    "**/plopfile.js",
-    "**/*.stories.*",
-    "**/stories.*"
+    "**/plopfile.js"
   ],
   "include": [".storybook/storybook-env.d.ts", "./src/**/*"]
 }

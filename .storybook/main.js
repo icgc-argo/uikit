@@ -16,9 +16,10 @@
  * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+const path = require("path");
 
 module.exports = {
-  stories: ["../stories/uikit.stories.tsx"],
+  stories: ["../src/**/stories.tsx"],
   addons: [
     "@storybook/addon-essentials",
     "@storybook/addon-knobs",
@@ -27,4 +28,60 @@ module.exports = {
     "@storybook/addon-a11y",
     "@storybook/addon-viewport",
   ],
+
+  webpackFinal: async (config, { configType }) => {
+    config.node = {
+      __dirname: true,
+      __filename: true,
+    };
+
+    config.resolve.modules = [
+      ...(config.resolve.modules || []),
+      path.resolve(__dirname, "../"),
+    ];
+
+    config.module.rules = [
+      ...(config.module.rules || []),
+      {
+        test: /\.(graphql|gql)$/,
+        exclude: /node_modules/,
+        loader: "graphql-tag/loader",
+      },
+      {
+        test: /\.(ts|tsx)$/,
+        exclude: /(node_modules)/,
+        use: [
+          {
+            loader: require.resolve("react-docgen-typescript-loader"),
+          },
+          {
+            loader: require.resolve("babel-loader"),
+            options: {
+              presets: [
+                [
+                  "@babel/preset-typescript",
+                  { isTSX: true, allExtensions: true },
+                ],
+                [
+                  "@emotion/babel-preset-css-prop",
+                  {
+                    autoLabel: true,
+                    labelFormat: "Uikit-[local]",
+                  },
+                ],
+              ],
+            },
+          },
+        ],
+      },
+    ];
+    config.resolve.extensions = [
+      ...(config.resolve.extensions || []),
+      ".ts",
+      ".tsx",
+    ];
+
+    // Return the altered config
+    return config;
+  },
 };
