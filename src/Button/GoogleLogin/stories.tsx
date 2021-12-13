@@ -17,12 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
-import React from 'react';
-import Google from '.';
+import React from "react";
+import Google from ".";
 
-const GoogleStories = storiesOf(`${__dirname}`, module).add('Basic', () => (
-  <Google link="/">Skeleton</Google>
-));
+export const GoogleLogin = () => <Google link="/">Skeleton</Google>;
 
-export default GoogleStories;
+export default { title: "Google Login" };
