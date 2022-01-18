@@ -1,13 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  stories: [
-    "../src/Affix/stories.@(js|mdx|ts|tsx)",
-    //  "../src/AppBar/stories.@(js|mdx|ts|tsx)",
-    "../src/ClipboardCopyField/stories.@(js|mdx|ts|tsx)",
-
-    "../src/Button/stories.@(js|mdx|ts|tsx)",
-  ],
+  stories: ["../src/**/*stories.@(js|mdx|ts|tsx)"],
   addons: [
     "@storybook/addon-knobs",
     "@storybook/addon-actions",
