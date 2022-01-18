@@ -6,7 +6,13 @@ module.exports = {
     //  "../src/AppBar/stories.@(js|mdx|ts|tsx)",
     "../src/ClipboardCopyField/stories.@(js|mdx|ts|tsx)",
 
-    //    "../src/Button/stories.@(js|mdx|ts|tsx)",
+    "../src/Button/stories.@(js|mdx|ts|tsx)",
+  ],
+  addons: [
+    "@storybook/addon-knobs",
+    "@storybook/addon-actions",
+    "@storybook/addon-a11y",
+    "@storybook/addon-viewport",
   ],
   babel: async (options) => ({
     ...options,
