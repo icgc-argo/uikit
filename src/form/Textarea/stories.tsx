@@ -17,42 +17,42 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { boolean, number, radios, text } from '@storybook/addon-knobs';
+import React from "react";
+import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
+import { boolean, number, radios, text } from "@storybook/addon-knobs";
 
-import Textarea from '.';
+import Textarea from ".";
 
-export default storiesOf(`${__dirname}`, module).add(
-  'Basic',
+storiesOf(`${__dirname}`, module).add(
+  "Basic",
   () => {
-    const labelForCounterKnobs = 'Counter props';
-    const labelForTextAreaKnobs = 'Basic props';
-    const [value, setValue] = React.useState('');
-    const disabled = boolean('disabled', false, labelForTextAreaKnobs);
+    const labelForCounterKnobs = "Counter props";
+    const labelForTextAreaKnobs = "Basic props";
+    const [value, setValue] = React.useState("");
+    const disabled = boolean("disabled", false, labelForTextAreaKnobs);
 
     const onBlur = () => {
       if (disabled) {
-        action('blurred while disabled')(value);
+        action("blurred while disabled")(value);
       } else {
-        action('blurred')(value);
+        action("blurred")(value);
       }
     };
     const onChange = (e) => {
       const eventValue = e.target.value;
       if (disabled) {
-        action('clicked while disabled')(eventValue);
+        action("clicked while disabled")(eventValue);
       } else {
-        action('clicked')(eventValue);
+        action("clicked")(eventValue);
         setValue(eventValue);
       }
     };
     const onFocus = () => {
       if (disabled) {
-        action('focused while disabled')(value);
+        action("focused while disabled")(value);
       } else {
-        action('focused')(value);
+        action("focused")(value);
       }
     };
 
@@ -60,40 +60,40 @@ export default storiesOf(`${__dirname}`, module).add(
       <Textarea
         aria-label="demo-input"
         countDirection={radios(
-          'count direction',
-          { Ascending: 'asc', Descending: 'desc' },
-          'asc',
-          labelForCounterKnobs,
+          "count direction",
+          { Ascending: "asc", Descending: "desc" },
+          "asc",
+          labelForCounterKnobs
         )}
         countLimit={number(
-          'count limit',
+          "count limit",
           0,
           { max: Infinity, min: 0, range: true, step: 1 },
-          labelForCounterKnobs,
+          labelForCounterKnobs
         )}
         countPosition={radios(
-          'count position',
-          { Left: 'left', Right: 'right' },
-          'right',
-          labelForCounterKnobs,
+          "count position",
+          { Left: "left", Right: "right" },
+          "right",
+          labelForCounterKnobs
         )}
         countType={radios(
-          'count type',
-          { Characters: 'chars', Words: 'words' },
-          'chars',
-          labelForCounterKnobs,
+          "count type",
+          { Characters: "chars", Words: "words" },
+          "chars",
+          labelForCounterKnobs
         )}
         disabled={disabled}
-        error={boolean('error', false, labelForTextAreaKnobs)}
-        focused={boolean('focused', false, labelForTextAreaKnobs)}
+        error={boolean("error", false, labelForTextAreaKnobs)}
+        focused={boolean("focused", false, labelForTextAreaKnobs)}
         onBlur={onBlur}
         onChange={onChange}
         onFocus={onFocus}
-        placeholder={text('placeholder', '', labelForTextAreaKnobs)}
-        truncate={boolean('truncate', false, labelForCounterKnobs)}
-        rows={number('rows', 3, { min: 1, step: 1 }, labelForTextAreaKnobs)}
+        placeholder={text("placeholder", "", labelForTextAreaKnobs)}
+        truncate={boolean("truncate", false, labelForCounterKnobs)}
+        rows={number("rows", 3, { min: 1, step: 1 }, labelForTextAreaKnobs)}
       />
     );
   },
-  {},
+  {}
 );

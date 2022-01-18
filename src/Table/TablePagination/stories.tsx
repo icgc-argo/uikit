@@ -17,44 +17,44 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
-import React from 'react';
-import TablePagination from '.';
-import times from 'lodash/times';
-import { boolean } from '@storybook/addon-knobs';
+import { storiesOf } from "@storybook/react";
+import React from "react";
+import TablePagination from ".";
+import times from "lodash/times";
+import { boolean } from "@storybook/addon-knobs";
 
-import Table from '..';
+import Table from "..";
 
-export default storiesOf(`${__dirname}`, module).add(
-  'Basic',
+storiesOf(`${__dirname}`, module).add(
+  "Basic",
   () => {
     const containerRef = React.createRef<HTMLDivElement>();
     return (
-      <div ref={containerRef} style={{ width: '100%' }}>
+      <div ref={containerRef} style={{ width: "100%" }}>
         <Table
           parentRef={containerRef}
           data={times(104, (idx) => ({
             id: idx,
             prop2: idx,
-            prop3: 'some text of ' + idx,
+            prop3: "some text of " + idx,
           }))}
           columns={[
             {
               sortable: false,
-              Header: 'ID',
-              accessor: 'id',
+              Header: "ID",
+              accessor: "id",
             },
             {
-              Header: 'Property 2',
-              accessor: 'prop2',
+              Header: "Property 2",
+              accessor: "prop2",
             },
             {
-              Header: 'Property 3',
-              accessor: 'prop3',
+              Header: "Property 3",
+              accessor: "prop3",
             },
           ]}
-          showPagination={boolean('showPagination', true)}
-          showPageSizeOptions={boolean('showPageSizeOptions', true)}
+          showPagination={boolean("showPagination", true)}
+          showPageSizeOptions={boolean("showPageSizeOptions", true)}
         />
       </div>
     );
@@ -64,5 +64,5 @@ export default storiesOf(`${__dirname}`, module).add(
       propTables: [TablePagination],
       propTablesExclude: [Table],
     },
-  },
+  }
 );

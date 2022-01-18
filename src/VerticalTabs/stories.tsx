@@ -17,12 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import React from "react";
+import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 
-import { css } from '@emotion/core';
-import VerticalTabs from '.';
+import { css } from "@emotion/core";
+import VerticalTabs from ".";
 
 const LoremTooltip = (
   <>
@@ -38,20 +38,28 @@ const LoremTooltip = (
   </>
 );
 
-const VerticalTabsStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`${__dirname}`, module).add("Basic", () => {
   const [activeItem, setActiveItem] = React.useState(0);
   const onClick = (num: number) => (e) => {
     setActiveItem(num);
-    action('VerticalTabs.Item onClick')(e);
+    action("VerticalTabs.Item onClick")(e);
   };
   return (
-    <div style={{ width: '50%' }}>
+    <div style={{ width: "50%" }}>
       <VerticalTabs>
-        <VerticalTabs.Item tooltip="Donor" onClick={onClick(0)} active={activeItem === 0}>
+        <VerticalTabs.Item
+          tooltip="Donor"
+          onClick={onClick(0)}
+          active={activeItem === 0}
+        >
           Donor
           <VerticalTabs.Tag variant="UPDATE">12</VerticalTabs.Tag>
         </VerticalTabs.Item>
-        <VerticalTabs.Item tooltip="Specimen" onClick={onClick(1)} active={activeItem === 1}>
+        <VerticalTabs.Item
+          tooltip="Specimen"
+          onClick={onClick(1)}
+          active={activeItem === 1}
+        >
           Specimen
           <br />
           larger tab
@@ -63,11 +71,19 @@ const VerticalTabsStories = storiesOf(`${__dirname}`, module).add('Basic', () =>
           Donor
           <VerticalTabs.Tag variant="ERROR">!</VerticalTabs.Tag>
         </VerticalTabs.Item>
-        <VerticalTabs.Item disabled onClick={onClick(3)} active={activeItem === 3}>
+        <VerticalTabs.Item
+          disabled
+          onClick={onClick(3)}
+          active={activeItem === 3}
+        >
           Donor
           <VerticalTabs.Tag variant="SUCCESS">45</VerticalTabs.Tag>
         </VerticalTabs.Item>
-        <VerticalTabs.Item tooltip={LoremTooltip} onClick={onClick(4)} active={activeItem === 4}>
+        <VerticalTabs.Item
+          tooltip={LoremTooltip}
+          onClick={onClick(4)}
+          active={activeItem === 4}
+        >
           Lorem ipsum dolor amet palo santo kombucha
           <VerticalTabs.Tag variant="SUCCESS">45</VerticalTabs.Tag>
         </VerticalTabs.Item>
@@ -75,5 +91,3 @@ const VerticalTabsStories = storiesOf(`${__dirname}`, module).add('Basic', () =>
     </div>
   );
 });
-
-export default VerticalTabsStories;

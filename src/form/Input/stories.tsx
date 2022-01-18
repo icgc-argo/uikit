@@ -17,50 +17,50 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { text, boolean, radios, select } from '@storybook/addon-knobs';
+import React from "react";
+import { storiesOf } from "@storybook/react";
+import { text, boolean, radios, select } from "@storybook/addon-knobs";
 
-import Input, { INPUT_PRESETS } from '.';
-import Icon from '../../Icon';
-import { action } from '@storybook/addon-actions';
+import Input, { INPUT_PRESETS } from ".";
+import Icon from "../../Icon";
+import { action } from "@storybook/addon-actions";
 
 const createKnobs = () => {
-  const [value, setValue] = React.useState('');
-  const disabled = boolean('disabled', false);
-  const error = boolean('error', false);
+  const [value, setValue] = React.useState("");
+  const disabled = boolean("disabled", false);
+  const error = boolean("error", false);
   const onBlur = () => {
     if (disabled) {
-      action('blurred while disabled')(value);
+      action("blurred while disabled")(value);
     } else {
-      action('blurred')(value);
+      action("blurred")(value);
     }
   };
   const onChange = (e) => {
     const eventValue = e.target.value;
     if (disabled) {
-      action('clicked while disabled')(eventValue);
+      action("clicked while disabled")(eventValue);
     } else {
-      action('clicked')(eventValue);
+      action("clicked")(eventValue);
       setValue(eventValue);
     }
   };
   const onFocus = () => {
     if (disabled) {
-      action('focused while disabled')(value);
+      action("focused while disabled")(value);
     } else {
-      action('focused')(value);
+      action("focused")(value);
     }
   };
-  const placeholder = text('Placeholder', 'Start typing here..');
-  const showClear = boolean('showClear', false);
+  const placeholder = text("Placeholder", "Start typing here..");
+  const showClear = boolean("showClear", false);
   const size = radios(
-    'size',
+    "size",
     {
-      sm: 'sm',
-      lg: 'lg',
+      sm: "sm",
+      lg: "lg",
     },
-    'sm',
+    "sm"
   );
   return {
     disabled,
@@ -75,28 +75,34 @@ const createKnobs = () => {
   };
 };
 
-const InputStories = storiesOf(`${__dirname}`, module)
-  .add('Basic', () => {
+storiesOf(`${__dirname}`, module)
+  .add("Basic", () => {
     return (
-      <div style={{ width: '200px' }}>
+      <div style={{ width: "200px" }}>
         <Input aria-label="demo-input" {...createKnobs()} />
       </div>
     );
   })
-  .add('With preset', () => {
-    const preset = select('preset', [null, ...Object.values(INPUT_PRESETS)], null);
+  .add("With preset", () => {
+    const preset = select(
+      "preset",
+      [null, ...Object.values(INPUT_PRESETS)],
+      null
+    );
     return (
-      <div style={{ width: '200px' }}>
+      <div style={{ width: "200px" }}>
         <Input aria-label="demo-input" preset={preset} {...createKnobs()} />
       </div>
     );
   })
-  .add('With icon', () => {
+  .add("With icon", () => {
     return (
-      <div style={{ width: '200px' }}>
-        <Input aria-label="demo-input" icon={<Icon name="search" />} {...createKnobs()} />
+      <div style={{ width: "200px" }}>
+        <Input
+          aria-label="demo-input"
+          icon={<Icon name="search" />}
+          {...createKnobs()}
+        />
       </div>
     );
   });
-
-export default InputStories;

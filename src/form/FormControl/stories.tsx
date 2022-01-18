@@ -17,28 +17,28 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { useState } from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { boolean } from '@storybook/addon-knobs';
+import React, { useState } from "react";
+import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
+import { boolean } from "@storybook/addon-knobs";
 
-import FormControl from '.';
-import FormHelperText from '../FormHelperText';
-import InputLabel from '../InputLabel';
-import MultiSelect, { Option } from '../../form/MultiSelect';
-import Input from '../../form/Input';
-import FormCheckbox from '../FormCheckbox';
-import Typography from '../../Typography';
+import FormControl from ".";
+import FormHelperText from "../FormHelperText";
+import InputLabel from "../InputLabel";
+import MultiSelect, { Option } from "../../form/MultiSelect";
+import Input from "../../form/Input";
+import FormCheckbox from "../FormCheckbox";
+import Typography from "../../Typography";
 
-const FormControlStories = storiesOf(`${__dirname}`, module)
+storiesOf(`${__dirname}`, module)
   .add(
-    'FormCheckbox',
+    "FormCheckbox",
     () => {
       const [checked, setChecked] = useState(false);
-      const disabled = boolean('disabled', false);
-      const error = boolean('error', false);
-      const required = boolean('required', true);
-      const value = 'myCheckbox';
+      const disabled = boolean("disabled", false);
+      const error = boolean("error", false);
+      const required = boolean("required", true);
+      const value = "myCheckbox";
 
       return (
         <FormControl disabled={disabled} error={error} required={required}>
@@ -47,9 +47,9 @@ const FormControlStories = storiesOf(`${__dirname}`, module)
             checked={checked}
             onChange={() => {
               if (disabled) {
-                action('checkbox clicked while disabled')(value, checked);
+                action("checkbox clicked while disabled")(value, checked);
               } else {
-                action('checkbox clicked')(value, !checked);
+                action("checkbox clicked")(value, !checked);
                 setChecked(!checked);
               }
             }}
@@ -57,7 +57,7 @@ const FormControlStories = storiesOf(`${__dirname}`, module)
           >
             <Typography bold component="span">
               I agree
-            </Typography>{' '}
+            </Typography>{" "}
             with the terms and conditions.
           </FormCheckbox>
 
@@ -69,22 +69,22 @@ const FormControlStories = storiesOf(`${__dirname}`, module)
       info: {
         propTablesExclude: [FormCheckbox, Typography],
       },
-    },
+    }
   )
   .add(
-    'MultiSelect',
+    "MultiSelect",
     () => {
       const [value, setValue] = React.useState([]);
       return (
         <FormControl
-          error={boolean('error', false)}
-          required={boolean('required', true)}
-          disabled={boolean('disabled', false)}
+          error={boolean("error", false)}
+          required={boolean("required", true)}
+          disabled={boolean("disabled", false)}
         >
           <InputLabel htmlFor="country">Country</InputLabel>
           <MultiSelect
             aria-label="multi-select"
-            inputProps={{ id: 'country' }}
+            inputProps={{ id: "country" }}
             value={value}
             onChange={(event) => setValue(event.target.value)}
             placeholder="Add one or more..."
@@ -103,18 +103,22 @@ const FormControlStories = storiesOf(`${__dirname}`, module)
       info: {
         propTablesExclude: [Option, MultiSelect],
       },
-    },
+    }
   )
   .add(
-    'Input',
+    "Input",
     () => (
       <FormControl
-        required={boolean('required', true)}
-        disabled={boolean('disabled', false)}
-        error={boolean('error', false)}
+        required={boolean("required", true)}
+        disabled={boolean("disabled", false)}
+        error={boolean("error", false)}
       >
         <InputLabel htmlFor="text-input">text input</InputLabel>
-        <Input aria-label="text input" id="text-input" placeholder="put some text" />
+        <Input
+          aria-label="text input"
+          id="text-input"
+          placeholder="put some text"
+        />
         <FormHelperText>Some helper text</FormHelperText>
         <FormHelperText onErrorOnly>This field has an error!</FormHelperText>
       </FormControl>
@@ -123,7 +127,5 @@ const FormControlStories = storiesOf(`${__dirname}`, module)
       info: {
         propTablesExclude: [Input],
       },
-    },
+    }
   );
-
-export default FormControlStories;

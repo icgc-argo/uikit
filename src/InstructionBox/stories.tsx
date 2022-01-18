@@ -17,13 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
-import React from 'react';
-import InstructionBox from '.';
-import Typography from 'src/Typography';
+import { storiesOf } from "@storybook/react";
+import React from "react";
+import InstructionBox from ".";
+import Typography from "src/Typography";
 
-const InstructionBoxStories = storiesOf(`${__dirname}`, module).add('Basic', () => (
-  <div style={{ background: 'white' }}>
+storiesOf(`${__dirname}`, module).add("Basic", () => (
+  <div style={{ background: "white" }}>
     <InstructionBox
       footer={<Typography variant="paragraph">Footer</Typography>}
       steps={[
@@ -34,5 +34,3 @@ const InstructionBoxStories = storiesOf(`${__dirname}`, module).add('Basic', () 
     />
   </div>
 ));
-
-export default InstructionBoxStories;

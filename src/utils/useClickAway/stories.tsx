@@ -17,19 +17,19 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import useClickAway from '.';
-import { action } from '@storybook/addon-actions';
+import React from "react";
+import { storiesOf } from "@storybook/react";
+import useClickAway from ".";
+import { action } from "@storybook/addon-actions";
 
-export default storiesOf(`${__dirname}`, module).add(
-  'Basic',
+storiesOf(`${__dirname}`, module).add(
+  "Basic",
   () => {
     const ref = React.createRef<HTMLButtonElement>();
     useClickAway({
       domElementRef: ref,
-      onClickAway: action('onClickAway'),
-      onElementClick: action('onElementClick'),
+      onClickAway: action("onClickAway"),
+      onElementClick: action("onElementClick"),
     });
     return (
       <button
@@ -45,5 +45,5 @@ export default storiesOf(`${__dirname}`, module).add(
       Observe the *Action* tab to see events from this hook.
       `,
     },
-  },
+  }
 );

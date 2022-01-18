@@ -17,11 +17,11 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
-import React from 'react';
-import SimpleTable from '.';
+import { storiesOf } from "@storybook/react";
+import React from "react";
+import SimpleTable from ".";
 
-const SimpleTableStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`${__dirname}`, module).add("Basic", () => {
   const fruitData = {
     Bananas: 39,
     Peaches: 194,
@@ -31,5 +31,3 @@ const SimpleTableStories = storiesOf(`${__dirname}`, module).add('Basic', () => 
   };
   return <SimpleTable data={fruitData} />;
 });
-
-export default SimpleTableStories;

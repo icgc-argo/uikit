@@ -17,63 +17,67 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import React from 'react';
+import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
+import React from "react";
 
-import SubMenu from '.';
-import Button from '../Button';
-import Hook from '../utils/Hook';
-import Icon from '../Icon';
+import SubMenu from ".";
+import Button from "../Button";
+import Hook from "../utils/Hook";
+import Icon from "../Icon";
 
-import readme from './readme.md';
+import readme from "./readme.md";
 
 const RightComp = () => (
   <div
     onClick={(e) => {
       e.stopPropagation();
-      action('clicked right component')();
+      action("clicked right component")();
     }}
   >
     Right
   </div>
 );
 
-const SubMenuStories = storiesOf(`${__dirname}`, module).add(
-  'Basic',
+storiesOf(`${__dirname}`, module).add(
+  "Basic",
   () => (
     <SubMenu>
       <SubMenu.Item
         icon={<Icon name="dashboard" />}
-        content={'DCC Dashboard'}
+        content={"DCC Dashboard"}
         selected={false}
-        onClick={action('clicked')}
+        onClick={action("clicked")}
       />
       <SubMenu.Item
         icon={<Icon name="rdpc" />}
         content="RDPCs"
         selected={false}
-        onClick={action('clicked')}
+        onClick={action("clicked")}
       />
       <SubMenu.Item
         icon={<Icon name="rdpc" />}
         content="With Right Aligned Custom Component"
         selected={false}
-        onClick={action('clicked')}
+        onClick={action("clicked")}
         RightSideComp={<RightComp />}
       />
       <SubMenu.Item icon={<Icon name="programs" />} content="Programs" selected>
         <SubMenu.Item
           level={1}
           selected={false}
-          onClick={action('clicked')}
+          onClick={action("clicked")}
           content={"I'm nested in Programs but look like I'm not :D "}
         />
-        <SubMenu.Item content="BRCA-MX" selected={false} onClick={action('clicked')} />
+        <SubMenu.Item
+          content="BRCA-MX"
+          selected={false}
+          onClick={action("clicked")}
+        />
         <SubMenu.Item
           content={
-            <span style={{ display: 'flex', alignItems: 'center' }}>
-              PACA-AU{' '}
+            <span style={{ display: "flex", alignItems: "center" }}>
+              PACA-AU{" "}
               <Button onClick={() => {}} size="sm">
                 Click me!! I'm not controlled
               </Button>
@@ -92,7 +96,7 @@ const SubMenuStories = storiesOf(`${__dirname}`, module).add(
                 <SubMenu.Item
                   onClick={() => setSelectedItem(1)}
                   selected={selectedItem === 1}
-                  content={'ID Registration'}
+                  content={"ID Registration"}
                 />
                 <SubMenu.Item
                   onClick={() => setSelectedItem(2)}
@@ -110,7 +114,5 @@ const SubMenuStories = storiesOf(`${__dirname}`, module).add(
     info: {
       text: `${readme}`,
     },
-  },
+  }
 );
-
-export default SubMenuStories;

@@ -17,15 +17,19 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
-import React from 'react';
-import Link, { LINK_VARIANTS } from '.';
-import { action } from '@storybook/addon-actions';
-import { select, boolean } from '@storybook/addon-knobs';
+import { storiesOf } from "@storybook/react";
+import React from "react";
+import Link, { LINK_VARIANTS } from ".";
+import { action } from "@storybook/addon-actions";
+import { select, boolean } from "@storybook/addon-knobs";
 
-const LinkStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
-  const variant = select('variant', Object.values(LINK_VARIANTS), LINK_VARIANTS.BLOCK);
-  const invert = boolean('invert', false);
+storiesOf(`${__dirname}`, module).add("Basic", () => {
+  const variant = select(
+    "variant",
+    Object.values(LINK_VARIANTS),
+    LINK_VARIANTS.BLOCK
+  );
+  const invert = boolean("invert", false);
   return (
     <>
       <Link invert={invert} href="http://www.google.com" variant={variant}>
@@ -34,5 +38,3 @@ const LinkStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
     </>
   );
 });
-
-export default LinkStories;

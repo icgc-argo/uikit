@@ -17,9 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import React from "react";
+import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 
 import AppBar, {
   Logo,
@@ -30,34 +30,40 @@ import AppBar, {
   DropdownMenu,
   DropdownMenuItem,
   NavBarElement,
-} from '.';
+} from ".";
 
 // to simulate nextjs link or any other framework that needs to wrap href
 const CustomLink = ({ children, ...props }) => <div {...props}>{children}</div>;
 
-const AppBarStories = storiesOf(`${__dirname}`, module)
-  .add('Basic', () => {
+storiesOf(`${__dirname}`, module)
+  .add("Basic", () => {
     const LinkToHome = (props) => (
-      <a style={{ cursor: 'pointer' }} {...props} onClick={() => action('fake navigate')('/')} />
+      <a
+        style={{ cursor: "pointer" }}
+        {...props}
+        onClick={() => action("fake navigate")("/")}
+      />
     );
 
     const LinkToExploration = (props) => (
-      <a {...props} onClick={() => action('fake navigate')('/exploration')} />
+      <a {...props} onClick={() => action("fake navigate")("/exploration")} />
     );
 
     const LinkToAnalysis = (props) => (
-      <a {...props} onClick={() => action('fake navigate')('/analysis')} />
+      <a {...props} onClick={() => action("fake navigate")("/analysis")} />
     );
 
     const LinkToFileRepo = (props) => (
-      <a {...props} onClick={() => action('fake navigate')('/file_repo')} />
+      <a {...props} onClick={() => action("fake navigate")("/file_repo")} />
     );
 
     const LinkToSubmission = (props) => (
-      <a {...props} onClick={() => action('fake navigate')('/submission')} />
+      <a {...props} onClick={() => action("fake navigate")("/submission")} />
     );
 
-    const UserBadgeDom = (props) => <a {...props} onClick={action('user badge clicked')} />;
+    const UserBadgeDom = (props) => (
+      <a {...props} onClick={action("user badge clicked")} />
+    );
 
     return (
       <AppBar>
@@ -86,15 +92,23 @@ const AppBarStories = storiesOf(`${__dirname}`, module)
                 </DropdownMenu>
               }
             >
-              <UserBadge firstName="Harvey" lastName="Specter" title="DCC Member" />
+              AppBarStories
+              <UserBadge
+                firstName="Harvey"
+                lastName="Specter"
+                title="DCC Member"
+              />
             </MenuItem>
           </MenuGroup>
         </Section>
       </AppBar>
     );
   })
-  .add('NavBarElement', () => (
-    <NavBarElement name="custom link comp" href="www.google.ca" LinkComp={CustomLink} active />
+  .add("NavBarElement", () => (
+    <NavBarElement
+      name="custom link comp"
+      href="www.google.ca"
+      LinkComp={CustomLink}
+      active
+    />
   ));
-
-export default AppBarStories;

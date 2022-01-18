@@ -17,12 +17,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
-import React from 'react';
-import FocusWrapper from '.';
+import { storiesOf } from "@storybook/react";
+import React from "react";
+import FocusWrapper from ".";
 
-const FocusWrapperStories = storiesOf(`${__dirname}`, module).add('Basic', () => (
+storiesOf(`${__dirname}`, module).add("Basic", () => (
   <FocusWrapper>Skeleton</FocusWrapper>
 ));
-
-export default FocusWrapperStories;

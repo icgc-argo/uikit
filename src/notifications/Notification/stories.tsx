@@ -17,37 +17,41 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
-import React from 'react';
+import { storiesOf } from "@storybook/react";
+import React from "react";
 import Notification, {
   NOTIFICATION_VARIANTS,
   NOTIFICATION_INTERACTION_EVENTS,
   NOTIFICATION_INTERACTION,
   NOTIFICATION_SIZES,
-} from '.';
-import { action } from '@storybook/addon-actions';
-import { select, text, boolean } from '@storybook/addon-knobs';
+} from ".";
+import { action } from "@storybook/addon-actions";
+import { select, text, boolean } from "@storybook/addon-knobs";
 
-const NotificationStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`${__dirname}`, module).add("Basic", () => {
   const variant = select(
-    'variant',
+    "variant",
     [undefined, ...Object.values(NOTIFICATION_VARIANTS)],
-    undefined,
+    undefined
   );
   const interactionType = select(
-    'interactionType',
+    "interactionType",
     [undefined, ...Object.values(NOTIFICATION_INTERACTION)],
-    undefined,
+    undefined
   );
-  const size = select('size', [undefined, ...Object.values(NOTIFICATION_SIZES)], undefined);
-  const title = text('title', 'Hipster Ipsum');
+  const size = select(
+    "size",
+    [undefined, ...Object.values(NOTIFICATION_SIZES)],
+    undefined
+  );
+  const title = text("title", "Hipster Ipsum");
   const content = text(
-    'content',
-    'Lorem ipsum dolor amet helvetica post-ironic fingerstache trust fund pitchfork tofu venmo live-edge',
+    "content",
+    "Lorem ipsum dolor amet helvetica post-ironic fingerstache trust fund pitchfork tofu venmo live-edge"
   );
-  const actionText = text('actionText', undefined);
-  const dismissText = text('dismissText', undefined);
-  const noShadow = boolean('noShadow', false);
+  const actionText = text("actionText", undefined);
+  const dismissText = text("dismissText", undefined);
+  const noShadow = boolean("noShadow", false);
   return (
     <>
       <Notification
@@ -59,7 +63,7 @@ const NotificationStories = storiesOf(`${__dirname}`, module).add('Basic', () =>
         title={title}
         content={content}
         noShadow={noShadow}
-        onInteraction={action('RECEIVED EVENT')}
+        onInteraction={action("RECEIVED EVENT")}
       />
       <Notification
         variant={variant}
@@ -70,11 +74,9 @@ const NotificationStories = storiesOf(`${__dirname}`, module).add('Basic', () =>
         title={title}
         content={content}
         noShadow={noShadow}
-        onInteraction={action('RECEIVED EVENT')}
+        onInteraction={action("RECEIVED EVENT")}
         icon={null}
       />
     </>
   );
 });
-
-export default NotificationStories;

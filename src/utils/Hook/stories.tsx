@@ -17,20 +17,20 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
-import React from 'react';
-import { action } from '@storybook/addon-actions';
+import { storiesOf } from "@storybook/react";
+import React from "react";
+import { action } from "@storybook/addon-actions";
 
-import Button from '../../Button';
-import Hook from '.';
-import readme from './readme.md';
+import Button from "../../Button";
+import Hook from ".";
+import readme from "./readme.md";
 
-const HookStories = storiesOf(`${__dirname}`, module).add(
-  'Basic',
+storiesOf(`${__dirname}`, module).add(
+  "Basic",
   () => (
     <Hook
       initialState={0}
-      effect={action('effect')}
+      effect={action("effect")}
       watch={(num) => [num]}
       render={([num, setNum]) => (
         <div>
@@ -45,7 +45,5 @@ const HookStories = storiesOf(`${__dirname}`, module).add(
     info: {
       text: `${readme}`,
     },
-  },
+  }
 );
-
-export default HookStories;

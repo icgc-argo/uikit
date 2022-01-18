@@ -17,25 +17,27 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
-import React from 'react';
-import css from '@emotion/css';
-import Pipe from '.';
-import { text, select } from '@storybook/addon-knobs';
+import { storiesOf } from "@storybook/react";
+import React from "react";
+import css from "@emotion/css";
+import Pipe from ".";
+import { text, select } from "@storybook/addon-knobs";
 
-import defaultTheme from '../theme/defaultTheme';
-const themeColors = Object.keys(defaultTheme.colors) as Array<keyof typeof defaultTheme.colors>;
+import defaultTheme from "../theme/defaultTheme";
+const themeColors = Object.keys(defaultTheme.colors) as Array<
+  keyof typeof defaultTheme.colors
+>;
 
-const PipeStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`${__dirname}`, module).add("Basic", () => {
   const colourKnobs = [
-    select('Fill Colour: First', themeColors, 'accent1_dimmed', null),
-    select('Fill Colour: Second', themeColors, 'warning_dark', null),
-    select('Fill Colour: Third', themeColors, 'error', null),
+    select("Fill Colour: First", themeColors, "accent1_dimmed", null),
+    select("Fill Colour: Second", themeColors, "warning_dark", null),
+    select("Fill Colour: Third", themeColors, "error", null),
   ];
   const childrenKnobs = [
-    text('Text: First', '2'),
-    text('Text: Second', '4'),
-    text('Text: Third', '5'),
+    text("Text: First", "2"),
+    text("Text: Second", "4"),
+    text("Text: Third", "5"),
   ];
 
   return (
@@ -56,18 +58,16 @@ const PipeStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
         <Pipe.Item fill={colourKnobs[2]}>{childrenKnobs[2]}</Pipe.Item>
       </Pipe>
       <Pipe>
-        <Pipe.Item fill={'accent3_dark'}>Just One Child</Pipe.Item>
+        <Pipe.Item fill={"accent3_dark"}>Just One Child</Pipe.Item>
       </Pipe>
       <Pipe>
-        <Pipe.Item fill={'accent2'}>Or Many</Pipe.Item>
-        <Pipe.Item fill={'secondary_dark'}>2</Pipe.Item>
-        <Pipe.Item fill={'accent4_dark'}>1</Pipe.Item>
-        <Pipe.Item fill={'accent2'}>9</Pipe.Item>
-        <Pipe.Item fill={'secondary_dark'}>4</Pipe.Item>
-        <Pipe.Item fill={'accent4_dark'}>8</Pipe.Item>
+        <Pipe.Item fill={"accent2"}>Or Many</Pipe.Item>
+        <Pipe.Item fill={"secondary_dark"}>2</Pipe.Item>
+        <Pipe.Item fill={"accent4_dark"}>1</Pipe.Item>
+        <Pipe.Item fill={"accent2"}>9</Pipe.Item>
+        <Pipe.Item fill={"secondary_dark"}>4</Pipe.Item>
+        <Pipe.Item fill={"accent4_dark"}>8</Pipe.Item>
       </Pipe>
     </div>
   );
 });
-
-export default PipeStories;

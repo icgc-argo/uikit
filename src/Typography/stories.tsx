@@ -17,40 +17,44 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { radios, select, boolean } from '@storybook/addon-knobs';
-import defaultTheme from '../theme/defaultTheme';
+import React from "react";
+import { storiesOf } from "@storybook/react";
+import { radios, select, boolean } from "@storybook/addon-knobs";
+import defaultTheme from "../theme/defaultTheme";
 
-import Typography, { TypographyVariant } from '.';
+import Typography, { TypographyVariant } from ".";
 
-const TypographyStories = storiesOf(`${__dirname}`, module)
-  .add('Basic', () => {
+storiesOf(`${__dirname}`, module)
+  .add("Basic", () => {
     const knobs = {
       variant: radios(
-        'variant',
+        "variant",
         // @ts-ignore storybook type scary
         Object.keys(defaultTheme.typography) as Array<TypographyVariant>,
-        'hero',
+        "hero"
       ),
       component: select(
-        'component',
-        [null, 'h1', 'h2', 'h3', 'h4', 'h5', 'div', 'span', 'p'],
-        null,
+        "component",
+        [null, "h1", "h2", "h3", "h4", "h5", "div", "span", "p"],
+        null
       ),
-      bold: boolean('bold', false),
-      color: select('color', [null, '#00f', ...Object.keys(defaultTheme.colors)], null),
+      bold: boolean("bold", false),
+      color: select(
+        "color",
+        [null, "#00f", ...Object.keys(defaultTheme.colors)],
+        null
+      ),
     };
     return <Typography {...knobs}>Skeleton</Typography>;
   })
-  .add('List', () => (
+  .add("List", () => (
     <>
       {Object.entries(defaultTheme.typography).map(([key]) => (
         <div key={key}>
-          <Typography variant={key as keyof typeof defaultTheme.typography}>{key}</Typography>
+          <Typography variant={key as keyof typeof defaultTheme.typography}>
+            {key}
+          </Typography>
         </div>
       ))}
     </>
   ));
-
-export default TypographyStories;

@@ -17,18 +17,16 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
-import React from 'react';
-import ContentPlaceholder from '.';
-import { text } from '@storybook/addon-knobs';
+import { storiesOf } from "@storybook/react";
+import React from "react";
+import ContentPlaceholder from ".";
+import { text } from "@storybook/addon-knobs";
 
-const ContentPlaceholderStories = storiesOf(`${__dirname}`, module).add('Basic', () => (
+storiesOf(`${__dirname}`, module).add("Basic", () => (
   <ContentPlaceholder
-    title={text('title', 'You do not have any registration data uploaded.')}
-    subtitle={text('subtitle', 'Follow the instructions above to get started.')}
+    title={text("title", "You do not have any registration data uploaded.")}
+    subtitle={text("subtitle", "Follow the instructions above to get started.")}
   >
     <img alt="Chemistry beakers" src="/static/beakers.svg" />
   </ContentPlaceholder>
 ));
-
-export default ContentPlaceholderStories;

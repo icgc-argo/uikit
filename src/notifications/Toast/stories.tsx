@@ -17,34 +17,36 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
-import React from 'react';
-import { select, text } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { storiesOf } from "@storybook/react";
+import React from "react";
+import { select, text } from "@storybook/addon-knobs";
+import { action } from "@storybook/addon-actions";
 
-import Toast, { TOAST_VARIANTS, TOAST_INTERACTION } from '.';
+import Toast, { TOAST_VARIANTS, TOAST_INTERACTION } from ".";
 
-const ToastStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
-  const variant = select('variant', [undefined, ...Object.values(TOAST_VARIANTS)], undefined);
-  const interactionType = select(
-    'interactionType',
-    [undefined, ...Object.values(TOAST_INTERACTION)],
-    TOAST_INTERACTION.NONE,
+storiesOf(`${__dirname}`, module).add("Basic", () => {
+  const variant = select(
+    "variant",
+    [undefined, ...Object.values(TOAST_VARIANTS)],
+    undefined
   );
-  const title = text('title', 'Hipster Ipsum');
+  const interactionType = select(
+    "interactionType",
+    [undefined, ...Object.values(TOAST_INTERACTION)],
+    TOAST_INTERACTION.NONE
+  );
+  const title = text("title", "Hipster Ipsum");
   const content = text(
-    'content',
-    'Lorem ipsum dolor amet helvetica post-ironic fingerstache trust fund pitchfork tofu venmo live-edge',
+    "content",
+    "Lorem ipsum dolor amet helvetica post-ironic fingerstache trust fund pitchfork tofu venmo live-edge"
   );
   return (
     <Toast
       variant={variant}
       title={title}
       content={content}
-      onInteraction={action('onInteraction')}
+      onInteraction={action("onInteraction")}
       interactionType={interactionType}
     />
   );
 });
-
-export default ToastStories;

@@ -17,22 +17,20 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
-import React from 'react';
-import FileSelectButton from '.';
-import { action } from '@storybook/addon-actions';
+import { storiesOf } from "@storybook/react";
+import React from "react";
+import FileSelectButton from ".";
+import { action } from "@storybook/addon-actions";
 
-const FileSelectButtonStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`${__dirname}`, module).add("Basic", () => {
   return (
     <FileSelectButton
       inputProps={{
-        accept: '.tsv',
+        accept: ".tsv",
       }}
-      onFilesSelect={action('onFilesSelect')}
+      onFilesSelect={action("onFilesSelect")}
     >
       Click me!!! and check out the Actions tab
     </FileSelectButton>
   );
 });
-
-export default FileSelectButtonStories;

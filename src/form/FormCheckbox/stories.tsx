@@ -17,19 +17,19 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
-import React, { useCallback, useState } from 'react';
-import FormCheckbox from '.';
-import { boolean } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
-import RadioCheckboxGroup from '../RadioCheckboxGroup';
+import { storiesOf } from "@storybook/react";
+import React, { useCallback, useState } from "react";
+import FormCheckbox from ".";
+import { boolean } from "@storybook/addon-knobs";
+import { action } from "@storybook/addon-actions";
+import RadioCheckboxGroup from "../RadioCheckboxGroup";
 
 const createKnobs = () => {
   const [checked, setChecked] = useState(false);
-  const disabled = boolean('disabled', false);
-  const error = boolean('error', false);
-  const required = boolean('required', false);
-  const value = 'myCheckbox';
+  const disabled = boolean("disabled", false);
+  const error = boolean("error", false);
+  const required = boolean("required", false);
+  const value = "myCheckbox";
 
   return {
     checked,
@@ -37,24 +37,24 @@ const createKnobs = () => {
     error,
     onBlur: () => {
       if (disabled) {
-        action('checkbox blurred while disabled')(value, checked);
+        action("checkbox blurred while disabled")(value, checked);
       } else {
-        action('checkbox blurred, is it checked')(value, checked);
+        action("checkbox blurred, is it checked")(value, checked);
       }
     },
     onChange: () => {
       if (disabled) {
-        action('checkbox clicked while disabled')(value, checked);
+        action("checkbox clicked while disabled")(value, checked);
       } else {
-        action('checkbox clicked, is it checked')(value, !checked);
+        action("checkbox clicked, is it checked")(value, !checked);
         setChecked(!checked);
       }
     },
     onFocus: () => {
       if (disabled) {
-        action('checkbox focused while disabled')(value, checked);
+        action("checkbox focused while disabled")(value, checked);
       } else {
-        action('checkbox focused, is it checked')(value, checked);
+        action("checkbox focused, is it checked")(value, checked);
       }
     },
     required,
@@ -63,26 +63,31 @@ const createKnobs = () => {
 };
 
 const createGroupKnobs = () => {
-  const hasError = boolean('hasError', false);
+  const hasError = boolean("hasError", false);
   return { hasError };
 };
 
-const CheckboxStories = storiesOf(`${__dirname}`, module)
-  .add('Default', () => (
+storiesOf(`${__dirname}`, module)
+  .add("Default", () => (
     <FormCheckbox {...createKnobs()} aria-label="Item">
       Item
     </FormCheckbox>
   ))
-  .add('Checkbox Group', () => {
+  .add("Checkbox Group", () => {
     const [selectedItems, setSelected] = useState(new Set([]));
-    const isChecked = useCallback((item) => selectedItems.has(item), [selectedItems]);
+    const isChecked = useCallback(
+      (item) => selectedItems.has(item),
+      [selectedItems]
+    );
     const onChange = (event) => {
       const value = event.target.defaultValue;
 
-      selectedItems.has(value) ? selectedItems.delete(value) : selectedItems.add(value);
+      selectedItems.has(value)
+        ? selectedItems.delete(value)
+        : selectedItems.add(value);
       const newSelectedItems = new Set(selectedItems);
 
-      action('checkbox clicked')(value, Array.from(newSelectedItems));
+      action("checkbox clicked")(value, Array.from(newSelectedItems));
       setSelected(newSelectedItems);
     };
     return (
@@ -115,5 +120,3 @@ const CheckboxStories = storiesOf(`${__dirname}`, module)
       </RadioCheckboxGroup>
     );
   });
-
-export default CheckboxStories;
