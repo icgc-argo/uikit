@@ -17,8 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 /*
  * Please edit me!
@@ -28,7 +28,9 @@ const Hook: React.ComponentType<{
   /**
    * receives [state, setState] to keep with hooks semantic
    */
-  render: (a: [any, React.Dispatch<any>]) => React.ReactNode | React.ReactNodeArray;
+  render: (
+    a: [any, React.Dispatch<any>]
+  ) => React.ReactNode | React.ReactNodeArray;
   /**
    * gets passed to React.useEffect, return cleanup function if needed
    */
@@ -44,6 +46,9 @@ const Hook: React.ComponentType<{
   watch = (state: any) => [],
 }) => {
   const [state, setState] = React.useState(initialState);
+
+  // @ts-ignore
+  // only used in storybook for "utility component for building stories and creating quick state hooks."
   React.useEffect(effect, watch(state));
   return render([state, setState]);
 };
