@@ -17,22 +17,20 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from "react";
-import { storiesOf } from "@storybook/react";
-import defaultTheme from "../theme/defaultTheme";
-import { select, number } from "@storybook/addon-knobs";
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import defaultTheme from '../theme/defaultTheme';
+import { select, number } from '@storybook/addon-knobs';
 
-import TitleBorder from ".";
-import Typography from "../Typography";
+import TitleBorder from '.';
+import Typography from '../Typography';
 
-const themeColors = Object.keys(defaultTheme.colors) as Array<
-  keyof typeof defaultTheme.colors
->;
+const themeColors = Object.keys(defaultTheme.colors) as Array<keyof typeof defaultTheme.colors>;
 
 storiesOf(`${__dirname}`, module)
-  .add("Full width", () => {
+  .add('Full width', () => {
     const knobs = {
-      color: select("color", themeColors, "primary", null),
+      color: select('color', themeColors, 'primary', null),
     };
     return (
       <div>
@@ -41,16 +39,14 @@ storiesOf(`${__dirname}`, module)
       </div>
     );
   })
-  .add("Fixed width", () => {
+  .add('Fixed width', () => {
     const knobs = {
-      color: select("color", themeColors, "primary", null),
-      width: String(number("Width", 45)),
+      color: select('color', themeColors, 'primary', null),
+      width: String(number('Width', 45)),
     };
     return (
       <>
-        <Typography variant="subtitle">
-          A longer title, but shorter border
-        </Typography>
+        <Typography variant="subtitle">A longer title, but shorter border</Typography>
         <TitleBorder {...knobs} />
       </>
     );

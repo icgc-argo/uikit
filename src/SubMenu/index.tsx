@@ -17,17 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from "react";
-import styled from "@emotion/styled";
-import css from "@emotion/css";
-import Icon from "../Icon";
-import Input from "../form/Input";
-import useTheme from "../utils/useTheme";
-import {
-  MenuItemContainer,
-  IconContainer,
-  ContentContainer,
-} from "./styledComponents";
+import React from 'react';
+import styled from '@emotion/styled';
+import css from '@emotion/css';
+import Icon from '../Icon';
+import Input from '../form/Input';
+import useTheme from '../utils/useTheme';
+import { MenuItemContainer, IconContainer, ContentContainer } from './styledComponents';
 
 const MenuItemComponent = React.forwardRef<
   HTMLDivElement,
@@ -64,7 +60,7 @@ const MenuItemComponent = React.forwardRef<
 >(
   (
     {
-      className = "",
+      className = '',
       selected: controlledSelectedState,
       level,
       children,
@@ -72,7 +68,7 @@ const MenuItemComponent = React.forwardRef<
       onClick = (e) => {},
       icon,
       noChevron = false,
-      contentAs = "button",
+      contentAs = 'button',
       chevronOnLeftSide = false,
       isFacetVariant = false,
       searchBar = false,
@@ -80,16 +76,12 @@ const MenuItemComponent = React.forwardRef<
       RightSideComp = null,
       ...otherProps
     },
-    ref
+    ref,
   ) => {
     const theme = useTheme();
-    const [localSelectedState, setLocalSelectedState] = React.useState(
-      controlledSelectedState
-    );
+    const [localSelectedState, setLocalSelectedState] = React.useState(controlledSelectedState);
     const isSelected =
-      typeof controlledSelectedState === "undefined"
-        ? localSelectedState
-        : controlledSelectedState;
+      typeof controlledSelectedState === 'undefined' ? localSelectedState : controlledSelectedState;
     const [searchbarState, setSearchbarState] = React.useState(false);
 
     const contentContainerRef = React.createRef<HTMLButtonElement>();
@@ -97,10 +89,10 @@ const MenuItemComponent = React.forwardRef<
       children && !noChevron ? (
         <Icon
           css={css`
-            margin-right: ${chevronOnLeftSide ? "7px" : "0px"};
+            margin-right: ${chevronOnLeftSide ? '7px' : '0px'};
           `}
-          name={isSelected ? "chevron_down" : "chevron_right"}
-          fill={isSelected && !isFacetVariant ? "secondary" : "primary"}
+          name={isSelected ? 'chevron_down' : 'chevron_right'}
+          fill={isSelected && !isFacetVariant ? 'secondary' : 'primary'}
         />
       ) : (
         <></>
@@ -126,7 +118,7 @@ const MenuItemComponent = React.forwardRef<
               {icon && (
                 <IconContainer>
                   {React.cloneElement(icon, {
-                    fill: isSelected ? "secondary_dark" : "primary",
+                    fill: isSelected ? 'secondary_dark' : 'primary',
                   })}
                 </IconContainer>
               )}
@@ -154,8 +146,8 @@ const MenuItemComponent = React.forwardRef<
                     e.stopPropagation();
                     setSearchbarState(!searchbarState);
                   }}
-                  name={"search"}
-                  fill={searchbarState ? "secondary" : "primary_3"}
+                  name={'search'}
+                  fill={searchbarState ? 'secondary' : 'primary_3'}
                   height="16px"
                   width="16px"
                   css={css`
@@ -193,10 +185,10 @@ const MenuItemComponent = React.forwardRef<
         {isSelected && children}
       </MenuItemContainer>
     );
-  }
+  },
 );
 
-const SubMenuComponent = styled("div")<{ theme?: any }>`
+const SubMenuComponent = styled('div')<{ theme?: any }>`
   background: ${({ theme }) => theme.colors.white};
   & > ${MenuItemContainer} {
     border-bottom: solid 1px ${({ theme }) => theme.colors.grey_2};

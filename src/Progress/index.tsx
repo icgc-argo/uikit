@@ -17,19 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from "react";
-import { css } from "@emotion/core";
-import styled from "@emotion/styled";
+import React from 'react';
+import { css } from '@emotion/core';
+import styled from '@emotion/styled';
 
-import Icon from "../Icon";
+import Icon from '../Icon';
 
-export type ProgressStatus =
-  | "success"
-  | "error"
-  | "pending"
-  | "disabled"
-  | "locked"
-  | "closed";
+export type ProgressStatus = 'success' | 'error' | 'pending' | 'disabled' | 'locked' | 'closed';
 
 export const PROGRESS_STATUS: {
   SUCCESS: ProgressStatus;
@@ -39,16 +33,16 @@ export const PROGRESS_STATUS: {
   LOCKED: ProgressStatus;
   CLOSED: ProgressStatus;
 } = {
-  SUCCESS: "success",
-  ERROR: "error",
-  PENDING: "pending",
-  DISABLED: "disabled",
-  LOCKED: "locked",
-  CLOSED: "closed",
+  SUCCESS: 'success',
+  ERROR: 'error',
+  PENDING: 'pending',
+  DISABLED: 'disabled',
+  LOCKED: 'locked',
+  CLOSED: 'closed',
 };
 
 const Triangle = (props) => css`
-  content: " ";
+  content: ' ';
   display: block;
   position: relative;
   border-top: 7px solid transparent;
@@ -57,9 +51,7 @@ const Triangle = (props) => css`
   border-left-width: 7px;
 `;
 
-const ProgressMarker = styled<"div", { state: ProgressStatus; theme?: any }>(
-  "div"
-)`
+const ProgressMarker = styled<'div', { state: ProgressStatus; theme?: any }>('div')`
   width: 100%;
   height: 14px;
   background-color: ${({ theme, state }) => theme.progress.color[state]};
@@ -69,7 +61,7 @@ const ProgressMarker = styled<"div", { state: ProgressStatus; theme?: any }>(
   justify-content: center;
 `;
 
-const ProgressSection = styled("div")`
+const ProgressSection = styled('div')`
   display: flex;
   align-items: flex-end;
 
@@ -106,7 +98,7 @@ const ProgressSection = styled("div")`
 `;
 
 /* Separator colors - based on state*/
-const Separator = styled<"div", { state: ProgressStatus; theme?: any }>("div")`
+const Separator = styled<'div', { state: ProgressStatus; theme?: any }>('div')`
   &:before {
     background-color: ${({ theme, state }) => theme.progress.color[state]};
     border-left-color: #fff;
@@ -119,42 +111,31 @@ const Separator = styled<"div", { state: ProgressStatus; theme?: any }>("div")`
   }
 `;
 
-const Text = styled("div")<{
+const Text = styled('div')<{
   completed: boolean;
   state: ProgressStatus;
   theme?: any;
 }>`
   ${({ theme }) => theme.typography.caption};
-  font-weight: ${({ completed }) => (completed ? 600 : "normal")};
-  color: ${({ theme, state }) =>
-    state === "locked" ? theme.colors.grey : theme.colors.black};
+  font-weight: ${({ completed }) => (completed ? 600 : 'normal')};
+  color: ${({ theme, state }) => (state === 'locked' ? theme.colors.grey : theme.colors.black)};
 `;
 
 const getIcon = (state: ProgressStatus) =>
   ({
-    [PROGRESS_STATUS.SUCCESS]: (
-      <Icon width="10px" height="10px" fill="white" name="checkmark" />
-    ),
-    [PROGRESS_STATUS.ERROR]: (
-      <Icon width="10px" height="10px" fill="white" name="exclamation" />
-    ),
-    [PROGRESS_STATUS.PENDING]: (
-      <Icon width="14px" height="14px" fill="white" name="ellipses" />
-    ),
-    [PROGRESS_STATUS.LOCKED]: (
-      <Icon width="10px" height="10px" fill="white" name="lock" />
-    ),
+    [PROGRESS_STATUS.SUCCESS]: <Icon width="10px" height="10px" fill="white" name="checkmark" />,
+    [PROGRESS_STATUS.ERROR]: <Icon width="10px" height="10px" fill="white" name="exclamation" />,
+    [PROGRESS_STATUS.PENDING]: <Icon width="14px" height="14px" fill="white" name="ellipses" />,
+    [PROGRESS_STATUS.LOCKED]: <Icon width="10px" height="10px" fill="white" name="lock" />,
     [PROGRESS_STATUS.DISABLED]: null,
-    [PROGRESS_STATUS.CLOSED]: (
-      <Icon width="8px" height="8px" fill="white" name="times" />
-    ),
+    [PROGRESS_STATUS.CLOSED]: <Icon width="8px" height="8px" fill="white" name="times" />,
   }[state]);
 
 export const ProgressItem = ({
   state,
   text,
   completed = state === PROGRESS_STATUS.SUCCESS,
-  className = "",
+  className = '',
   ...rest
 }: {
   state: ProgressStatus;
@@ -162,7 +143,7 @@ export const ProgressItem = ({
   completed?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={`progress-item ${className || ""}`}
+    className={`progress-item ${className || ''}`}
     css={css`
       width: 64px;
       text-align: center;
@@ -187,9 +168,9 @@ export const ProgressItem = ({
   </div>
 );
 
-const Progress: React.ComponentType<{}> & { Item: typeof ProgressItem } = ({
-  children,
-}) => <ProgressSection>{children}</ProgressSection>;
+const Progress: React.ComponentType<{}> & { Item: typeof ProgressItem } = ({ children }) => (
+  <ProgressSection>{children}</ProgressSection>
+);
 
 Progress.Item = ProgressItem;
 

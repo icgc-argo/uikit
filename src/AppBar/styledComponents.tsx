@@ -17,14 +17,14 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from "react";
-import styled from "@emotion/styled";
-import { withProps } from "recompose";
+import React from 'react';
+import styled from '@emotion/styled';
+import { withProps } from 'recompose';
 
-import Typography from "../Typography";
+import Typography from '../Typography';
 
 const MenuItemTypography: typeof Typography = withProps(() => ({
-  variant: "navigation",
+  variant: 'navigation',
 }))(Typography);
 
 export const MenuItemContent = styled(MenuItemTypography)`
@@ -33,13 +33,13 @@ export const MenuItemContent = styled(MenuItemTypography)`
   text-decoration: none;
 `;
 export const MenuItemContainer = styled<
-  "div",
+  'div',
   {
     active: boolean;
     theme?: any;
   }
->("div", {
-  shouldForwardProp: (propName) => propName !== "active",
+>('div', {
+  shouldForwardProp: (propName) => propName !== 'active',
 })`
   position: relative;
   display: flex;
@@ -55,21 +55,19 @@ export const MenuItemContainer = styled<
     background-color: ${({ theme }) => theme.appBar.menuItem.background.hover};
   }
 
-  color: ${({ active, theme }) =>
-    active ? theme.colors.accent1 : theme.colors.white};
+  color: ${({ active, theme }) => (active ? theme.colors.accent1 : theme.colors.white)};
   border-left: solid 0.5px ${({ theme }) => theme.colors.grey};
   border-right: solid 0.5px ${({ theme }) => theme.colors.grey};
-  border-bottom: solid 3px
-    ${({ active, theme }) => (active ? theme.colors.accent1 : "none")};
+  border-bottom: solid 3px ${({ active, theme }) => (active ? theme.colors.accent1 : 'none')};
 `;
-export const MenuGroupDisplay = styled("div")`
+export const MenuGroupDisplay = styled('div')`
   display: flex;
   flex-direction: row;
   & > :not(:first-of-type) {
     border-left: none;
   }
 `;
-export const AppBarContainer = styled("nav")<{ theme?: any }>`
+export const AppBarContainer = styled('nav')<{ theme?: any }>`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -78,22 +76,22 @@ export const AppBarContainer = styled("nav")<{ theme?: any }>`
   background-color: ${({ theme }) => theme.colors.primary};
   border-bottom: 1px solid ${({ theme }) => theme.colors.grey};
 `;
-export const SectionDisplay = styled("div")`
+export const SectionDisplay = styled('div')`
   display: flex;
 `;
-export const LogoContainer = styled("span")`
+export const LogoContainer = styled('span')`
   margin: 0px 18px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
-export const LogoImage = styled("img")`
+export const LogoImage = styled('img')`
   max-width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
-export const UserBadgeContainer = styled("div")`
+export const UserBadgeContainer = styled('div')`
   text-align: left;
   display: flex;
   align-items: center;

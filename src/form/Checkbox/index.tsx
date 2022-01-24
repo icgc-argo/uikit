@@ -17,34 +17,34 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { RefObject } from "react";
-import styled from "@emotion/styled";
+import React, { RefObject } from 'react';
+import styled from '@emotion/styled';
 
 /**
  * Checkbox styles
  * ::before - checkmark
  * ::after - box
  */
-export type StyledCheckboxStyles = "sm" | "md";
+export type StyledCheckboxStyles = 'sm' | 'md';
 
 export const STYLEDCHECKBOX_SIZES: {
   SM: StyledCheckboxStyles;
   MD: StyledCheckboxStyles;
 } = Object.freeze({
-  SM: "sm",
-  MD: "md",
+  SM: 'sm',
+  MD: 'md',
 });
 
 export const StyledCheckbox = styled<
-  "div",
+  'div',
   {
     disabled?: boolean;
     checked?: boolean;
     color?: string;
-    size?: "sm" | "md";
+    size?: 'sm' | 'md';
     theme?: any;
   }
->("div")`
+>('div')`
   position: relative;
   cursor: pointer;
   width: min-content;
@@ -81,7 +81,7 @@ export const StyledCheckbox = styled<
       transition: transform 0.2s ease-in;
       transform: rotate(-45deg) scale(0, 0);
 
-      content: "";
+      content: '';
 
       position: absolute;
       top: ${({ theme, size }) => theme.checkbox.checkTopPositions[size]};
@@ -100,15 +100,13 @@ export const StyledCheckbox = styled<
       display: inline-block;
       transition: background-color 0.2s ease-in;
       cursor: pointer;
-      content: "";
+      content: '';
 
       width: ${({ theme, size }) => theme.checkbox.boxWidths[size]};
       height: ${({ theme, size }) => theme.checkbox.boxHeights[size]};
 
       background-color: ${({ theme, disabled }) =>
-        theme.radiocheckbox.backgroundColors[
-          disabled ? "disabled" : "default"
-        ]};
+        theme.radiocheckbox.backgroundColors[disabled ? 'disabled' : 'default']};
 
       border: 1px solid
         ${({ theme, checked, disabled, color }) => {
@@ -137,7 +135,7 @@ const Checkbox = ({
   onBlur,
   onChange,
   onFocus,
-  "aria-label": ariaLabel,
+  'aria-label': ariaLabel,
   value,
   color,
   size = STYLEDCHECKBOX_SIZES.MD,
@@ -151,13 +149,12 @@ const Checkbox = ({
   onBlur?: (e: any | void) => any | void;
   onChange: (e: any | void) => any | void;
   onFocus?: (e: any | void) => any | void;
-  "aria-label": string;
+  'aria-label': string;
   value: string | number;
   color?: string;
 }) => {
   const checkboxRef = forwardedRefs?.[0] || React.createRef<HTMLInputElement>();
-  const HiddenCheckboxRef =
-    forwardedRefs?.[1] || React.createRef<HTMLInputElement>();
+  const HiddenCheckboxRef = forwardedRefs?.[1] || React.createRef<HTMLInputElement>();
 
   return (
     <StyledCheckbox
@@ -182,10 +179,7 @@ const Checkbox = ({
       <div
         className="checkbox"
         onClick={(event) => {
-          if (
-            event.target !== HiddenCheckboxRef.current &&
-            HiddenCheckboxRef.current
-          ) {
+          if (event.target !== HiddenCheckboxRef.current && HiddenCheckboxRef.current) {
             HiddenCheckboxRef.current.click();
           }
         }}

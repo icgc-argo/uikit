@@ -17,10 +17,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import styled from "@emotion/styled";
-import css from "@emotion/css";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
+import css from '@emotion/css';
 
 /*
  * :before
@@ -33,7 +33,7 @@ type StyledRadioProps = {
   checked?: boolean;
   theme?: any;
 };
-export const StyledRadio = styled<"div", StyledRadioProps>("div")`
+export const StyledRadio = styled<'div', StyledRadioProps>('div')`
   position: relative;
   cursor: pointer;
   display: flex;
@@ -58,7 +58,7 @@ export const StyledRadio = styled<"div", StyledRadioProps>("div")`
     align-items: center;
 
     &:before {
-      content: "";
+      content: '';
       position: absolute;
       z-index: 1;
       border-radius: 9999px;
@@ -70,14 +70,14 @@ export const StyledRadio = styled<"div", StyledRadioProps>("div")`
       height: 10px;
 
       background: ${({ theme, disabled }) =>
-        theme.radiocheckbox.radio[disabled ? "disabled" : "checked"]};
+        theme.radiocheckbox.radio[disabled ? 'disabled' : 'checked']};
 
       transform: scale(0, 0);
       transition: transform 0.2s ease-in;
     }
 
     &:after {
-      content: "";
+      content: '';
       border-radius: 9999px;
       display: inline-block;
 
@@ -86,9 +86,7 @@ export const StyledRadio = styled<"div", StyledRadioProps>("div")`
 
       border: 1px solid
         ${({ theme, disabled, checked }) =>
-          theme.radiocheckbox.radio[
-            disabled && !checked ? "disabled" : "default"
-          ]};
+          theme.radiocheckbox.radio[disabled && !checked ? 'disabled' : 'default']};
     }
   }
 `;
@@ -102,23 +100,18 @@ const Radio = ({
   disabled = false,
   checked,
   onChange,
-  "aria-label": ariaLabel,
+  'aria-label': ariaLabel,
   ...props
 }: {
   checked: boolean;
   disabled: boolean;
   onChange: (e: any | void) => any | void;
-  "aria-label": string;
+  'aria-label': string;
 }) => {
   const HiddenRadioRef = React.createRef<HTMLInputElement>();
 
   return (
-    <StyledRadio
-      role="radio"
-      disabled={disabled}
-      checked={checked}
-      aria-checked={checked}
-    >
+    <StyledRadio role="radio" disabled={disabled} checked={checked} aria-checked={checked}>
       <input
         type="radio"
         ref={HiddenRadioRef}
@@ -130,10 +123,7 @@ const Radio = ({
       <div
         className="radio"
         onClick={(e): void => {
-          if (
-            document.activeElement !== HiddenRadioRef.current &&
-            HiddenRadioRef.current
-          ) {
+          if (document.activeElement !== HiddenRadioRef.current && HiddenRadioRef.current) {
             HiddenRadioRef.current.focus();
           }
         }}

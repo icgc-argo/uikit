@@ -17,14 +17,14 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from "@storybook/react";
-import { text } from "@storybook/addon-knobs";
-import React from "react";
-import TitleBar from ".";
+import { storiesOf } from '@storybook/react';
+import { text } from '@storybook/addon-knobs';
+import React from 'react';
+import TitleBar from '.';
 
 const createKnobs = () => {
-  const className = text("className", undefined);
-  const id = text("id", undefined);
+  const className = text('className', undefined);
+  const id = text('id', undefined);
 
   return {
     className,
@@ -32,7 +32,7 @@ const createKnobs = () => {
   };
 };
 
-storiesOf(`${__dirname}`, module).add("Basic", () => {
+storiesOf(`${__dirname}`, module).add('Basic', () => {
   const props = createKnobs();
   return (
     <TitleBar {...props}>

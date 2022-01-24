@@ -17,16 +17,16 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from "@storybook/react";
-import React from "react";
-import Checkbox, { STYLEDCHECKBOX_SIZES } from ".";
-import { boolean, radios } from "@storybook/addon-knobs";
-import { action } from "@storybook/addon-actions";
+import { storiesOf } from '@storybook/react';
+import React from 'react';
+import Checkbox, { STYLEDCHECKBOX_SIZES } from '.';
+import { boolean, radios } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
 const createKnobs = () => {
-  const checked = boolean("checked", false);
-  const disabled = boolean("disabled", false);
-  const size = radios("size", STYLEDCHECKBOX_SIZES, STYLEDCHECKBOX_SIZES.MD);
+  const checked = boolean('checked', false);
+  const disabled = boolean('disabled', false);
+  const size = radios('size', STYLEDCHECKBOX_SIZES, STYLEDCHECKBOX_SIZES.MD);
 
   return {
     checked,
@@ -35,11 +35,11 @@ const createKnobs = () => {
   };
 };
 
-storiesOf(`${__dirname}`, module).add("Basic", () => (
+storiesOf(`${__dirname}`, module).add('Basic', () => (
   <Checkbox
     value="example"
     {...createKnobs()}
-    onChange={action("onchange")}
+    onChange={action('onchange')}
     aria-label="checkbox"
   />
 ));

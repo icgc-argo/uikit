@@ -17,22 +17,22 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from "react";
-import PropTypes from "prop-types";
-import floor from "lodash/floor";
-import ceil from "lodash/ceil";
-import range from "lodash/range";
-import css from "@emotion/css";
-import styled from "@emotion/styled";
+import React from 'react';
+import PropTypes from 'prop-types';
+import floor from 'lodash/floor';
+import ceil from 'lodash/ceil';
+import range from 'lodash/range';
+import css from '@emotion/css';
+import styled from '@emotion/styled';
 
-import Typography from "../../Typography";
-import useTheme from "../../utils/useTheme";
-import Select from "../../form/Select";
-import { POPUP_POSITIONS } from "../../form/Select/styledComponents";
-import Icon from "../../Icon";
+import Typography from '../../Typography';
+import useTheme from '../../utils/useTheme';
+import Select from '../../form/Select';
+import { POPUP_POSITIONS } from '../../form/Select/styledComponents';
+import Icon from '../../Icon';
 
 export const TableActionBar = (props) => {
-  const { variant = "label", color = "grey", component = "div" } = props;
+  const { variant = 'label', color = 'grey', component = 'div' } = props;
 
   return (
     <Typography
@@ -68,9 +68,7 @@ const Arrow: React.ComponentType<{
   />
 );
 
-const DoubleArrow: React.ComponentType<{ transform?: string }> = ({
-  transform,
-}) => (
+const DoubleArrow: React.ComponentType<{ transform?: string }> = ({ transform }) => (
   <>
     <Arrow transform={transform} />
     <Arrow
@@ -83,7 +81,7 @@ const DoubleArrow: React.ComponentType<{ transform?: string }> = ({
   </>
 );
 
-const A = styled("a")<{ theme?: any }>`
+const A = styled('a')<{ theme?: any }>`
   ${({ theme }) => css(theme.typography.data)};
   background-color: #fff;
   border-radius: 50%;
@@ -100,7 +98,7 @@ const A = styled("a")<{ theme?: any }>`
   }
 `;
 
-const PageControl = styled("div")`
+const PageControl = styled('div')`
   display: flex;
   align-items: center;
   & a {
@@ -127,14 +125,7 @@ function getPagesAround(p, num, pages) {
 
 function TablePagination(props) {
   // page is zero indexed!
-  const {
-    pages,
-    page,
-    showPageSizeOptions,
-    pageSizeOptions,
-    pageSize,
-    onPageSizeChange,
-  } = props;
+  const { pages, page, showPageSizeOptions, pageSizeOptions, pageSize, onPageSizeChange } = props;
 
   const theme = useTheme();
 
@@ -164,7 +155,7 @@ function TablePagination(props) {
           >
             <Select
               css={css`
-                & [role="button"] {
+                & [role='button'] {
                   min-width: 70px;
                 }
               `}
@@ -210,14 +201,12 @@ function TablePagination(props) {
                   key={p}
                   onClick={() => props.onPageChange(p)}
                   css={css`
-                    background-color: ${page === p
-                      ? theme.colors.secondary_4
-                      : ""};
+                    background-color: ${page === p ? theme.colors.secondary_4 : ''};
                   `}
                 >
                   {p + 1}
                 </A>
-              )
+              ),
           )}
           <A
             onClick={() => {

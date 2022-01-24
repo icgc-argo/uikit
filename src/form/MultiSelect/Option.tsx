@@ -17,12 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "@emotion/styled";
-import css from "@emotion/css";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
+import css from '@emotion/css';
 
-const Li = styled("li")<{ theme?: any }>`
+const Li = styled('li')<{ theme?: any }>`
   ${({ theme }) => css(theme.typography.data)};
   list-style: none;
   padding-left: 7px;

@@ -17,11 +17,11 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { AnchorHTMLAttributes } from "react";
-import { css } from "@emotion/core";
-import styled from "@emotion/styled";
+import React, { AnchorHTMLAttributes } from 'react';
+import { css } from '@emotion/core';
+import styled from '@emotion/styled';
 
-type LinkVariant = "INLINE" | "BLOCK";
+type LinkVariant = 'INLINE' | 'BLOCK';
 export type HyperLinkProps = {
   variant?: LinkVariant;
   uppercase?: boolean;
@@ -33,14 +33,13 @@ export type HyperLinkProps = {
   theme?: any;
 } & AnchorHTMLAttributes<HTMLAnchorElement>;
 
-const StyledLink = styled<"a", HyperLinkProps>("a")`
+const StyledLink = styled<'a', HyperLinkProps>('a')`
   ${({ theme }) => css(theme.typography.default)}
   cursor: pointer;
-  color: ${({ theme, invert }) =>
-    invert ? theme.colors.white : theme.colors.accent2_dark};
-  text-decoration: ${({ underline }) => (underline ? "underline" : "none")};
-  font-weight: ${({ bold }) => (bold ? "bold" : "inherit")};
-  text-transform: ${({ uppercase }) => (uppercase ? "uppercase" : "default")};
+  color: ${({ theme, invert }) => (invert ? theme.colors.white : theme.colors.accent2_dark)};
+  text-decoration: ${({ underline }) => (underline ? 'underline' : 'none')};
+  font-weight: ${({ bold }) => (bold ? 'bold' : 'inherit')};
+  text-transform: ${({ uppercase }) => (uppercase ? 'uppercase' : 'default')};
 
   :hover {
     color: ${({ theme }) => theme.colors.accent2_1};
@@ -63,7 +62,7 @@ const Link = React.forwardRef<HTMLAnchorElement, HyperLinkProps>(
       children,
       ...rest
     },
-    ref
+    ref,
   ) => (
     <StyledLink
       ref={ref}
@@ -75,14 +74,14 @@ const Link = React.forwardRef<HTMLAnchorElement, HyperLinkProps>(
       {...rest}
     >
       {children}
-      {withChevron && " ›"}
+      {withChevron && ' ›'}
     </StyledLink>
-  )
+  ),
 );
 
 export const LINK_VARIANTS = Object.freeze({
-  INLINE: "INLINE" as LinkVariant,
-  BLOCK: "BLOCK" as LinkVariant,
+  INLINE: 'INLINE' as LinkVariant,
+  BLOCK: 'BLOCK' as LinkVariant,
 });
 
 export default Link;

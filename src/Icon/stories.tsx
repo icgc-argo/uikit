@@ -17,34 +17,26 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from "@storybook/react";
-import React from "react";
-import { select } from "@storybook/addon-knobs";
-import { Container, Row, Col } from "react-grid-system";
-import defaultTheme from "../theme/defaultTheme";
+import { storiesOf } from '@storybook/react';
+import React from 'react';
+import { select } from '@storybook/addon-knobs';
+import { Container, Row, Col } from 'react-grid-system';
+import defaultTheme from '../theme/defaultTheme';
 
-import Typography from "../Typography";
-import icons, { UikitIconNames } from "./icons";
-import Icon from ".";
+import Typography from '../Typography';
+import icons, { UikitIconNames } from './icons';
+import Icon from '.';
 
 const createKnobs = () => {
-  const fill = select(
-    "fill",
-    [null, "#00f", ...Object.keys(defaultTheme.colors)],
-    null
-  );
+  const fill = select('fill', [null, '#00f', ...Object.keys(defaultTheme.colors)], null);
   return {
     fill,
   };
 };
 
 storiesOf(`${__dirname}`, module)
-  .add("Basic", () => {
-    const name = select(
-      "name",
-      Object.keys(icons) as UikitIconNames[],
-      "spinner"
-    );
+  .add('Basic', () => {
+    const name = select('name', Object.keys(icons) as UikitIconNames[], 'spinner');
     const { fill } = createKnobs();
     return (
       <div>
@@ -52,20 +44,20 @@ storiesOf(`${__dirname}`, module)
       </div>
     );
   })
-  .add("All Icons", () => {
+  .add('All Icons', () => {
     const { fill } = createKnobs();
     const IconStoryDisplay = ({ iconName }) => (
       <Col md={2}>
         <div
           style={{
-            borderRadius: "10px",
-            height: "100%",
-            boxShadow: "3px 3px 10px rgba(0, 0, 0, 0.2)",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            margin: "10px",
+            borderRadius: '10px',
+            height: '100%',
+            boxShadow: '3px 3px 10px rgba(0, 0, 0, 0.2)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            margin: '10px',
           }}
         >
           <Typography>{iconName}</Typography>

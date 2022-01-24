@@ -17,11 +17,11 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from "@storybook/react";
-import React from "react";
-import Tabs, { Tab } from ".";
-import Typography from "../Typography";
-import { action } from "@storybook/addon-actions";
+import { storiesOf } from '@storybook/react';
+import React from 'react';
+import Tabs, { Tab } from '.';
+import Typography from '../Typography';
+import { action } from '@storybook/addon-actions';
 
 function TabContainer(props) {
   return (
@@ -37,7 +37,7 @@ const SimpleTabs = React.forwardRef(() => {
 
   function handleChange(event, newValue) {
     setValue(newValue);
-    action("tab foucs changed")(event, newValue);
+    action('tab foucs changed')(event, newValue);
   }
 
   return (
@@ -46,7 +46,7 @@ const SimpleTabs = React.forwardRef(() => {
         <Tab value="0" label="Item One" />
         <Tab value="1" label="Item Two" />
         <Tab value="2" label="Item Three" />
-        <Tab empty style={{ flexDirection: "row-reverse" }}>
+        <Tab empty style={{ flexDirection: 'row-reverse' }}>
           <button>Child of empty tab</button>
         </Tab>
       </Tabs>
@@ -57,4 +57,4 @@ const SimpleTabs = React.forwardRef(() => {
   );
 });
 
-storiesOf(`${__dirname}`, module).add("Basic", () => <SimpleTabs />);
+storiesOf(`${__dirname}`, module).add('Basic', () => <SimpleTabs />);

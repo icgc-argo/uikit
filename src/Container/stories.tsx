@@ -17,14 +17,14 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from "@storybook/react";
-import React from "react";
-import Container from ".";
-import { ClassNames } from "@emotion/core";
+import { storiesOf } from '@storybook/react';
+import React from 'react';
+import Container from '.';
+import { ClassNames } from '@emotion/core';
 
 storiesOf(`${__dirname}`, module)
   .add(
-    "Basic",
+    'Basic',
     () => (
       <ClassNames>
         {({ css }) => (
@@ -39,11 +39,11 @@ storiesOf(`${__dirname}`, module)
     ),
     {
       info: {},
-    }
+    },
   )
 
   .add(
-    "Loading",
+    'Loading',
     () => (
       <ClassNames>
         {({ css }) => (
@@ -59,5 +59,5 @@ storiesOf(`${__dirname}`, module)
     ),
     {
       info: {},
-    }
+    },
   );

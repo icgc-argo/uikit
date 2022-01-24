@@ -17,10 +17,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import styled from "@emotion/styled";
-import defaultTheme from "src/theme/defaultTheme";
+import styled from '@emotion/styled';
+import defaultTheme from 'src/theme/defaultTheme';
 
-const PipeContainer = styled("div")<{ theme?: any }>`
+const PipeContainer = styled('div')<{ theme?: any }>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -36,10 +36,7 @@ const PipeContainer = styled("div")<{ theme?: any }>`
   height: 14px;
 `;
 
-const PipeItem = styled<
-  "div",
-  { fill: keyof typeof defaultTheme.colors; theme?: any }
->("div")`
+const PipeItem = styled<'div', { fill: keyof typeof defaultTheme.colors; theme?: any }>('div')`
   flex-grow: 1;
   background-color: ${({ theme, fill }) => theme.colors[fill]};
   margin-right: 1px;
@@ -58,9 +55,9 @@ const PipeItem = styled<
   }
 `;
 
-const Pipe: React.ComponentType<{}> & { Item: typeof PipeItem } = ({
-  children,
-}) => <PipeContainer>{children}</PipeContainer>;
+const Pipe: React.ComponentType<{}> & { Item: typeof PipeItem } = ({ children }) => (
+  <PipeContainer>{children}</PipeContainer>
+);
 
 Pipe.Item = PipeItem;
 

@@ -17,41 +17,39 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import * as React from "react";
-import styled from "@emotion/styled";
-import css from "@emotion/css";
-import defaultTheme from "src/theme/defaultTheme";
+import * as React from 'react';
+import styled from '@emotion/styled';
+import css from '@emotion/css';
+import defaultTheme from 'src/theme/defaultTheme';
 
 type TagVariant =
-  | "DISABLED"
-  | "EDITABLE"
-  | "ERROR"
-  | "HIGHLIGHT"
-  | "INFO"
-  | "NEUTRAL"
-  | "SUCCESS"
-  | "UPDATE"
-  | "WARNING";
+  | 'DISABLED'
+  | 'EDITABLE'
+  | 'ERROR'
+  | 'HIGHLIGHT'
+  | 'INFO'
+  | 'NEUTRAL'
+  | 'SUCCESS'
+  | 'UPDATE'
+  | 'WARNING';
 
 export const TAG_VARIANTS: { [k in TagVariant]: k } = {
-  DISABLED: "DISABLED",
-  EDITABLE: "EDITABLE",
-  INFO: "INFO",
-  WARNING: "WARNING",
-  ERROR: "ERROR",
-  SUCCESS: "SUCCESS",
-  UPDATE: "UPDATE",
-  NEUTRAL: "NEUTRAL",
-  HIGHLIGHT: "HIGHLIGHT",
+  DISABLED: 'DISABLED',
+  EDITABLE: 'EDITABLE',
+  INFO: 'INFO',
+  WARNING: 'WARNING',
+  ERROR: 'ERROR',
+  SUCCESS: 'SUCCESS',
+  UPDATE: 'UPDATE',
+  NEUTRAL: 'NEUTRAL',
+  HIGHLIGHT: 'HIGHLIGHT',
 };
 const blackTextVariants: Array<keyof typeof TAG_VARIANTS> = [
   TAG_VARIANTS.NEUTRAL,
   TAG_VARIANTS.HIGHLIGHT,
 ];
 
-const Tag = styled<"div", { variant?: keyof typeof TAG_VARIANTS; theme?: any }>(
-  "div"
-)`
+const Tag = styled<'div', { variant?: keyof typeof TAG_VARIANTS; theme?: any }>('div')`
   ${({ theme }) => css(theme.typography.paragraph as any)};
   box-sizing: border-box;
   display: inline-block;
@@ -61,7 +59,7 @@ const Tag = styled<"div", { variant?: keyof typeof TAG_VARIANTS; theme?: any }>(
   font-weight: bold;
   padding: 3px 8px;
   border-radius: 8px;
-  background-color: ${({ theme, variant = "INFO" }) =>
+  background-color: ${({ theme, variant = 'INFO' }) =>
     ({
       [TAG_VARIANTS.DISABLED]: theme.colors.primary_2,
       [TAG_VARIANTS.EDITABLE]: theme.colors.accent2,
@@ -73,10 +71,8 @@ const Tag = styled<"div", { variant?: keyof typeof TAG_VARIANTS; theme?: any }>(
       [TAG_VARIANTS.UPDATE]: theme.colors.accent3_dark,
       [TAG_VARIANTS.HIGHLIGHT]: theme.colors.secondary_2,
     }[variant])};
-  color: ${({ variant = "INFO" }) =>
-    blackTextVariants.includes(variant as keyof typeof TAG_VARIANTS)
-      ? "black"
-      : "white"};
+  color: ${({ variant = 'INFO' }) =>
+    blackTextVariants.includes(variant as keyof typeof TAG_VARIANTS) ? 'black' : 'white'};
 `;
 
 export default Tag;

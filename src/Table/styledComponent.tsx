@@ -17,21 +17,21 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from "react";
-import styled from "@emotion/styled";
-import css from "@emotion/css";
-import ReactTable from "react-table";
+import React from 'react';
+import styled from '@emotion/styled';
+import css from '@emotion/css';
+import ReactTable from 'react-table';
 
-import reactTableDefaultStyle from "./reactTableDefaultStyle";
-import ascending from "../assets/table/ascending.svg";
-import descending from "../assets/table/descending.svg";
-import unsorted from "../assets/table/unsorted.svg";
+import reactTableDefaultStyle from './reactTableDefaultStyle';
+import ascending from '../assets/table/ascending.svg';
+import descending from '../assets/table/descending.svg';
+import unsorted from '../assets/table/unsorted.svg';
 
 export type StyledTableProps = {
   withRowBorder?: boolean;
   isSelectTable?: boolean;
   withOutsideBorder?: boolean;
-  cellAlignment?: "top" | "center" | "bottom";
+  cellAlignment?: 'top' | 'center' | 'bottom';
   theme?: any;
 };
 

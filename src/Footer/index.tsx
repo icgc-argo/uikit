@@ -17,16 +17,16 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "@emotion/styled";
-import Icon from "../Icon";
-import icgcLogo from "../assets/icgc_logo.svg";
-import css from "@emotion/css";
-import { Row, Col } from "react-grid-system";
-import A from "../Link";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
+import Icon from '../Icon';
+import icgcLogo from '../assets/icgc_logo.svg';
+import css from '@emotion/css';
+import { Row, Col } from 'react-grid-system';
+import A from '../Link';
 
-const Container = styled("footer")<{ theme?: any }>`
+const Container = styled('footer')<{ theme?: any }>`
   ${({ theme }) => css(theme.typography.paragraph)};
   font-size: 11px;
   min-height: 58px;
@@ -37,10 +37,10 @@ const Container = styled("footer")<{ theme?: any }>`
 `;
 
 const Footer = ({
-  version = "[version]",
+  version = '[version]',
   apiVersion = null,
   links = [],
-  className = "",
+  className = '',
   ...otherProps
 }) => (
   <Container className={`footer ${className}`} {...otherProps}>
@@ -106,7 +106,7 @@ const Footer = ({
             <img
               alt="Ontario Institute for Cancer Research"
               src={icgcLogo}
-              style={{ height: "42px" }}
+              style={{ height: '42px' }}
             />
           </a>
         </div>

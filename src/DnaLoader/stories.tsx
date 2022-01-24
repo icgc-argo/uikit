@@ -17,15 +17,15 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from "@storybook/react";
-import React from "react";
-import DnaLoader from ".";
-import { number } from "@storybook/addon-knobs";
+import { storiesOf } from '@storybook/react';
+import React from 'react';
+import DnaLoader from '.';
+import { number } from '@storybook/addon-knobs';
 
-storiesOf(`${__dirname}`, module).add("Basic", () => {
-  const dotsCount = number("dotsCount", 5);
+storiesOf(`${__dirname}`, module).add('Basic', () => {
+  const dotsCount = number('dotsCount', 5);
   return (
-    <DnaLoader style={{ background: "white" }} dotsCount={dotsCount}>
+    <DnaLoader style={{ background: 'white' }} dotsCount={dotsCount}>
       Skeleton
     </DnaLoader>
   );

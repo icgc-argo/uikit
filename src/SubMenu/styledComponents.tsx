@@ -17,14 +17,14 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from "react";
-import styled from "@emotion/styled";
-import css from "@emotion/css";
-import defaultTheme from "src/theme/defaultTheme";
+import React from 'react';
+import styled from '@emotion/styled';
+import css from '@emotion/css';
+import defaultTheme from 'src/theme/defaultTheme';
 import {
   CreateStyledComponentExtrinsic,
   CreateStyledComponentIntrinsic,
-} from "@emotion/styled/types";
+} from '@emotion/styled/types';
 
 type StyleCalculationInput = {
   selected?: boolean;
@@ -45,7 +45,7 @@ const defaultLabelStyle = ({ selected, theme }: StyleCalculationInput) => css`
   }
   & > .FacetMenu {
     display: flex;
-    border-bottom: ${selected ? "0px" : "1px"} solid;
+    border-bottom: ${selected ? '0px' : '1px'} solid;
     background: ${selected ? theme.colors.white : theme.colors.grey_4};
     border-color: ${theme.colors.grey_2};
     color: ${theme.colors.primary};
@@ -85,7 +85,7 @@ const level2Style = ({ selected, theme }: StyleCalculationInput) => css`
   border-left: solid 2px;
   font-weight: normal;
   border-left-color: ${selected ? theme.colors.secondary : theme.colors.white};
-  background: ${selected ? theme.colors.grey_4 : "none"};
+  background: ${selected ? theme.colors.grey_4 : 'none'};
   & > .MenuItemContent {
     padding-left: 40px;
     padding-right: 18px;
@@ -102,7 +102,7 @@ const level3Style = ({ selected, theme }: StyleCalculationInput) => css`
   ${defaultLabelStyle({ theme, selected })}
   border: none;
   font-weight: normal;
-  background: ${selected ? theme.colors.secondary_4 : "none"};
+  background: ${selected ? theme.colors.secondary_4 : 'none'};
   & > .MenuItemContent {
     font-size: 13px;
     padding-top: 8px;
@@ -122,10 +122,7 @@ const defaultStyle = (props: StyleCalculationInput) => css`
   }
 `;
 
-export const MenuItemContainer = styled<
-  "div",
-  { level?: 1 | 2 | 3; selected?: boolean }
->("div")`
+export const MenuItemContainer = styled<'div', { level?: 1 | 2 | 3; selected?: boolean }>('div')`
   & a {
     text-decoration: none;
   }
@@ -139,14 +136,14 @@ export const MenuItemContainer = styled<
       : defaultStyle(rest)}
 `;
 
-export const IconContainer = styled("span")`
+export const IconContainer = styled('span')`
   margin-right: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-export const ContentContainer = styled("button")<{
+export const ContentContainer = styled('button')<{
   as?: keyof JSX.IntrinsicElements;
   theme?: any;
 }>`

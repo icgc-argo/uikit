@@ -17,8 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import useTheme from "src/utils/useTheme";
-import { css, keyframes } from "@emotion/core";
+import useTheme from 'src/utils/useTheme';
+import { css, keyframes } from '@emotion/core';
 
 const PercentBar: React.ComponentType<{
   num: number;
@@ -61,9 +61,7 @@ const PercentBar: React.ComponentType<{
       >
         <div
           css={css`
-            background-color: ${theme.colors[fillColor] ||
-            fillColor ||
-            theme.colors.secondary};
+            background-color: ${theme.colors[fillColor] || fillColor || theme.colors.secondary};
             width: ${fill_amount};
             height: 6px;
             border-radius: 8px;

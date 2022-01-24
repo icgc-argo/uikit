@@ -17,16 +17,16 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from "react";
-import Checkbox from "src/form/Checkbox";
-import { css } from "@emotion/core";
-import Tag from "src/Tag";
-import Typography from "src/Typography";
-import useTheme from "src/utils/useTheme";
-import orderBy from "lodash/orderBy";
-import concat from "lodash/concat";
-import ViewAmountController from "./ViewAmountController";
-import Tooltip from "src/Tooltip";
+import React from 'react';
+import Checkbox from 'src/form/Checkbox';
+import { css } from '@emotion/core';
+import Tag from 'src/Tag';
+import Typography from 'src/Typography';
+import useTheme from 'src/utils/useTheme';
+import orderBy from 'lodash/orderBy';
+import concat from 'lodash/concat';
+import ViewAmountController from './ViewAmountController';
+import Tooltip from 'src/Tooltip';
 
 export type FilterOption = {
   key: string;
@@ -49,7 +49,7 @@ const OptionsList: React.ComponentType<{
   sortOptions?: boolean;
 }> = ({
   options,
-  searchQuery = "",
+  searchQuery = '',
   defaultRenderLimit = 5,
   countUnit,
   onOptionToggle,
@@ -65,12 +65,9 @@ const OptionsList: React.ComponentType<{
   const queriedOptionKeys = React.useMemo(
     () =>
       options
-        .filter(
-          ({ key }) =>
-            !searchQuery.length || key.search(new RegExp(searchQuery, "i")) > -1
-        )
+        .filter(({ key }) => !searchQuery.length || key.search(new RegExp(searchQuery, 'i')) > -1)
         .map((option) => option.key),
-    [searchQuery]
+    [searchQuery],
   );
 
   const StyledOption: React.ComponentType<{
@@ -79,10 +76,7 @@ const OptionsList: React.ComponentType<{
     const optionRef = React.useRef<HTMLDivElement>(null);
     const [disableTooltip, setDisableTooltip] = React.useState(true);
     React.useEffect(() => {
-      if (
-        optionRef.current &&
-        optionRef.current.scrollWidth > optionRef.current.clientWidth
-      ) {
+      if (optionRef.current && optionRef.current.scrollWidth > optionRef.current.clientWidth) {
         setDisableTooltip(false);
       } else {
         setDisableTooltip(true);
@@ -90,9 +84,9 @@ const OptionsList: React.ComponentType<{
     }, []);
     return (
       <div
-        className={"StyledOption"}
+        className={'StyledOption'}
         css={css`
-          background-color: ${option.isChecked ? theme.colors.secondary_4 : ""};
+          background-color: ${option.isChecked ? theme.colors.secondary_4 : ''};
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -100,9 +94,7 @@ const OptionsList: React.ComponentType<{
           padding: 2px 12px;
           width: calc(100% - (2 * 12px));
           &:hover {
-            background: ${option.isChecked
-              ? theme.colors.secondary_3
-              : theme.colors.grey_3};
+            background: ${option.isChecked ? theme.colors.secondary_3 : theme.colors.grey_3};
           }
           cursor: pointer;
         `}
@@ -162,7 +154,7 @@ const OptionsList: React.ComponentType<{
         </div>
 
         <Tag
-          variant={option.isChecked ? "HIGHLIGHT" : "NEUTRAL"}
+          variant={option.isChecked ? 'HIGHLIGHT' : 'NEUTRAL'}
           css={css`
             height: 18px;
             font-size: 10px;
@@ -178,36 +170,28 @@ const OptionsList: React.ComponentType<{
   };
 
   /* %%%%%%%%%%%%%%%%%% ~ Option Rendering Logic ~ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-  const sortedOptions = React.useMemo(
-    () => orderBy(options, ["isChecked"], ["desc"]),
-    [options]
-  );
+  const sortedOptions = React.useMemo(() => orderBy(options, ['isChecked'], ['desc']), [options]);
 
   const selectedOptions = React.useMemo(
     () => options.filter((option) => option.isChecked),
-    [options]
+    [options],
   );
 
   const queriedOptions = React.useMemo(
     () =>
       sortedOptions.filter(
-        (option) =>
-          queriedOptionKeys.includes(option.key) &&
-          !selectedOptions.includes(option)
+        (option) => queriedOptionKeys.includes(option.key) && !selectedOptions.includes(option),
       ),
-    [searchQuery, sortedOptions]
+    [searchQuery, sortedOptions],
   );
 
-  const allOptionsSelected: boolean = (
-    searchQuery ? queriedOptions : options
-  ).every((opt) => opt.isChecked);
+  const allOptionsSelected: boolean = (searchQuery ? queriedOptions : options).every(
+    (opt) => opt.isChecked,
+  );
 
   const defaultNonSelectedOptions = React.useMemo(
-    () =>
-      sortedOptions
-        .slice(0, defaultRenderLimit)
-        .filter((option) => !option.isChecked),
-    [sortedOptions]
+    () => sortedOptions.slice(0, defaultRenderLimit).filter((option) => !option.isChecked),
+    [sortedOptions],
   );
 
   const optionsToShow = !!searchQuery
@@ -246,7 +230,7 @@ const OptionsList: React.ComponentType<{
                 padding: 4px 12px 0px 12px;
               `}
             >
-              <Typography variant={"caption"} color={theme.colors.grey}>
+              <Typography variant={'caption'} color={theme.colors.grey}>
                 # {countUnit}
               </Typography>
             </div>
@@ -265,16 +249,14 @@ const OptionsList: React.ComponentType<{
           selectAllState={allOptionsSelected}
           toggleVisiblityCss={
             searchQuery
-              ? "hidden"
+              ? 'hidden'
               : numberOfMoreOptions === 0
               ? allOptionsVisible
-                ? "visible"
-                : "hidden"
-              : "visible"
+                ? 'visible'
+                : 'hidden'
+              : 'visible'
           }
-          toggleText={
-            allOptionsVisible ? `Less` : `${numberOfMoreOptions} More`
-          }
+          toggleText={allOptionsVisible ? `Less` : `${numberOfMoreOptions} More`}
           moreOptionsAvailable={!allOptionsVisible}
           selectAllVisible={selectAllVisible}
         />

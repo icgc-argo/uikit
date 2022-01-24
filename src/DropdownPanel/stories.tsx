@@ -17,26 +17,22 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { useRef, useState } from "react";
-import { storiesOf } from "@storybook/react";
-import { boolean, select, text } from "@storybook/addon-knobs";
+import React, { useRef, useState } from 'react';
+import { storiesOf } from '@storybook/react';
+import { boolean, select, text } from '@storybook/addon-knobs';
 
-import DropdownPanel, { TextInputFilter, ListFilter, FilterOption } from ".";
-import icons, { UikitIconNames } from "src/Icon/icons";
+import DropdownPanel, { TextInputFilter, ListFilter, FilterOption } from '.';
+import icons, { UikitIconNames } from 'src/Icon/icons';
 
 storiesOf(`${__dirname}`, module)
-  .add("Basic", () => {
+  .add('Basic', () => {
     const [open, setOpen] = useState(false);
 
     const knobs = {
-      customTrigger: text("customTrigger", ""),
-      triggerIcon: select(
-        "triggerIcon",
-        Object.keys(icons) as UikitIconNames[],
-        "filter"
-      ),
-      triggerTooltip: text("triggerTooltip", "Basic Dropdown Panel"),
-      active: boolean("active", false),
+      customTrigger: text('customTrigger', ''),
+      triggerIcon: select('triggerIcon', Object.keys(icons) as UikitIconNames[], 'filter'),
+      triggerTooltip: text('triggerTooltip', 'Basic Dropdown Panel'),
+      active: boolean('active', false),
     };
 
     return (
@@ -45,8 +41,8 @@ storiesOf(`${__dirname}`, module)
       </DropdownPanel>
     );
   })
-  .add("With Text Input Filter", () => {
-    const [filterText, setFilterText] = useState("");
+  .add('With Text Input Filter', () => {
+    const [filterText, setFilterText] = useState('');
     const [open, setOpen] = useState(false);
     const buttonRef = useRef<HTMLInputElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -71,16 +67,12 @@ storiesOf(`${__dirname}`, module)
     const onFilter = (text: string) => setFilterText(text);
 
     const knobs = {
-      customTrigger: text("customTrigger", ""),
-      inputLabel: text("inputLabel", "Text Input Filter"),
-      inputPlaceholder: text("inputPlaceholder", "Search..."),
-      panelLegend: text("panelLegend", "Text Input Filter Panel"),
-      triggerIcon: select(
-        "triggerIcon",
-        Object.keys(icons) as UikitIconNames[],
-        "filter"
-      ),
-      triggerTooltip: text("triggerTooltip", "Text Filter Panel"),
+      customTrigger: text('customTrigger', ''),
+      inputLabel: text('inputLabel', 'Text Input Filter'),
+      inputPlaceholder: text('inputPlaceholder', 'Search...'),
+      panelLegend: text('panelLegend', 'Text Input Filter Panel'),
+      triggerIcon: select('triggerIcon', Object.keys(icons) as UikitIconNames[], 'filter'),
+      triggerTooltip: text('triggerTooltip', 'Text Filter Panel'),
     };
 
     return (
@@ -109,19 +101,19 @@ storiesOf(`${__dirname}`, module)
       </DropdownPanel>
     );
   })
-  .add("With List Filter", () => {
+  .add('With List Filter', () => {
     const filterOptions = [
       {
-        key: "COMPLETE",
-        value: "Complete",
+        key: 'COMPLETE',
+        value: 'Complete',
       },
       {
-        key: "INCOMPLETE",
-        value: "Incomplete",
+        key: 'INCOMPLETE',
+        value: 'Incomplete',
       },
       {
-        key: "NO_DATA",
-        value: "No Data Submitted",
+        key: 'NO_DATA',
+        value: 'No Data Submitted',
       },
     ];
     const [activeFilters, setActiveFilters] = useState([]);
@@ -131,7 +123,7 @@ storiesOf(`${__dirname}`, module)
           ...option,
           isChecked: activeFilters?.indexOf(option.key) > -1 ? true : false,
         })),
-      [filterOptions, activeFilters]
+      [filterOptions, activeFilters],
     );
     const [open, setOpen] = useState(false);
     const buttonRef = useRef<HTMLInputElement>(null);
@@ -147,20 +139,14 @@ storiesOf(`${__dirname}`, module)
     };
 
     const onFilter = (options: Array<FilterOption>) =>
-      setActiveFilters(
-        options.filter((option) => option.isChecked).map((option) => option.key)
-      );
+      setActiveFilters(options.filter((option) => option.isChecked).map((option) => option.key));
 
     const knobs = {
-      customTrigger: text("customTrigger", ""),
-      inputLabel: text("inputLabel", "List Filter"),
-      panelLegend: text("panelLegend", "List Filter Panel"),
-      triggerIcon: select(
-        "triggerIcon",
-        Object.keys(icons) as UikitIconNames[],
-        "filter"
-      ),
-      triggerTooltip: text("triggerTooltip", "List Filter Panel"),
+      customTrigger: text('customTrigger', ''),
+      inputLabel: text('inputLabel', 'List Filter'),
+      panelLegend: text('panelLegend', 'List Filter Panel'),
+      triggerIcon: select('triggerIcon', Object.keys(icons) as UikitIconNames[], 'filter'),
+      triggerTooltip: text('triggerTooltip', 'List Filter Panel'),
     };
 
     return (

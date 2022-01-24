@@ -17,32 +17,31 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from "react";
-import styled from "@emotion/styled";
-import { withProps } from "recompose";
+import React from 'react';
+import styled from '@emotion/styled';
+import { withProps } from 'recompose';
 
-import Icon from "../../Icon";
-import Typography from "../../Typography";
+import Icon from '../../Icon';
+import Typography from '../../Typography';
 
-export type PopupPosition = "UP" | "DOWN";
+export type PopupPosition = 'UP' | 'DOWN';
 export const POPUP_POSITIONS = {
-  UP: "UP" as PopupPosition,
-  DOWN: "DOWN" as PopupPosition,
+  UP: 'UP' as PopupPosition,
+  DOWN: 'DOWN' as PopupPosition,
 };
 
 export const DropdownIcon = withProps(({ disabled, theme }) => ({
-  name: "chevron_down",
-  fill: disabled ? theme.colors.grey_disabled : "black",
+  name: 'chevron_down',
+  fill: disabled ? theme.colors.grey_disabled : 'black',
 }))(styled<typeof Icon, { disabled?: boolean; theme?: any }>(Icon)`
   height: 100%;
   width: 10px;
   padding: 10px;
   border-left: solid 1px
-    ${({ theme, disabled }) =>
-      disabled ? theme.colors.grey_2 : theme.colors.grey_1};
+    ${({ theme, disabled }) => (disabled ? theme.colors.grey_2 : theme.colors.grey_1)};
 `);
 
-export const OptionsList = styled("ol")<{ theme?: any }>`
+export const OptionsList = styled('ol')<{ theme?: any }>`
   list-style: none;
   margin: 0;
   padding: 0;
@@ -63,7 +62,7 @@ export const OptionsList = styled("ol")<{ theme?: any }>`
   }
 `;
 
-const OptionContainer = styled("li")<{ theme?: any }>`
+const OptionContainer = styled('li')<{ theme?: any }>`
   list-style: none;
   min: 100%;
   padding: 5px 10px;
@@ -74,8 +73,8 @@ const OptionContainer = styled("li")<{ theme?: any }>`
 `;
 
 const OptionContent = withProps(() => ({
-  variant: "paragraph",
-  component: "span",
+  variant: 'paragraph',
+  component: 'span',
 }))(Typography);
 
 export const Option = ({ value, children, ...props }) => (
@@ -84,7 +83,7 @@ export const Option = ({ value, children, ...props }) => (
   </OptionContainer>
 );
 
-export const HiddenSelect = styled("select")`
+export const HiddenSelect = styled('select')`
   opacity: 0;
   pointer-events: none;
   z-index: -1000;

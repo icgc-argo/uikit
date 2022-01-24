@@ -17,11 +17,11 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from "@storybook/react";
-import React from "react";
-import NumberRangeFacet from ".";
+import { storiesOf } from '@storybook/react';
+import React from 'react';
+import NumberRangeFacet from '.';
 
-storiesOf(`${__dirname}`, module).add("Basic", () => {
+storiesOf(`${__dirname}`, module).add('Basic', () => {
   const [range, setRange] = React.useState({ min: null, max: null });
   return (
     <div>

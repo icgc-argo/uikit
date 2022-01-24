@@ -17,13 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from "@emotion/core";
-import { FieldDescriptionLabel, FieldInputWrapper } from "./common";
-import React from "react";
-import Input from "src/form/Input";
-import Button from "src/Button";
-import { useTheme } from "src/ThemeProvider";
-import Typography from "src/Typography";
+import { css } from '@emotion/core';
+import { FieldDescriptionLabel, FieldInputWrapper } from './common';
+import React from 'react';
+import Input from 'src/form/Input';
+import Button from 'src/Button';
+import { useTheme } from 'src/ThemeProvider';
+import Typography from 'src/Typography';
 
 const NumberRangeField: React.ComponentType<{
   min: string;
@@ -47,7 +47,7 @@ const NumberRangeField: React.ComponentType<{
   const [maxErrorState, setMaxErrorState] = React.useState(false);
 
   const errorMsg = (
-    <Typography variant={"caption"} color={theme.colors.error}>
+    <Typography variant={'caption'} color={theme.colors.error}>
       Invalid
     </Typography>
   );

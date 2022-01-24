@@ -17,9 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from "react";
-import css from "@emotion/css";
-import ContentPlaceholder from "src/ContentPlaceholder";
+import React from 'react';
+import css from '@emotion/css';
+import ContentPlaceholder from 'src/ContentPlaceholder';
 
 export default function ContentPlaceholderComponent(props) {
   return (

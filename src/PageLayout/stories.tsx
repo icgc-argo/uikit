@@ -17,13 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from "@storybook/react";
-import React from "react";
-import css from "@emotion/css";
+import { storiesOf } from '@storybook/react';
+import React from 'react';
+import css from '@emotion/css';
 
-import AppBar, { MenuItem } from "../AppBar";
-import Typography from "../Typography";
-import Table from "../Table";
+import AppBar, { MenuItem } from '../AppBar';
+import Typography from '../Typography';
+import Table from '../Table';
 import {
   PageContainer,
   Panel,
@@ -32,9 +32,9 @@ import {
   ContentHeader,
   ContentBody,
   ContentBox,
-} from ".";
+} from '.';
 
-storiesOf(`${__dirname}`, module).add("Basic", () => (
+storiesOf(`${__dirname}`, module).add('Basic', () => (
   <PageContainer>
     <AppBar>
       <Typography color="white">AppBar</Typography>

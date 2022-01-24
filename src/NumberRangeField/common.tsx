@@ -17,16 +17,16 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { styled } from "src";
+import { styled } from 'src';
 
-export const FieldInputWrapper = styled("div")`
+export const FieldInputWrapper = styled('div')`
   width: 35%;
   &:first-of-type:not(:last-of-type) {
     border-radius: 10px 0 0 10px;
   }
 `;
 
-export const FieldDescriptionLabel = styled("div")<{ theme?: any }>`
+export const FieldDescriptionLabel = styled('div')<{ theme?: any }>`
   display: flex;
   width: 15%;
   height: 30px;

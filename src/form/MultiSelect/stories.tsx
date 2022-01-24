@@ -17,30 +17,30 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from "react";
-import { storiesOf } from "@storybook/react";
-import MultiSelect, { Option } from ".";
-import { action } from "@storybook/addon-actions";
-import { boolean, select } from "@storybook/addon-knobs";
-import { INPUT_SIZES } from "../common";
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import MultiSelect, { Option } from '.';
+import { action } from '@storybook/addon-actions';
+import { boolean, select } from '@storybook/addon-knobs';
+import { INPUT_SIZES } from '../common';
 
 storiesOf(`${__dirname}`, module)
-  .add("Basic", () => {
+  .add('Basic', () => {
     const [value, setValue] = React.useState([]);
     return (
       <MultiSelect
         aria-label="multi-select"
         value={value}
         onChange={(event) => {
-          action("value change")(event);
+          action('value change')(event);
           setValue(event.target.value);
         }}
-        onBlur={action("onBlur")}
-        disabled={boolean("disabled", false)}
-        error={boolean("error", false)}
-        single={boolean("single", false)}
-        allowNew={boolean("allowNew", false)}
-        size={select("size", INPUT_SIZES, INPUT_SIZES.SM)}
+        onBlur={action('onBlur')}
+        disabled={boolean('disabled', false)}
+        error={boolean('error', false)}
+        single={boolean('single', false)}
+        allowNew={boolean('allowNew', false)}
+        size={select('size', INPUT_SIZES, INPUT_SIZES.SM)}
       >
         <Option value="Afghanistan">Afghanistan</Option>
         <Option value="Albania">Albania</Option>
@@ -64,45 +64,42 @@ storiesOf(`${__dirname}`, module)
       </MultiSelect>
     );
   })
-  .add("Long option", () => {
+  .add('Long option', () => {
     const [value, setValue] = React.useState([]);
     return (
       <MultiSelect
         aria-label="multi-select"
         value={value}
         onChange={(event) => {
-          action("value change")();
+          action('value change')();
           setValue(event.target.value);
         }}
-        onBlur={action("onBlur")}
+        onBlur={action('onBlur')}
         allowNew
       >
         <Option value="Afghanistan">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
         </Option>
         <Option value="Bfghanistan">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
         </Option>
         <Option value="Cfghanistan">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
         </Option>
       </MultiSelect>
     );

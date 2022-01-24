@@ -17,13 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from "@storybook/react";
-import React from "react";
-import Affix from ".";
+import { storiesOf } from '@storybook/react';
+import React from 'react';
+import Affix from '.';
 
-storiesOf(`${__dirname}`, module).add("Basic", () => {
+storiesOf(`${__dirname}`, module).add('Basic', () => {
   return (
-    <div style={{ height: "200vh" }}>
+    <div style={{ height: '200vh' }}>
       Some text
       <Affix top={10}>Affix content</Affix>
     </div>
