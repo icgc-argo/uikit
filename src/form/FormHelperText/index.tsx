@@ -17,12 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import FormControlContext from '../FormControl/FormControlContext';
-import styled from '@emotion/styled';
-import clsx from 'clsx';
-import css from '@emotion/css';
-import pick from 'lodash/pick';
+import React from "react";
+import FormControlContext from "../FormControl/FormControlContext";
+import styled from "@emotion/styled";
+import clsx from "clsx";
+import css from "@emotion/css";
+import pick from "lodash/pick";
 
 const FormHelperText = React.forwardRef<
   any,
@@ -45,13 +45,13 @@ const FormHelperText = React.forwardRef<
   }
 >(function FormHelperText(props, ref) {
   const {
-    component: Component = 'p',
+    component: Component = "p",
     className: classNameProp,
     children,
     onErrorOnly = false,
   } = props;
 
-  const StyledComponent = styled<any, any>(Component)`
+  const StyledComponent = styled<any, any>(Component)<{ theme?: any }>`
     ${({ theme }) => css(theme.typography.caption)};
     margin: 3px 7px;
     line-height: 14px;
@@ -70,7 +70,7 @@ const FormHelperText = React.forwardRef<
   return !onErrorOnly || contextValue.error ? (
     <StyledComponent
       ref={ref}
-      className={clsx(pick(contextValue, ['error', 'disabled']), classNameProp)}
+      className={clsx(pick(contextValue, ["error", "disabled"]), classNameProp)}
     >
       {children}
     </StyledComponent>
@@ -79,6 +79,6 @@ const FormHelperText = React.forwardRef<
   );
 });
 
-FormHelperText.displayName = 'FormHelperText';
+FormHelperText.displayName = "FormHelperText";
 
 export default FormHelperText;

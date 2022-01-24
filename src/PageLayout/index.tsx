@@ -17,17 +17,17 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import styled from '@emotion/styled';
-import Container from '../Container';
+import styled from "@emotion/styled";
+import Container from "../Container";
 
-export const PageContainer = styled('div')`
+export const PageContainer = styled("div")<{ theme?: any }>`
   display: grid;
   grid-template-rows: 58px 1fr;
   min-height: 100vh;
   background: ${({ theme }) => theme.colors.grey_4};
 `;
 
-export const Sidebar = styled('div')`
+export const Sidebar = styled("div")<{ theme?: any }>`
   z-index: 1;
   background: ${({ theme }) => theme.colors.white};
   box-shadow: ${({ theme }) => theme.shadows.pageElement};
@@ -39,18 +39,18 @@ export const Sidebar = styled('div')`
   height: calc(100vh - 58px);
 `;
 
-export const Collapsible = styled('div')`
+export const Collapsible = styled("div")<{ theme?: any }>`
   border-top: 1px solid ${({ theme }) => theme.colors.grey_2};
   min-height: 58px;
   width: 100%;
 `;
 
-export const Panel = styled('div')`
+export const Panel = styled("div")`
   overflow-y: auto;
   padding-top: 12px;
 `;
 
-export const PageContent = styled('div')`
+export const PageContent = styled("div")`
   position: relative;
   min-height: 600px;
   height: calc(100vh - 58px);
@@ -66,7 +66,8 @@ type PageBodyProps = {
 
 export const PageBody = styled.div<PageBodyProps>`
   display: grid;
-  grid-template-columns: ${({ sidebarColSize }) => `${sidebarColSize || '230px'} 1fr`};
+  grid-template-columns: ${({ sidebarColSize }) =>
+    `${sidebarColSize || "230px"} 1fr`};
 
   &.noSidebar {
     grid-template-columns: 1fr;
@@ -74,7 +75,8 @@ export const PageBody = styled.div<PageBodyProps>`
 
   & ${PageContent} {
     grid-column: 2;
-    max-width: ${({ sidebarColSize }) => `calc(100vw - ${sidebarColSize || '230px'})`};
+    max-width: ${({ sidebarColSize }) =>
+      `calc(100vw - ${sidebarColSize || "230px"})`};
   }
 
   &.noSidebar {
@@ -89,7 +91,7 @@ export const PageBody = styled.div<PageBodyProps>`
   }
 `;
 
-export const ContentHeader = styled('div')`
+export const ContentHeader = styled("div")<{ theme?: any }>`
   display: flex;
   align-items: center;
   height: 56px;
@@ -100,7 +102,7 @@ export const ContentHeader = styled('div')`
   flex-shrink: 0;
 `;
 
-export const ContentBody = styled('div')`
+export const ContentBody = styled("div")`
   padding: 25px 30px;
   flex: 1 0 auto;
 `;

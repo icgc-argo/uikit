@@ -17,30 +17,35 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { InputHTMLAttributes, useEffect } from 'react';
-import styled from '@emotion/styled';
+import React, { InputHTMLAttributes, useEffect } from "react";
+import styled from "@emotion/styled";
 
-import isEmpty from 'lodash/isEmpty';
-import isEqual from 'lodash/isEqual';
-import toLower from 'lodash/toLower';
-import uniq from 'lodash/uniq';
-import initial from 'lodash/initial';
-import without from 'lodash/without';
-import includes from 'lodash/includes';
-import map from 'lodash/map';
-import compact from 'lodash/compact';
-import find from 'lodash/find';
+import isEmpty from "lodash/isEmpty";
+import isEqual from "lodash/isEqual";
+import toLower from "lodash/toLower";
+import uniq from "lodash/uniq";
+import initial from "lodash/initial";
+import without from "lodash/without";
+import includes from "lodash/includes";
+import map from "lodash/map";
+import compact from "lodash/compact";
+import find from "lodash/find";
 
-import Icon from '../../Icon';
-import Option from './Option';
-import css from '@emotion/css';
-import Tag from '../../Tag';
-import useTheme from '../../utils/useTheme';
-import clsx from 'clsx';
-import FormControlContext from '../FormControl/FormControlContext';
-import { StyledInputWrapper, INPUT_SIZES, INPUT_STATES, InputSize } from '../common';
+import Icon from "../../Icon";
+import Option from "./Option";
+import css from "@emotion/css";
+import Tag from "../../Tag";
+import useTheme from "../../utils/useTheme";
+import clsx from "clsx";
+import FormControlContext from "../FormControl/FormControlContext";
+import {
+  StyledInputWrapper,
+  INPUT_SIZES,
+  INPUT_STATES,
+  InputSize,
+} from "../common";
 
-const Container = styled<'div', { focus: boolean }>('div')`
+const Container = styled<"div", { focus: boolean }>("div")`
   position: relative;
   transform: scale(1); /* this creates a stacking context so z-index is local */
   ${({ focus }) =>
@@ -50,7 +55,7 @@ const Container = styled<'div', { focus: boolean }>('div')`
     `}
 `;
 
-const OptionsWrapper = styled<'div', { focused: boolean }>('div')`
+const OptionsWrapper = styled<"div", { focused: boolean; theme?: any }>("div")`
   box-sizing: border-box;
   position: absolute;
   width: 100%;
@@ -61,10 +66,12 @@ const OptionsWrapper = styled<'div', { focused: boolean }>('div')`
   border-radius: 0 0 4px 4px;
 
   box-shadow: ${(props) =>
-    props.focused ? '0 1px 6px 0 rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.08)' : 'none'};
+    props.focused
+      ? "0 1px 6px 0 rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.08)"
+      : "none"};
 `;
 
-const OptionsContainer = styled('div')`
+const OptionsContainer = styled("div")`
   box-sizing: border-box;
   position: relative;
   max-height: 200px;
@@ -72,12 +79,12 @@ const OptionsContainer = styled('div')`
   width: 100%;
 `;
 
-const OptionList = styled('ul')`
+const OptionList = styled("ul")`
   margin: 0;
   padding: 0;
 `;
 
-const Gap = styled('div')`
+const Gap = styled("div")<{ theme?: any }>`
   position: absolute;
   left: -1px;
   border: solid 1px;
@@ -101,7 +108,10 @@ const InputBox = styled(StyledInputWrapper)`
   padding: 2px;
 `;
 
-const Input = styled<'input', { autoComplete: string; single?: boolean }>('input')`
+const Input = styled<
+  "input",
+  { autoComplete: string; single?: boolean; theme?: any }
+>("input")`
   ${({ theme }) => css(theme.typography.default)};
   background-color: transparent;
   border: none;
@@ -114,7 +124,7 @@ const Input = styled<'input', { autoComplete: string; single?: boolean }>('input
   }
 `;
 
-const PlaceHolder = styled('span')`
+const PlaceHolder = styled("span")<{ theme?: any }>`
   ${({ theme }) => css(theme.typography.data)};
   color: ${({ theme }) => theme.multiSelect.placeHolderColor};
   position: absolute;
@@ -125,7 +135,7 @@ const PlaceHolder = styled('span')`
   }
 `;
 
-const SelectedItem: any = styled(Tag)`
+const SelectedItem: any = styled(Tag)<{ theme?: any }>`
   box-sizing: border-box;
   font-size: 11px;
   cursor: pointer;
@@ -139,7 +149,7 @@ const SelectedItem: any = styled(Tag)`
   }
 `;
 
-const SectionTitle = styled('li')`
+const SectionTitle = styled("li")<{ theme?: any }>`
   list-style: none;
   font-size: 11px;
   height: 27px;
@@ -188,7 +198,7 @@ type MultiSelectProps = {
    * Aria Label
    * @default 'search'
    */
-  ['aria-label']: string;
+  ["aria-label"]: string;
 
   /**
    * Whether to allow user to add new value
@@ -225,7 +235,7 @@ type MultiSelectProps = {
         name: string;
       };
     },
-    child?: any,
+    child?: any
   ) => void;
 
   /**
@@ -257,14 +267,14 @@ type MultiSelectProps = {
 };
 
 const MultiSelect = ({
-  'aria-label': ariaLabel = 'search',
+  "aria-label": ariaLabel = "search",
   allowNew = false,
   children,
   disabled = false,
   error = false,
-  id = '',
+  id = "",
   inputProps,
-  name = '',
+  name = "",
   onBlur = (e) => {},
   onChange,
   onFocus = (e) => {},
@@ -276,7 +286,7 @@ const MultiSelect = ({
   const contextValue = React.useContext(FormControlContext);
 
   const [focusState, setFocusState] = React.useState(contextValue?.focused);
-  const [searchString, setSearchString] = React.useState('');
+  const [searchString, setSearchString] = React.useState("");
 
   const hasError = contextValue?.error || !!error;
   const isDisabled = contextValue?.disabled || disabled;
@@ -287,8 +297,8 @@ const MultiSelect = ({
       ...event.target,
       id,
       name,
-      tagName: 'MULTISELECT',
-      type: `select-${single ? 'one' : 'multiple'}`,
+      tagName: "MULTISELECT",
+      type: `select-${single ? "one" : "multiple"}`,
       ...(newValue && { value: newValue }),
     },
   });
@@ -296,9 +306,11 @@ const MultiSelect = ({
   const handleItemClick = (child) => (event) => {
     event.persist();
 
-    const newValue = single ? [child.props.value] : uniq([...value, child.props.value]);
+    const newValue = single
+      ? [child.props.value]
+      : uniq([...value, child.props.value]);
 
-    setSearchString(single ? child.props.value : '');
+    setSearchString(single ? child.props.value : "");
     onChange(createCustomEvent(event, newValue), child);
   };
 
@@ -308,7 +320,7 @@ const MultiSelect = ({
       return null;
     }
 
-    if (searchString !== '') {
+    if (searchString !== "") {
       if (!includes(toLower(child.props.children), toLower(searchString))) {
         return null;
       }
@@ -316,21 +328,23 @@ const MultiSelect = ({
 
     return React.cloneElement(child, {
       onMouseDown: handleItemClick(child),
-      role: 'option',
+      role: "option",
       selected,
       value: undefined,
       css: css`
         padding: 5px 0px 5px 7px;
       `,
-      children: <Highlight string={child.props.children} searchText={searchString} />,
-      'data-value': child.props.value,
+      children: (
+        <Highlight string={child.props.children} searchText={searchString} />
+      ),
+      "data-value": child.props.value,
     });
   });
 
   const handleNewItemClick = (event) => {
     const newValue = single ? [searchString] : uniq([...value, searchString]);
 
-    setSearchString(single ? searchString : '');
+    setSearchString(single ? searchString : "");
     onChange(createCustomEvent(event, newValue), null);
   };
 
@@ -339,32 +353,35 @@ const MultiSelect = ({
   };
 
   const handleInputKeyDown = (event) => {
-    if (event.key === 'Backspace') {
+    if (event.key === "Backspace") {
       if (single ? searchString.length <= 1 : searchString.length === 0) {
         event.persist();
 
         const newValue = initial(value);
 
-        isEqual(value, newValue) || onChange(createCustomEvent(event, newValue));
+        isEqual(value, newValue) ||
+          onChange(createCustomEvent(event, newValue));
       }
-    } else if (event.key === 'Enter' || event.key === 'Tab') {
+    } else if (event.key === "Enter" || event.key === "Tab") {
       if (allowNew) {
         if (searchString.length !== 0) {
           event.persist();
 
-          const newValue = single ? [searchString] : uniq([...value, searchString]);
+          const newValue = single
+            ? [searchString]
+            : uniq([...value, searchString]);
 
-          setSearchString(single ? searchString : '');
+          setSearchString(single ? searchString : "");
           onChange(createCustomEvent(event, newValue));
         }
       } else {
         if (searchString.length !== 0 && items.length > 0) {
           event.persist();
 
-          const valueAttr = items[0].props['data-value'];
+          const valueAttr = items[0].props["data-value"];
           const newValue = single ? [valueAttr] : uniq([...value, valueAttr]);
 
-          setSearchString(single ? valueAttr : '');
+          setSearchString(single ? valueAttr : "");
           onChange(createCustomEvent(event, newValue));
         }
       }
@@ -390,9 +407,11 @@ const MultiSelect = ({
   };
 
   const selectedItems = map(value, (v) => {
-    const c: any = find(React.Children.toArray(children), { props: { value: v } });
+    const c: any = find(React.Children.toArray(children), {
+      props: { value: v },
+    });
 
-    if (typeof c === 'undefined') {
+    if (typeof c === "undefined") {
       return {
         value: v,
         displayName: v,
@@ -405,7 +424,7 @@ const MultiSelect = ({
     };
   });
 
-  const showPlaceHolder = isEmpty(value) && searchString === '';
+  const showPlaceHolder = isEmpty(value) && searchString === "";
 
   const showOptions = focusState && (allowNew || !isEmpty(compact(items)));
 
@@ -413,7 +432,7 @@ const MultiSelect = ({
 
   useEffect(() => {
     if (single) {
-      const newValue = value[0] || '';
+      const newValue = value[0] || "";
       newValue === searchString || setSearchString(newValue);
     }
   }, [value]);
@@ -427,11 +446,15 @@ const MultiSelect = ({
         error={hasError}
       >
         {showPlaceHolder
-          ? ![false, ''].includes(placeholder) && (
+          ? ![false, ""].includes(placeholder) && (
               <PlaceHolder
-                className={clsx({ disabled: isDisabled, hasError, focused: focusState })}
+                className={clsx({
+                  disabled: isDisabled,
+                  hasError,
+                  focused: focusState,
+                })}
               >
-                {placeholder || (single ? 'Select one' : 'Add one or more...')}
+                {placeholder || (single ? "Select one" : "Add one or more...")}
               </PlaceHolder>
             )
           : !single &&
@@ -439,7 +462,11 @@ const MultiSelect = ({
               <SelectedItem
                 key={item.value}
                 onClick={handleSelectedItemClick(item)}
-                className={clsx({ disabled: isDisabled, hasError, focused: focusState })}
+                className={clsx({
+                  disabled: isDisabled,
+                  hasError,
+                  focused: focusState,
+                })}
               >
                 {item.displayName}&nbsp;&nbsp;
                 <Icon
@@ -470,7 +497,9 @@ const MultiSelect = ({
             <Gap />
             <OptionsContainer>
               <OptionList>
-                {allowNew && !isEmpty(items) && <SectionTitle>SUGGESTIONS</SectionTitle>}
+                {allowNew && !isEmpty(items) && (
+                  <SectionTitle>SUGGESTIONS</SectionTitle>
+                )}
                 {items}
               </OptionList>
             </OptionsContainer>
@@ -478,7 +507,9 @@ const MultiSelect = ({
               <Option
                 data-value={searchString}
                 css={css`
-                  border-top: ${isEmpty(items) ? 'none' : '1px solid ' + theme.colors.grey_2};
+                  border-top: ${isEmpty(items)
+                    ? "none"
+                    : "1px solid " + theme.colors.grey_2};
                 `}
                 onMouseDown={handleNewItemClick}
               >
@@ -497,7 +528,13 @@ const MultiSelect = ({
           </OptionsWrapper>
         </>
       )}
-      <input value={value} name={name} type="hidden" disabled={isDisabled} {...inputProps} />
+      <input
+        value={value}
+        name={name}
+        type="hidden"
+        disabled={isDisabled}
+        {...inputProps}
+      />
     </Container>
   );
 };

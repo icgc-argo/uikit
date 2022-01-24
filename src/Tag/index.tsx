@@ -49,7 +49,9 @@ const blackTextVariants: Array<keyof typeof TAG_VARIANTS> = [
   TAG_VARIANTS.HIGHLIGHT,
 ];
 
-const Tag = styled<"div", { variant?: keyof typeof TAG_VARIANTS }>("div")`
+const Tag = styled<"div", { variant?: keyof typeof TAG_VARIANTS; theme?: any }>(
+  "div"
+)`
   ${({ theme }) => css(theme.typography.paragraph as any)};
   box-sizing: border-box;
   display: inline-block;

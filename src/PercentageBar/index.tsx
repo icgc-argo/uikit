@@ -17,12 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import { css } from '@emotion/core';
+import React from "react";
+import { css } from "@emotion/core";
 
-import useTheme from '../utils/useTheme';
-import Typography from '../Typography';
-import Icon from '../Icon';
+import useTheme from "../utils/useTheme";
+import Typography from "../Typography";
+import Icon from "../Icon";
 
 const VAlignedText = (props) => (
   <Typography
@@ -39,7 +39,7 @@ const VAlignedText = (props) => (
 const PercentageBar = ({
   nom,
   denom,
-  color = 'secondary_2',
+  color = "secondary_2",
   className,
 }: {
   /**
@@ -66,7 +66,7 @@ const PercentageBar = ({
       `}
     >
       <VAlignedText>
-        {nom.toLocaleString()} <Icon name="slash" height="15px" fill="grey_2" />{' '}
+        {nom.toLocaleString()} <Icon name="slash" height="15px" fill="grey_2" />{" "}
         {denom.toLocaleString()}
       </VAlignedText>
       <VAlignedText
@@ -84,7 +84,9 @@ const PercentageBar = ({
           top: 0px;
           bottom: 0px;
           left: ${((denom - nom) / denom) * 100}%;
-          background: ${theme.colors[color] || color || theme.colors.secondary_2};
+          background: ${theme.colors[color] ||
+          color ||
+          theme.colors.secondary_2};
           opacity: 0.3;
           z-index: -1;
         `}

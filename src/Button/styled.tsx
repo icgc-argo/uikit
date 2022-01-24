@@ -17,16 +17,17 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/core';
-import styled from '@emotion/styled';
-import FocusWrapper from 'src/FocusWrapper';
+import { css } from "@emotion/core";
+import styled from "@emotion/styled";
+import FocusWrapper from "src/FocusWrapper";
 
 const StyledButton = styled<
   typeof FocusWrapper,
   {
-    size: 'sm' | 'md';
-    variant: 'primary' | 'secondary' | 'text';
+    size: "sm" | "md";
+    variant: "primary" | "secondary" | "text";
     disabled: boolean;
+    theme?: any;
   }
 >(FocusWrapper)`
   ${({ theme }) => css(theme.typography.default)};
@@ -43,29 +44,38 @@ const StyledButton = styled<
   border-style: solid;
 
   color: ${({ theme, variant }) => theme.button.textColors[variant].default};
-  background-color: ${({ theme, variant }) => theme.button.colors[variant].default};
-  border-color: ${({ theme, variant }) => theme.button.borderColors[variant].default};
+  background-color: ${({ theme, variant }) =>
+    theme.button.colors[variant].default};
+  border-color: ${({ theme, variant }) =>
+    theme.button.borderColors[variant].default};
   border-width: ${({ theme, size }) => theme.button.borderWeights[size]};
   padding: ${({ theme, size }) => theme.button.paddings[size]};
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   font-size: ${({ theme, size }) => theme.button.fontSizes[size]};
 
   &:focus {
-    background-color: ${({ theme, variant }) => theme.button.colors[variant].focus};
+    background-color: ${({ theme, variant }) =>
+      theme.button.colors[variant].focus};
   }
 
   &:hover {
-    background-color: ${({ theme, variant }) => theme.button.colors[variant].hover};
-    border-color: ${({ theme, variant }) => theme.button.borderColors[variant].hover};
+    background-color: ${({ theme, variant }) =>
+      theme.button.colors[variant].hover};
+    border-color: ${({ theme, variant }) =>
+      theme.button.borderColors[variant].hover};
   }
 
   &:active {
-    background-color: ${({ theme, variant }) => theme.button.colors[variant].active};
-    border-color: ${({ theme, variant }) => theme.button.borderColors[variant].active};
+    background-color: ${({ theme, variant }) =>
+      theme.button.colors[variant].active};
+    border-color: ${({ theme, variant }) =>
+      theme.button.borderColors[variant].active};
   }
   &:disabled {
-    background-color: ${({ theme, variant }) => theme.button.colors[variant].disabled};
-    border-color: ${({ theme, variant }) => theme.button.borderColors[variant].disabled};
+    background-color: ${({ theme, variant }) =>
+      theme.button.colors[variant].disabled};
+    border-color: ${({ theme, variant }) =>
+      theme.button.borderColors[variant].disabled};
     color: ${({ theme, variant }) => theme.button.textColors[variant].disabled};
   }
 `;

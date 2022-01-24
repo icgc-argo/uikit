@@ -17,12 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { LiHTMLAttributes } from 'react';
-import { css } from '@emotion/core';
-import styled from '@emotion/styled';
-import clsx from 'clsx';
+import React, { LiHTMLAttributes } from "react";
+import { css } from "@emotion/core";
+import styled from "@emotion/styled";
+import clsx from "clsx";
 
-const Ul = styled('ul')`
+const Ul = styled("ul")<{ theme?: any }>`
   ${({ theme }) => css(theme.typography.paragraph)};
   position: absolute;
   background-color: ${({ theme }) => theme.colors.grey_4};
@@ -43,7 +43,7 @@ export function DropdownMenu({ children, ...otherProps }) {
   return <Ul {...otherProps}>{children}</Ul>;
 }
 
-const Li = styled('li')`
+const Li = styled("li")<{ theme?: any }>`
   list-style: none;
   padding: 12px 16px;
   position: relative;
@@ -68,7 +68,7 @@ const Li = styled('li')`
   }
 
   &:not(:last-child):after {
-    content: '';
+    content: "";
     width: 100%;
     height: 2px;
     left: 0px;

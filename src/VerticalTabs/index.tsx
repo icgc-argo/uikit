@@ -23,22 +23,26 @@ import React, {
   ReactNode,
   ReactElement,
   MouseEventHandler,
-} from 'react';
-import { css } from '@emotion/core';
-import styled from '@emotion/styled';
-import { useTheme } from '../ThemeProvider';
-import Typography from 'src/Typography';
-import Tag from 'src/Tag';
-import FocusWrapper from 'src/FocusWrapper';
-import useElementDimension from 'src/utils/Hook/useElementDimension';
-import Tooltip from 'src/Tooltip';
+} from "react";
+import { css } from "@emotion/core";
+import styled from "@emotion/styled";
+import { useTheme } from "../ThemeProvider";
+import Typography from "src/Typography";
+import Tag from "src/Tag";
+import FocusWrapper from "src/FocusWrapper";
+import useElementDimension from "src/utils/Hook/useElementDimension";
+import Tooltip from "src/Tooltip";
 
 type TabStyleType = {
   background: string;
   border: string;
 };
 
-const Triangle = styled('div')<{ tabStyle: TabStyleType; contHeight: number }>`
+const Triangle = styled("div")<{
+  tabStyle: TabStyleType;
+  contHeight: number;
+  theme?: any;
+}>`
   transition: all 0.25s;
   width: 0px;
   position: absolute;
@@ -49,7 +53,7 @@ const Triangle = styled('div')<{ tabStyle: TabStyleType; contHeight: number }>`
   &:after,
   &:before {
     transition: all 0.25s;
-    content: '';
+    content: "";
     position: absolute;
     width: 0;
     height: 0;
@@ -57,19 +61,26 @@ const Triangle = styled('div')<{ tabStyle: TabStyleType; contHeight: number }>`
   }
   &:after {
     border-color: transparent transparent transparent
-      ${({ theme, tabStyle }) => (tabStyle ? tabStyle.background : theme.colors.secondary_4)};
+      ${({ theme, tabStyle }) =>
+        tabStyle ? tabStyle.background : theme.colors.secondary_4};
     border-width: ${({ contHeight }) => contHeight / 2}px;
   }
   &:before {
     top: -1px;
     left: 1px;
     border-color: transparent transparent transparent
-      ${({ theme, tabStyle }) => (tabStyle ? tabStyle.border : theme.colors.secondary_2)};
-    border-width: ${({ contHeight }) => (contHeight + 2) / 2}px; /* +2 for border around button */
+      ${({ theme, tabStyle }) =>
+        tabStyle ? tabStyle.border : theme.colors.secondary_2};
+    border-width: ${({ contHeight }) =>
+      (contHeight + 2) / 2}px; /* +2 for border around button */
   }
 `;
 
-const BaseItemContainer = styled(FocusWrapper)<{ tabStyle: TabStyleType; disabled?: boolean }>`
+const BaseItemContainer = styled(FocusWrapper)<{
+  tabStyle: TabStyleType;
+  disabled?: boolean;
+  theme?: any;
+}>`
   width: 100%;
   position: relative;
   transition: all 0.25s;
@@ -100,7 +111,10 @@ const BaseItemContainer = styled(FocusWrapper)<{ tabStyle: TabStyleType; disable
           }
         `}
 `;
-const ActiveItemContainer = styled(BaseItemContainer)<{ tabStyle: TabStyleType }>`
+const ActiveItemContainer = styled(BaseItemContainer)<{
+  tabStyle: TabStyleType;
+  theme?: any;
+}>`
   border-color: ${({ theme }) => theme.colors.secondary};
   border-top-color: ${({ theme }) => theme.colors.secondary_2};
   border-bottom-color: ${({ theme }) => theme.colors.secondary_2};
@@ -178,13 +192,17 @@ const VerticalTabsItem: React.ComponentType<
           </div>
         </Typography>
         {active && (
-          <Triangle tabStyle={tabStyle} contHeight={contHeight} className="activeTriangle" />
+          <Triangle
+            tabStyle={tabStyle}
+            contHeight={contHeight}
+            className="activeTriangle"
+          />
         )}
       </ContainerComponent>
     </Tooltip>
   );
 };
-VerticalTabsItem.displayName = 'VerticalTabs.Item';
+VerticalTabsItem.displayName = "VerticalTabs.Item";
 
 const VerticalTabs: React.ComponentType<HtmlHTMLAttributes<HTMLDivElement>> = ({
   children,
@@ -208,7 +226,7 @@ const TabsItemTag: typeof Tag = styled(Tag)`
   justify-content: center;
   text-align: center;
 `;
-TabsItemTag.displayName = 'VerticalTabs.Tag';
+TabsItemTag.displayName = "VerticalTabs.Tag";
 
 const output: typeof VerticalTabs & {
   Item: typeof VerticalTabsItem;

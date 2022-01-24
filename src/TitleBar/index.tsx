@@ -17,14 +17,14 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
-import css from '@emotion/css';
-import Icon from '../Icon';
-import useTheme from '../utils/useTheme';
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "@emotion/styled";
+import css from "@emotion/css";
+import Icon from "../Icon";
+import useTheme from "../utils/useTheme";
 
-const Nav = styled('nav')`
+const Nav = styled("nav")<{ theme?: any }>`
   padding: 18px 29px 18px 0;
   ${({ theme }) => css(theme.typography.title)};
   & a {
@@ -33,7 +33,7 @@ const Nav = styled('nav')`
   }
 `;
 
-const Ol = styled('ol')`
+const Ol = styled("ol")`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -41,12 +41,12 @@ const Ol = styled('ol')`
   margin: 0;
 `;
 
-const Li = styled('li')`
+const Li = styled("li")<{ theme?: any }>`
   list-style: none;
   ${({ theme }) => css(theme.typography.title)};
 `;
 
-const Sep = styled('li')`
+const Sep = styled("li")`
   list-style: none;
   display: flex;
   user-select: none;
@@ -68,16 +68,23 @@ const TitleBar: React.ComponentType<{
   const theme = useTheme();
 
   const allItems = interleave(
-    React.Children.toArray(children).filter((child) => React.isValidElement(child)),
+    React.Children.toArray(children).filter((child) =>
+      React.isValidElement(child)
+    ),
     <Sep>
-      <Icon width="12px" height="12px" name="chevron_right" fill={theme.titleBar.separatorColor} />
-    </Sep>,
+      <Icon
+        width="12px"
+        height="12px"
+        name="chevron_right"
+        fill={theme.titleBar.separatorColor}
+      />
+    </Sep>
   ).map((child, index) =>
     child.type === Sep ? (
       <React.Fragment key={`child-${index}`}>{child}</React.Fragment>
     ) : (
       <Li key={`child-${index}`}>{child}</Li>
-    ),
+    )
   );
 
   return (

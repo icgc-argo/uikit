@@ -17,13 +17,16 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import styled from '@emotion/styled';
-import React from 'react';
-import defaultTheme from 'src/theme/defaultTheme';
+import styled from "@emotion/styled";
+import React from "react";
+import defaultTheme from "src/theme/defaultTheme";
 
-const TitleBorder = styled<'hr', { width?: string; color: keyof typeof defaultTheme.colors }>('hr')`
+const TitleBorder = styled<
+  "hr",
+  { width?: string; color: keyof typeof defaultTheme.colors; theme?: any }
+>("hr")`
   border: 0;
-  width: ${({ width }) => (width ? width : 'auto')};
+  width: ${({ width }) => (width ? width : "auto")};
   height: 3px;
   border-radius: 1.5px;
   background-color: ${({ theme, color }) => theme.colors[color]};

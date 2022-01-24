@@ -17,11 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import styled from '@emotion/styled';
-import { css } from '@emotion/core';
-export { StyledInputWrapper } from '../common';
+import styled from "@emotion/styled";
+import { css } from "@emotion/core";
+export { StyledInputWrapper } from "../common";
 
-export const StyledInput = styled<'input', { inputSize: string }>('input')`
+export const StyledInput = styled<"input", { inputSize: string; theme?: any }>(
+  "input"
+)`
   ${({ theme }) => css(theme.typography.default)};
   padding: ${({ theme, inputSize }) => theme.input.paddings[inputSize]};
   border: none;
@@ -36,7 +38,7 @@ export const StyledInput = styled<'input', { inputSize: string }>('input')`
   padding: 0px 10px;
 `;
 
-export const IconWrapper = styled('div')`
+export const IconWrapper = styled("div")`
   display: flex;
   align-items: center;
   margin-left: 11px;

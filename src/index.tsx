@@ -17,10 +17,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import defaultTheme from './theme/defaultTheme';
+import defaultTheme from "./theme/defaultTheme";
 
 export type UikitTheme = typeof defaultTheme;
-export { default as ThemeProvider } from './ThemeProvider';
-export { default as styled } from '@emotion/styled';
-export { default as css } from '@emotion/css';
-export { default as isPropValid } from '@emotion/is-prop-valid';
+export { default as ThemeProvider } from "./ThemeProvider";
+export { default as styled } from "@emotion/styled";
+export { default as css } from "@emotion/css";
+export { default as isPropValid } from "@emotion/is-prop-valid";

@@ -17,37 +17,42 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import get from 'lodash/get';
-import isEmpty from 'lodash/isEmpty';
-import * as React from 'react';
+import get from "lodash/get";
+import isEmpty from "lodash/isEmpty";
+import * as React from "react";
 import selectTable, {
   SelectInputComponentProps,
   SelectAllInputComponentProps,
   SelectTableAdditionalProps,
-} from 'react-table/lib/hoc/selectTable';
-import DnaLoader from '../DnaLoader';
-import Checkbox from '../form/Checkbox';
-import { StyledTable, StyledTableProps } from './styledComponent';
-import TablePagination from './TablePagination';
-import DefaultNoDataComponent from './NoDataComponent';
-import { TableProps } from 'react-table';
-import useElementDimension from '../utils/Hook/useElementDimension';
+} from "react-table/lib/hoc/selectTable";
+import DnaLoader from "../DnaLoader";
+import Checkbox from "../form/Checkbox";
+import { StyledTable, StyledTableProps } from "./styledComponent";
+import TablePagination from "./TablePagination";
+import DefaultNoDataComponent from "./NoDataComponent";
+import { TableProps } from "react-table";
+import useElementDimension from "../utils/Hook/useElementDimension";
 
-export { default as TablePagination, TableActionBar } from './TablePagination';
+export { default as TablePagination, TableActionBar } from "./TablePagination";
 
-export type TableVariant = 'DEFAULT' | 'STATIC';
+export type TableVariant = "DEFAULT" | "STATIC";
 type TableDataBase = {
   [k: string]: any;
 };
 
-export const DefaultTrComponent = ({ rowInfo, primaryKey, selectedIds, ...props }: any) => {
+export const DefaultTrComponent = ({
+  rowInfo,
+  primaryKey,
+  selectedIds,
+  ...props
+}: any) => {
   const thisRowId = get(rowInfo, `original.${primaryKey}`);
   const selected = selectedIds.some((id) => id === thisRowId);
   return (
     <div
       {...props}
       role="row"
-      className={`rt-tr ${props.className} ${selected ? 'selected' : ''}`}
+      className={`rt-tr ${props.className} ${selected ? "selected" : ""}`}
     />
   );
 };
@@ -62,16 +67,16 @@ export const DefaultLoadingComponent = ({
   <div
     role="alert"
     aria-busy="true"
-    className={`-loading ${loading ? '-active' : ''}`}
-    style={{ display: 'flex', alignItems: 'center' }}
+    className={`-loading ${loading ? "-active" : ""}`}
+    style={{ display: "flex", alignItems: "center" }}
   >
     <div
       className="-loading-inner"
       style={{
-        display: 'flex',
-        justifyContent: 'center',
-        transform: 'none',
-        top: 'initial',
+        display: "flex",
+        justifyContent: "center",
+        transform: "none",
+        top: "initial",
       }}
     >
       <DnaLoader />
@@ -79,22 +84,25 @@ export const DefaultLoadingComponent = ({
   </div>
 );
 
-export type TableColumnConfig<Data extends TableDataBase> = TableProps<Data>['columns'][0] & {
-  accessor?: TableProps<Data>['columns'][0]['accessor'] | keyof Data;
-  Cell?: TableProps<Data>['columns'][0]['Cell'] | ((c: { original: Data }) => React.ReactNode);
-  style?: React.CSSProperties;
-};
+export type TableColumnConfig<Data extends TableDataBase> =
+  TableProps<Data>["columns"][0] & {
+    accessor?: TableProps<Data>["columns"][0]["accessor"] | keyof Data;
+    Cell?:
+      | TableProps<Data>["columns"][0]["Cell"]
+      | ((c: { original: Data }) => React.ReactNode);
+    style?: React.CSSProperties;
+  };
 function Table<Data extends TableDataBase>({
-  variant = 'DEFAULT',
-  withRowBorder = variant === 'STATIC',
+  variant = "DEFAULT",
+  withRowBorder = variant === "STATIC",
   withOutsideBorder,
   cellAlignment,
-  stripped = variant === 'DEFAULT',
-  highlight = variant === 'DEFAULT',
-  showPagination = variant === 'DEFAULT',
-  sortable = variant === 'DEFAULT',
-  resizable = variant === 'DEFAULT',
-  className = '',
+  stripped = variant === "DEFAULT",
+  highlight = variant === "DEFAULT",
+  showPagination = variant === "DEFAULT",
+  sortable = variant === "DEFAULT",
+  resizable = variant === "DEFAULT",
+  className = "",
   PaginationComponent = TablePagination,
   LoadingComponent = DefaultLoadingComponent,
   NoDataComponent = DefaultNoDataComponent,
@@ -130,7 +138,7 @@ function Table<Data extends TableDataBase>({
   // these are props passed by SelectTable. Defaults are not exposed in props for encapsulation
   const selectedIds = rest.selectedIds || [];
   const isSelectTable = rest.isSelectTable || false;
-  const primaryKey = rest.primaryKey || 'id';
+  const primaryKey = rest.primaryKey || "id";
 
   // react-table needs an explicit pixel width to handle horizontal scroll properly.
   // This syncs up the component's width to its container.
@@ -140,8 +148,8 @@ function Table<Data extends TableDataBase>({
     <StyledTable
       style={{
         // this is written with style object because css prop somehow only applies to the header
-        transition: 'all 0.25s',
-        filter: resizing && withResizeBlur ? 'blur(8px)' : 'blur(0px)',
+        transition: "all 0.25s",
+        filter: resizing && withResizeBlur ? "blur(8px)" : "blur(0px)",
         width,
       }}
       withRowBorder={withRowBorder}
@@ -151,9 +159,15 @@ function Table<Data extends TableDataBase>({
       columns={columns}
       data={data}
       isSelectTable={isSelectTable}
-      className={`${className} ${stripped ? '-striped' : ''} ${highlight ? '-highlight' : ''}`}
+      className={`${className} ${stripped ? "-striped" : ""} ${
+        highlight ? "-highlight" : ""
+      }`}
       TrComponent={(props) => (
-        <TrComponent {...props} primaryKey={primaryKey} selectedIds={selectedIds} />
+        <TrComponent
+          {...props}
+          primaryKey={primaryKey}
+          selectedIds={selectedIds}
+        />
       )}
       LoadingComponent={LoadingComponent}
       getTrProps={(state, rowInfo, column) => ({
@@ -181,7 +195,12 @@ const SelectTableCheckbox: React.ComponentType<
   SelectInputComponentProps & SelectAllInputComponentProps
 > = ({ checked, onClick, id }) => (
   // @ts-ignore aria-label not supported by ts
-  <Checkbox value={id} checked={checked} onChange={() => onClick(id)} aria-label="table-select" />
+  <Checkbox
+    value={id}
+    checked={checked}
+    onChange={() => onClick(id, null, null)}
+    aria-label="table-select"
+  />
 );
 
 const TableWithSelect = selectTable(Table);
@@ -199,7 +218,7 @@ export function useSelectTableSelectionState<TableEntry = {}>({
 
   const selectionStringToRowId = (selectionString: string) =>
     // react table prepends the word `select-` to the selected objectIds
-    selectionString.replace('select-', '');
+    selectionString.replace("select-", "");
 
   const setSelectedRowIds = (selectionString: string[]) =>
     setSelectedRows(selectionString.map(selectionStringToRowId));
@@ -207,32 +226,38 @@ export function useSelectTableSelectionState<TableEntry = {}>({
   const setUnselectedRowIds = (selectionString: string[]) =>
     setUnselectedRows(selectionString.map(selectionStringToRowId));
 
-  const toggleHandler: React.ComponentProps<typeof SelectTable>['toggleSelection'] = (
-    selectionString,
-  ) => {
+  const toggleHandler: React.ComponentProps<
+    typeof SelectTable
+  >["toggleSelection"] = (selectionString) => {
     const rowId = selectionStringToRowId(selectionString);
     const notMatchesSelectionString = (id: string) => id !== rowId;
     if (allRowsSelected) {
       setUnselectedRowIds(
         unselectedRows.includes(rowId)
           ? unselectedRows.filter(notMatchesSelectionString)
-          : [...unselectedRows, rowId],
+          : [...unselectedRows, rowId]
       );
     } else {
       setSelectedRowIds(
         selectedRows.includes(rowId)
           ? selectedRows.filter(notMatchesSelectionString)
-          : [...selectedRows, rowId],
+          : [...selectedRows, rowId]
       );
     }
   };
-  const toggleAllHandler: React.ComponentProps<typeof SelectTable>['toggleAll'] = () => {
+  const toggleAllHandler: React.ComponentProps<
+    typeof SelectTable
+  >["toggleAll"] = () => {
     setSelectedRowIds([]);
     setUnselectedRowIds([]);
     setAllRowsSelected(!allRowsSelected);
   };
-  const isSelected: React.ComponentProps<typeof SelectTable>['isSelected'] = (objectId) =>
-    allRowsSelected ? !unselectedRows.includes(objectId) : selectedRows.includes(objectId);
+  const isSelected: React.ComponentProps<typeof SelectTable>["isSelected"] = (
+    objectId
+  ) =>
+    allRowsSelected
+      ? !unselectedRows.includes(objectId)
+      : selectedRows.includes(objectId);
 
   const selectedRowsCount = allRowsSelected
     ? totalEntriesCount - unselectedRows.length
@@ -256,10 +281,12 @@ export function SelectTable<Data extends TableDataBase>(
       columns: Array<TableColumnConfig<Data>>; //columns is required
       parentRef: React.RefObject<HTMLElement>;
       withResizeBlur?: boolean;
-    },
+    }
 ) {
   const { isSelected, data, keyField } = props;
-  const selectedIds = (data || []).map((data) => data[keyField]).filter(isSelected);
+  const selectedIds = (data || [])
+    .map((data) => data[keyField])
+    .filter(isSelected);
   return (
     <TableWithSelect
       {...props}

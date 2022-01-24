@@ -17,25 +17,35 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import styled from '@emotion/styled';
-import css from '@emotion/css';
-import ReactTable from 'react-table';
+import React from "react";
+import styled from "@emotion/styled";
+import css from "@emotion/css";
+import ReactTable from "react-table";
 
-import reactTableDefaultStyle from './reactTableDefaultStyle';
-import ascending from '../assets/table/ascending.svg';
-import descending from '../assets/table/descending.svg';
-import unsorted from '../assets/table/unsorted.svg';
+import reactTableDefaultStyle from "./reactTableDefaultStyle";
+import ascending from "../assets/table/ascending.svg";
+import descending from "../assets/table/descending.svg";
+import unsorted from "../assets/table/unsorted.svg";
 
 export type StyledTableProps = {
   withRowBorder?: boolean;
   isSelectTable?: boolean;
   withOutsideBorder?: boolean;
-  cellAlignment?: 'top' | 'center' | 'bottom';
+  cellAlignment?: "top" | "center" | "bottom";
+  theme?: any;
 };
 
-export const StyledTable = styled<typeof ReactTable, StyledTableProps>(ReactTable)`
-  ${reactTableDefaultStyle}
+interface TableProps {
+  theme?: any;
+  withOutsideBorder?: any;
+  withRowBorder?: any;
+  isSelectTable?: any;
+  cellAlignment?: any;
+  sortable?: any;
+}
+/* prettier-ignore */
+export const StyledTable = styled<typeof ReactTable, StyledTableProps>(ReactTable)<TableProps>`
+${reactTableDefaultStyle}
 
   &.ReactTable .-loading.-active .-loading-inner {
     font-family: ${({ theme }) => theme.typography.data.fontFamily};
@@ -125,7 +135,11 @@ export const StyledTable = styled<typeof ReactTable, StyledTableProps>(ReactTabl
     border-right: solid 1px ${({ theme }) => theme.colors.grey_2};
     display: flex;
     align-items: ${({ cellAlignment }) =>
-      cellAlignment === 'top' ? 'flex-start' : cellAlignment === 'bottom' ? 'flex-end' : 'center'};
+      cellAlignment === "top"
+        ? "flex-start"
+        : cellAlignment === "bottom"
+        ? "flex-end"
+        : "center"};
   }
 
   &.ReactTable .rt-tr {
@@ -151,7 +165,7 @@ export const StyledTable = styled<typeof ReactTable, StyledTableProps>(ReactTabl
     border-bottom: solid 1px ${({ theme }) => theme.colors.grey_2};
 
     & .rt-tr .rt-th {
-      padding: ${({ sortable }) => (sortable ? '2px 6px' : '2px 8px')};
+      padding: ${({ sortable }) => (sortable ? "2px 6px" : "2px 8px")};
       border-left: none;
       border-right: none;
       text-align: left;

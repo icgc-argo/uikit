@@ -17,15 +17,15 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import FormControlContext from '../FormControl/FormControlContext';
-import styled from '@emotion/styled';
-import clsx from 'clsx';
-import css from '@emotion/css';
-import Icon from '../../Icon';
-import pick from 'lodash/pick';
-import get from 'lodash/get';
+import React from "react";
+import PropTypes from "prop-types";
+import FormControlContext from "../FormControl/FormControlContext";
+import styled from "@emotion/styled";
+import clsx from "clsx";
+import css from "@emotion/css";
+import Icon from "../../Icon";
+import pick from "lodash/pick";
+import get from "lodash/get";
 
 const InputLabel = React.forwardRef<
   HTMLLabelElement,
@@ -40,25 +40,25 @@ const InputLabel = React.forwardRef<
 >(function InputLabel(props, ref) {
   const { className: classNameProp, children, ...other } = props;
 
-  const Label = styled('label')`
+  const Label = styled("label")<{ theme?: any }>`
     ${({ theme }) => css(theme.typography.label)};
     margin-top: 7px;
     &.disabled {
     }
   `;
 
-  const AsteriskContainer = styled('span')``;
+  const AsteriskContainer = styled("span")``;
 
   const contextValue = React.useContext(FormControlContext);
 
   return (
     <Label
       ref={ref}
-      className={clsx(pick(contextValue, ['error', 'disabled']), classNameProp)}
+      className={clsx(pick(contextValue, ["error", "disabled"]), classNameProp)}
       {...other}
     >
       {children}
-      {get(contextValue, 'required') && (
+      {get(contextValue, "required") && (
         <AsteriskContainer>
           <Icon
             css={css`
@@ -76,6 +76,6 @@ const InputLabel = React.forwardRef<
   );
 });
 
-InputLabel.displayName = 'InputLabel';
+InputLabel.displayName = "InputLabel";
 
 export default InputLabel;

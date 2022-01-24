@@ -17,26 +17,33 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import Typography from 'src/Typography';
-import styled from '@emotion/styled';
-import { css } from '@emotion/core';
+import React from "react";
+import Typography from "src/Typography";
+import styled from "@emotion/styled";
+import { css } from "@emotion/core";
 
-const Cont = styled('div')`
+const Cont = styled("div")<{ theme?: any; color: string }>`
   margin-top: 14px;
-  border-left: 2px solid ${({ color, theme }) => (color ? color : theme.colors.secondary)};
+  border-left: 2px solid
+    ${({ color, theme }) => (color ? color : theme.colors.secondary)};
 `;
 
-const Anchor = styled<'a', { disabled: boolean; active: boolean }>('a')`
+const Anchor = styled<"a", { disabled: boolean; active: boolean; theme?: any }>(
+  "a"
+)`
   /** specificty for docusaurus, easier to edit here */
   > div {
     background-color: ${({ active, theme: { colors } }) =>
       active ? colors.secondary_4 : colors.white};
     > span {
       color: ${({ disabled, active, theme: { colors } }) =>
-        disabled ? colors.grey_1 : active ? colors.secondary_dark : colors.primary};
+        disabled
+          ? colors.grey_1
+          : active
+          ? colors.secondary_dark
+          : colors.primary};
 
-      font-weight: ${({ active }) => (active ? '600' : 'normal')};
+      font-weight: ${({ active }) => (active ? "600" : "normal")};
     }
   }
 
@@ -62,7 +69,7 @@ const MenuItem = ({ name, onClick, disabled, active }) => {
           padding: 8px 0 8px 16px;
 
           &:hover {
-            cursor: ${disabled ? 'not-allowed' : 'pointer'};
+            cursor: ${disabled ? "not-allowed" : "pointer"};
           }
         `}
         onClick={onClick}
@@ -104,7 +111,10 @@ const Menu = ({
             disabled={disabled}
             onClick={() => {
               if (!disabled && contentRef && contentRef.current) {
-                window.scrollTo(0, contentRef.current.offsetTop - scrollYOffset);
+                window.scrollTo(
+                  0,
+                  contentRef.current.offsetTop - scrollYOffset
+                );
               }
             }}
           />

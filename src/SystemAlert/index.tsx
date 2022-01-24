@@ -1,14 +1,14 @@
-import React from 'react';
-import { css } from '@emotion/core';
+import React from "react";
+import { css } from "@emotion/core";
 
-import { ThemeColorNames } from '../theme/types';
-import Typography from 'src/Typography';
-import Icon from 'src/Icon';
-import { UikitIconNames } from 'src/Icon/icons';
-import { useTheme } from 'src/ThemeProvider';
-import Link from 'src/Link';
+import { ThemeColorNames } from "../theme/types";
+import Typography from "src/Typography";
+import Icon from "src/Icon";
+import { UikitIconNames } from "src/Icon/icons";
+import { useTheme } from "src/ThemeProvider";
+import Link from "src/Link";
 
-type AlertLevel = 'error' | 'warning' | 'info';
+type AlertLevel = "error" | "warning" | "info";
 
 type AlertVariant = {
   [key in AlertLevel]: {
@@ -20,19 +20,19 @@ type AlertVariant = {
 
 const ALERT_VARIANTS: AlertVariant = {
   error: {
-    color: 'error',
-    icon: 'warning_transparent',
-    fill: 'white',
+    color: "error",
+    icon: "warning_transparent",
+    fill: "white",
   },
   warning: {
-    color: 'warning_1',
-    icon: 'warning_transparent',
-    fill: 'primary_dark',
+    color: "warning_1",
+    icon: "warning_transparent",
+    fill: "primary_dark",
   },
   info: {
-    color: 'secondary',
-    icon: 'info_transparent',
-    fill: 'white',
+    color: "secondary",
+    icon: "info_transparent",
+    fill: "white",
   },
 };
 
@@ -125,7 +125,10 @@ const SystemAlert: React.ComponentType<AlertProps> = ({ alert, onClose }) => {
                 font-weight: 300;
               `}
             >
-              {parseMessage(alert.message, theme.colors[ALERT_VARIANTS[alert.level].fill])}
+              {parseMessage(
+                alert.message,
+                theme.colors[ALERT_VARIANTS[alert.level].fill]
+              )}
             </Typography>
           )}
         </div>

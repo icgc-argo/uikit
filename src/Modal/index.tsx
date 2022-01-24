@@ -17,18 +17,18 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import Color from 'color';
-import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import React from "react";
+import Color from "color";
+import { css } from "@emotion/core";
+import styled from "@emotion/styled";
 
-import Typography from '../Typography';
-import Button from '../Button';
-import Icon from '../Icon';
-import FocusWrapper from '../FocusWrapper';
-import { UikitIconNames } from 'src/Icon/icons';
-import { BUTTON_SIZES, BUTTON_VARIANTS } from 'src/Button/constants';
-import { ButtonSize } from 'src/Button/types';
+import Typography from "../Typography";
+import Button from "../Button";
+import Icon from "../Icon";
+import FocusWrapper from "../FocusWrapper";
+import { UikitIconNames } from "src/Icon/icons";
+import { BUTTON_SIZES, BUTTON_VARIANTS } from "src/Button/constants";
+import { ButtonSize } from "src/Button/types";
 
 const DefaultFooter = ({
   actionVisible,
@@ -64,7 +64,7 @@ const DefaultFooter = ({
   </ButtonContainer>
 );
 
-export const ModalContainer = styled('div')`
+export const ModalContainer = styled("div")<{ theme?: any }>`
   position: relative;
   border-radius: 20px;
   box-shadow: 0 8px 21px 0 rgba(0, 0, 0, 0.1), 0 6px 12px 0 rgba(0, 0, 0, 0.1);
@@ -80,33 +80,34 @@ export const ModalContainer = styled('div')`
   margin: 0 1rem;
 `;
 
-const ModalTitle = styled('div')`
+const ModalTitle = styled("div")`
   display: flex;
   flex-direction: row;
   align-items: center;
 `;
-const ModalBody = styled('div')`
+const ModalBody = styled("div")`
   margin-top: 24px;
   margin-bottom: 24px;
 `;
-const ModalFooter = styled('div')`
+const ModalFooter = styled("div")<{ theme?: any }>`
   padding: 8px 0px;
   border-top: solid 1px ${({ theme }) => theme.colors.grey_2};
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
 `;
-const ButtonContainer = styled('div')`
+const ButtonContainer = styled("div")`
   display: flex;
   flex-direction: row;
 `;
-const ModalOverlay = styled('div')`
+const ModalOverlay = styled("div")<{ theme?: any }>`
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${({ theme }) => Color(theme.colors.primary_dark).alpha(0.8).hsl().string()};
+  background: ${({ theme }) =>
+    Color(theme.colors.primary_dark).alpha(0.8).hsl().string()};
 `;
 
 /**
@@ -124,22 +125,22 @@ const ModalComponent: React.ComponentType<{
   actionDisabled?: boolean;
   actionVisible?: boolean;
   cancelText?: React.ReactNode;
-  onActionClick?: React.ComponentProps<typeof Button>['onClick'];
-  onCancelClick?: React.ComponentProps<typeof Button>['onClick'];
-  onCloseClick?: React.ComponentProps<typeof FocusWrapper>['onClick'];
+  onActionClick?: React.ComponentProps<typeof Button>["onClick"];
+  onCancelClick?: React.ComponentProps<typeof Button>["onClick"];
+  onCloseClick?: React.ComponentProps<typeof FocusWrapper>["onClick"];
   ContainerEl?: React.ReactType;
   FooterEl?: React.FC;
 }> = ({
-  title = 'Add Users',
+  title = "Add Users",
   titleIconConfig = {
     name: null,
     fill: null,
   },
   buttonSize = BUTTON_SIZES.MD,
   actionButtonId,
-  actionButtonText = 'Apply',
+  actionButtonText = "Apply",
   actionVisible = true,
-  cancelText = 'Cancel',
+  cancelText = "Cancel",
   onActionClick = () => {},
   onCancelClick = () => {},
   onCloseClick = () => {},

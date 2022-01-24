@@ -17,44 +17,53 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import * as React from 'react';
-import styled from '@emotion/styled';
-import memoize from 'lodash/memoize';
+import * as React from "react";
+import styled from "@emotion/styled";
+import memoize from "lodash/memoize";
 
-import defaultTheme from '../theme/defaultTheme';
-import { useTheme } from '../ThemeProvider';
+import defaultTheme from "../theme/defaultTheme";
+import { useTheme } from "../ThemeProvider";
 
 const defaultTags = {
-  hero: 'h1',
-  title: 'h2',
-  subtitle: 'h3',
-  subtitle2: 'h4',
-  paragraph: 'p',
-  span: 'span',
+  hero: "h1",
+  title: "h2",
+  subtitle: "h3",
+  subtitle2: "h4",
+  paragraph: "p",
+  span: "span",
 };
 
 const createTypographyComponentMapFromTheme = memoize((themeObj) =>
   Object.entries(themeObj.typography).reduce(
     (acc, [key, value]) => ({
       ...acc,
-      [key]: styled(defaultTags[key] || 'span')({}, ({ theme }) => theme.typography[key]),
+      [key]: styled(defaultTags[key] || "span")(
+        {},
+        ({ theme }: { theme?: any }) => theme.typography[key]
+      ),
     }),
-    {},
-  ),
+    {}
+  )
 );
 
 const createDomComponent = memoize(
-  (domComponentName: string, components: { [k: string]: any }, variant: string) =>
-    components[variant].withComponent(domComponentName),
+  (
+    domComponentName: string,
+    components: { [k: string]: any },
+    variant: string
+  ) => components[variant].withComponent(domComponentName),
   /** @todo: this cache-key resolution doesn't take into account components, so theme change won't properly change typography atm. Need to fix this!  */
-  (domComponentName, components, variant) => `${domComponentName}.${variant}`,
+  (domComponentName, components, variant) => `${domComponentName}.${variant}`
 );
 
 const createStyledDomComponent = memoize(
-  (Component) => styled<'div', { bold?: boolean; color?: string }>(Component)`
+  (Component) => styled<"div", { bold?: boolean; color?: string; theme?: any }>(
+    Component
+  )`
     font-weight: ${({ bold }) => (bold ? `bold` : `normal`)};
-    color: ${({ theme, color }) => (color ? theme.colors[color] || color : 'inherit')};
-  `,
+    color: ${({ theme, color }) =>
+      color ? theme.colors[color] || color : "inherit"};
+  `
 );
 
 export type TypographyVariant = keyof typeof defaultTheme.typography;
@@ -75,7 +84,13 @@ const Typography: React.ComponentType<
     color?: string;
     as?: keyof HTMLElementTagNameMap;
   } & Partial<React.ComponentProps<ReturnType<typeof createStyledDomComponent>>>
-> = ({ variant = 'paragraph', component: domComponentName, bold = false, color, ...rest }) => {
+> = ({
+  variant = "paragraph",
+  component: domComponentName,
+  bold = false,
+  color,
+  ...rest
+}) => {
   const theme = useTheme();
   const componentMap: {
     [k: string]: any;
