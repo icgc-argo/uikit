@@ -34,7 +34,7 @@ const createKnobs = () => {
   };
 };
 
-const IconStories = storiesOf(`${__dirname}`, module)
+storiesOf(`${__dirname}`, module)
   .add('Basic', () => {
     const name = select('name', Object.keys(icons) as UikitIconNames[], 'spinner');
     const { fill } = createKnobs();
@@ -75,5 +75,3 @@ const IconStories = storiesOf(`${__dirname}`, module)
       </Row>
     );
   });
-
-export default IconStories;

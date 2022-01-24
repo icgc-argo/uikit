@@ -36,7 +36,7 @@ const getNewMessage = {
   kickstarter edison bulb, street art taxidermy iPhone pitchfork woke fashion axe leggings af sartorial fanny pack.`,
 };
 
-const SystemAlertStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`${__dirname}`, module).add('Basic', () => {
   const variant = select('variant', [undefined, 'error', 'warning', 'info'], 'error');
   const dismissable = boolean('dismissable', true);
 
@@ -57,5 +57,3 @@ const SystemAlertStories = storiesOf(`${__dirname}`, module).add('Basic', () => 
     <div />
   );
 });
-
-export default SystemAlertStories;

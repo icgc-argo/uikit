@@ -22,7 +22,7 @@ import React from 'react';
 import FileSelectButton from '.';
 import { action } from '@storybook/addon-actions';
 
-const FileSelectButtonStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`${__dirname}`, module).add('Basic', () => {
   return (
     <FileSelectButton
       inputProps={{
@@ -34,5 +34,3 @@ const FileSelectButtonStories = storiesOf(`${__dirname}`, module).add('Basic', (
     </FileSelectButton>
   );
 });
-
-export default FileSelectButtonStories;

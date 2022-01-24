@@ -30,7 +30,7 @@ export const createKnobs = () => {
   };
 };
 
-const NumberRangeFieldStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`${__dirname}`, module).add('Basic', () => {
   const props = createKnobs();
   const [minimumInput, setMinimumInput] = React.useState('');
   const [maximumInput, setMaximumInput] = React.useState('');
@@ -45,5 +45,3 @@ const NumberRangeFieldStories = storiesOf(`${__dirname}`, module).add('Basic', (
     />
   );
 });
-
-export default NumberRangeFieldStories;

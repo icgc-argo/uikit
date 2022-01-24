@@ -22,12 +22,12 @@ import Typography from 'src/Typography';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 
-const Cont = styled('div')`
+const Cont = styled('div')<{ theme?: any; color: string }>`
   margin-top: 14px;
   border-left: 2px solid ${({ color, theme }) => (color ? color : theme.colors.secondary)};
 `;
 
-const Anchor = styled<'a', { disabled: boolean; active: boolean }>('a')`
+const Anchor = styled<'a', { disabled: boolean; active: boolean; theme?: any }>('a')`
   /** specificty for docusaurus, easier to edit here */
   > div {
     background-color: ${({ active, theme: { colors } }) =>

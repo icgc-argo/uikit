@@ -22,7 +22,7 @@ import React from 'react';
 import InstructionBox from '.';
 import Typography from 'src/Typography';
 
-const InstructionBoxStories = storiesOf(`${__dirname}`, module).add('Basic', () => (
+storiesOf(`${__dirname}`, module).add('Basic', () => (
   <div style={{ background: 'white' }}>
     <InstructionBox
       footer={<Typography variant="paragraph">Footer</Typography>}
@@ -34,5 +34,3 @@ const InstructionBoxStories = storiesOf(`${__dirname}`, module).add('Basic', () 
     />
   </div>
 ));
-
-export default InstructionBoxStories;

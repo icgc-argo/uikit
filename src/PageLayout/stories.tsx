@@ -34,7 +34,7 @@ import {
   ContentBox,
 } from '.';
 
-const PageLayoutStories = storiesOf(`${__dirname}`, module).add('Basic', () => (
+storiesOf(`${__dirname}`, module).add('Basic', () => (
   <PageContainer>
     <AppBar>
       <Typography color="white">AppBar</Typography>
@@ -58,5 +58,3 @@ const PageLayoutStories = storiesOf(`${__dirname}`, module).add('Basic', () => (
     </PageBody>
   </PageContainer>
 ));
-
-export default PageLayoutStories;

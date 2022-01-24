@@ -27,7 +27,7 @@ import { ICON_NAMES, BUILT_IN_ICON_COLORS } from '../Icon';
 import Icons from 'src/Icon/icons';
 import { BUTTON_SIZES } from 'src/Button/constants';
 
-const ModalStories = storiesOf(`${__dirname}`, module)
+storiesOf(`${__dirname}`, module)
   .add('Basic', () => {
     const createKnobs = () => {
       const title = text('title', 'Hipster');
@@ -148,5 +148,3 @@ const ModalStories = storiesOf(`${__dirname}`, module)
       </Modal>
     </Modal.Overlay>
   ));
-
-export default ModalStories;

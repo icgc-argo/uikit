@@ -31,7 +31,7 @@ export const TABLE_VARIANTS: { [k in TableVariant]: k } = {
   STATIC: 'STATIC',
 };
 
-const TableStories = storiesOf(`${__dirname}`, module)
+storiesOf(`${__dirname}`, module)
   .add(
     'Basic',
     () => {
@@ -197,5 +197,3 @@ const TableStories = storiesOf(`${__dirname}`, module)
       </div>
     );
   });
-
-export default TableStories;

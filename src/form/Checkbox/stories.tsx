@@ -35,7 +35,7 @@ const createKnobs = () => {
   };
 };
 
-const CheckboxStories = storiesOf(`${__dirname}`, module).add('Basic', () => (
+storiesOf(`${__dirname}`, module).add('Basic', () => (
   <Checkbox
     value="example"
     {...createKnobs()}
@@ -43,5 +43,3 @@ const CheckboxStories = storiesOf(`${__dirname}`, module).add('Basic', () => (
     aria-label="checkbox"
   />
 ));
-
-export default CheckboxStories;

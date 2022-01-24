@@ -24,7 +24,7 @@ import { action } from '@storybook/addon-actions';
 
 import Banner, { BANNER_VARIANTS, BANNER_SIZE } from '.';
 
-const BannerStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`${__dirname}`, module).add('Basic', () => {
   const variant = select('variant', [undefined, ...Object.values(BANNER_VARIANTS)], undefined);
   const size = select('size', [undefined, ...Object.values(BANNER_SIZE)], undefined);
   const title = text('title', 'Hipster Ipsum');
@@ -34,5 +34,3 @@ const BannerStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
   );
   return <Banner variant={variant} title={title} content={content} size={size} />;
 });
-
-export default BannerStories;

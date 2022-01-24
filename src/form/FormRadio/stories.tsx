@@ -41,7 +41,7 @@ const createGroupKnobs = () => {
   return { hasError };
 };
 
-const RadioStories = storiesOf(`${__dirname}`, module)
+storiesOf(`${__dirname}`, module)
   .add('Radio', () => <FormRadio {...createKnobs()}>Single Radio Button</FormRadio>)
   .add('Radio Group', () => {
     const [selectedItem, setSelected] = React.useState('one');
@@ -87,5 +87,3 @@ const RadioStories = storiesOf(`${__dirname}`, module)
       </RadioCheckboxGroup>
     );
   });
-
-export default RadioStories;

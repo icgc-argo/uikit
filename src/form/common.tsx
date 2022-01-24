@@ -41,6 +41,7 @@ export type StyledInputWrapperProps = {
   inputState?: keyof typeof INPUT_THEME_STATES;
   size?: 'sm' | 'lg';
   getOverrideCss?: (a: any) => any;
+  theme?: any;
 };
 export const StyledInputWrapper = styled<'div', StyledInputWrapperProps>('div')`
   box-sizing: border-box;
@@ -91,6 +92,7 @@ type RadioCheckboxWrapperProps = {
   disabled?: boolean;
   error?: boolean | string;
   focused?: boolean;
+  theme?: any;
 };
 export const RadioCheckboxWrapper = styled<'div', RadioCheckboxWrapperProps>('div')`
   display: flex;

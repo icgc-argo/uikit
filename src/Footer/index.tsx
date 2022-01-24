@@ -26,7 +26,7 @@ import css from '@emotion/css';
 import { Row, Col } from 'react-grid-system';
 import A from '../Link';
 
-const Container = styled('footer')`
+const Container = styled('footer')<{ theme?: any }>`
   ${({ theme }) => css(theme.typography.paragraph)};
   font-size: 11px;
   min-height: 58px;

@@ -24,7 +24,7 @@ import Progress from '.';
 import { ProgressItem, PROGRESS_STATUS } from '.';
 import { text, select, boolean } from '@storybook/addon-knobs';
 
-const ProgressItemStories = storiesOf(`${__dirname}`, module)
+storiesOf(`${__dirname}`, module)
   .add('Basic', () => {
     const state = select('state', PROGRESS_STATUS, PROGRESS_STATUS.SUCCESS);
     const title = text('text', 'Upload');
@@ -52,5 +52,3 @@ const ProgressItemStories = storiesOf(`${__dirname}`, module)
       </Progress>
     );
   });
-
-export default ProgressItemStories;

@@ -22,7 +22,7 @@ import React from 'react';
 import Container from '.';
 import { ClassNames } from '@emotion/core';
 
-const ContainerStories = storiesOf(`${__dirname}`, module)
+storiesOf(`${__dirname}`, module)
   .add(
     'Basic',
     () => (
@@ -61,5 +61,3 @@ const ContainerStories = storiesOf(`${__dirname}`, module)
       info: {},
     },
   );
-
-export default ContainerStories;

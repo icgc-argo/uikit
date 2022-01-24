@@ -64,7 +64,7 @@ const DefaultFooter = ({
   </ButtonContainer>
 );
 
-export const ModalContainer = styled('div')`
+export const ModalContainer = styled('div')<{ theme?: any }>`
   position: relative;
   border-radius: 20px;
   box-shadow: 0 8px 21px 0 rgba(0, 0, 0, 0.1), 0 6px 12px 0 rgba(0, 0, 0, 0.1);
@@ -89,7 +89,7 @@ const ModalBody = styled('div')`
   margin-top: 24px;
   margin-bottom: 24px;
 `;
-const ModalFooter = styled('div')`
+const ModalFooter = styled('div')<{ theme?: any }>`
   padding: 8px 0px;
   border-top: solid 1px ${({ theme }) => theme.colors.grey_2};
   display: flex;
@@ -100,7 +100,7 @@ const ButtonContainer = styled('div')`
   display: flex;
   flex-direction: row;
 `;
-const ModalOverlay = styled('div')`
+const ModalOverlay = styled('div')<{ theme?: any }>`
   width: 100%;
   height: 100%;
   display: flex;

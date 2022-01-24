@@ -24,7 +24,7 @@ import { boolean, number, radios, text } from '@storybook/addon-knobs';
 
 import Textarea from '.';
 
-export default storiesOf(`${__dirname}`, module).add(
+storiesOf(`${__dirname}`, module).add(
   'Basic',
   () => {
     const labelForCounterKnobs = 'Counter props';

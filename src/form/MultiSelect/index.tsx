@@ -50,7 +50,7 @@ const Container = styled<'div', { focus: boolean }>('div')`
     `}
 `;
 
-const OptionsWrapper = styled<'div', { focused: boolean }>('div')`
+const OptionsWrapper = styled<'div', { focused: boolean; theme?: any }>('div')`
   box-sizing: border-box;
   position: absolute;
   width: 100%;
@@ -77,7 +77,7 @@ const OptionList = styled('ul')`
   padding: 0;
 `;
 
-const Gap = styled('div')`
+const Gap = styled('div')<{ theme?: any }>`
   position: absolute;
   left: -1px;
   border: solid 1px;
@@ -101,7 +101,7 @@ const InputBox = styled(StyledInputWrapper)`
   padding: 2px;
 `;
 
-const Input = styled<'input', { autoComplete: string; single?: boolean }>('input')`
+const Input = styled<'input', { autoComplete: string; single?: boolean; theme?: any }>('input')`
   ${({ theme }) => css(theme.typography.default)};
   background-color: transparent;
   border: none;
@@ -114,7 +114,7 @@ const Input = styled<'input', { autoComplete: string; single?: boolean }>('input
   }
 `;
 
-const PlaceHolder = styled('span')`
+const PlaceHolder = styled('span')<{ theme?: any }>`
   ${({ theme }) => css(theme.typography.data)};
   color: ${({ theme }) => theme.multiSelect.placeHolderColor};
   position: absolute;
@@ -125,7 +125,7 @@ const PlaceHolder = styled('span')`
   }
 `;
 
-const SelectedItem: any = styled(Tag)`
+const SelectedItem: any = styled(Tag)<{ theme?: any }>`
   box-sizing: border-box;
   font-size: 11px;
   cursor: pointer;
@@ -139,7 +139,7 @@ const SelectedItem: any = styled(Tag)`
   }
 `;
 
-const SectionTitle = styled('li')`
+const SectionTitle = styled('li')<{ theme?: any }>`
   list-style: none;
   font-size: 11px;
   height: 27px;
@@ -390,7 +390,9 @@ const MultiSelect = ({
   };
 
   const selectedItems = map(value, (v) => {
-    const c: any = find(React.Children.toArray(children), { props: { value: v } });
+    const c: any = find(React.Children.toArray(children), {
+      props: { value: v },
+    });
 
     if (typeof c === 'undefined') {
       return {
@@ -429,7 +431,11 @@ const MultiSelect = ({
         {showPlaceHolder
           ? ![false, ''].includes(placeholder) && (
               <PlaceHolder
-                className={clsx({ disabled: isDisabled, hasError, focused: focusState })}
+                className={clsx({
+                  disabled: isDisabled,
+                  hasError,
+                  focused: focusState,
+                })}
               >
                 {placeholder || (single ? 'Select one' : 'Add one or more...')}
               </PlaceHolder>
@@ -439,7 +445,11 @@ const MultiSelect = ({
               <SelectedItem
                 key={item.value}
                 onClick={handleSelectedItemClick(item)}
-                className={clsx({ disabled: isDisabled, hasError, focused: focusState })}
+                className={clsx({
+                  disabled: isDisabled,
+                  hasError,
+                  focused: focusState,
+                })}
               >
                 {item.displayName}&nbsp;&nbsp;
                 <Icon

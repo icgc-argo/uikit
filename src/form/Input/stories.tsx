@@ -75,7 +75,7 @@ const createKnobs = () => {
   };
 };
 
-const InputStories = storiesOf(`${__dirname}`, module)
+storiesOf(`${__dirname}`, module)
   .add('Basic', () => {
     return (
       <div style={{ width: '200px' }}>
@@ -98,5 +98,3 @@ const InputStories = storiesOf(`${__dirname}`, module)
       </div>
     );
   });
-
-export default InputStories;

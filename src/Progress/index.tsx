@@ -51,7 +51,7 @@ const Triangle = (props) => css`
   border-left-width: 7px;
 `;
 
-const ProgressMarker = styled<'div', { state: ProgressStatus }>('div')`
+const ProgressMarker = styled<'div', { state: ProgressStatus; theme?: any }>('div')`
   width: 100%;
   height: 14px;
   background-color: ${({ theme, state }) => theme.progress.color[state]};
@@ -98,7 +98,7 @@ const ProgressSection = styled('div')`
 `;
 
 /* Separator colors - based on state*/
-const Separator = styled<'div', { state: ProgressStatus }>('div')`
+const Separator = styled<'div', { state: ProgressStatus; theme?: any }>('div')`
   &:before {
     background-color: ${({ theme, state }) => theme.progress.color[state]};
     border-left-color: #fff;
@@ -111,7 +111,11 @@ const Separator = styled<'div', { state: ProgressStatus }>('div')`
   }
 `;
 
-const Text = styled('div')<{ completed: boolean; state: ProgressStatus }>`
+const Text = styled('div')<{
+  completed: boolean;
+  state: ProgressStatus;
+  theme?: any;
+}>`
   ${({ theme }) => theme.typography.caption};
   font-weight: ${({ completed }) => (completed ? 600 : 'normal')};
   color: ${({ theme, state }) => (state === 'locked' ? theme.colors.grey : theme.colors.black)};

@@ -20,7 +20,7 @@
 import styled from '@emotion/styled';
 import defaultTheme from 'src/theme/defaultTheme';
 
-const PipeContainer = styled('div')`
+const PipeContainer = styled('div')<{ theme?: any }>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -36,7 +36,7 @@ const PipeContainer = styled('div')`
   height: 14px;
 `;
 
-const PipeItem = styled<'div', { fill: keyof typeof defaultTheme.colors }>('div')`
+const PipeItem = styled<'div', { fill: keyof typeof defaultTheme.colors; theme?: any }>('div')`
   flex-grow: 1;
   background-color: ${({ theme, fill }) => theme.colors[fill]};
   margin-right: 1px;

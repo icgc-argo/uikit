@@ -24,7 +24,7 @@ import css from '@emotion/css';
 import Icon from '../Icon';
 import useTheme from '../utils/useTheme';
 
-const Nav = styled('nav')`
+const Nav = styled('nav')<{ theme?: any }>`
   padding: 18px 29px 18px 0;
   ${({ theme }) => css(theme.typography.title)};
   & a {
@@ -41,7 +41,7 @@ const Ol = styled('ol')`
   margin: 0;
 `;
 
-const Li = styled('li')`
+const Li = styled('li')<{ theme?: any }>`
   list-style: none;
   ${({ theme }) => css(theme.typography.title)};
 `;

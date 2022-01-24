@@ -38,7 +38,7 @@ const LoremTooltip = (
   </>
 );
 
-const VerticalTabsStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`${__dirname}`, module).add('Basic', () => {
   const [activeItem, setActiveItem] = React.useState(0);
   const onClick = (num: number) => (e) => {
     setActiveItem(num);
@@ -75,5 +75,3 @@ const VerticalTabsStories = storiesOf(`${__dirname}`, module).add('Basic', () =>
     </div>
   );
 });
-
-export default VerticalTabsStories;

@@ -37,7 +37,13 @@ export const STYLEDCHECKBOX_SIZES: {
 
 export const StyledCheckbox = styled<
   'div',
-  { disabled?: boolean; checked?: boolean; color?: string; size?: 'sm' | 'md' }
+  {
+    disabled?: boolean;
+    checked?: boolean;
+    color?: string;
+    size?: 'sm' | 'md';
+    theme?: any;
+  }
 >('div')`
   position: relative;
   cursor: pointer;

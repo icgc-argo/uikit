@@ -54,10 +54,10 @@ export const TableActionBar = (props) => {
   );
 };
 
-const Arrow: React.ComponentType<{ transform?: string; className?: string }> = ({
-  transform,
-  className,
-}) => (
+const Arrow: React.ComponentType<{
+  transform?: string;
+  className?: string;
+}> = ({ transform, className }) => (
   <Icon
     className={className}
     width="6px"
@@ -81,7 +81,7 @@ const DoubleArrow: React.ComponentType<{ transform?: string }> = ({ transform })
   </>
 );
 
-const A = styled('a')`
+const A = styled('a')<{ theme?: any }>`
   ${({ theme }) => css(theme.typography.data)};
   background-color: #fff;
   border-radius: 50%;
@@ -160,7 +160,10 @@ function TablePagination(props) {
                 }
               `}
               aria-label="Select page size"
-              options={pageSizeOptions.map((v) => ({ content: v.toString(), value: v }))}
+              options={pageSizeOptions.map((v) => ({
+                content: v.toString(),
+                value: v,
+              }))}
               onChange={onPageSizeChange}
               value={pageSize}
               popupPosition={POPUP_POSITIONS.UP}

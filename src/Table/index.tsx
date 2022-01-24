@@ -181,7 +181,12 @@ const SelectTableCheckbox: React.ComponentType<
   SelectInputComponentProps & SelectAllInputComponentProps
 > = ({ checked, onClick, id }) => (
   // @ts-ignore aria-label not supported by ts
-  <Checkbox value={id} checked={checked} onChange={() => onClick(id)} aria-label="table-select" />
+  <Checkbox
+    value={id}
+    checked={checked}
+    onChange={() => onClick(id, null, null)}
+    aria-label="table-select"
+  />
 );
 
 const TableWithSelect = selectTable(Table);

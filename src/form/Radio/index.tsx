@@ -31,6 +31,7 @@ import css from '@emotion/css';
 type StyledRadioProps = {
   disabled?: boolean;
   checked?: boolean;
+  theme?: any;
 };
 export const StyledRadio = styled<'div', StyledRadioProps>('div')`
   position: relative;

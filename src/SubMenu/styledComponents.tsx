@@ -28,7 +28,7 @@ import {
 
 type StyleCalculationInput = {
   selected?: boolean;
-  theme?: typeof defaultTheme;
+  theme?: any;
 };
 
 const defaultLabelStyle = ({ selected, theme }: StyleCalculationInput) => css`
@@ -70,11 +70,11 @@ const level1Style = ({ selected, theme }: StyleCalculationInput) => css`
   & > .FacetContentSlim .MenuItemContent {
     padding: 6px;
     border-bottom: 1px solid;
-        border-color: ${theme.colors.grey_2};
+    border-color: ${theme.colors.grey_2};
   }
   & a {
     text-decoration: underline;
-    font-weight:normal;
+    font-weight: normal;
   }
 `;
 
@@ -143,7 +143,10 @@ export const IconContainer = styled('span')`
   align-items: center;
 `;
 
-export const ContentContainer = styled('button')<{ as?: keyof JSX.IntrinsicElements }>`
+export const ContentContainer = styled('button')<{
+  as?: keyof JSX.IntrinsicElements;
+  theme?: any;
+}>`
   ${({ theme }) => css(theme.typography.default)};
   border: none;
   width: 100%;

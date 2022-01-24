@@ -32,7 +32,7 @@ const createKnobs = () => {
   };
 };
 
-const TitleBarStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`${__dirname}`, module).add('Basic', () => {
   const props = createKnobs();
   return (
     <TitleBar {...props}>
@@ -41,5 +41,3 @@ const TitleBarStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
     </TitleBar>
   );
 });
-
-export default TitleBarStories;

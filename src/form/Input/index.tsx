@@ -87,8 +87,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     }: InputProps,
     ref,
   ) => {
-    const { disabled: calcDisabled, focused, error: calcError, handleBlur, handleFocus } =
-      useContext(FormControlContext) || {};
+    const {
+      disabled: calcDisabled,
+      focused,
+      error: calcError,
+      handleBlur,
+      handleFocus,
+    } = useContext(FormControlContext) || {};
 
     const [activeState, setActive] = useState(focused ? 'focus' : 'default');
 

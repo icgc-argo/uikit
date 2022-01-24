@@ -22,11 +22,9 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { radios, boolean, text } from '@storybook/addon-knobs';
 import { css } from '@emotion/core';
-
 import Button from '.';
 import { asyncDummyFunc, placeholderImageURLRoot } from '../testUtil';
-import Icon from 'src/Icon';
-
+import Icon from '../Icon';
 import { BUTTON_VARIANTS, BUTTON_SIZES } from './constants';
 
 const dummyClick = action('Clicked!');
@@ -52,7 +50,7 @@ export const createKnobs = () => {
   };
 };
 
-const ButtonStories = storiesOf(`${__dirname}`, module)
+storiesOf(`${__dirname}`, module)
   .add('Basic', () => {
     const props = createKnobs();
     return <Button {...props} onClick={props.isAsync ? asyncDummyFunc : dummyClick} />;
@@ -104,5 +102,3 @@ const ButtonStories = storiesOf(`${__dirname}`, module)
       </Button>
     );
   });
-
-export default ButtonStories;

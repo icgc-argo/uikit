@@ -22,5 +22,5 @@ export type ButtonSize = 'sm' | 'md';
 export type ButtonLoader = {
   text?: string;
   variant: string;
-  theme: any;
+  theme?: any;
 };

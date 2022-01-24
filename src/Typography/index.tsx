@@ -37,7 +37,10 @@ const createTypographyComponentMapFromTheme = memoize((themeObj) =>
   Object.entries(themeObj.typography).reduce(
     (acc, [key, value]) => ({
       ...acc,
-      [key]: styled(defaultTags[key] || 'span')({}, ({ theme }) => theme.typography[key]),
+      [key]: styled(defaultTags[key] || 'span')(
+        {},
+        ({ theme }: { theme?: any }) => theme.typography[key],
+      ),
     }),
     {},
   ),
@@ -51,7 +54,7 @@ const createDomComponent = memoize(
 );
 
 const createStyledDomComponent = memoize(
-  (Component) => styled<'div', { bold?: boolean; color?: string }>(Component)`
+  (Component) => styled<'div', { bold?: boolean; color?: string; theme?: any }>(Component)`
     font-weight: ${({ bold }) => (bold ? `bold` : `normal`)};
     color: ${({ theme, color }) => (color ? theme.colors[color] || color : 'inherit')};
   `,
