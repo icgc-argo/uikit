@@ -1,83 +1,120 @@
-import { useState } from 'react';
-import { css } from '@emotion/core';
-import DropdownButton, { DownloadButtonProps } from './../DropdownButton';
-import { useTheme } from './../ThemeProvider';
-import Icon from './../Icon';
+import { useState, useEffect, createRef } from 'react';
+import { css, SerializedStyles } from '@emotion/core';
+import useClickAway from 'src/utils/useClickAway';
 
-enum DownloadOptionValues {
+import Button from 'src/Button';
+import { MenuItem } from 'src/DropdownButton';
+import Icon from 'src/Icon';
+import { useTheme } from 'src/ThemeProvider';
+
+type LegendItemConfig<ValueType = string> = {
+  value: ValueType;
+  display: React.ReactNode;
+  css?: SerializedStyles;
+};
+
+export interface LegendProps<ValueType>
+  extends Omit<React.ComponentProps<typeof Button>, 'onClick'> {
+  onItemClick: (item: LegendItemConfig<ValueType>) => void;
+  onClick?: (e: React.SyntheticEvent<HTMLButtonElement, Event>, { toggleMenuOpen: boolean }) => any;
+  onKeyPress?: (
+    e: React.SyntheticEvent<HTMLButtonElement, Event>,
+    { toggleMenuOpen: boolean },
+  ) => any;
+  onMouseEnter?: () => any;
+  onMouseLeave?: () => any;
+  menuItems: Array<LegendItemConfig<ValueType>>;
+  menuStyles?: string;
+  menuItemStyles?: string;
+}
+
+enum LegendOptionValues {
   NOT_APPLICABLE = 'NOT_APPLICABLE',
   NOT_AVAILABLE = 'NOT_AVAILABLE',
 }
 
+const menuItems: LegendProps<LegendOptionValues>['menuItems'] = [
+  {
+    value: LegendOptionValues.NOT_APPLICABLE,
+    display: (
+      <div>
+        <div className="legend--symbol">N/A</div>
+        <div className="legend--text">Not Applicable</div>
+      </div>
+    ),
+  },
+  {
+    value: LegendOptionValues.NOT_AVAILABLE,
+    display: (
+      <div>
+        <div className="legend--symbol">--</div>
+        <div className="legend--text">Not Available</div>
+      </div>
+    ),
+  },
+];
+
 const Legend = () => {
   const theme = useTheme();
-  const menuItems: DownloadButtonProps<DownloadOptionValues>['menuItems'] = [
-    {
-      value: DownloadOptionValues.NOT_APPLICABLE,
-      display: (
-        <div>
-          <div className="legend--symbol">N/A</div>
-          <div className="legend--text">Not Applicable</div>
-        </div>
-      ),
-    },
-    {
-      value: DownloadOptionValues.NOT_AVAILABLE,
-      display: (
-        <div>
-          <div className="legend--symbol">--</div>
-          <div className="legend--text">Not Available</div>
-        </div>
-      ),
-    },
-  ];
+  const menuStyles = css`
+    display: flex;
+    flex-direction: column;
+    flex-wrap: no-wrap;
+    left: -50px;
+    width: 130px;
+    padding: 13px;
+    .legend--symbol {
+      margin-right: 13px;
+      width: 20px;
+      color: ${theme.colors.grey};
+      font-style: italic;
+    }
+    .legend--text,
+    .legend--symbol {
+      display: inline-block;
+    }
+    :hover {
+      cursor: default;
+    }
+  `;
+
+  const menuItemStyles = css`
+    :hover {
+      background: ${theme.colors.white};
+    }
+  `;
+
   const [isLegendOpen, setLegendOpen] = useState(false);
   const onKeyPress = (e, { toggleMenuOpen }) => {
     if (e.key === 'Enter') {
       setLegendOpen(toggleMenuOpen);
     }
   };
-  const toggleMenuHandler = () => {
+  const toggleLegendHandler = () => {
     setLegendOpen(!isLegendOpen);
   };
+
+  const menuRef = createRef<HTMLDivElement>();
+  useClickAway({
+    domElementRef: menuRef,
+    onClickAway: () => setLegendOpen(false),
+    onElementClick: () => {
+      setLegendOpen(true);
+    },
+  });
+
   return (
-    <DropdownButton
+    <Button
+      onClick={toggleLegendHandler}
+      onKeyPress={onKeyPress}
+      onMouseEnter={toggleLegendHandler}
+      onMouseLeave={toggleLegendHandler}
+      variant="secondary"
       css={css`
+        position: relative;
         margin-right: 8px;
         border: none;
       `}
-      variant="secondary"
-      menuItems={menuItems}
-      controlledMenuShowState={isLegendOpen}
-      onKeyPress={onKeyPress}
-      onItemClick={toggleMenuHandler}
-      onMouseEnter={toggleMenuHandler}
-      onMouseLeave={toggleMenuHandler}
-      menuStyles={`
-            display: flex;
-            flex-direction: column;
-            flex-wrap: no-wrap;
-            left: -50px;
-            width: 130px;
-            padding: 13px;
-            .legend--symbol {
-              margin-right: 13px;
-              width: 20px;
-              color: ${theme.colors.grey};
-              font-style: italic;
-            }
-            .legend--text, .legend--symbol {
-              display: inline-block;
-            }
-            :hover {
-              cursor: default
-            }
-          `}
-      menuItemStyles={`
-            :hover {
-              background: ${theme.colors.white};
-            }
-          `}
     >
       <span>
         <Icon
@@ -100,7 +137,41 @@ const Legend = () => {
           `}
         />
       </span>
-    </DropdownButton>
+      {isLegendOpen && (
+        <div
+          ref={menuRef}
+          css={css`
+            position: absolute;
+            top: 100%;
+            left: 10px;
+            right: 10px;
+            background: white;
+            z-index: 1000;
+            border-radius: 4px;
+            box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.08);
+            border: solid 1px ${theme.colors.grey_1};
+            background-color: ${theme.colors.white};
+            text-transform: none;
+            text-align: left;
+            color: ${theme.colors.black};
+            ${menuStyles}
+          `}
+        >
+          {menuItems.map((item) => (
+            <MenuItem
+              key={String(item.value)}
+              onClick={() => setLegendOpen(true)}
+              css={css`
+                ${menuItemStyles}
+              `}
+              {...item}
+            >
+              {item.display}
+            </MenuItem>
+          ))}
+        </div>
+      )}
+    </Button>
   );
 };
 

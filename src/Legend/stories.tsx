@@ -19,10 +19,16 @@
 
 import { storiesOf } from '@storybook/react';
 import React from 'react';
+import css from '@emotion/css';
 import Legend from '.';
 
 storiesOf(`${__dirname}`, module).add('Basic', () => (
-  <>
+  <div
+    css={css`
+      position: relative;
+      left: 50px;
+    `}
+  >
     <Legend />
-  </>
+  </div>
 ));
