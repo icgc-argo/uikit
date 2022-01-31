@@ -45,6 +45,12 @@ const Button = React.forwardRef<
     onBlur?: (
       e: React.SyntheticEvent<HTMLButtonElement>,
     ) => any | ((e: React.SyntheticEvent<HTMLButtonElement>) => Promise<any>);
+    onKeyPress?: (
+      e: React.SyntheticEvent<HTMLButtonElement, Event>,
+      { toggleMenuOpen: boolean },
+    ) => any;
+    onMouseEnter?: () => any;
+    onMouseLeave?: () => any;
     /**
      * Use with async onClick handlers to set loading indicator
      */

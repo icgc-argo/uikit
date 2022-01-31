@@ -85,13 +85,13 @@ const Legend = () => {
   `;
 
   const [isLegendOpen, setLegendOpen] = useState(false);
-  const onKeyPress = (e, { toggleMenuOpen }) => {
-    if (e.key === 'Enter') {
-      setLegendOpen(toggleMenuOpen);
-    }
-  };
   const toggleLegendHandler = () => {
     setLegendOpen(!isLegendOpen);
+  };
+  const onKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      toggleLegendHandler();
+    }
   };
 
   const menuRef = createRef<HTMLDivElement>();
@@ -105,10 +105,9 @@ const Legend = () => {
 
   return (
     <Button
-      onClick={toggleLegendHandler}
       onKeyPress={onKeyPress}
       onMouseEnter={toggleLegendHandler}
-      onMouseLeave={toggleLegendHandler}
+      onMouseLeave={() => setLegendOpen(false)}
       variant="secondary"
       css={css`
         position: relative;
