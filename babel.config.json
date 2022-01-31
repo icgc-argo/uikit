@@ -13,7 +13,6 @@
   "plugins": [
     "@babel/plugin-proposal-optional-chaining",
     "@babel/plugin-proposal-object-rest-spread",
-
     [
       "module-resolver",
       {
@@ -22,6 +21,7 @@
           "src": "./dist"
         }
       }
-    ]
+    ],
+    "inline-svg"
   ]
 }
