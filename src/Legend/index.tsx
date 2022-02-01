@@ -83,7 +83,7 @@ const Legend = () => {
       background: ${theme.colors.white};
     }
   `;
-
+  const menuRef = createRef<HTMLDivElement>();
   const [isLegendOpen, setLegendOpen] = useState(false);
   const toggleLegendHandler = () => {
     setLegendOpen(!isLegendOpen);
@@ -93,15 +93,6 @@ const Legend = () => {
       toggleLegendHandler();
     }
   };
-
-  const menuRef = createRef<HTMLDivElement>();
-  useClickAway({
-    domElementRef: menuRef,
-    onClickAway: () => setLegendOpen(false),
-    onElementClick: () => {
-      setLegendOpen(true);
-    },
-  });
 
   return (
     <Button
@@ -159,7 +150,6 @@ const Legend = () => {
           {menuItems.map((item) => (
             <MenuItem
               key={String(item.value)}
-              onClick={() => setLegendOpen(true)}
               css={css`
                 ${menuItemStyles}
               `}
