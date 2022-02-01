@@ -45,10 +45,7 @@ const Button = React.forwardRef<
     onBlur?: (
       e: React.SyntheticEvent<HTMLButtonElement>,
     ) => any | ((e: React.SyntheticEvent<HTMLButtonElement>) => Promise<any>);
-    onKeyPress?: (
-      e: React.SyntheticEvent<HTMLButtonElement, Event>,
-      { toggleMenuOpen: boolean },
-    ) => any;
+    onKeyPress?: React.KeyboardEventHandler<HTMLButtonElement>;
     onMouseEnter?: () => any;
     onMouseLeave?: () => any;
     /**
