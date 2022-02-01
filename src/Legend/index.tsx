@@ -1,6 +1,5 @@
-import { useState, useEffect, createRef } from 'react';
+import React, { useState, createRef } from 'react';
 import { css, SerializedStyles } from '@emotion/core';
-import useClickAway from 'src/utils/useClickAway';
 
 import Button from 'src/Button';
 import { MenuItem } from 'src/DropdownButton';
@@ -13,14 +12,8 @@ type LegendItemConfig<ValueType = string> = {
   css?: SerializedStyles;
 };
 
-export interface LegendProps<ValueType>
-  extends Omit<React.ComponentProps<typeof Button>, 'onClick'> {
+export interface LegendProps<ValueType> extends React.ComponentProps<typeof Button> {
   onItemClick: (item: LegendItemConfig<ValueType>) => void;
-  onClick?: (e: React.SyntheticEvent<HTMLButtonElement, Event>, { toggleMenuOpen: boolean }) => any;
-  onKeyPress?: (
-    e: React.SyntheticEvent<HTMLButtonElement, Event>,
-    { toggleMenuOpen: boolean },
-  ) => any;
   onMouseEnter?: () => any;
   onMouseLeave?: () => any;
   menuItems: Array<LegendItemConfig<ValueType>>;
