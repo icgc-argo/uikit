@@ -45,6 +45,9 @@ const Button = React.forwardRef<
     onBlur?: (
       e: React.SyntheticEvent<HTMLButtonElement>,
     ) => any | ((e: React.SyntheticEvent<HTMLButtonElement>) => Promise<any>);
+    onKeyPress?: React.KeyboardEventHandler<HTMLButtonElement>;
+    onMouseEnter?: () => any;
+    onMouseLeave?: () => any;
     /**
      * Use with async onClick handlers to set loading indicator
      */
@@ -77,6 +80,7 @@ const Button = React.forwardRef<
       isLoading: controlledLoadingState,
       Loader,
       type,
+      ...rest
     },
     ref = React.createRef(),
   ) => {
@@ -108,6 +112,7 @@ const Button = React.forwardRef<
         className={className}
         id={id}
         type={type}
+        {...rest}
       >
         <div
           css={css`
