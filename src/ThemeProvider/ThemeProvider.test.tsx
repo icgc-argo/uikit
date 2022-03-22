@@ -31,20 +31,24 @@ describe('Theme Provider', () => {
           <Template>Text</Template>
         </ThemesWrapper>,
       );
+
       expect(screen.getByText('Text')).toHaveStyleRule('color', defaultThemeGrey);
     });
 
     test('UIKit component styles correctly wrapped with UIKit theme override', async () => {
-      const { getByText } = render(
+      render(
         <ThemesWrapper uikitTheme={{ colors: { grey: overwriteGrey } }}>
           <Template>Text</Template>
         </ThemesWrapper>,
       );
-      expect(getByText('Text')).toHaveStyleRule('color', overwriteGrey);
+
+      expect(screen.getByText('Text')).toHaveStyleRule('color', overwriteGrey);
     });
   });
 
-  describe('Emotion v11 styled and css apis should be supported', () => {
+  describe('Emotion apis should be supported', () => {
+    /* 
+    // Use `css` api consistently
     test('styled() on a component', async () => {
       const GreenBackgroundTemplate = styled(Template)`
         color: black;
@@ -57,41 +61,36 @@ describe('Theme Provider', () => {
         </ThemesWrapper>,
       );
 
+      const comp = screen.getByText('Text');
       // color gets overwritten
-      expect(screen.getByText('Text')).toHaveStyleRule('color', 'black');
-      expect(screen.getByText('Text')).toHaveStyleRule('background-color', 'green');
+      expect(comp).toHaveStyleRule('color', 'black');
+      expect(comp).toHaveStyleRule('background-color', 'green');
       // should not have default original color
-      expect(screen.getByText('Text')).not.toHaveStyleRule('color', defaultThemeGrey);
-    });
+      expect(comp).not.toHaveStyleRule('color', defaultThemeGrey);
+    }); */
 
-    test('css prop on component', async () => {
+    test('css prop on component with override', async () => {
       render(
-        <ThemesWrapper projectTheme={{ colors: { blue: 'blue' } }}>
+        <ThemesWrapper projectTheme={{ colors: { blue: `blue` } }}>
           <Template
-            css={(theme) =>
-              css`
-                color: black;
-                background-color: green;
-                border-color: ${theme.colors.blue};
-              `
-            }
+            css={(theme) => css`
+              color: ${theme.colors.blue};
+              background-color: green;
+              border-color: black;
+            `}
           >
             Text
           </Template>
         </ThemesWrapper>,
       );
 
-      expect(screen.getByText('Text')).toHaveStyleRule('background-color', 'green');
-      expect(screen.getByText('Text')).toHaveStyleRule('color', 'black');
-      expect(screen.getByText('Text')).toHaveStyleRule('border-color', 'blue');
-      // should not have default original color
-      expect(screen.getByText('Text')).not.toHaveStyleRule('color', defaultThemeGrey);
-    });
-  });
+      const comp = screen.getByText('Text');
 
-  test('UIKit component throws error if not wrapped in UIKitThemeProvider', async () => {
-    // it should console.error but we don't need to see it
-    jest.spyOn(console, 'error').mockImplementation(null);
-    expect(() => render(<Template>Text</Template>)).toThrow();
+      expect(comp).toHaveStyleRule('background-color', 'green');
+      expect(comp).toHaveStyleRule('color', 'blue');
+      expect(comp).toHaveStyleRule('border-color', 'black');
+      // should not have default original color
+      expect(comp).not.toHaveStyleRule('color', defaultThemeGrey);
+    });
   });
 });
