@@ -17,15 +17,15 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { FC, useContext } from 'react';
-import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming';
-import { ThemeContext } from '@emotion/core';
-
+import { FC } from 'react';
+import { ThemeProvider as EmotionThemeProvider } from '@emotion/react';
 import defaultTheme from '../theme/defaultTheme';
 
 const ThemeProvider: FC<{ theme: typeof defaultTheme }> = ({ theme = defaultTheme, children }) => {
+  // we know themes will merge with same versions of emotion, so namespace uikit
+  const namespacedTheme = { uikit: theme };
   return (
-    <EmotionThemeProvider theme={theme}>
+    <EmotionThemeProvider theme={namespacedTheme}>
       <link
         href={'https://fonts.googleapis.com/css?family=Work+Sans:300,400,600&display=swap'}
         rel="stylesheet"
@@ -36,4 +36,4 @@ const ThemeProvider: FC<{ theme: typeof defaultTheme }> = ({ theme = defaultThem
 };
 
 export default ThemeProvider;
-export const useTheme = () => useContext(ThemeContext as React.Context<typeof defaultTheme>);
+export { useTheme } from '@emotion/react';
