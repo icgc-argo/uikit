@@ -17,14 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import styled from '@emotion/styled';
 import css from '@emotion/css';
-import defaultTheme from '@/theme/defaultTheme';
-import {
-  CreateStyledComponentExtrinsic,
-  CreateStyledComponentIntrinsic,
-} from '@emotion/styled/types';
+import styled from '@emotion/styled';
 
 type StyleCalculationInput = {
   selected?: boolean;

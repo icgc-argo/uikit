@@ -17,13 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
+import useTheme from '@/utils/useTheme';
+import isPropValid from '@emotion/is-prop-valid';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import isPropValid from '@emotion/is-prop-valid';
-
 import color from 'color';
-import useTheme from '@/utils/useTheme';
+import React from 'react';
 import DnaLoader from '../DnaLoader';
 
 const ContainerBackground = styled<'div', { loading?: boolean; theme?: any }>('div', {

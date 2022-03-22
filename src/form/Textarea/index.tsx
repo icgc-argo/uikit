@@ -17,14 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { useState, useContext, TextareaHTMLAttributes, useCallback, useEffect } from 'react';
-import css from '@emotion/css';
-import clsx from 'clsx';
 import { useTheme } from '@/ThemeProvider';
 import Typography from '@/Typography';
-
+import css from '@emotion/css';
+import clsx from 'clsx';
+import React, { TextareaHTMLAttributes, useCallback, useContext, useEffect, useState } from 'react';
 import FormControlContext from '../FormControl/FormControlContext';
-import { CountLabels, CountPositions, TextareaProps } from './types';
+import { CountLabels, TextareaProps } from './types';
 
 const LINE_JUMP_PLACEHOLDER = ' øö ';
 

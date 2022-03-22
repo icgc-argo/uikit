@@ -17,6 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import useTheme from '@/utils/useTheme';
 import css from '@emotion/css';
 import styled from '@emotion/styled';
 import ceil from 'lodash/ceil';
@@ -24,7 +25,6 @@ import floor from 'lodash/floor';
 import range from 'lodash/range';
 import PropTypes from 'prop-types';
 import React from 'react';
-import useTheme from '@/utils/useTheme';
 import Select from '../../form/Select';
 import { POPUP_POSITIONS } from '../../form/Select/styledComponents';
 import Icon from '../../Icon';

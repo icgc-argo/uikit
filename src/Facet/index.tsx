@@ -17,12 +17,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import OptionsList, { FilterOption } from '@/OptionsList';
+import { css } from '@emotion/react';
 import React from 'react';
 import { MenuItem } from '../SubMenu';
-
-import { css } from '@emotion/react';
-
-import OptionsList, { FilterOption } from '@/OptionsList';
 
 const Facet = ({
   subMenuName,

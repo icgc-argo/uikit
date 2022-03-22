@@ -17,12 +17,11 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
+import { useTheme } from '@/ThemeProvider';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-
+import React from 'react';
 import { Col, Row, ScreenClassRender } from 'react-grid-system';
-import { useTheme } from '@/ThemeProvider';
 
 const InstructionBox = ({
   steps,

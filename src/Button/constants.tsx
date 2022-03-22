@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { ButtonVariant, ButtonSize } from './types';
+import { ButtonSize, ButtonVariant } from './types';
 
 export const BUTTON_VARIANTS: {
   PRIMARY: ButtonVariant;

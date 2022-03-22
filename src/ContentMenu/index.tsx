@@ -17,15 +17,11 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
 import Typography from '@/Typography';
-import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-<div
-  css={css`
-    color: blue;
-  `}
-/>;
+import styled from '@emotion/styled';
+import React from 'react';
+
 const Cont = styled('div')<{ theme?: any; color: string }>`
   margin-top: 14px;
   border-left: 2px solid ${({ color, theme }) => (color ? color : theme.uikit.colors.secondary)};

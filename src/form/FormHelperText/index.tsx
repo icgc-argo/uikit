@@ -17,12 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import FormControlContext from '../FormControl/FormControlContext';
+import css from '@emotion/css';
 import styled from '@emotion/styled';
 import clsx from 'clsx';
-import css from '@emotion/css';
 import pick from 'lodash/pick';
+import React from 'react';
+import FormControlContext from '../FormControl/FormControlContext';
 
 const FormHelperText = React.forwardRef<
   any,

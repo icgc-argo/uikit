@@ -17,6 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import useElementDimension from '@/utils/Hook/useElementDimension';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import * as React from 'react';
@@ -26,7 +27,6 @@ import selectTable, {
   SelectInputComponentProps,
   SelectTableAdditionalProps,
 } from 'react-table/lib/hoc/selectTable';
-import useElementDimension from '@/utils/Hook/useElementDimension';
 import DnaLoader from '../DnaLoader';
 import Checkbox from '../form/Checkbox';
 import DefaultNoDataComponent from './NoDataComponent';

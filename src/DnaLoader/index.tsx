@@ -17,12 +17,11 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from '@emotion/styled-base';
 import css from '@emotion/css';
-
+import styled from '@emotion/styled-base';
 import range from 'lodash/range';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const LoaderContainer = styled<'div', { dotsCount: number; theme?: any }>('div')`
   padding-top: 15px;

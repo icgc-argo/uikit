@@ -17,13 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import { css } from '@emotion/react';
-import Icon from '../Icon';
 import useTheme from '@/utils/useTheme';
-import { BUTTON_VARIANTS, BUTTON_SIZES } from './constants';
+import { css } from '@emotion/react';
+import React from 'react';
+import Icon from '../Icon';
+import { BUTTON_SIZES, BUTTON_VARIANTS } from './constants';
 import StyledButton from './styled';
-import { ButtonVariant, ButtonSize } from './types';
+import { ButtonSize, ButtonVariant } from './types';
 
 const Button = React.forwardRef<
   HTMLButtonElement,
