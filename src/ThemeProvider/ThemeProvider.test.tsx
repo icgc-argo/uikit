@@ -13,7 +13,6 @@ function getStyle(query, property) {
 
 const ThemesWrapper = ({ projectTheme = {}, uikitTheme = undefined, children }) => (
   <ProjectThemeProvider theme={projectTheme}>
-    {/*@ts-ignore*/}
     <UIKitThemeProvider theme={uikitTheme}>{children}</UIKitThemeProvider>
   </ProjectThemeProvider>
 );
