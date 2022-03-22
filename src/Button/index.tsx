@@ -18,8 +18,7 @@
  */
 
 import React from 'react';
-import { css } from '@emotion/core';
-
+import { css } from '@emotion/react';
 import Icon from '../Icon';
 import useTheme from '../utils/useTheme';
 import { BUTTON_VARIANTS, BUTTON_SIZES } from './constants';
@@ -114,6 +113,11 @@ const Button = React.forwardRef<
         type={type}
         {...rest}
       >
+        <div
+          css={css`
+            color: blue;
+          `}
+        />
         <div
           css={css`
             display: ${shouldShowLoading ? 'block' : 'none'};

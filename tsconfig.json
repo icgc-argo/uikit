@@ -19,7 +19,8 @@
     "outDir": "./dist",
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
-    "declaration": true
+    "declaration": true,
+    "types": ["@emotion/react/types/css-prop"]
   },
   "exclude": [
     "node_modules",

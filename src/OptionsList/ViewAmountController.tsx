@@ -18,7 +18,7 @@
  */
 
 import HyperLink from 'src/Link';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import Icon from 'src/Icon';
 import { useTheme } from 'src/ThemeProvider';
 

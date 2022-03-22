@@ -20,8 +20,12 @@
 import React from 'react';
 import Typography from 'src/Typography';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
-
+import { css } from '@emotion/react';
+<div
+  css={css`
+    color: blue;
+  `}
+/>;
 const Cont = styled('div')<{ theme?: any; color: string }>`
   margin-top: 14px;
   border-left: 2px solid ${({ color, theme }) => (color ? color : theme.uikit.colors.secondary)};

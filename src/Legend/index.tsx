@@ -18,8 +18,7 @@
  */
 
 import React, { useState, createRef } from 'react';
-import { css, SerializedStyles } from '@emotion/core';
-
+import { css, SerializedStyles } from '@emotion/react';
 import Button from '../Button';
 import { MenuItem } from '../DropdownButton';
 import Icon from '../Icon';

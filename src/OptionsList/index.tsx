@@ -19,7 +19,7 @@
 
 import React from 'react';
 import Checkbox from 'src/form/Checkbox';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import Tag from 'src/Tag';
 import Typography from 'src/Typography';
 import useTheme from 'src/utils/useTheme';
