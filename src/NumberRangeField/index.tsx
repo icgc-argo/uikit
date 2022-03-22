@@ -20,10 +20,10 @@
 import { css } from '@emotion/react';
 import { FieldDescriptionLabel, FieldInputWrapper } from './common';
 import React from 'react';
-import Input from 'src/form/Input';
-import Button from 'src/Button';
-import { useTheme } from 'src/ThemeProvider';
-import Typography from 'src/Typography';
+import Input from '@/form/Input';
+import Button from '@/Button';
+import { useTheme } from '@/ThemeProvider';
+import Typography from '@/Typography';
 
 const NumberRangeField: React.ComponentType<{
   min: string;

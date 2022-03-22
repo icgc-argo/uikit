@@ -20,10 +20,10 @@
 import { css } from '@emotion/react';
 import PropTypes from 'prop-types';
 import React from 'react';
-import logo from '../assets/logo_white.svg';
+import logo from '@/assets/logo_white.svg';
 import Typography from '../Typography';
-import useTheme from '../utils/useTheme';
-import useClickAway from '../utils/useClickAway';
+import useTheme from '@/utils/useTheme';
+import useClickAway from '@/utils/useClickAway';
 
 import {
   AppBarContainer,

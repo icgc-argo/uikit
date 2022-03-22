@@ -22,7 +22,7 @@ import { MenuItem } from '../SubMenu';
 
 import { css } from '@emotion/react';
 
-import OptionsList, { FilterOption } from 'src/OptionsList';
+import OptionsList, { FilterOption } from '@/OptionsList';
 
 const Facet = ({
   subMenuName,

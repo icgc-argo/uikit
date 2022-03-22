@@ -17,10 +17,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import HyperLink from 'src/Link';
+import HyperLink from '@/Link';
 import { css } from '@emotion/react';
-import Icon from 'src/Icon';
-import { useTheme } from 'src/ThemeProvider';
+import Icon from '@/Icon';
+import { useTheme } from '@/ThemeProvider';
 
 const ViewAmountController: React.ComponentType<{
   /** Function to handle what happens when the selectAll/DeselectAll button is clicked */

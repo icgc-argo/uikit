@@ -23,7 +23,7 @@ import styled from '@emotion/styled';
 import isPropValid from '@emotion/is-prop-valid';
 
 import color from 'color';
-import useTheme from '../utils/useTheme';
+import useTheme from '@/utils/useTheme';
 import DnaLoader from '../DnaLoader';
 
 const ContainerBackground = styled<'div', { loading?: boolean; theme?: any }>('div', {

@@ -18,7 +18,7 @@
  */
 
 import styled from '@emotion/styled';
-import defaultTheme from 'src/theme/defaultTheme';
+import defaultTheme from '@/theme/defaultTheme';
 
 const PipeContainer = styled('div')<{ theme?: any }>`
   display: flex;

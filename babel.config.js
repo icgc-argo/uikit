@@ -18,9 +18,12 @@ module.exports = function (api) {
     [
       'module-resolver',
       {
-        root: ['./dist'],
+        root: ['.'],
         alias: {
-          src: './dist',
+          '@/*': './src/*',
+          '@/theme': './src/theme',
+          '@/assets': './src/assets',
+          '@/utils': './src/utils',
         },
       },
     ],

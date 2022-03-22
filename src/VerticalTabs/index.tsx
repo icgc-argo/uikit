@@ -17,21 +17,15 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, {
-  HtmlHTMLAttributes,
-  HTMLAttributes,
-  ReactNode,
-  ReactElement,
-  MouseEventHandler,
-} from 'react';
+import FocusWrapper from '@/FocusWrapper';
+import Tag from '@/Tag';
+import Tooltip from '@/Tooltip';
+import Typography from '@/Typography';
+import useElementDimension from '@/utils/Hook/useElementDimension';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import React, { HTMLAttributes, HtmlHTMLAttributes, MouseEventHandler, ReactNode } from 'react';
 import { useTheme } from '../ThemeProvider';
-import Typography from 'src/Typography';
-import Tag from 'src/Tag';
-import FocusWrapper from 'src/FocusWrapper';
-import useElementDimension from 'src/utils/Hook/useElementDimension';
-import Tooltip from 'src/Tooltip';
 
 type TabStyleType = {
   background: string;

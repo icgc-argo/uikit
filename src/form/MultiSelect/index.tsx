@@ -17,28 +17,26 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { InputHTMLAttributes, useEffect } from 'react';
+import css from '@emotion/css';
 import styled from '@emotion/styled';
-
-import isEmpty from 'lodash/isEmpty';
-import isEqual from 'lodash/isEqual';
-import toLower from 'lodash/toLower';
-import uniq from 'lodash/uniq';
-import initial from 'lodash/initial';
-import without from 'lodash/without';
-import includes from 'lodash/includes';
-import map from 'lodash/map';
+import clsx from 'clsx';
 import compact from 'lodash/compact';
 import find from 'lodash/find';
-
+import includes from 'lodash/includes';
+import initial from 'lodash/initial';
+import isEmpty from 'lodash/isEmpty';
+import isEqual from 'lodash/isEqual';
+import map from 'lodash/map';
+import toLower from 'lodash/toLower';
+import uniq from 'lodash/uniq';
+import without from 'lodash/without';
+import React, { InputHTMLAttributes, useEffect } from 'react';
+import useTheme from '@/utils/useTheme';
 import Icon from '../../Icon';
-import Option from './Option';
-import css from '@emotion/css';
 import Tag from '../../Tag';
-import useTheme from '../../utils/useTheme';
-import clsx from 'clsx';
+import { InputSize, INPUT_SIZES, INPUT_STATES, StyledInputWrapper } from '../common';
 import FormControlContext from '../FormControl/FormControlContext';
-import { StyledInputWrapper, INPUT_SIZES, INPUT_STATES, InputSize } from '../common';
+import Option from './Option';
 
 const Container = styled<'div', { focus: boolean }>('div')`
   position: relative;

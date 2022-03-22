@@ -18,7 +18,7 @@
  */
 
 import React from 'react';
-import Typography from 'src/Typography';
+import Typography from '@/Typography';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 <div

@@ -19,7 +19,7 @@
 
 import styled from '@emotion/styled';
 import React from 'react';
-import defaultTheme from 'src/theme/defaultTheme';
+import defaultTheme from '@/theme/defaultTheme';
 
 const TitleBorder = styled<
   'hr',

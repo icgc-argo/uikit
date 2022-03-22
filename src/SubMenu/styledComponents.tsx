@@ -20,7 +20,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import css from '@emotion/css';
-import defaultTheme from 'src/theme/defaultTheme';
+import defaultTheme from '@/theme/defaultTheme';
 import {
   CreateStyledComponentExtrinsic,
   CreateStyledComponentIntrinsic,

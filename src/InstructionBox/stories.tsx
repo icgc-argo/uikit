@@ -20,7 +20,7 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import InstructionBox from '.';
-import Typography from 'src/Typography';
+import Typography from '@/Typography';
 
 storiesOf(`${__dirname}`, module).add('Basic', () => (
   <div style={{ background: 'white' }}>

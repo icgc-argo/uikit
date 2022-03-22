@@ -17,22 +17,21 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { useState, useEffect, useContext } from 'react';
+import Tooltip from '@/Tooltip';
 import { css } from '@emotion/react';
-
-import { StyledInputWrapper, INPUT_SIZES, InputSize, StyledInputWrapperProps } from '../common';
+import React, { useContext, useEffect, useState } from 'react';
+import useTheme from '@/utils/useTheme';
 import Typography from '../../Typography';
+import { InputSize, INPUT_SIZES, StyledInputWrapper, StyledInputWrapperProps } from '../common';
+import FormControlContext from '../FormControl/FormControlContext';
 import {
   DropdownIcon,
-  OptionsList,
-  Option,
   HiddenSelect,
-  POPUP_POSITIONS,
+  Option,
+  OptionsList,
   PopupPosition,
+  POPUP_POSITIONS,
 } from './styledComponents';
-import useTheme from '../../utils/useTheme';
-import Tooltip from 'src/Tooltip';
-import FormControlContext from '../FormControl/FormControlContext';
 
 type OptionsType = {
   content: any;

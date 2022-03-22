@@ -2,11 +2,11 @@ import React from 'react';
 import { css } from '@emotion/react';
 
 import { ThemeColorNames } from '../theme/types';
-import Typography from 'src/Typography';
-import Icon from 'src/Icon';
-import { UikitIconNames } from 'src/Icon/icons';
-import { useTheme } from 'src/ThemeProvider';
-import Link from 'src/Link';
+import Typography from '@/Typography';
+import Icon from '@/Icon';
+import { UikitIconNames } from '@/Icon/icons';
+import { useTheme } from '@/ThemeProvider';
+import Link from '@/Link';
 
 type AlertLevel = 'error' | 'warning' | 'info';
 

@@ -17,13 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import * as React from 'react';
+import Button from '@/Button';
+import { useTheme } from '@/ThemeProvider';
+import Typography from '@/Typography';
+import useClickAway from '@/utils/useClickAway';
 import { css, SerializedStyles } from '@emotion/react';
-
-import Typography from 'src/Typography';
-import Button from 'src/Button';
-import useClickAway from 'src/utils/useClickAway';
-import { useTheme } from 'src/ThemeProvider';
+import * as React from 'react';
 
 export const MenuItem: typeof Typography = (props) => {
   const theme = useTheme();

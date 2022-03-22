@@ -19,7 +19,7 @@
 
 import React from 'react';
 import css from '@emotion/css';
-import ContentPlaceholder from 'src/ContentPlaceholder';
+import ContentPlaceholder from '@/ContentPlaceholder';
 
 export default function ContentPlaceholderComponent(props) {
   return (

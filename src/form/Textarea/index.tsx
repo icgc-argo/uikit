@@ -20,8 +20,8 @@
 import React, { useState, useContext, TextareaHTMLAttributes, useCallback, useEffect } from 'react';
 import css from '@emotion/css';
 import clsx from 'clsx';
-import { useTheme } from 'src/ThemeProvider';
-import Typography from 'src/Typography';
+import { useTheme } from '@/ThemeProvider';
+import Typography from '@/Typography';
 
 import FormControlContext from '../FormControl/FormControlContext';
 import { CountLabels, CountPositions, TextareaProps } from './types';

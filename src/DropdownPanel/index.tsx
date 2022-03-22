@@ -17,18 +17,17 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { RefObject, useEffect, useRef, useState } from 'react';
+import Button from '@/Button';
+import { Input } from '@/form';
+import Icon from '@/Icon';
+import { UikitIconNames } from '@/Icon/icons';
+import Tag from '@/Tag';
+import Tooltip from '@/Tooltip';
+import useTheme from '@/utils/useTheme';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import debounce from 'lodash/debounce';
-
-import Button from 'src/Button';
-import Icon from 'src/Icon';
-import { UikitIconNames } from 'src/Icon/icons';
-import { Input } from 'src/form';
-import Tag from 'src/Tag';
-import Tooltip from 'src/Tooltip';
-import useTheme from 'src/utils/useTheme';
+import React, { RefObject, useEffect, useRef, useState } from 'react';
 
 const FILL_COLOUR = '#0774D3';
 

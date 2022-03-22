@@ -22,7 +22,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { Col, Row, ScreenClassRender } from 'react-grid-system';
-import { useTheme } from 'src/ThemeProvider';
+import { useTheme } from '@/ThemeProvider';
 
 const InstructionBox = ({
   steps,

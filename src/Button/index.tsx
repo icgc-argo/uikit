@@ -20,7 +20,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import Icon from '../Icon';
-import useTheme from '../utils/useTheme';
+import useTheme from '@/utils/useTheme';
 import { BUTTON_VARIANTS, BUTTON_SIZES } from './constants';
 import StyledButton from './styled';
 import { ButtonVariant, ButtonSize } from './types';

@@ -26,9 +26,9 @@ import Typography from '../Typography';
 import Button from '../Button';
 import Icon from '../Icon';
 import FocusWrapper from '../FocusWrapper';
-import { UikitIconNames } from 'src/Icon/icons';
-import { BUTTON_SIZES, BUTTON_VARIANTS } from 'src/Button/constants';
-import { ButtonSize } from 'src/Button/types';
+import { UikitIconNames } from '@/Icon/icons';
+import { BUTTON_SIZES, BUTTON_VARIANTS } from '@/Button/constants';
+import { ButtonSize } from '@/Button/types';
 
 const DefaultFooter = ({
   actionVisible,

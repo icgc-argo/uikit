@@ -22,8 +22,8 @@ import React from 'react';
 import DropdownButton from '.';
 import { select, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import { createKnobs as createButtonKnobs } from 'src/Button/stories';
-import Button from 'src/Button';
+import { createKnobs as createButtonKnobs } from '@/Button/stories';
+import Button from '@/Button';
 
 storiesOf(`${__dirname}`, module).add('Basic', () => {
   const knobs = createButtonKnobs();
