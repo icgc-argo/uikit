@@ -65,25 +65,25 @@ export const StyledInputWrapper = styled<'div', StyledInputWrapperProps>('div')`
   }};
 
   color: ${({ theme, disabled, error }) =>
-    theme.input.textColors[disabled ? 'disabled' : 'default']};
+    theme.uikit.input.textColors[disabled ? 'disabled' : 'default']};
   background-color: ${({ theme, disabled }) =>
-    theme.input.colors[disabled ? 'disabled' : 'default']};
-  font-size: ${({ theme, size }) => theme.input.fontSizes[size]};
+    theme.uikit.input.colors[disabled ? 'disabled' : 'default']};
+  font-size: ${({ theme, size }) => theme.uikit.input.fontSizes[size]};
   border-color: ${({ theme, inputState, error, disabled }) => {
     const state = error ? 'error' : disabled ? 'disabled' : inputState;
-    return theme.input.borderColors[state];
+    return theme.uikit.input.borderColors[state];
   }};
 
   &:hover {
     border-color: ${({ theme, disabled, error }) => {
-      if (error) return theme.colors.error;
-      else if (disabled) return theme.colors.grey_disabled;
-      else return theme.colors.secondary_1;
+      if (error) return theme.uikit.colors.error;
+      else if (disabled) return theme.uikit.colors.grey_disabled;
+      else return theme.uikit.colors.secondary_1;
     }};
   }
 
   ${({ inputState, theme }) =>
-    inputState === 'focus' && `box-shadow: 0px 0px 4px 0px ${theme.colors.secondary_1};`}
+    inputState === 'focus' && `box-shadow: 0px 0px 4px 0px ${theme.uikit.colors.secondary_1};`}
   ${({ getOverrideCss, ...rest }) => (getOverrideCss ? getOverrideCss(rest) : '')}
 `;
 
@@ -102,18 +102,22 @@ export const RadioCheckboxWrapper = styled<'div', RadioCheckboxWrapperProps>('di
   border-width: 1px;
   border-style: solid;
   border-color: ${({ error, theme }) =>
-    error ? theme.radiocheckbox.borderColors.error : theme.radiocheckbox.borderColors.default};
+    error
+      ? theme.uikit.radiocheckbox.borderColors.error
+      : theme.uikit.radiocheckbox.borderColors.default};
 
   background-color: ${({ theme, disabled, checked }) =>
-    theme.radiocheckbox.backgroundColors[disabled ? 'disabled' : checked ? 'checked' : 'default']};
+    theme.uikit.radiocheckbox.backgroundColors[
+      disabled ? 'disabled' : checked ? 'checked' : 'default'
+    ]};
 
   color: ${({ theme, disabled }) =>
-    theme.radiocheckbox.textColors[disabled ? 'disabled' : 'default']};
+    theme.uikit.radiocheckbox.textColors[disabled ? 'disabled' : 'default']};
 
   padding: 4px 6px 4px 8px;
 
   label {
-    ${({ theme }) => css(theme.typography.paragraph)};
+    ${({ theme }) => css(theme.uikit.typography.paragraph)};
     line-height: normal;
     position: relative;
     cursor: pointer;
@@ -124,9 +128,10 @@ export const RadioCheckboxWrapper = styled<'div', RadioCheckboxWrapperProps>('di
     cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   }
 
-  ${({ focused, theme }) => focused && `box-shadow: 0px 0px 4px 0px ${theme.colors.secondary_1};`}
+  ${({ focused, theme }) =>
+    focused && `box-shadow: 0px 0px 4px 0px ${theme.uikit.colors.secondary_1};`}
   &:focus {
-    box-shadow: 0px 0px 4px 0px ${({ theme }) => theme.colors.secondary_1};
+    box-shadow: 0px 0px 4px 0px ${({ theme }) => theme.uikit.colors.secondary_1};
   }
 `;
 

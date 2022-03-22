@@ -32,13 +32,13 @@ export const POPUP_POSITIONS = {
 
 export const DropdownIcon = withProps(({ disabled, theme }) => ({
   name: 'chevron_down',
-  fill: disabled ? theme.colors.grey_disabled : 'black',
+  fill: disabled ? theme.uikit.colors.grey_disabled : 'black',
 }))(styled<typeof Icon, { disabled?: boolean; theme?: any }>(Icon)`
   height: 100%;
   width: 10px;
   padding: 10px;
   border-left: solid 1px
-    ${({ theme, disabled }) => (disabled ? theme.colors.grey_2 : theme.colors.grey_1)};
+    ${({ theme, disabled }) => (disabled ? theme.uikit.colors.grey_2 : theme.uikit.colors.grey_1)};
 `);
 
 export const OptionsList = styled('ol')<{ theme?: any }>`
@@ -46,8 +46,8 @@ export const OptionsList = styled('ol')<{ theme?: any }>`
   margin: 0;
   padding: 0;
   display: block;
-  border: solid 1px ${({ theme }) => theme.colors.grey_1};
-  background: ${({ theme }) => theme.colors.white};
+  border: solid 1px ${({ theme }) => theme.uikit.colors.grey_1};
+  background: ${({ theme }) => theme.uikit.colors.white};
   min-width: 100%;
   box-sizing: border-box;
   position: absolute;
@@ -67,7 +67,7 @@ const OptionContainer = styled('li')<{ theme?: any }>`
   min: 100%;
   padding: 5px 10px;
   &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary_4};
+    background-color: ${({ theme }) => theme.uikit.colors.secondary_4};
     cursor: pointer;
   }
 `;

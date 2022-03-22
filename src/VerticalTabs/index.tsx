@@ -61,14 +61,14 @@ const Triangle = styled('div')<{
   }
   &:after {
     border-color: transparent transparent transparent
-      ${({ theme, tabStyle }) => (tabStyle ? tabStyle.background : theme.colors.secondary_4)};
+      ${({ theme, tabStyle }) => (tabStyle ? tabStyle.background : theme.uikit.colors.secondary_4)};
     border-width: ${({ contHeight }) => contHeight / 2}px;
   }
   &:before {
     top: -1px;
     left: 1px;
     border-color: transparent transparent transparent
-      ${({ theme, tabStyle }) => (tabStyle ? tabStyle.border : theme.colors.secondary_2)};
+      ${({ theme, tabStyle }) => (tabStyle ? tabStyle.border : theme.uikit.colors.secondary_2)};
     border-width: ${({ contHeight }) => (contHeight + 2) / 2}px; /* +2 for border around button */
   }
 `;
@@ -104,7 +104,7 @@ const BaseItemContainer = styled(FocusWrapper)<{
       : `
           &:hover {
             cursor: pointer;
-            background: ${theme.colors.grey_3};
+            background: ${theme.uikit.colors.grey_3};
           }
         `}
 `;
@@ -112,19 +112,19 @@ const ActiveItemContainer = styled(BaseItemContainer)<{
   tabStyle: TabStyleType;
   theme?: any;
 }>`
-  border-color: ${({ theme }) => theme.colors.secondary};
-  border-top-color: ${({ theme }) => theme.colors.secondary_2};
-  border-bottom-color: ${({ theme }) => theme.colors.secondary_2};
-  border-right: solid 1px ${({ theme }) => theme.colors.secondary_2};
+  border-color: ${({ theme }) => theme.uikit.colors.secondary};
+  border-top-color: ${({ theme }) => theme.uikit.colors.secondary_2};
+  border-bottom-color: ${({ theme }) => theme.uikit.colors.secondary_2};
+  border-right: solid 1px ${({ theme }) => theme.uikit.colors.secondary_2};
   background: ${({ theme, tabStyle }) =>
-    tabStyle ? tabStyle.background : theme.colors.secondary_4};
-  color: ${({ theme }) => theme.colors.secondary_dark};
+    tabStyle ? tabStyle.background : theme.uikit.colors.secondary_4};
+  color: ${({ theme }) => theme.uikit.colors.secondary_dark};
 
   &:hover {
-    background: ${({ theme }) => theme.colors.secondary_4};
+    background: ${({ theme }) => theme.uikit.colors.secondary_4};
 
     .activeTriangle::after {
-      border-left-color: ${({ theme }) => theme.colors.secondary_4};
+      border-left-color: ${({ theme }) => theme.uikit.colors.secondary_4};
     }
   }
 `;
@@ -205,7 +205,7 @@ const VerticalTabs: React.ComponentType<HtmlHTMLAttributes<HTMLDivElement>> = ({
   return (
     <div
       css={css`
-        border-right: solid 1px ${theme.colors.grey_2};
+        border-right: solid 1px ${theme.uikit.colors.grey_2};
       `}
       {...rest}
     >

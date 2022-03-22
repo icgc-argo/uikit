@@ -48,13 +48,13 @@ const InstructionBox = ({
   const stepStyle = (size: 'xs' | 'sm' | 'md' | 'lg' | 'xl') =>
     !['xs', 'sm', 'md'].includes(size)
       ? css`
-          border-bottom: solid 1px ${!!footer ? theme.colors.grey_2 : 'none'};
+          border-bottom: solid 1px ${!!footer ? theme.uikit.colors.grey_2 : 'none'};
           &:not(:first-of-type) {
-            border-left: solid 1px ${theme.colors.grey_2};
+            border-left: solid 1px ${theme.uikit.colors.grey_2};
           }
         `
       : css`
-          border-bottom: solid 1px ${theme.colors.grey_2};
+          border-bottom: solid 1px ${theme.uikit.colors.grey_2};
         `;
   return (
     <ScreenClassRender

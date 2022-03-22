@@ -52,12 +52,12 @@ const FormHelperText = React.forwardRef<
   } = props;
 
   const StyledComponent = styled<any, any>(Component)<{ theme?: any }>`
-    ${({ theme }) => css(theme.typography.caption)};
+    ${({ theme }) => css(theme.uikit.typography.caption)};
     margin: 3px 7px;
     line-height: 14px;
 
     &.error {
-      color: ${({ theme }) => theme.colors.error};
+      color: ${({ theme }) => theme.uikit.colors.error};
     }
 
     &.disabled {

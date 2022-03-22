@@ -27,11 +27,11 @@ import useTheme from '../utils/useTheme';
 const TabsContext = React.createContext({ onChange: null, value: null });
 
 export const Button = styled<'button', { as?: keyof HTMLElementTagNameMap; theme?: any }>('button')`
-  ${({ theme }) => css(theme.typography.label)};
-  color: ${({ theme }) => theme.colors.grey};
+  ${({ theme }) => css(theme.uikit.typography.label)};
+  color: ${({ theme }) => theme.uikit.colors.grey};
   display: flex;
   border: 0;
-  border-bottom: 2px solid ${({ theme }) => theme.colors.grey_2};
+  border-bottom: 2px solid ${({ theme }) => theme.uikit.colors.grey_2};
   background-color: transparent;
   padding: 14px 51px;
   cursor: pointer;
@@ -39,12 +39,12 @@ export const Button = styled<'button', { as?: keyof HTMLElementTagNameMap; theme
   outline: none;
 
   &:hover {
-    border-bottom-color: ${({ theme }) => theme.colors.grey_1};
+    border-bottom-color: ${({ theme }) => theme.uikit.colors.grey_1};
   }
 
   &.active {
-    border-bottom-color: ${({ theme }) => theme.colors.secondary};
-    color: ${({ theme }) => theme.colors.secondary};
+    border-bottom-color: ${({ theme }) => theme.uikit.colors.secondary};
+    color: ${({ theme }) => theme.uikit.colors.secondary};
   }
 `;
 
@@ -68,7 +68,7 @@ export const Tab: React.ComponentType<
         cursor: auto;
         flex-grow: 1;
         &:hover {
-          border-bottom-color: ${theme.colors.grey_2};
+          border-bottom-color: ${theme.uikit.colors.grey_2};
         }
       `}
       {...otherProps}

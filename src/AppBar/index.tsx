@@ -59,7 +59,7 @@ export const UserBadge = ({
         display: flex;
         justify-content: center;
         align-items: center;
-        background: ${theme.colors.accent1_3};
+        background: ${theme.uikit.colors.accent1_3};
       `}
     >
       {(firstName[0] || '').toUpperCase()}

@@ -428,7 +428,7 @@ export const ListFilter = ({
                     css={css`
                       cursor: pointer;
                       &:hover {
-                        background: ${theme.colors.grey_3};
+                        background: ${theme.uikit.colors.grey_3};
                       }
                     `}
                   >

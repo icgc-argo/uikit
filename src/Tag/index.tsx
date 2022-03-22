@@ -50,7 +50,7 @@ const blackTextVariants: Array<keyof typeof TAG_VARIANTS> = [
 ];
 
 const Tag = styled<'div', { variant?: keyof typeof TAG_VARIANTS; theme?: any }>('div')`
-  ${({ theme }) => css(theme.typography.paragraph as any)};
+  ${({ theme }) => css(theme.uikit.typography.paragraph as any)};
   box-sizing: border-box;
   display: inline-block;
   min-height: 14px;
@@ -61,15 +61,15 @@ const Tag = styled<'div', { variant?: keyof typeof TAG_VARIANTS; theme?: any }>(
   border-radius: 8px;
   background-color: ${({ theme, variant = 'INFO' }) =>
     ({
-      [TAG_VARIANTS.DISABLED]: theme.colors.primary_2,
-      [TAG_VARIANTS.EDITABLE]: theme.colors.accent2,
-      [TAG_VARIANTS.ERROR]: theme.colors.error,
-      [TAG_VARIANTS.WARNING]: theme.colors.warning,
-      [TAG_VARIANTS.INFO]: theme.colors.secondary,
-      [TAG_VARIANTS.NEUTRAL]: theme.colors.grey_2,
-      [TAG_VARIANTS.SUCCESS]: theme.colors.accent1_dimmed,
-      [TAG_VARIANTS.UPDATE]: theme.colors.accent3_dark,
-      [TAG_VARIANTS.HIGHLIGHT]: theme.colors.secondary_2,
+      [TAG_VARIANTS.DISABLED]: theme.uikit.colors.primary_2,
+      [TAG_VARIANTS.EDITABLE]: theme.uikit.colors.accent2,
+      [TAG_VARIANTS.ERROR]: theme.uikit.colors.error,
+      [TAG_VARIANTS.WARNING]: theme.uikit.colors.warning,
+      [TAG_VARIANTS.INFO]: theme.uikit.colors.secondary,
+      [TAG_VARIANTS.NEUTRAL]: theme.uikit.colors.grey_2,
+      [TAG_VARIANTS.SUCCESS]: theme.uikit.colors.accent1_dimmed,
+      [TAG_VARIANTS.UPDATE]: theme.uikit.colors.accent3_dark,
+      [TAG_VARIANTS.HIGHLIGHT]: theme.uikit.colors.secondary_2,
     }[variant])};
   color: ${({ variant = 'INFO' }) =>
     blackTextVariants.includes(variant as keyof typeof TAG_VARIANTS) ? 'black' : 'white'};

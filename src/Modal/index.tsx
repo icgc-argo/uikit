@@ -68,7 +68,7 @@ export const ModalContainer = styled('div')<{ theme?: any }>`
   position: relative;
   border-radius: 20px;
   box-shadow: 0 8px 21px 0 rgba(0, 0, 0, 0.1), 0 6px 12px 0 rgba(0, 0, 0, 0.1);
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.uikit.colors.white};
   max-width: 776px;
   width: auto;
   padding: 24px;
@@ -91,7 +91,7 @@ const ModalBody = styled('div')`
 `;
 const ModalFooter = styled('div')<{ theme?: any }>`
   padding: 8px 0px;
-  border-top: solid 1px ${({ theme }) => theme.colors.grey_2};
+  border-top: solid 1px ${({ theme }) => theme.uikit.colors.grey_2};
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -106,7 +106,7 @@ const ModalOverlay = styled('div')<{ theme?: any }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${({ theme }) => Color(theme.colors.primary_dark).alpha(0.8).hsl().string()};
+  background: ${({ theme }) => Color(theme.uikit.colors.primary_dark).alpha(0.8).hsl().string()};
 `;
 
 /**

@@ -18,7 +18,7 @@
  */
 
 import { FC } from 'react';
-import { ThemeProvider as EmotionThemeProvider } from '@emotion/react';
+import { Theme, ThemeProvider as EmotionThemeProvider } from '@emotion/react';
 import defaultTheme from '../theme/defaultTheme';
 
 const ThemeProvider: FC<{ theme: typeof defaultTheme }> = ({ theme = defaultTheme, children }) => {

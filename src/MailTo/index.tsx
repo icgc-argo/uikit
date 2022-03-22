@@ -22,7 +22,7 @@ import Typography from '../Typography';
 import { styled } from '..';
 
 const Mail = styled('a')<{ theme?: any }>`
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.uikit.colors.black};
   text-decoration: none;
 `;
 

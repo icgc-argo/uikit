@@ -169,7 +169,7 @@ const MenuItemComponent = React.forwardRef<
                 size="sm"
                 aria-label="search-for-facets"
                 css={css`
-                  ${css(theme.typography.data as any)}
+                  ${css(theme.uikit.typography.data as any)}
                   flex: 1;
                 `}
                 preset="search"
@@ -189,9 +189,9 @@ const MenuItemComponent = React.forwardRef<
 );
 
 const SubMenuComponent = styled('div')<{ theme?: any }>`
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.uikit.colors.white};
   & > ${MenuItemContainer} {
-    border-bottom: solid 1px ${({ theme }) => theme.colors.grey_2};
+    border-bottom: solid 1px ${({ theme }) => theme.uikit.colors.grey_2};
   }
 `;
 

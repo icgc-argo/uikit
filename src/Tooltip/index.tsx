@@ -45,7 +45,7 @@ const Tooltip: React.ComponentType<TooltipProps> = ({
     top: `
       right: 50%;
       top: 100%;
-      border-top-color: ${theme.colors.primary_1};
+      border-top-color: ${theme.uikit.colors.primary_1};
       border-right: 5px solid transparent;
       border-left: 5px solid transparent;
       margin-right: -5px;
@@ -53,7 +53,7 @@ const Tooltip: React.ComponentType<TooltipProps> = ({
     left: `
       bottom: 50%;
       left: 100%;
-      border-left-color: ${theme.colors.primary_1};
+      border-left-color: ${theme.uikit.colors.primary_1};
       border-bottom: 5px solid transparent;
       border-top: 5px solid transparent;
       margin-bottom: -5px;
@@ -61,7 +61,7 @@ const Tooltip: React.ComponentType<TooltipProps> = ({
     bottom: `
       left: 50%;
       bottom: 100%;
-      border-bottom-color: ${theme.colors.primary_1};
+      border-bottom-color: ${theme.uikit.colors.primary_1};
       border-left: 5px solid transparent;
       border-right: 5px solid transparent;
       margin-left: -5px;
@@ -69,7 +69,7 @@ const Tooltip: React.ComponentType<TooltipProps> = ({
     right: `
       top: 50%;
       right: 100%;
-      border-right-color: ${theme.colors.primary_1};
+      border-right-color: ${theme.uikit.colors.primary_1};
       border-top: 5px solid transparent;
       border-bottom: 5px solid transparent;
       margin-top: -5px;
@@ -77,8 +77,8 @@ const Tooltip: React.ComponentType<TooltipProps> = ({
   };
 
   const TooltipContainer = styled('div')`
-    ${css(theme.typography.caption as any)}
-    background: ${theme.colors.primary_1};
+    ${css(theme.uikit.typography.caption as any)}
+    background: ${theme.uikit.colors.primary_1};
     border-radius: 2px;
     padding: 2px 4px;
     color: white;

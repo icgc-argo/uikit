@@ -48,7 +48,8 @@ const Icon: React.ComponentType<
     path?: string;
   } = icons[name];
 
-  const resolveFill = (fill?: string): string | undefined => (fill && theme.colors[fill]) || fill;
+  const resolveFill = (fill?: string): string | undefined =>
+    (fill && theme.uikit.colors[fill]) || fill;
 
   const resolveOutline = (outline?: Outline) =>
     outline ? { ...outline, color: resolveFill(outline.color) } : null;

@@ -33,7 +33,7 @@ const ThemeViewer = () => {
 
 const ColorViewer = () => {
   const theme = useTheme();
-  return Object.entries(theme.colors).map(([name, value]) => (
+  return Object.entries(theme.uikit.colors).map(([name, value]) => (
     <div
       style={{
         background: value,

@@ -49,7 +49,7 @@ const InteractiveIcon = ({
   const [hovered, setHovered] = React.useState(false);
   const theme = useTheme();
 
-  const fillColour = (fill && theme.colors[fill]) || fill || theme.colors.accent2;
+  const fillColour = (fill && theme.uikit.colors[fill]) || fill || theme.uikit.colors.accent2;
   const hoverColour = hoverFill || dimColour(fillColour);
 
   return (

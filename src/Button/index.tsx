@@ -133,7 +133,7 @@ const DefaultLoader = ({ variant, theme }) => (
     name="spinner"
     width={'20px'}
     height={'20px'}
-    fill={theme.button.textColors[variant].default}
+    fill={theme.uikit.button.textColors[variant].default}
   />
 );
 

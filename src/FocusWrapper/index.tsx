@@ -28,7 +28,7 @@ const FocusWrapper = styled('button')<{ theme?: any }>`
   outline: none;
   transition: box-shadow 0.1s ease-in;
   &:focus {
-    box-shadow: 0px 0px 4px 0px ${({ theme }) => theme.colors.secondary_1};
+    box-shadow: 0px 0px 4px 0px ${({ theme }) => theme.uikit.colors.secondary_1};
   }
 `;
 

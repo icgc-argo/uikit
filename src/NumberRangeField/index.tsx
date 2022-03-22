@@ -47,7 +47,7 @@ const NumberRangeField: React.ComponentType<{
   const [maxErrorState, setMaxErrorState] = React.useState(false);
 
   const errorMsg = (
-    <Typography variant={'caption'} color={theme.colors.error}>
+    <Typography variant={'caption'} color={theme.uikit.colors.error}>
       Invalid
     </Typography>
   );
@@ -60,7 +60,7 @@ const NumberRangeField: React.ComponentType<{
   return (
     <div
       css={css`
-        ${css(theme.typography.default as any)}
+        ${css(theme.uikit.typography.default as any)}
         display: flex;
         align-items: flex-start;
         width: 100%;
@@ -83,7 +83,7 @@ const NumberRangeField: React.ComponentType<{
           getOverrideCss={() =>
             css`
               border-radius: 0px;
-              ${css(theme.typography.data as any)}
+              ${css(theme.uikit.typography.data as any)}
             `
           }
         />
@@ -108,7 +108,7 @@ const NumberRangeField: React.ComponentType<{
           getOverrideCss={() =>
             css`
               border-radius: 0px 8px 8px 0px;
-              ${css(theme.typography.data as any)}
+              ${css(theme.uikit.typography.data as any)}
             `
           }
         />

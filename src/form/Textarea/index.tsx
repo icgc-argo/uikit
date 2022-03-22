@@ -140,35 +140,35 @@ const Textarea = ({
         {...props}
         className={clsx({ error: hasError, disabled: isDisabled, focused: isFocused }, className)}
         css={css`
-          ${css(theme.typography.paragraph as any)};
+          ${css(theme.uikit.typography.paragraph as any)};
           resize: vertical;
           width: 100%;
           box-sizing: border-box;
           padding: 8px 10px;
           border: 1px solid;
           border-radius: 8px;
-          border-color: ${theme.input.borderColors.default};
-          background-color: ${theme.input.colors.default};
+          border-color: ${theme.uikit.input.borderColors.default};
+          background-color: ${theme.uikit.input.colors.default};
 
           &:hover {
-            border-color: ${theme.input.borderColors.hover} !important;
+            border-color: ${theme.uikit.input.borderColors.hover} !important;
           }
 
           &.focused,
           &:focus {
             outline: 0;
-            border-color: ${theme.input.borderColors.focus};
-            box-shadow: 0px 0px 4px 0px ${theme.colors.secondary_1};
+            border-color: ${theme.uikit.input.borderColors.focus};
+            box-shadow: 0px 0px 4px 0px ${theme.uikit.colors.secondary_1};
           }
 
           &.error {
-            border-color: ${theme.input.borderColors.error};
+            border-color: ${theme.uikit.input.borderColors.error};
           }
 
           &.disabled {
-            border-color: ${theme.input.borderColors.disabled};
-            background-color: ${theme.input.colors.disabled};
-            color: ${theme.input.colors.grey};
+            border-color: ${theme.uikit.input.borderColors.disabled};
+            background-color: ${theme.uikit.input.colors.disabled};
+            color: ${theme.uikit.input.colors.grey};
             &:hover {
               border-color: #d0d1d8 !important;
             }

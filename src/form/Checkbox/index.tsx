@@ -65,10 +65,10 @@ export const StyledCheckbox = styled<
     &:after {
       background: ${({ theme, disabled, color }) =>
         disabled
-          ? theme.radiocheckbox.radio.disabled
+          ? theme.uikit.radiocheckbox.radio.disabled
           : color
           ? color
-          : theme.radiocheckbox.radio.checked};
+          : theme.uikit.radiocheckbox.radio.checked};
     }
   }
 
@@ -84,12 +84,12 @@ export const StyledCheckbox = styled<
       content: '';
 
       position: absolute;
-      top: ${({ theme, size }) => theme.checkbox.checkTopPositions[size]};
-      left: ${({ theme, size }) => theme.checkbox.checkLeftPositions[size]};
+      top: ${({ theme, size }) => theme.uikit.checkbox.checkTopPositions[size]};
+      left: ${({ theme, size }) => theme.uikit.checkbox.checkLeftPositions[size]};
       z-index: 1;
 
-      width: ${({ theme, size }) => theme.checkbox.checkWidths[size]};
-      height: ${({ theme, size }) => theme.checkbox.checkHeights[size]};
+      width: ${({ theme, size }) => theme.uikit.checkbox.checkWidths[size]};
+      height: ${({ theme, size }) => theme.uikit.checkbox.checkHeights[size]};
 
       border: 2px solid white;
       border-top-style: none;
@@ -102,20 +102,20 @@ export const StyledCheckbox = styled<
       cursor: pointer;
       content: '';
 
-      width: ${({ theme, size }) => theme.checkbox.boxWidths[size]};
-      height: ${({ theme, size }) => theme.checkbox.boxHeights[size]};
+      width: ${({ theme, size }) => theme.uikit.checkbox.boxWidths[size]};
+      height: ${({ theme, size }) => theme.uikit.checkbox.boxHeights[size]};
 
       background-color: ${({ theme, disabled }) =>
-        theme.radiocheckbox.backgroundColors[disabled ? 'disabled' : 'default']};
+        theme.uikit.radiocheckbox.backgroundColors[disabled ? 'disabled' : 'default']};
 
       border: 1px solid
         ${({ theme, checked, disabled, color }) => {
           if (disabled) {
-            return theme.radiocheckbox.radio.disabled;
+            return theme.uikit.radiocheckbox.radio.disabled;
           } else if (checked && !disabled) {
-            return color ? color : theme.radiocheckbox.radio.checked;
+            return color ? color : theme.uikit.radiocheckbox.radio.checked;
           } else {
-            return theme.radiocheckbox.radio.default;
+            return theme.uikit.radiocheckbox.radio.default;
           }
         }};
 

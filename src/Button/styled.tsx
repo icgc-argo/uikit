@@ -30,7 +30,7 @@ const StyledButton = styled<
     theme?: any;
   }
 >(FocusWrapper)`
-  ${({ theme }) => css(theme.typography.default)};
+  ${({ theme }) => css(theme.uikit.typography.default)};
   transition: all 0.25s;
   display: flex;
   align-items: center;
@@ -43,31 +43,31 @@ const StyledButton = styled<
   text-transform: uppercase;
   border-style: solid;
 
-  color: ${({ theme, variant }) => theme.button.textColors[variant].default};
-  background-color: ${({ theme, variant }) => theme.button.colors[variant].default};
-  border-color: ${({ theme, variant }) => theme.button.borderColors[variant].default};
-  border-width: ${({ theme, size }) => theme.button.borderWeights[size]};
-  padding: ${({ theme, size }) => theme.button.paddings[size]};
+  color: ${({ theme, variant }) => theme.uikit.button.textColors[variant].default};
+  background-color: ${({ theme, variant }) => theme.uikit.button.colors[variant].default};
+  border-color: ${({ theme, variant }) => theme.uikit.button.borderColors[variant].default};
+  border-width: ${({ theme, size }) => theme.uikit.button.borderWeights[size]};
+  padding: ${({ theme, size }) => theme.uikit.button.paddings[size]};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-  font-size: ${({ theme, size }) => theme.button.fontSizes[size]};
+  font-size: ${({ theme, size }) => theme.uikit.button.fontSizes[size]};
 
   &:focus {
-    background-color: ${({ theme, variant }) => theme.button.colors[variant].focus};
+    background-color: ${({ theme, variant }) => theme.uikit.button.colors[variant].focus};
   }
 
   &:hover {
-    background-color: ${({ theme, variant }) => theme.button.colors[variant].hover};
-    border-color: ${({ theme, variant }) => theme.button.borderColors[variant].hover};
+    background-color: ${({ theme, variant }) => theme.uikit.button.colors[variant].hover};
+    border-color: ${({ theme, variant }) => theme.uikit.button.borderColors[variant].hover};
   }
 
   &:active {
-    background-color: ${({ theme, variant }) => theme.button.colors[variant].active};
-    border-color: ${({ theme, variant }) => theme.button.borderColors[variant].active};
+    background-color: ${({ theme, variant }) => theme.uikit.button.colors[variant].active};
+    border-color: ${({ theme, variant }) => theme.uikit.button.borderColors[variant].active};
   }
   &:disabled {
-    background-color: ${({ theme, variant }) => theme.button.colors[variant].disabled};
-    border-color: ${({ theme, variant }) => theme.button.borderColors[variant].disabled};
-    color: ${({ theme, variant }) => theme.button.textColors[variant].disabled};
+    background-color: ${({ theme, variant }) => theme.uikit.button.colors[variant].disabled};
+    border-color: ${({ theme, variant }) => theme.uikit.button.borderColors[variant].disabled};
+    color: ${({ theme, variant }) => theme.uikit.button.textColors[variant].disabled};
   }
 `;
 export default StyledButton;

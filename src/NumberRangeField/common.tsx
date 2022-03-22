@@ -30,9 +30,9 @@ export const FieldDescriptionLabel = styled('div')<{ theme?: any }>`
   display: flex;
   width: 15%;
   height: 30px;
-  background-color: ${({ theme }) => theme.colors.grey_2};
-  color: ${({ theme }) => theme.colors.black};
-  border: solid 1px ${({ theme }) => theme.colors.grey_1};
+  background-color: ${({ theme }) => theme.uikit.colors.grey_2};
+  color: ${({ theme }) => theme.uikit.colors.black};
+  border: solid 1px ${({ theme }) => theme.uikit.colors.grey_1};
 
   font-size: 12px;
   line-height: 1.33;

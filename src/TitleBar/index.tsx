@@ -26,9 +26,9 @@ import useTheme from '../utils/useTheme';
 
 const Nav = styled('nav')<{ theme?: any }>`
   padding: 18px 29px 18px 0;
-  ${({ theme }) => css(theme.typography.title)};
+  ${({ theme }) => css(theme.uikit.typography.title)};
   & a {
-    color: ${({ theme }) => theme.titleBar.linkColor};
+    color: ${({ theme }) => theme.uikit.titleBar.linkColor};
     text-decoration: none;
   }
 `;
@@ -43,7 +43,7 @@ const Ol = styled('ol')`
 
 const Li = styled('li')<{ theme?: any }>`
   list-style: none;
-  ${({ theme }) => css(theme.typography.title)};
+  ${({ theme }) => css(theme.uikit.typography.title)};
 `;
 
 const Sep = styled('li')`
@@ -70,7 +70,12 @@ const TitleBar: React.ComponentType<{
   const allItems = interleave(
     React.Children.toArray(children).filter((child) => React.isValidElement(child)),
     <Sep>
-      <Icon width="12px" height="12px" name="chevron_right" fill={theme.titleBar.separatorColor} />
+      <Icon
+        width="12px"
+        height="12px"
+        name="chevron_right"
+        fill={theme.uikit.titleBar.separatorColor}
+      />
     </Sep>,
   ).map((child, index) =>
     child.type === Sep ? (

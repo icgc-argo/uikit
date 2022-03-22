@@ -1,10 +1,8 @@
-/** @jsxImportSource @emotion/react */
 import { render, screen } from '@testing-library/react';
 import UIKitThemeProvider from '.';
 import { jsx, css, ThemeProvider as ProjectThemeProvider } from '@emotion/react';
 import Template from '../Template';
 import defaultTheme from '../theme/defaultTheme';
-import styled from '@emotion/styled';
 
 // debug helper
 function getStyle(query, property) {
@@ -48,7 +46,7 @@ describe('Theme Provider', () => {
 
   describe('Emotion apis should be supported', () => {
     /* 
-    // Use `css` api consistently
+    // !! NB: Use `css` api consistently
     test('styled() on a component', async () => {
       const GreenBackgroundTemplate = styled(Template)`
         color: black;
@@ -73,11 +71,13 @@ describe('Theme Provider', () => {
       render(
         <ThemesWrapper projectTheme={{ colors: { blue: `blue` } }}>
           <Template
-            css={(theme) => css`
-              color: ${theme.colors.blue};
-              background-color: green;
-              border-color: black;
-            `}
+            css={(theme) =>
+              css`
+                color: ${theme.colors.blue};
+                background-color: green;
+                border-color: black;
+              `
+            }
           >
             Text
           </Template>

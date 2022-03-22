@@ -23,13 +23,13 @@ import styled from '@emotion/styled';
 import css from '@emotion/css';
 
 const Li = styled('li')<{ theme?: any }>`
-  ${({ theme }) => css(theme.typography.data)};
+  ${({ theme }) => css(theme.uikit.typography.data)};
   list-style: none;
   padding-left: 7px;
-  font-family: ${({ theme }) => theme.typography.paragraph.fontFamily};
+  font-family: ${({ theme }) => theme.uikit.typography.paragraph.fontFamily};
   cursor: pointer;
   &:hover {
-    background-color: ${({ theme }) => theme.multiSelect.option.hoverColor};
+    background-color: ${({ theme }) => theme.uikit.multiSelect.option.hoverColor};
   }
 `;
 
