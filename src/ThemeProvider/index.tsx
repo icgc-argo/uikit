@@ -18,10 +18,10 @@
  */
 
 import { FC } from 'react';
-import { Theme, ThemeProvider as EmotionThemeProvider } from '@emotion/react';
+import { ThemeProvider as EmotionThemeProvider } from '@emotion/react';
 import defaultTheme from '../theme/defaultTheme';
 
-const ThemeProvider: FC<{ theme: typeof defaultTheme }> = ({ theme = defaultTheme, children }) => {
+const ThemeProvider: FC<{ theme?: typeof defaultTheme }> = ({ theme = defaultTheme, children }) => {
   // we know themes will merge with same versions of emotion, so namespace uikit
   const namespacedTheme = { uikit: theme };
   return (
