@@ -78,3 +78,14 @@ https://kentcdodds.com/blog/common-mistakes-with-react-testing-library
 css from @emotion/react does not return the computed class name string. The function returns an object containing the computed name and flattened styles. The returned object is understood by emotion at a low level and can be composed with other emotion based styles inside of the css prop, other css calls, or the styled API.
 
 https://emotion.sh/docs/css-prop
+
+Styled api takes precedence over css
+
+# Recommended usage
+
+Use `css` for consistency
+hard to define what takes precedence when we mix styled and css
+
+Themes will merge with same versions of emotion
+UIKit theme is namespaced
+Please use as last theme provider
