@@ -13,6 +13,7 @@
     "resolveJsonModule": false,
     "isolatedModules": false,
     "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
     "baseUrl": "./",
     "downlevelIteration": true,
     "outDir": "./dist",
