@@ -20,10 +20,10 @@
 import React, { useState, createRef } from 'react';
 import { css, SerializedStyles } from '@emotion/core';
 
-import Button from 'src/Button';
-import { MenuItem } from 'src/DropdownButton';
-import Icon from 'src/Icon';
-import { useTheme } from 'src/ThemeProvider';
+import Button from '../Button';
+import { MenuItem } from '../DropdownButton';
+import Icon from '../Icon';
+import { useTheme } from '../ThemeProvider';
 
 type LegendItemConfig<ValueType = string> = {
   value: ValueType;
@@ -78,7 +78,7 @@ const Legend = () => {
     .legend--symbol {
       margin-right: 13px;
       width: 20px;
-      color: ${theme.colors.grey};
+      color: ${theme.uikit.colors.grey};
       font-style: italic;
     }
     .legend--text,
@@ -92,7 +92,7 @@ const Legend = () => {
 
   const menuItemStyles = css`
     :hover {
-      background: ${theme.colors.white};
+      background: ${theme.uikit.colors.white};
     }
   `;
   const menuRef = createRef<HTMLDivElement>();
@@ -120,7 +120,7 @@ const Legend = () => {
     >
       <span>
         <Icon
-          name={'legend'}
+          name="legend"
           fill="accent2_dark"
           height="9px"
           css={css`
@@ -151,11 +151,11 @@ const Legend = () => {
             z-index: 1000;
             border-radius: 4px;
             box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.08);
-            border: solid 1px ${theme.colors.grey_1};
-            background-color: ${theme.colors.white};
+            border: solid 1px ${theme.uikit.colors.grey_1};
+            background-color: ${theme.uikit.colors.white};
             text-transform: none;
             text-align: left;
-            color: ${theme.colors.black};
+            color: ${theme.uikit.colors.black};
             ${menuStyles}
           `}
         >

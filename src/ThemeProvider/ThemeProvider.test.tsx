@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import UIKitThemeProvider from '.';
-import { jsx, css, ThemeProvider as ProjectThemeProvider } from '@emotion/react';
+import { css, ThemeProvider as ProjectThemeProvider } from '@emotion/react';
 import Template from '../Template';
 import defaultTheme from '../theme/defaultTheme';
 
