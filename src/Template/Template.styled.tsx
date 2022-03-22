@@ -1,6 +1,12 @@
-import styled from '@emotion/styled';
+/** @jsxImportSource @emotion/react */
+import { jsx, css } from '@emotion/react';
 import Template from './Template.component';
 
-export default styled(Template)`
-  //  color: ${({ theme }: { theme: any }) => theme.colors.grey};
-`;
+export default (props) => (
+  <Template
+    css={(theme) => css`
+      color: ${theme.uikit.colors.grey};
+    `}
+    {...props}
+  />
+);
