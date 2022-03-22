@@ -39,7 +39,7 @@ const createTypographyComponentMapFromTheme = memoize((themeObj) =>
       ...acc,
       [key]: styled(defaultTags[key] || 'span')(
         {},
-        ({ theme }: { theme?: any }) => theme.typography[key],
+        ({ theme }: { theme?: any }) => theme.uikit.typography[key],
       ),
     }),
     {},
@@ -56,7 +56,7 @@ const createDomComponent = memoize(
 const createStyledDomComponent = memoize(
   (Component) => styled<'div', { bold?: boolean; color?: string; theme?: any }>(Component)`
     font-weight: ${({ bold }) => (bold ? `bold` : `normal`)};
-    color: ${({ theme, color }) => (color ? theme.colors[color] || color : 'inherit')};
+    color: ${({ theme, color }) => (color ? theme.uikit.colors[color] || color : 'inherit')};
   `,
 );
 
@@ -64,7 +64,7 @@ export type TypographyVariant = keyof typeof defaultTheme.typography;
 const Typography: React.ComponentType<
   {
     /**
-     * a typography as defined in theme.typography
+     * a typography as defined in theme.uikit.typography
      */
     variant?: TypographyVariant;
     /**

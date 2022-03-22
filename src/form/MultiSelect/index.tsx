@@ -57,7 +57,7 @@ const OptionsWrapper = styled<'div', { focused: boolean; theme?: any }>('div')`
   z-index: 1;
   background-color: white;
   border: solid 1px;
-  border-color: ${({ theme }) => theme.multiSelect.listBorderColor};
+  border-color: ${({ theme }) => theme.uikit.multiSelect.listBorderColor};
   border-radius: 0 0 4px 4px;
 
   box-shadow: ${(props) =>
@@ -86,7 +86,7 @@ const Gap = styled('div')<{ theme?: any }>`
   height: 5px;
   transform: translateY(-5px);
   width: 100%;
-  border-color: ${({ theme }) => theme.multiSelect.listBorderColor};
+  border-color: ${({ theme }) => theme.uikit.multiSelect.listBorderColor};
   z-index: 2;
   background-color: white;
 `;
@@ -102,7 +102,7 @@ const InputBox = styled(StyledInputWrapper)`
 `;
 
 const Input = styled<'input', { autoComplete: string; single?: boolean; theme?: any }>('input')`
-  ${({ theme }) => css(theme.typography.default)};
+  ${({ theme }) => css(theme.uikit.typography.default)};
   background-color: transparent;
   border: none;
   display: block;
@@ -115,13 +115,13 @@ const Input = styled<'input', { autoComplete: string; single?: boolean; theme?: 
 `;
 
 const PlaceHolder = styled('span')<{ theme?: any }>`
-  ${({ theme }) => css(theme.typography.data)};
-  color: ${({ theme }) => theme.multiSelect.placeHolderColor};
+  ${({ theme }) => css(theme.uikit.typography.data)};
+  color: ${({ theme }) => theme.uikit.multiSelect.placeHolderColor};
   position: absolute;
   pointer-events: none;
   padding: 8px 10px;
   &.disabled {
-    color: ${({ theme }) => theme.multiSelect.disabledTextColor};
+    color: ${({ theme }) => theme.uikit.multiSelect.disabledTextColor};
   }
 `;
 
@@ -134,8 +134,8 @@ const SelectedItem: any = styled(Tag)<{ theme?: any }>`
   margin-bottom: 2px;
 
   &.disabled {
-    color: ${({ theme }) => theme.colors.grey};
-    background-color: ${({ theme }) => theme.colors.grey_2};
+    color: ${({ theme }) => theme.uikit.colors.grey};
+    background-color: ${({ theme }) => theme.uikit.colors.grey_2};
   }
 `;
 
@@ -145,8 +145,8 @@ const SectionTitle = styled('li')<{ theme?: any }>`
   height: 27px;
   line-height: 27px;
   padding-left: 7px;
-  font-family: ${({ theme }) => theme.typography.paragraph.fontFamily};
-  color: ${({ theme }) => theme.colors.grey};
+  font-family: ${({ theme }) => theme.uikit.typography.paragraph.fontFamily};
+  color: ${({ theme }) => theme.uikit.colors.grey};
 `;
 
 function Highlight({ string, searchText }) {
@@ -172,7 +172,7 @@ function Highlight({ string, searchText }) {
         {before}
         <span
           css={css`
-            background-color: ${theme.colors.warning_3};
+            background-color: ${theme.uikit.colors.warning_3};
           `}
         >
           {match}
@@ -456,7 +456,7 @@ const MultiSelect = ({
                   width="8px"
                   height="8px"
                   name="times"
-                  fill={isDisabled ? theme.colors.grey : theme.colors.white}
+                  fill={isDisabled ? theme.uikit.colors.grey : theme.uikit.colors.white}
                 />
               </SelectedItem>
             ))}
@@ -488,7 +488,7 @@ const MultiSelect = ({
               <Option
                 data-value={searchString}
                 css={css`
-                  border-top: ${isEmpty(items) ? 'none' : '1px solid ' + theme.colors.grey_2};
+                  border-top: ${isEmpty(items) ? 'none' : '1px solid ' + theme.uikit.colors.grey_2};
                 `}
                 onMouseDown={handleNewItemClick}
               >
@@ -496,7 +496,7 @@ const MultiSelect = ({
                 <span
                   css={css`
                     font-size: 11px;
-                    color: ${theme.colors.grey};
+                    color: ${theme.uikit.colors.grey};
                     margin-left: 0.5em;
                   `}
                 >

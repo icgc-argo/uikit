@@ -54,14 +54,16 @@ const PercentBar: React.ComponentType<{
     >
       <div
         css={css`
-          background-color: ${theme.colors.grey_2};
+          background-color: ${theme.uikit.colors.grey_2};
           border-radius: 8px;
           width: ${lengthpx};
         `}
       >
         <div
           css={css`
-            background-color: ${theme.colors[fillColor] || fillColor || theme.colors.secondary};
+            background-color: ${theme.uikit.colors[fillColor] ||
+            fillColor ||
+            theme.uikit.colors.secondary};
             width: ${fill_amount};
             height: 6px;
             border-radius: 8px;

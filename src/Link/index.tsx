@@ -34,18 +34,19 @@ export type HyperLinkProps = {
 } & AnchorHTMLAttributes<HTMLAnchorElement>;
 
 const StyledLink = styled<'a', HyperLinkProps>('a')`
-  ${({ theme }) => css(theme.typography.default)}
+  ${({ theme }) => css(theme.uikit.typography.default)}
   cursor: pointer;
-  color: ${({ theme, invert }) => (invert ? theme.colors.white : theme.colors.accent2_dark)};
+  color: ${({ theme, invert }) =>
+    invert ? theme.uikit.colors.white : theme.uikit.colors.accent2_dark};
   text-decoration: ${({ underline }) => (underline ? 'underline' : 'none')};
   font-weight: ${({ bold }) => (bold ? 'bold' : 'inherit')};
   text-transform: ${({ uppercase }) => (uppercase ? 'uppercase' : 'default')};
 
   :hover {
-    color: ${({ theme }) => theme.colors.accent2_1};
+    color: ${({ theme }) => theme.uikit.colors.accent2_1};
   }
   :active {
-    color: ${({ theme }) => theme.colors.accent2};
+    color: ${({ theme }) => theme.uikit.colors.accent2};
   }
 `;
 

@@ -51,14 +51,14 @@ export const MenuItemContainer = styled<
   box-sizing: border-box;
 
   &:hover {
-    color: ${({ theme }) => theme.colors.accent1};
-    background-color: ${({ theme }) => theme.appBar.menuItem.background.hover};
+    color: ${({ theme }) => theme.uikit.colors.accent1};
+    background-color: ${({ theme }) => theme.uikit.appBar.menuItem.background.hover};
   }
 
-  color: ${({ active, theme }) => (active ? theme.colors.accent1 : theme.colors.white)};
-  border-left: solid 0.5px ${({ theme }) => theme.colors.grey};
-  border-right: solid 0.5px ${({ theme }) => theme.colors.grey};
-  border-bottom: solid 3px ${({ active, theme }) => (active ? theme.colors.accent1 : 'none')};
+  color: ${({ active, theme }) => (active ? theme.uikit.colors.accent1 : theme.uikit.colors.white)};
+  border-left: solid 0.5px ${({ theme }) => theme.uikit.colors.grey};
+  border-right: solid 0.5px ${({ theme }) => theme.uikit.colors.grey};
+  border-bottom: solid 3px ${({ active, theme }) => (active ? theme.uikit.colors.accent1 : 'none')};
 `;
 export const MenuGroupDisplay = styled('div')`
   display: flex;
@@ -73,8 +73,8 @@ export const AppBarContainer = styled('nav')<{ theme?: any }>`
   justify-content: space-between;
   width: 100%;
   min-height: 58px;
-  background-color: ${({ theme }) => theme.colors.primary};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.grey};
+  background-color: ${({ theme }) => theme.uikit.colors.primary};
+  border-bottom: 1px solid ${({ theme }) => theme.uikit.colors.grey};
 `;
 export const SectionDisplay = styled('div')`
   display: flex;

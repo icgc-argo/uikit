@@ -48,7 +48,7 @@ export const StyledTable = styled<typeof ReactTable, StyledTableProps>(ReactTabl
 ${reactTableDefaultStyle}
 
   &.ReactTable .-loading.-active .-loading-inner {
-    font-family: ${({ theme }) => theme.typography.data.fontFamily};
+    font-family: ${({ theme }) => theme.uikit.typography.data.fontFamily};
   }
 
   &.ReactTable {
@@ -72,11 +72,11 @@ ${reactTableDefaultStyle}
       ${({ theme, withOutsideBorder }) =>
         withOutsideBorder
           ? css`
-              border: solid 1px ${theme.colors.grey_2};
+              border: solid 1px ${theme.uikit.colors.grey_2};
             `
           : css`
-              border-bottom: solid 1px ${theme.colors.grey_2};
-              border-top: solid 1px ${theme.colors.grey_2};
+              border-bottom: solid 1px ${theme.uikit.colors.grey_2};
+              border-top: solid 1px ${theme.uikit.colors.grey_2};
             `}
 
       & .rt-thead .rt-tr .rt-th:first-of-type,
@@ -89,7 +89,7 @@ ${reactTableDefaultStyle}
             justify-content: center;
             align-items: center;
             border-bottom: 0px !important;
-            border-right: solid 1px ${theme.colors.grey_2};
+            border-right: solid 1px ${theme.uikit.colors.grey_2};
             margin: 0px;
           `}
       }
@@ -100,7 +100,7 @@ ${reactTableDefaultStyle}
     ${({ theme, withRowBorder }) =>
       withRowBorder
         ? css`
-            border-bottom: solid 1px ${theme.colors.grey_2};
+            border-bottom: solid 1px ${theme.uikit.colors.grey_2};
           `
         : css`
             border-bottom: none;
@@ -108,31 +108,31 @@ ${reactTableDefaultStyle}
   }
 
   &.ReactTable .rt-thead.-header .rt-tr .rt-th {
-    ${({ theme }) => css(theme.typography.data)};
+    ${({ theme }) => css(theme.uikit.typography.data)};
     min-height: 28px;
     line-height: 1.33;
     font-weight: bold;
     align-items: center;
-    background: ${({ theme }) => theme.colors.white};
+    background: ${({ theme }) => theme.uikit.colors.white};
     &:not(:last-of-type) {
-      border-right: solid 1px ${({ theme }) => theme.colors.grey_2};
+      border-right: solid 1px ${({ theme }) => theme.uikit.colors.grey_2};
     }
   }
 
   &.ReactTable .rt-thead.-headerGroups {
-    ${({ theme }) => css(theme.typography.data)};
-    background: ${({ theme }) => theme.colors.grey_2};
+    ${({ theme }) => css(theme.uikit.typography.data)};
+    background: ${({ theme }) => theme.uikit.colors.grey_2};
     font-weight: 600;
     font-size: 13px;
     line-height: 1.27;
   }
 
   &.ReactTable .rt-tbody .rt-td {
-    ${({ theme }) => css(theme.typography.data)}
+    ${({ theme }) => css(theme.uikit.typography.data)}
     min-height: 28px;
     line-height: 1.33;
     padding: 2px 8px;
-    border-right: solid 1px ${({ theme }) => theme.colors.grey_2};
+    border-right: solid 1px ${({ theme }) => theme.uikit.colors.grey_2};
     display: flex;
     align-items: ${({ cellAlignment }) =>
       cellAlignment === "top"
@@ -144,25 +144,25 @@ ${reactTableDefaultStyle}
 
   &.ReactTable .rt-tr {
     &.selected {
-      background-color: ${({ theme }) => theme.colors.secondary_4} !important;
+      background-color: ${({ theme }) => theme.uikit.colors.secondary_4} !important;
     }
   }
   /* overrides stripped rows style */
   &.ReactTable.-striped .rt-tr:not(.-odd) {
-    background: ${({ theme }) => theme.colors.grey_4};
+    background: ${({ theme }) => theme.uikit.colors.grey_4};
   }
   &.ReactTable.-striped .rt-tr.-odd {
-    background: ${({ theme }) => theme.colors.white};
+    background: ${({ theme }) => theme.uikit.colors.white};
   }
 
   /* overrides hover highlight rows style */
   &.ReactTable.-highlight .rt-tbody .rt-tr:not(.-padRow):hover {
-    background: ${({ theme }) => theme.colors.grey_3};
+    background: ${({ theme }) => theme.uikit.colors.grey_3};
   }
 
   &.ReactTable .rt-thead.-header {
     box-shadow: none;
-    border-bottom: solid 1px ${({ theme }) => theme.colors.grey_2};
+    border-bottom: solid 1px ${({ theme }) => theme.uikit.colors.grey_2};
 
     & .rt-tr .rt-th {
       padding: ${({ sortable }) => (sortable ? "2px 6px" : "2px 8px")};

@@ -29,7 +29,7 @@ const TitleBorder = styled<
   width: ${({ width }) => (width ? width : 'auto')};
   height: 3px;
   border-radius: 1.5px;
-  background-color: ${({ theme, color }) => theme.colors[color]};
+  background-color: ${({ theme, color }) => theme.uikit.colors[color]};
   margin: 0;
 `;
 

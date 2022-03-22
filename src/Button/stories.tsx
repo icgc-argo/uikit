@@ -83,7 +83,7 @@ storiesOf(`${__dirname}`, module)
           name="spinner"
           width={'12px'}
           height={'12px'}
-          fill={theme.button.textColors[variant].default}
+          fill={theme.uikit.button.textColors[variant].default}
           css={css`
             margin-right: 4px;
           `}

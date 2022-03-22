@@ -12,7 +12,8 @@
     "moduleResolution": "node",
     "resolveJsonModule": false,
     "isolatedModules": false,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
     "baseUrl": "./",
     "downlevelIteration": true,
     "outDir": "./dist",
@@ -31,5 +32,5 @@
     "**/*.stories.*",
     "**/stories.*"
   ],
-  "include": [".storybook/storybook-env.d.ts", "./src/**/*"]
+  "include": [".storybook/storybook-env.d.ts", "./src/**/*", "emotion.d.ts"]
 }

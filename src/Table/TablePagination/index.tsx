@@ -82,7 +82,7 @@ const DoubleArrow: React.ComponentType<{ transform?: string }> = ({ transform })
 );
 
 const A = styled('a')<{ theme?: any }>`
-  ${({ theme }) => css(theme.typography.data)};
+  ${({ theme }) => css(theme.uikit.typography.data)};
   background-color: #fff;
   border-radius: 50%;
   cursor: pointer;
@@ -94,7 +94,7 @@ const A = styled('a')<{ theme?: any }>`
   margin-right: 2px;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.primary_4};
+    background-color: ${({ theme }) => theme.uikit.colors.primary_4};
   }
 `;
 
@@ -201,7 +201,7 @@ function TablePagination(props) {
                   key={p}
                   onClick={() => props.onPageChange(p)}
                   css={css`
-                    background-color: ${page === p ? theme.colors.secondary_4 : ''};
+                    background-color: ${page === p ? theme.uikit.colors.secondary_4 : ''};
                   `}
                 >
                   {p + 1}

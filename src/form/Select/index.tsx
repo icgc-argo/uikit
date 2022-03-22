@@ -160,7 +160,7 @@ const Select: React.ComponentType<{
         variant="paragraph"
         color={
           isDisabled
-            ? theme.input.textColors.disabled
+            ? theme.uikit.input.textColors.disabled
             : isSomethingSelected || isExpanded
             ? 'black'
             : 'grey'

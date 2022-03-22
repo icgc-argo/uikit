@@ -35,7 +35,7 @@ export const MenuItem: typeof Typography = (props) => {
       css={css`
         padding: 5px;
         &:hover {
-          background: ${theme.colors.secondary_4};
+          background: ${theme.uikit.colors.secondary_4};
         }
       `}
     />
@@ -117,11 +117,11 @@ function DropdownButton<ValueType = string>({
             z-index: 1000;
             border-radius: 4px;
             box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.08);
-            border: solid 1px ${theme.colors.grey_1};
-            background-color: ${theme.colors.white};
+            border: solid 1px ${theme.uikit.colors.grey_1};
+            background-color: ${theme.uikit.colors.white};
             text-transform: none;
             text-align: left;
-            color: ${theme.colors.black};
+            color: ${theme.uikit.colors.black};
             ${menuStyles}
           `}
         >

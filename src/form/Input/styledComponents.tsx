@@ -22,8 +22,8 @@ import { css } from '@emotion/core';
 export { StyledInputWrapper } from '../common';
 
 export const StyledInput = styled<'input', { inputSize: string; theme?: any }>('input')`
-  ${({ theme }) => css(theme.typography.default)};
-  padding: ${({ theme, inputSize }) => theme.input.paddings[inputSize]};
+  ${({ theme }) => css(theme.uikit.typography.default)};
+  padding: ${({ theme, inputSize }) => theme.uikit.input.paddings[inputSize]};
   border: none;
   outline: none;
   flex: 1;

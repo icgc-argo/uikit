@@ -57,7 +57,7 @@ const ViewAmountController: React.ComponentType<{
           justify-content: space-between;
           padding: 6px 12px;
           border-bottom: 1px solid;
-          border-color: ${theme.colors.grey_2};
+          border-color: ${theme.uikit.colors.grey_2};
         `}
         onClick={(e) => e.stopPropagation()}
       >
@@ -99,7 +99,7 @@ const ViewAmountController: React.ComponentType<{
                 width: var(--iconSize);
                 height: var(--iconSize);
               `}
-              fill={theme.colors.accent2}
+              fill={theme.uikit.colors.accent2}
             />
             {toggleText}
           </HyperLink>

@@ -83,7 +83,7 @@ const SystemAlert: React.ComponentType<AlertProps> = ({ alert, onClose }) => {
   return (
     <div
       css={css`
-        background-color: ${theme.colors[ALERT_VARIANTS[alert.level].color]};
+        background-color: ${theme.uikit.colors[ALERT_VARIANTS[alert.level].color]};
         padding: 12px;
         display: flex;
         justify-content: space-between;
@@ -111,7 +111,7 @@ const SystemAlert: React.ComponentType<AlertProps> = ({ alert, onClose }) => {
             css={css`
               font-size: 16px;
               font-weight: 500;
-              color: ${theme.colors[ALERT_VARIANTS[alert.level].fill]};
+              color: ${theme.uikit.colors[ALERT_VARIANTS[alert.level].fill]};
               margin: 0;
             `}
           >
@@ -121,11 +121,11 @@ const SystemAlert: React.ComponentType<AlertProps> = ({ alert, onClose }) => {
             <Typography
               css={css`
                 margin: 0;
-                color: ${theme.colors[ALERT_VARIANTS[alert.level].fill]};
+                color: ${theme.uikit.colors[ALERT_VARIANTS[alert.level].fill]};
                 font-weight: 300;
               `}
             >
-              {parseMessage(alert.message, theme.colors[ALERT_VARIANTS[alert.level].fill])}
+              {parseMessage(alert.message, theme.uikit.colors[ALERT_VARIANTS[alert.level].fill])}
             </Typography>
           )}
         </div>
@@ -137,7 +137,7 @@ const SystemAlert: React.ComponentType<AlertProps> = ({ alert, onClose }) => {
             name="times"
             width="15px"
             height="15px"
-            fill={theme.colors[ALERT_VARIANTS[alert.level].fill]}
+            fill={theme.uikit.colors[ALERT_VARIANTS[alert.level].fill]}
             onClick={onClose}
             title="Close"
             css={css`

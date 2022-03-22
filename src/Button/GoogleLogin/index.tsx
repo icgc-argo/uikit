@@ -52,7 +52,7 @@ const GoogleLogin: React.ComponentType<{
       >
         <div
           css={css`
-            ${css(theme.typography.paragraph as any)}
+            ${css(theme.uikit.typography.paragraph as any)}
             display: flex;
             align-items: center;
             text-transform: none;

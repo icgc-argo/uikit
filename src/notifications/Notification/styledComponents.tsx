@@ -25,23 +25,24 @@ import FocusWrapper from '../../FocusWrapper';
 
 const getBackgroundColor = ({ theme, variant }: { theme?: any; variant: NotificationVariant }) =>
   ({
-    [NOTIFICATION_VARIANTS.INFO]: theme.colors.secondary_4,
-    [NOTIFICATION_VARIANTS.SUCCESS]: theme.colors.success_4,
-    [NOTIFICATION_VARIANTS.WARNING]: theme.colors.warning_4,
-    [NOTIFICATION_VARIANTS.ERROR]: theme.colors.error_4,
+    [NOTIFICATION_VARIANTS.INFO]: theme.uikit.colors.secondary_4,
+    [NOTIFICATION_VARIANTS.SUCCESS]: theme.uikit.colors.success_4,
+    [NOTIFICATION_VARIANTS.WARNING]: theme.uikit.colors.warning_4,
+    [NOTIFICATION_VARIANTS.ERROR]: theme.uikit.colors.error_4,
   }[variant]);
 export const getBorderColor = ({ theme, variant }: { theme?: any; variant: NotificationVariant }) =>
   ({
-    [NOTIFICATION_VARIANTS.INFO]: theme.colors.secondary_2,
-    [NOTIFICATION_VARIANTS.SUCCESS]: theme.colors.success_2,
-    [NOTIFICATION_VARIANTS.WARNING]: theme.colors.warning_2,
-    [NOTIFICATION_VARIANTS.ERROR]: theme.colors.error_2,
+    [NOTIFICATION_VARIANTS.INFO]: theme.uikit.colors.secondary_2,
+    [NOTIFICATION_VARIANTS.SUCCESS]: theme.uikit.colors.success_2,
+    [NOTIFICATION_VARIANTS.WARNING]: theme.uikit.colors.warning_2,
+    [NOTIFICATION_VARIANTS.ERROR]: theme.uikit.colors.error_2,
   }[variant]);
 
 export const NotificationContainer = styled('div')`
   display: flex;
   border-radius: 8px;
-  box-shadow: ${({ theme, noShadow }: any) => !noShadow && `0 2px 4px 0 ${theme.colors.grey_2}`};
+  box-shadow: ${({ theme, noShadow }: any) =>
+    !noShadow && `0 2px 4px 0 ${theme.uikit.colors.grey_2}`};
   border: solid 1px ${getBorderColor};
   background-color: ${getBackgroundColor};
 `;

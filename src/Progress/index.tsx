@@ -54,7 +54,7 @@ const Triangle = (props) => css`
 const ProgressMarker = styled<'div', { state: ProgressStatus; theme?: any }>('div')`
   width: 100%;
   height: 14px;
-  background-color: ${({ theme, state }) => theme.progress.color[state]};
+  background-color: ${({ theme, state }) => theme.uikit.progress.color[state]};
   transition: background-color 500ms linear;
   display: flex;
   align-items: center;
@@ -100,14 +100,14 @@ const ProgressSection = styled('div')`
 /* Separator colors - based on state*/
 const Separator = styled<'div', { state: ProgressStatus; theme?: any }>('div')`
   &:before {
-    background-color: ${({ theme, state }) => theme.progress.color[state]};
+    background-color: ${({ theme, state }) => theme.uikit.progress.color[state]};
     border-left-color: #fff;
     transition: background-color 500ms linear;
   }
 
   &:after {
     background-color: transparent;
-    border-left-color: ${({ theme, state }) => theme.progress.color[state]};
+    border-left-color: ${({ theme, state }) => theme.uikit.progress.color[state]};
   }
 `;
 
@@ -116,9 +116,10 @@ const Text = styled('div')<{
   state: ProgressStatus;
   theme?: any;
 }>`
-  ${({ theme }) => theme.typography.caption};
+  ${({ theme }) => theme.uikit.typography.caption};
   font-weight: ${({ completed }) => (completed ? 600 : 'normal')};
-  color: ${({ theme, state }) => (state === 'locked' ? theme.colors.grey : theme.colors.black)};
+  color: ${({ theme, state }) =>
+    state === 'locked' ? theme.uikit.colors.grey : theme.uikit.colors.black};
 `;
 
 const getIcon = (state: ProgressStatus) =>

@@ -23,16 +23,16 @@ import styled from '@emotion/styled';
 import clsx from 'clsx';
 
 const Ul = styled('ul')<{ theme?: any }>`
-  ${({ theme }) => css(theme.typography.paragraph)};
+  ${({ theme }) => css(theme.uikit.typography.paragraph)};
   position: absolute;
-  background-color: ${({ theme }) => theme.colors.grey_4};
+  background-color: ${({ theme }) => theme.uikit.colors.grey_4};
   left: 0;
   bottom: 0;
   margin: 0;
   transform: translateY(100%);
   width: 100%;
   box-sizing: border-box;
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.uikit.colors.primary};
   font-size: 15px;
   text-align: left;
   padding: 0;
@@ -48,7 +48,7 @@ const Li = styled('li')<{ theme?: any }>`
   padding: 12px 16px;
   position: relative;
   border-bottom: 1px solid;
-  border-color: ${({ theme }) => theme.colors.grey_2};
+  border-color: ${({ theme }) => theme.uikit.colors.grey_2};
   cursor: pointer;
 
   a {
@@ -57,14 +57,14 @@ const Li = styled('li')<{ theme?: any }>`
   }
 
   &.active {
-    color: ${({ theme }) => theme.colors.secondary};
-    border-left: 3px solid ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.uikit.colors.secondary};
+    border-left: 3px solid ${({ theme }) => theme.uikit.colors.secondary};
     padding-left: 13px;
-    background-color: ${({ theme }) => theme.colors.secondary_4};
+    background-color: ${({ theme }) => theme.uikit.colors.secondary_4};
   }
 
   &:hover {
-    color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.uikit.colors.secondary};
   }
 
   &:not(:last-child):after {
@@ -73,7 +73,7 @@ const Li = styled('li')<{ theme?: any }>`
     height: 2px;
     left: 0px;
     bottom: -1px;
-    box-shadow: inset 0 -1px 0 0 ${({ theme }) => theme.colors.grey_2};
+    box-shadow: inset 0 -1px 0 0 ${({ theme }) => theme.uikit.colors.grey_2};
     display: block;
     position: absolute;
   }

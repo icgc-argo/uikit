@@ -70,7 +70,7 @@ export const StyledRadio = styled<'div', StyledRadioProps>('div')`
       height: 10px;
 
       background: ${({ theme, disabled }) =>
-        theme.radiocheckbox.radio[disabled ? 'disabled' : 'checked']};
+        theme.uikit.radiocheckbox.radio[disabled ? 'disabled' : 'checked']};
 
       transform: scale(0, 0);
       transition: transform 0.2s ease-in;
@@ -86,7 +86,7 @@ export const StyledRadio = styled<'div', StyledRadioProps>('div')`
 
       border: 1px solid
         ${({ theme, disabled, checked }) =>
-          theme.radiocheckbox.radio[disabled && !checked ? 'disabled' : 'default']};
+          theme.uikit.radiocheckbox.radio[disabled && !checked ? 'disabled' : 'default']};
     }
   }
 `;

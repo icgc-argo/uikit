@@ -24,7 +24,7 @@ import { css } from '@emotion/core';
 
 const Cont = styled('div')<{ theme?: any; color: string }>`
   margin-top: 14px;
-  border-left: 2px solid ${({ color, theme }) => (color ? color : theme.colors.secondary)};
+  border-left: 2px solid ${({ color, theme }) => (color ? color : theme.uikit.colors.secondary)};
 `;
 
 const Anchor = styled<'a', { disabled: boolean; active: boolean; theme?: any }>('a')`

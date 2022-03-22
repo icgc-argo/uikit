@@ -41,7 +41,7 @@ const InputLabel = React.forwardRef<
   const { className: classNameProp, children, ...other } = props;
 
   const Label = styled('label')<{ theme?: any }>`
-    ${({ theme }) => css(theme.typography.label)};
+    ${({ theme }) => css(theme.uikit.typography.label)};
     margin-top: 7px;
     &.disabled {
     }

@@ -24,13 +24,13 @@ export const PageContainer = styled('div')<{ theme?: any }>`
   display: grid;
   grid-template-rows: 58px 1fr;
   min-height: 100vh;
-  background: ${({ theme }) => theme.colors.grey_4};
+  background: ${({ theme }) => theme.uikit.colors.grey_4};
 `;
 
 export const Sidebar = styled('div')<{ theme?: any }>`
   z-index: 1;
-  background: ${({ theme }) => theme.colors.white};
-  box-shadow: ${({ theme }) => theme.shadows.pageElement};
+  background: ${({ theme }) => theme.uikit.colors.white};
+  box-shadow: ${({ theme }) => theme.uikit.shadows.pageElement};
 
   display: flex;
   flex-direction: column;
@@ -40,7 +40,7 @@ export const Sidebar = styled('div')<{ theme?: any }>`
 `;
 
 export const Collapsible = styled('div')<{ theme?: any }>`
-  border-top: 1px solid ${({ theme }) => theme.colors.grey_2};
+  border-top: 1px solid ${({ theme }) => theme.uikit.colors.grey_2};
   min-height: 58px;
   width: 100%;
 `;
@@ -95,8 +95,8 @@ export const ContentHeader = styled('div')<{ theme?: any }>`
   height: 56px;
   padding-left: 30px;
   padding-right: 30px;
-  background: ${({ theme }) => theme.colors.white};
-  border-bottom: solid 1px ${({ theme }) => theme.colors.grey_2};
+  background: ${({ theme }) => theme.uikit.colors.white};
+  border-bottom: solid 1px ${({ theme }) => theme.uikit.colors.grey_2};
   flex-shrink: 0;
 `;
 

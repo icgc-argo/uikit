@@ -19,7 +19,6 @@
 
 import React, { ReactNode, useContext, useRef, useState } from 'react';
 import { css } from '@emotion/core';
-
 import { UikitTheme } from '../..';
 import Icon from '../../Icon';
 import { useTheme } from '../../ThemeProvider';
@@ -45,7 +44,7 @@ const FormCheckbox = ({
   value?: string;
 }) => {
   const [isFocused, setIsFocused] = useState(false);
-  const theme: UikitTheme = useTheme();
+  const theme = useTheme();
   const checkboxRef = useRef<HTMLInputElement>();
   const hiddenCheckboxRef = useRef<HTMLInputElement>();
   const { onChange = props.onChange, isChecked } = useContext(RadioCheckContext);
@@ -119,7 +118,7 @@ const FormCheckbox = ({
               width="6px"
               height="6px"
               name="asterisk"
-              fill={theme.colors.error}
+              fill={theme.uikit.colors.error}
             />
           </span>
         )}

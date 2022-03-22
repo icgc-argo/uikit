@@ -86,7 +86,7 @@ const OptionsList: React.ComponentType<{
       <div
         className={'StyledOption'}
         css={css`
-          background-color: ${option.isChecked ? theme.colors.secondary_4 : ''};
+          background-color: ${option.isChecked ? theme.uikit.colors.secondary_4 : ''};
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -94,7 +94,9 @@ const OptionsList: React.ComponentType<{
           padding: 2px 12px;
           width: calc(100% - (2 * 12px));
           &:hover {
-            background: ${option.isChecked ? theme.colors.secondary_3 : theme.colors.grey_3};
+            background: ${option.isChecked
+              ? theme.uikit.colors.secondary_3
+              : theme.uikit.colors.grey_3};
           }
           cursor: pointer;
         `}
@@ -218,7 +220,7 @@ const OptionsList: React.ComponentType<{
         <div
           css={css`
             border-top: 1px solid;
-            border-color: ${theme.colors.grey_2};
+            border-color: ${theme.uikit.colors.grey_2};
           `}
           className={className}
         >
@@ -230,7 +232,7 @@ const OptionsList: React.ComponentType<{
                 padding: 4px 12px 0px 12px;
               `}
             >
-              <Typography variant={'caption'} color={theme.colors.grey}>
+              <Typography variant={'caption'} color={theme.uikit.colors.grey}>
                 # {countUnit}
               </Typography>
             </div>

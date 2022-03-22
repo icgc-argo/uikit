@@ -64,21 +64,21 @@ const LoaderContainer = styled<'div', { dotsCount: number; theme?: any }>('div')
   @keyframes animateFirstDots {
     0% {
       transform: translateY(200%) scale(0.7, 0.7);
-      background-color: ${({ theme }) => theme.colors.accent1};
+      background-color: ${({ theme }) => theme.uikit.colors.accent1};
     }
     100% {
       transform: translateY(-200%) scale(1, 1);
-      background-color: ${({ theme }) => theme.colors.secondary};
+      background-color: ${({ theme }) => theme.uikit.colors.secondary};
     }
   }
   @keyframes animateSecondDots {
     0% {
       transform: translateY(200%) scale(0.7, 0.7);
-      background-color: ${({ theme }) => theme.colors.accent4};
+      background-color: ${({ theme }) => theme.uikit.colors.accent4};
     }
     100% {
       transform: translateY(-200%) scale(1, 1);
-      background-color: ${({ theme }) => theme.colors.warning};
+      background-color: ${({ theme }) => theme.uikit.colors.warning};
     }
   }
 `;

@@ -38,28 +38,28 @@ const defaultLabelStyle = ({ selected, theme }: StyleCalculationInput) => css`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    color: ${selected ? theme.colors.secondary_dark : theme.colors.primary};
+    color: ${selected ? theme.uikit.colors.secondary_dark : theme.uikit.colors.primary};
     &:hover {
-      background: ${theme.colors.grey_3};
+      background: ${theme.uikit.colors.grey_3};
     }
   }
   & > .FacetMenu {
     display: flex;
     border-bottom: ${selected ? '0px' : '1px'} solid;
-    background: ${selected ? theme.colors.white : theme.colors.grey_4};
-    border-color: ${theme.colors.grey_2};
-    color: ${theme.colors.primary};
+    background: ${selected ? theme.uikit.colors.white : theme.uikit.colors.grey_4};
+    border-color: ${theme.uikit.colors.grey_2};
+    color: ${theme.uikit.colors.primary};
     padding: 8px 12px;
     font-weight: 600;
     width: calc(100% - (2 * 12px));
-    ${css(theme.typography.paragraph2 as any)}
+    ${css(theme.uikit.typography.paragraph2 as any)}
   }
 `;
 
 const level1Style = ({ selected, theme }: StyleCalculationInput) => css`
-  ${css(theme.typography.navigation as any)}
+  ${css(theme.uikit.typography.navigation as any)}
   ${defaultLabelStyle({ theme, selected })}
-  background: ${theme.colors.white};
+  background: ${theme.uikit.colors.white};
   animation: all 1s;
   & > .MenuItemContent {
     padding: 12px;
@@ -70,7 +70,7 @@ const level1Style = ({ selected, theme }: StyleCalculationInput) => css`
   & > .FacetContentSlim .MenuItemContent {
     padding: 6px;
     border-bottom: 1px solid;
-    border-color: ${theme.colors.grey_2};
+    border-color: ${theme.uikit.colors.grey_2};
   }
   & a {
     text-decoration: underline;
@@ -79,13 +79,13 @@ const level1Style = ({ selected, theme }: StyleCalculationInput) => css`
 `;
 
 const level2Style = ({ selected, theme }: StyleCalculationInput) => css`
-  ${css(theme.typography.paragraph as any)}
+  ${css(theme.uikit.typography.paragraph as any)}
   ${defaultLabelStyle({ theme, selected })}
   border: none;
   border-left: solid 2px;
   font-weight: normal;
-  border-left-color: ${selected ? theme.colors.secondary : theme.colors.white};
-  background: ${selected ? theme.colors.grey_4 : 'none'};
+  border-left-color: ${selected ? theme.uikit.colors.secondary : theme.uikit.colors.white};
+  background: ${selected ? theme.uikit.colors.grey_4 : 'none'};
   & > .MenuItemContent {
     padding-left: 40px;
     padding-right: 18px;
@@ -98,11 +98,11 @@ const level2Style = ({ selected, theme }: StyleCalculationInput) => css`
 `;
 
 const level3Style = ({ selected, theme }: StyleCalculationInput) => css`
-  ${css(theme.typography.navigation as any)}
+  ${css(theme.uikit.typography.navigation as any)}
   ${defaultLabelStyle({ theme, selected })}
   border: none;
   font-weight: normal;
-  background: ${selected ? theme.colors.secondary_4 : 'none'};
+  background: ${selected ? theme.uikit.colors.secondary_4 : 'none'};
   & > .MenuItemContent {
     font-size: 13px;
     padding-top: 8px;
@@ -147,7 +147,7 @@ export const ContentContainer = styled('button')<{
   as?: keyof JSX.IntrinsicElements;
   theme?: any;
 }>`
-  ${({ theme }) => css(theme.typography.default)};
+  ${({ theme }) => css(theme.uikit.typography.default)};
   border: none;
   width: 100%;
   padding: 0px 2px 0px 0px;
