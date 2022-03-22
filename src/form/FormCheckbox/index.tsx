@@ -17,9 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { css } from '@emotion/react';
 import React, { ReactNode, useContext, useRef, useState } from 'react';
-import { css } from '@emotion/core';
-import { UikitTheme } from '../..';
 import Icon from '../../Icon';
 import { useTheme } from '../../ThemeProvider';
 import Checkbox from '../Checkbox';

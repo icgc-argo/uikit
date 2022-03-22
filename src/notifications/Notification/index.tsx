@@ -17,23 +17,22 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
+import { UikitIconNames } from '@/Icon/icons';
+import useTheme from '@/utils/useTheme';
+import { css } from '@emotion/react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
-
-import Typography, { TypographyVariant } from '../../Typography';
-import Icon from '../../Icon';
+import React from 'react';
 import FocusWrapper from '../../FocusWrapper';
-import useTheme from '../../utils/useTheme';
+import Icon from '../../Icon';
+import Typography, { TypographyVariant } from '../../Typography';
 import {
-  NotificationBodyContainer,
-  IconContainer,
-  NotificationContainer,
-  ActionButtonsContainer,
   ActionButton,
+  ActionButtonsContainer,
   getBorderColor,
+  IconContainer,
+  NotificationBodyContainer,
+  NotificationContainer,
 } from './styledComponents';
-import { UikitIconNames } from 'src/Icon/icons';
 
 export type NotificationVariant = 'INFO' | 'SUCCESS' | 'WARNING' | 'ERROR';
 export type NotificationInteractionEvent = 'CLOSE' | 'ACTION' | 'DISMISS';

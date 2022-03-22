@@ -22,7 +22,7 @@ import React, { useState } from 'react';
 import { boolean, button } from '@storybook/addon-knobs';
 import FormRadio from '.';
 import { action } from '@storybook/addon-actions';
-import Hook from '../../utils/Hook';
+import Hook from '../../@/utils/Hook';
 import Checkbox from '../FormCheckbox';
 import RadioCheckboxGroup from '../RadioCheckboxGroup';
 

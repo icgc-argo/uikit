@@ -18,8 +18,8 @@
  */
 
 import React from 'react';
-import Typography from '../Typography';
 import { styled } from '..';
+import Typography from '../Typography';
 
 const Mail = styled('a')<{ theme?: any }>`
   color: ${({ theme }) => theme.uikit.colors.black};

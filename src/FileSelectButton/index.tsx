@@ -17,10 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import Button from '@/Button';
+import { css } from '@emotion/react';
 import React from 'react';
-import { css } from '@emotion/core';
-
-import Button from 'src/Button';
 
 type FileSelectButtonProps = Omit<React.ComponentProps<typeof Button>, 'onClick'> & {
   inputProps?: Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>;

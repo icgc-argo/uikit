@@ -23,7 +23,7 @@ import React from 'react';
 
 import SubMenu from '.';
 import Button from '../Button';
-import Hook from '../utils/Hook';
+import Hook from '../@/utils/Hook';
 import Icon from '../Icon';
 
 import readme from './readme.md';

@@ -17,9 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
+import getElementResizeListener from '@/utils/getElementResizeListener';
 import debounce from 'lodash/debounce';
-import getElementResizeListener from 'src/utils/getElementResizeListener';
+import React from 'react';
 
 export default (
   parentRef: React.RefObject<HTMLElement>,

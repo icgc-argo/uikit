@@ -17,9 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/core';
-
-import Table from 'src/Table';
+import Table from '@/Table';
+import { css } from '@emotion/react';
 
 type MappedTableData = Array<{ key: string; val: any }>;
 

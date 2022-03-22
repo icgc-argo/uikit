@@ -17,10 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-
-import { NOTIFICATION_VARIANTS, NotificationVariant } from '.';
+import { NotificationVariant, NOTIFICATION_VARIANTS } from '.';
 import FocusWrapper from '../../FocusWrapper';
 
 const getBackgroundColor = ({ theme, variant }: { theme?: any; variant: NotificationVariant }) =>

@@ -17,10 +17,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { LiHTMLAttributes } from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import clsx from 'clsx';
+import React, { LiHTMLAttributes } from 'react';
 
 const Ul = styled('ul')<{ theme?: any }>`
   ${({ theme }) => css(theme.uikit.typography.paragraph)};

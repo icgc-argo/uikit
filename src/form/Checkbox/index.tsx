@@ -17,8 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { RefObject } from 'react';
 import styled from '@emotion/styled';
+import React, { RefObject } from 'react';
 
 /**
  * Checkbox styles

@@ -17,19 +17,18 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import floor from 'lodash/floor';
-import ceil from 'lodash/ceil';
-import range from 'lodash/range';
+import useTheme from '@/utils/useTheme';
 import css from '@emotion/css';
 import styled from '@emotion/styled';
-
-import Typography from '../../Typography';
-import useTheme from '../../utils/useTheme';
+import ceil from 'lodash/ceil';
+import floor from 'lodash/floor';
+import range from 'lodash/range';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Select from '../../form/Select';
 import { POPUP_POSITIONS } from '../../form/Select/styledComponents';
 import Icon from '../../Icon';
+import Typography from '../../Typography';
 
 export const TableActionBar = (props) => {
   const { variant = 'label', color = 'grey', component = 'div' } = props;

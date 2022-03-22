@@ -17,13 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
-import { Row, Col } from 'react-grid-system';
-import Typography from '../Typography';
-import React from 'react';
-
 import { INPUT_STATES as INPUT_THEME_STATES } from '../theme/defaultTheme/input';
 
 export type InputSize = 'sm' | 'lg';
