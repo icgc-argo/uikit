@@ -17,13 +17,15 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import Button from '@/Button';
-import css from '@emotion/css';
-import React, { useContext, useState } from 'react';
+import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
+
+import Button from 'src/Button';
 import Icon from '../../Icon';
 import { INPUT_SIZES, StyledInputWrapper, StyledInputWrapperProps } from '../common';
+import { StyledInput, IconWrapper } from './styledComponents';
 import FormControlContext from '../FormControl/FormControlContext';
-import { IconWrapper, StyledInput } from './styledComponents';
+import css from '@emotion/css';
 
 type InputPreset = 'default' | 'search';
 export const INPUT_PRESETS = {

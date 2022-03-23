@@ -24,8 +24,8 @@ import { select, boolean, text } from '@storybook/addon-knobs';
 
 import InteractiveIcon from '.';
 import icons, { UikitIconNames } from '../icons';
-import defaultTheme from '@/theme/defaultTheme';
-import { css } from '@emotion/react';
+import defaultTheme from 'src/theme/defaultTheme';
+import { css } from '@emotion/core';
 
 const InteractiveIconStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
   const knobs = {

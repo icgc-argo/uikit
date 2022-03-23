@@ -17,17 +17,18 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { BUTTON_SIZES, BUTTON_VARIANTS } from '@/Button/constants';
-import { ButtonSize } from '@/Button/types';
-import { UikitIconNames } from '@/Icon/icons';
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
-import Color from 'color';
 import React from 'react';
-import Button from '../Button';
-import FocusWrapper from '../FocusWrapper';
-import Icon from '../Icon';
+import Color from 'color';
+import { css } from '@emotion/core';
+import styled from '@emotion/styled';
+
 import Typography from '../Typography';
+import Button from '../Button';
+import Icon from '../Icon';
+import FocusWrapper from '../FocusWrapper';
+import { UikitIconNames } from 'src/Icon/icons';
+import { BUTTON_SIZES, BUTTON_VARIANTS } from 'src/Button/constants';
+import { ButtonSize } from 'src/Button/types';
 
 const DefaultFooter = ({
   actionVisible,

@@ -17,11 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import useTheme from '@/utils/useTheme';
-import css from '@emotion/css';
+import React, { ReactNode } from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
+import css from '@emotion/css';
 import clsx from 'clsx';
-import React from 'react';
+import useTheme from '../utils/useTheme';
 
 const TabsContext = React.createContext({ onChange: null, value: null });
 

@@ -17,8 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css, SerializedStyles } from '@emotion/react';
-import React, { createRef, useState } from 'react';
+import React, { useState, createRef } from 'react';
+import { css, SerializedStyles } from '@emotion/core';
+
 import Button from '../Button';
 import { MenuItem } from '../DropdownButton';
 import Icon from '../Icon';

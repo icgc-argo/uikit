@@ -17,8 +17,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import css from '@emotion/css';
+import * as React from 'react';
 import styled from '@emotion/styled';
+import css from '@emotion/css';
+import defaultTheme from 'src/theme/defaultTheme';
 
 type TagVariant =
   | 'DISABLED'

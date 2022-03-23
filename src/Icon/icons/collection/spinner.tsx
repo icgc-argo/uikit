@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css, keyframes } from '@emotion/react';
+import { css, keyframes } from '@emotion/core';
 
 // Animation
 const spin = keyframes`

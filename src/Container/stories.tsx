@@ -20,7 +20,7 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import Container from '.';
-import { ClassNames } from '@emotion/react';
+import { ClassNames } from '@emotion/core';
 
 storiesOf(`${__dirname}`, module)
   .add(

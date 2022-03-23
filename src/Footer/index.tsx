@@ -17,13 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import icgcLogo from '@/assets/icgc_logo.svg';
-import css from '@emotion/css';
-import styled from '@emotion/styled';
-import PropTypes from 'prop-types';
 import React from 'react';
-import { Col, Row } from 'react-grid-system';
+import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
 import Icon from '../Icon';
+import icgcLogo from '../assets/icgc_logo.svg';
+import css from '@emotion/css';
+import { Row, Col } from 'react-grid-system';
 import A from '../Link';
 
 const Container = styled('footer')<{ theme?: any }>`

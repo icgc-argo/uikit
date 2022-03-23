@@ -17,13 +17,14 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import useTheme from '@/utils/useTheme';
-import css from '@emotion/css';
-import styled from '@emotion/styled';
 import React from 'react';
-import urlJoin from 'url-join';
-import Icon from '../../Icon';
+import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
 import Button from '../index';
+import Icon from '../../Icon';
+import css from '@emotion/css';
+import useTheme from '../../utils/useTheme';
+import urlJoin from 'url-join';
 
 /**
  * Social login for Google
