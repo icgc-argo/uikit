@@ -17,13 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import useTheme from '@/utils/useTheme';
-import css from '@emotion/css';
-import styled from '@emotion/styled';
 import React from 'react';
-import Input from '../form/Input';
+import styled from '@emotion/styled';
+import css from '@emotion/css';
 import Icon from '../Icon';
-import { ContentContainer, IconContainer, MenuItemContainer } from './styledComponents';
+import Input from '../form/Input';
+import useTheme from '../utils/useTheme';
+import { MenuItemContainer, IconContainer, ContentContainer } from './styledComponents';
 
 const MenuItemComponent = React.forwardRef<
   HTMLDivElement,

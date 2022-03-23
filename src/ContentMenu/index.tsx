@@ -17,10 +17,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import Typography from '@/Typography';
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
 import React from 'react';
+import Typography from 'src/Typography';
+import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 
 const Cont = styled('div')<{ theme?: any; color: string }>`
   margin-top: 14px;

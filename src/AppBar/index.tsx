@@ -17,14 +17,14 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import logo from '@/assets/logo_white.svg';
-import useClickAway from '@/utils/useClickAway';
-import useTheme from '@/utils/useTheme';
-import { css } from '@emotion/react';
+import { css } from '@emotion/core';
 import PropTypes from 'prop-types';
 import React from 'react';
+import logo from '../assets/logo_white.svg';
 import Typography from '../Typography';
-import { DropdownMenuItem } from './DropdownMenu';
+import useTheme from '../utils/useTheme';
+import useClickAway from '../utils/useClickAway';
+
 import {
   AppBarContainer,
   LogoContainer,
@@ -35,6 +35,7 @@ import {
   SectionDisplay,
   UserBadgeContainer,
 } from './styledComponents';
+import { DropdownMenuItem } from './DropdownMenu';
 
 export const UserBadge = ({
   firstName = '',

@@ -18,12 +18,14 @@
  */
 
 // @flow
-import useTheme from '@/utils/useTheme';
-import { css, Global } from '@emotion/react';
-import styled from '@emotion/styled';
-import { merge } from 'lodash';
 import * as React from 'react';
+import { css } from '@emotion/core';
+import styled from '@emotion/styled';
 import { Tooltip as ReactTippy, TooltipProps as TippyProps } from 'react-tippy';
+
+import useTheme from '../utils/useTheme';
+import { Global } from '@emotion/core';
+import { merge } from 'lodash';
 
 // exposing full react-tippy API based on https://github.com/tvkhoa/react-tippy
 // extending the html prop to support our previous implementation which also accepted strings

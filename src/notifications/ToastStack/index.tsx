@@ -17,9 +17,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import differenceBy from 'lodash/differenceBy';
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+import differenceBy from 'lodash/differenceBy';
+
 import { styled } from '../..';
 import Toast from '../Toast';
 

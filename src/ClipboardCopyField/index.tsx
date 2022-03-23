@@ -17,14 +17,15 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import Button from '@/Button';
-import { INPUT_SIZES, INPUT_STATES, StyledInputWrapper } from '@/form/common';
-import Icon from '@/Icon';
-import Tag, { TAG_VARIANTS } from '@/Tag';
-import Typography from '@/Typography';
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
 import React from 'react';
+import { css } from '@emotion/core';
+import styled from '@emotion/styled';
+
+import { StyledInputWrapper, INPUT_STATES, INPUT_SIZES } from 'src/form/common';
+import Button from 'src/Button';
+import Typography from 'src/Typography';
+import Tag, { TAG_VARIANTS } from 'src/Tag';
+import Icon from 'src/Icon';
 
 const TagWrapper = styled('div')`
   margin-right: 5px;

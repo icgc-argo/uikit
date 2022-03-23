@@ -17,8 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import defaultTheme from '@/theme/defaultTheme';
 import styled from '@emotion/styled';
+import React from 'react';
+import defaultTheme from 'src/theme/defaultTheme';
 
 const TitleBorder = styled<
   'hr',

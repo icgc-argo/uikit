@@ -17,9 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
 import React, { AnchorHTMLAttributes } from 'react';
+import { css } from '@emotion/core';
+import styled from '@emotion/styled';
 
 type LinkVariant = 'INLINE' | 'BLOCK';
 export type HyperLinkProps = {

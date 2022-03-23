@@ -17,10 +17,11 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import css from '@emotion/css';
 import React, { useContext } from 'react';
-import { RadioCheckboxWrapper } from '../common';
+import PropTypes from 'prop-types';
+import { RadioCheckboxWrapper, StyledGroup } from '../common';
 import Radio from '../Radio';
+import css from '@emotion/css';
 import RadioCheckContext from '../RadioCheckboxGroup/RadioCheckContext';
 
 /**

@@ -18,10 +18,11 @@
  */
 
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import Notification, {
   NOTIFICATION_INTERACTION,
-  NOTIFICATION_SIZES,
   NOTIFICATION_VARIANTS,
+  NOTIFICATION_SIZES,
 } from '../Notification';
 
 export const BANNER_VARIANTS = NOTIFICATION_VARIANTS;

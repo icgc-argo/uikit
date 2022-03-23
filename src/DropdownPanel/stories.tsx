@@ -22,7 +22,7 @@ import { storiesOf } from '@storybook/react';
 import { boolean, select, text } from '@storybook/addon-knobs';
 
 import DropdownPanel, { TextInputFilter, ListFilter, FilterOption } from '.';
-import icons, { UikitIconNames } from '@/Icon/icons';
+import icons, { UikitIconNames } from 'src/Icon/icons';
 
 storiesOf(`${__dirname}`, module)
   .add('Basic', () => {

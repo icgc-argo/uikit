@@ -19,6 +19,7 @@
 
 import React from 'react';
 import Typography from '../../Typography';
+import PropTypes from 'prop-types';
 import RadioCheckContext from './RadioCheckContext';
 
 const RadioCheckboxGroup: React.ComponentType<{

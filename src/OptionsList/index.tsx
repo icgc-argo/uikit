@@ -17,16 +17,16 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import Checkbox from '@/form/Checkbox';
-import Tag from '@/Tag';
-import Tooltip from '@/Tooltip';
-import Typography from '@/Typography';
-import useTheme from '@/utils/useTheme';
-import { css } from '@emotion/react';
-import concat from 'lodash/concat';
-import orderBy from 'lodash/orderBy';
 import React from 'react';
+import Checkbox from 'src/form/Checkbox';
+import { css } from '@emotion/core';
+import Tag from 'src/Tag';
+import Typography from 'src/Typography';
+import useTheme from 'src/utils/useTheme';
+import orderBy from 'lodash/orderBy';
+import concat from 'lodash/concat';
 import ViewAmountController from './ViewAmountController';
+import Tooltip from 'src/Tooltip';
 
 export type FilterOption = {
   key: string;
