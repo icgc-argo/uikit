@@ -3,6 +3,8 @@ import UIKitThemeProvider from '.';
 import { css, ThemeProvider as ProjectThemeProvider } from '@emotion/react';
 import Template from '../Template';
 import defaultTheme from '../theme/defaultTheme';
+import styled from '@emotion/styled';
+import { StyledTemplate } from '../Template/Template.styled';
 
 // debug helper
 function getStyle(query, property) {
@@ -44,27 +46,28 @@ describe('Theme Provider', () => {
   });
 
   describe('Emotion apis should be supported', () => {
-    /* 
-    // !! NB: Use `css` api consistently
+    //!! NB: Use `css` api consistently
     test('styled() on a component', async () => {
       const GreenBackgroundTemplate = styled(Template)`
-        color: black;
         background-color: green;
       `;
 
       render(
         <ThemesWrapper projectTheme={{ colors: { blue: 'blue' } }}>
           <GreenBackgroundTemplate>Text</GreenBackgroundTemplate>
+          <StyledTemplate>Styled Template</StyledTemplate>
         </ThemesWrapper>,
       );
+      screen.debug();
 
       const comp = screen.getByText('Text');
       // color gets overwritten
-      expect(comp).toHaveStyleRule('color', 'black');
       expect(comp).toHaveStyleRule('background-color', 'green');
-      // should not have default original color
-      expect(comp).not.toHaveStyleRule('color', defaultThemeGrey);
-    }); */
+      expect(comp).toHaveStyleRule('color', defaultThemeGrey);
+      // styled template
+      const styledComp = screen.getByText('Styled Template');
+      expect(styledComp).toHaveStyleRule('color', defaultThemeGrey);
+    });
 
     test('css prop on component with override', async () => {
       render(
