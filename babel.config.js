@@ -13,6 +13,7 @@ module.exports = function (api) {
   ];
 
   const plugins = [
+    '@emotion',
     '@babel/plugin-proposal-optional-chaining',
     '@babel/plugin-proposal-object-rest-spread',
     [
