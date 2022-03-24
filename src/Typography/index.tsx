@@ -17,10 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import * as React from 'react';
 import styled from '@emotion/styled';
 import memoize from 'lodash/memoize';
-
+import * as React from 'react';
 import defaultTheme from '../theme/defaultTheme';
 import { useTheme } from '../ThemeProvider';
 
@@ -54,7 +53,7 @@ const createDomComponent = memoize(
 );
 
 const createStyledDomComponent = memoize(
-  (Component) => styled<'div', { bold?: boolean; color?: string; theme?: any }>(Component)`
+  (Component) => styled(Component)<{ bold?: boolean; color?: string; theme?: any }>`
     font-weight: ${({ bold }) => (bold ? `bold` : `normal`)};
     color: ${({ theme, color }) => (color ? theme.uikit.colors[color] || color : 'inherit')};
   `,

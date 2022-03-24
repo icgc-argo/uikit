@@ -19,7 +19,7 @@
 
 import React from 'react';
 import styled from '@emotion/styled';
-import css from '@emotion/css';
+import { css } from '@emotion/react';
 import Icon from '../Icon';
 import Input from '../form/Input';
 import useTheme from '../utils/useTheme';

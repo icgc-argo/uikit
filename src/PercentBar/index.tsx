@@ -17,8 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { css, keyframes } from '@emotion/react';
 import useTheme from 'src/utils/useTheme';
-import { css, keyframes } from '@emotion/core';
 
 const PercentBar: React.ComponentType<{
   num: number;

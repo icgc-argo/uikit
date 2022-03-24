@@ -17,12 +17,11 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { css } from '@emotion/react';
 import React from 'react';
-import { css } from '@emotion/core';
-
-import useTheme from '../utils/useTheme';
-import Typography from '../Typography';
 import Icon from '../Icon';
+import Typography from '../Typography';
+import useTheme from '../utils/useTheme';
 
 const VAlignedText = (props) => (
   <Typography

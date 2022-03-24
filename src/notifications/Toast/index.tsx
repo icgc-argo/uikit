@@ -17,12 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
 import omit from 'lodash/omit';
-import css from '@emotion/css';
-
-import Notification, { NOTIFICATION_VARIANTS, NOTIFICATION_INTERACTION } from '../Notification';
+import React from 'react';
+import Notification, { NOTIFICATION_INTERACTION, NOTIFICATION_VARIANTS } from '../Notification';
 
 function Toast({
   variant,

@@ -35,16 +35,15 @@ export const STYLEDCHECKBOX_SIZES: {
   MD: 'md',
 });
 
-export const StyledCheckbox = styled<
-  'div',
-  {
-    disabled?: boolean;
-    checked?: boolean;
-    color?: string;
-    size?: 'sm' | 'md';
-    theme?: any;
-  }
->('div')`
+interface Props {
+  disabled?: boolean;
+  checked?: boolean;
+  color?: string;
+  size?: 'sm' | 'md';
+  theme?: any;
+}
+
+export const StyledCheckbox = styled('div')<Props>`
   position: relative;
   cursor: pointer;
   width: min-content;

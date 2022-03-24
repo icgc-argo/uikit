@@ -17,9 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import HyperLink from 'src/Link';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import Icon from 'src/Icon';
+import HyperLink from 'src/Link';
 import { useTheme } from 'src/ThemeProvider';
 
 const ViewAmountController: React.ComponentType<{

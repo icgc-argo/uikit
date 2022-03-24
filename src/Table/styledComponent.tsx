@@ -17,15 +17,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import css from '@emotion/css';
 import ReactTable from 'react-table';
-
 import reactTableDefaultStyle from './reactTableDefaultStyle';
-import ascending from '../assets/table/ascending.svg';
-import descending from '../assets/table/descending.svg';
-import unsorted from '../assets/table/unsorted.svg';
 
 export type StyledTableProps = {
   withRowBorder?: boolean;
@@ -44,7 +39,7 @@ interface TableProps {
   sortable?: any;
 }
 /* prettier-ignore */
-export const StyledTable = styled<typeof ReactTable, StyledTableProps>(ReactTable)<TableProps>`
+export const StyledTable = styled(ReactTable)<StyledTableProps>`
 ${reactTableDefaultStyle}
 
   &.ReactTable .-loading.-active .-loading-inner {

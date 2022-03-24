@@ -19,7 +19,7 @@
 
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import css from '@emotion/css';
+import { css } from '@emotion/react';
 import Pipe from '.';
 import { text, select } from '@storybook/addon-knobs';
 

@@ -17,12 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import FormControlContext from '../FormControl/FormControlContext';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import clsx from 'clsx';
-import css from '@emotion/css';
 import pick from 'lodash/pick';
+import React from 'react';
+import FormControlContext from '../FormControl/FormControlContext';
 
 const FormHelperText = React.forwardRef<
   any,
@@ -51,7 +51,9 @@ const FormHelperText = React.forwardRef<
     onErrorOnly = false,
   } = props;
 
-  const StyledComponent = styled<any, any>(Component)<{ theme?: any }>`
+  // @ts-ignore
+  // component?: keyof HTMLElementTagNameMap this will not work with styled api, just a dom comp
+  const StyledComponent = styled(component)<{ className?: string; theme?: any }>`
     ${({ theme }) => css(theme.uikit.typography.caption)};
     margin: 3px 7px;
     line-height: 14px;

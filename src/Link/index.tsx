@@ -17,9 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { AnchorHTMLAttributes } from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import React, { AnchorHTMLAttributes } from 'react';
 
 type LinkVariant = 'INLINE' | 'BLOCK';
 export type HyperLinkProps = {
@@ -33,7 +33,7 @@ export type HyperLinkProps = {
   theme?: any;
 } & AnchorHTMLAttributes<HTMLAnchorElement>;
 
-const StyledLink = styled<'a', HyperLinkProps>('a')`
+const StyledLink = styled('a')<HyperLinkProps>`
   ${({ theme }) => css(theme.uikit.typography.default)}
   cursor: pointer;
   color: ${({ theme, invert }) =>

@@ -22,7 +22,7 @@ import PropTypes from 'prop-types';
 import floor from 'lodash/floor';
 import ceil from 'lodash/ceil';
 import range from 'lodash/range';
-import css from '@emotion/css';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import Typography from '../../Typography';

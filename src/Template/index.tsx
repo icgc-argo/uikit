@@ -1,1 +1,1 @@
-export { default } from './Template.styled';
+export { default, StyledTemplate } from './Template.styled';

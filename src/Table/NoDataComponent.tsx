@@ -18,7 +18,7 @@
  */
 
 import React from 'react';
-import css from '@emotion/css';
+import { css } from '@emotion/react';
 import ContentPlaceholder from 'src/ContentPlaceholder';
 
 export default function ContentPlaceholderComponent(props) {

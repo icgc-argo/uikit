@@ -17,8 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import colors from './colors';
 import { ProgressStatus } from '../../Progress';
+import colors from './colors';
 
 const color: { [key in ProgressStatus]: string } = {
   success: colors.success,

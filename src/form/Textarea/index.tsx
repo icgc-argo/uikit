@@ -18,7 +18,7 @@
  */
 
 import React, { useState, useContext, TextareaHTMLAttributes, useCallback, useEffect } from 'react';
-import css from '@emotion/css';
+import { css } from '@emotion/react';
 import clsx from 'clsx';
 import { useTheme } from 'src/ThemeProvider';
 import Typography from 'src/Typography';

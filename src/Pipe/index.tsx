@@ -36,7 +36,11 @@ const PipeContainer = styled('div')<{ theme?: any }>`
   height: 14px;
 `;
 
-const PipeItem = styled<'div', { fill: keyof typeof defaultTheme.colors; theme?: any }>('div')`
+interface PipeItemProps {
+  fill: keyof typeof defaultTheme.colors;
+  theme?: any;
+}
+const PipeItem = styled('div')<PipeItemProps>`
   flex-grow: 1;
   background-color: ${({ theme, fill }) => theme.uikit.colors[fill]};
   margin-right: 1px;

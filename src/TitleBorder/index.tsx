@@ -18,13 +18,13 @@
  */
 
 import styled from '@emotion/styled';
-import React from 'react';
 import defaultTheme from 'src/theme/defaultTheme';
-
-const TitleBorder = styled<
-  'hr',
-  { width?: string; color: keyof typeof defaultTheme.colors; theme?: any }
->('hr')`
+interface TitleBorderProps {
+  width?: string;
+  color: keyof typeof defaultTheme.colors;
+  theme?: any;
+}
+const TitleBorder = styled('hr')<TitleBorderProps>`
   border: 0;
   width: ${({ width }) => (width ? width : 'auto')};
   height: 3px;

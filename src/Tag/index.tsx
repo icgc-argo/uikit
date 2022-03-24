@@ -17,10 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import * as React from 'react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import css from '@emotion/css';
-import defaultTheme from 'src/theme/defaultTheme';
 
 type TagVariant =
   | 'DISABLED'
@@ -49,7 +47,11 @@ const blackTextVariants: Array<keyof typeof TAG_VARIANTS> = [
   TAG_VARIANTS.HIGHLIGHT,
 ];
 
-const Tag = styled<'div', { variant?: keyof typeof TAG_VARIANTS; theme?: any }>('div')`
+interface TagProps {
+  variant?: keyof typeof TAG_VARIANTS;
+  theme?: any;
+}
+const Tag = styled('div')<TagProps>`
   ${({ theme }) => css(theme.uikit.typography.paragraph as any)};
   box-sizing: border-box;
   display: inline-block;

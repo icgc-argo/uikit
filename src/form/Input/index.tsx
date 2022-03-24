@@ -17,17 +17,16 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { useState, useContext } from 'react';
-import PropTypes from 'prop-types';
-
+import { css } from '@emotion/react';
+import React, { useContext, useState } from 'react';
 import Button from 'src/Button';
 import Icon from '../../Icon';
 import { INPUT_SIZES, StyledInputWrapper, StyledInputWrapperProps } from '../common';
-import { StyledInput, IconWrapper } from './styledComponents';
 import FormControlContext from '../FormControl/FormControlContext';
-import css from '@emotion/css';
+import { IconWrapper, StyledInput } from './styledComponents';
 
 type InputPreset = 'default' | 'search';
+
 export const INPUT_PRESETS = {
   DEFAULT: 'default' as InputPreset,
   SEARCH: 'search' as InputPreset,
@@ -125,7 +124,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className={className}>
         <StyledInputWrapper
-          size={size as StyledInputWrapperProps['size']}
+          size={size}
           onClick={(e) => {
             if (inputRef.current && e.target !== clearButtonRef?.current) inputRef.current.focus();
           }}

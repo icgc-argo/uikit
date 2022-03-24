@@ -17,16 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { css } from '@emotion/react';
+import get from 'lodash/get';
 import React, { SVGAttributes } from 'react';
-import PropTypes, { string } from 'prop-types';
-import icons from './icons';
-import { css } from '@emotion/core';
-import useTheme from '../utils/useTheme';
 import defaultTheme from '../theme/defaultTheme';
 import { ThemeColorNames } from '../theme/types';
-import { UikitIconNames } from './icons';
-import { SvgProperties } from 'csstype';
-import get from 'lodash/get';
+import useTheme from '../utils/useTheme';
+import icons, { UikitIconNames } from './icons';
 export type Outline = { color: keyof ThemeColorNames | string; width: number };
 const Icon: React.ComponentType<
   {

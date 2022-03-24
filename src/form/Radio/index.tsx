@@ -17,10 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import css from '@emotion/css';
+import React from 'react';
 
 /*
  * :before
@@ -33,7 +31,7 @@ type StyledRadioProps = {
   checked?: boolean;
   theme?: any;
 };
-export const StyledRadio = styled<'div', StyledRadioProps>('div')`
+export const StyledRadio = styled('div')<StyledRadioProps>`
   position: relative;
   cursor: pointer;
   display: flex;
