@@ -19,7 +19,7 @@
 
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import css from '@emotion/css';
+import { css } from '@emotion/react';
 import Progress from '.';
 import { ProgressItem, PROGRESS_STATUS } from '.';
 import { text, select, boolean } from '@storybook/addon-knobs';

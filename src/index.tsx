@@ -23,5 +23,5 @@ export type UikitTheme = typeof defaultTheme;
 export { defaultTheme };
 export { default as ThemeProvider } from './ThemeProvider';
 export { default as styled } from '@emotion/styled';
-export { default as css } from '@emotion/css';
+export { default as css } from '@emotion/react';
 export { default as isPropValid } from '@emotion/is-prop-valid';

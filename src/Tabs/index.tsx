@@ -17,16 +17,18 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { ReactNode } from 'react';
-import PropTypes from 'prop-types';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import css from '@emotion/css';
 import clsx from 'clsx';
+import React from 'react';
 import useTheme from '../utils/useTheme';
 
 const TabsContext = React.createContext({ onChange: null, value: null });
-
-export const Button = styled<'button', { as?: keyof HTMLElementTagNameMap; theme?: any }>('button')`
+interface ButtonProps {
+  as?: keyof HTMLElementTagNameMap;
+  theme?: any;
+}
+export const Button = styled('button')<ButtonProps>`
   ${({ theme }) => css(theme.uikit.typography.label)};
   color: ${({ theme }) => theme.uikit.colors.grey};
   display: flex;

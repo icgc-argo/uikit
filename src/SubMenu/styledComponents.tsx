@@ -17,14 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import css from '@emotion/css';
-import defaultTheme from 'src/theme/defaultTheme';
-import {
-  CreateStyledComponentExtrinsic,
-  CreateStyledComponentIntrinsic,
-} from '@emotion/styled/types';
 
 type StyleCalculationInput = {
   selected?: boolean;
@@ -122,7 +116,11 @@ const defaultStyle = (props: StyleCalculationInput) => css`
   }
 `;
 
-export const MenuItemContainer = styled<'div', { level?: 1 | 2 | 3; selected?: boolean }>('div')`
+export interface MenuItemProps {
+  level?: 1 | 2 | 3;
+  selected?: boolean;
+}
+export const MenuItemContainer = styled('div')<MenuItemProps>`
   & a {
     text-decoration: none;
   }

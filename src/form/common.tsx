@@ -17,13 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
-import { Row, Col } from 'react-grid-system';
-import Typography from '../Typography';
-import React from 'react';
-
 import { INPUT_STATES as INPUT_THEME_STATES } from '../theme/defaultTheme/input';
 
 export type InputSize = 'sm' | 'lg';
@@ -43,7 +38,8 @@ export type StyledInputWrapperProps = {
   getOverrideCss?: (a: any) => any;
   theme?: any;
 };
-export const StyledInputWrapper = styled<'div', StyledInputWrapperProps>('div')`
+
+export const StyledInputWrapper = styled('div')<StyledInputWrapperProps>`
   box-sizing: border-box;
   cursor: pointer;
   display: flex;
@@ -94,7 +90,7 @@ type RadioCheckboxWrapperProps = {
   focused?: boolean;
   theme?: any;
 };
-export const RadioCheckboxWrapper = styled<'div', RadioCheckboxWrapperProps>('div')`
+export const RadioCheckboxWrapper = styled('div')<RadioCheckboxWrapperProps>`
   display: flex;
   flex-direction: row;
   align-items: center;

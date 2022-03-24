@@ -32,15 +32,16 @@ export const MenuItemContent = styled(MenuItemTypography)`
   text-align: center;
   text-decoration: none;
 `;
-export const MenuItemContainer = styled<
-  'div',
-  {
-    active: boolean;
-    theme?: any;
-  }
->('div', {
+
+interface MenuItemContainerProps {
+  active: boolean;
+  theme?: any;
+  className?: string;
+}
+
+export const MenuItemContainer = styled('div', {
   shouldForwardProp: (propName) => propName !== 'active',
-})`
+})<MenuItemContainerProps>`
   position: relative;
   display: flex;
   justify-content: center;

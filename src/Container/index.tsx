@@ -18,17 +18,20 @@
  */
 
 import React from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import isPropValid from '@emotion/is-prop-valid';
 
 import color from 'color';
 import useTheme from '../utils/useTheme';
 import DnaLoader from '../DnaLoader';
-
-const ContainerBackground = styled<'div', { loading?: boolean; theme?: any }>('div', {
-  shouldForwardProp: (prop) => isPropValid(prop) && prop !== 'loading',
-})`
+export interface ContainerBackgroundProps {
+  loading?: boolean;
+  theme?: any;
+}
+const ContainerBackground = styled('div', {
+  shouldForwardProp: (prop: any) => isPropValid(prop) && prop !== 'loading',
+})<ContainerBackgroundProps>`
   border-radius: 8px;
   position: relative;
   overflow: ${(props) => (props.loading ? 'hidden' : 'visible')};
@@ -57,11 +60,15 @@ const LoadingOverlay = () => {
   );
 };
 
-const Container: React.ComponentType<
-  {
-    loading?: boolean;
-  } & Partial<React.ComponentProps<typeof ContainerBackground>>
-> = ({ children, loading = false, ...props }) => (
+type ContainerProps = {
+  loading?: boolean;
+} & Partial<React.ComponentProps<typeof ContainerBackground>>;
+
+const Container: React.ComponentType<ContainerProps> = ({
+  children,
+  loading = false,
+  ...props
+}) => (
   <ContainerBackground loading={loading} {...props}>
     {children}
     {loading && <LoadingOverlay />}

@@ -19,7 +19,7 @@
 
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import css from '@emotion/css';
+import { css } from '@emotion/react';
 import { number, select } from '@storybook/addon-knobs';
 
 import defaultTheme from '../theme/defaultTheme';

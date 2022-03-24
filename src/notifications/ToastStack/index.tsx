@@ -17,10 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
 import differenceBy from 'lodash/differenceBy';
-
+import PropTypes from 'prop-types';
+import React from 'react';
 import { styled } from '../..';
 import Toast from '../Toast';
 
@@ -37,7 +36,7 @@ const ANIMATION_DURATION = 500;
 const StackContainer = styled('div')`
   max-width: 400px;
 `;
-const AnimatedContainer = styled<'div', { unMounting?: boolean }>('div')`
+const AnimatedContainer = styled('div')<{ unMounting?: boolean }>`
   margin-top: 10px;
   @keyframes enter {
     from {

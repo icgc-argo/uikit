@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { ThemeContext } from '@emotion/core';
+import { ThemeContext } from '@emotion/react';
 import { useContext } from 'react';
 import { useTheme } from '../ThemeProvider';
 export default useTheme;

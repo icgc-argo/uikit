@@ -17,19 +17,18 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import FocusWrapper from '../FocusWrapper';
 
-const StyledButton = styled<
-  typeof FocusWrapper,
-  {
-    size: 'sm' | 'md';
-    variant: 'primary' | 'secondary' | 'text';
-    disabled: boolean;
-    theme?: any;
-  }
->(FocusWrapper)`
+interface StyledButtonProps {
+  size: 'sm' | 'md';
+  variant: 'primary' | 'secondary' | 'text';
+  disabled: boolean;
+  theme?: any;
+}
+
+const StyledButton = styled(FocusWrapper)<StyledButtonProps>`
   ${({ theme }) => css(theme.uikit.typography.default)};
   transition: all 0.25s;
   display: flex;

@@ -22,7 +22,7 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import Button from '../index';
 import Icon from '../../Icon';
-import css from '@emotion/css';
+import { css } from '@emotion/react';
 import useTheme from '../../utils/useTheme';
 import urlJoin from 'url-join';
 

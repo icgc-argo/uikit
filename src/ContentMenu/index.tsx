@@ -17,17 +17,23 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import React from 'react';
 import Typography from 'src/Typography';
-import styled from '@emotion/styled';
-import { css } from '@emotion/core';
 
 const Cont = styled('div')<{ theme?: any; color: string }>`
   margin-top: 14px;
   border-left: 2px solid ${({ color, theme }) => (color ? color : theme.uikit.colors.secondary)};
 `;
 
-const Anchor = styled<'a', { disabled: boolean; active: boolean; theme?: any }>('a')`
+interface Props {
+  disabled: boolean;
+  active: boolean;
+  theme?: any;
+}
+
+const Anchor = styled('a')<Props>`
   /** specificty for docusaurus, easier to edit here */
   > div {
     background-color: ${({ active, theme: { colors } }) =>

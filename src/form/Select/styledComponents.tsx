@@ -17,10 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
 import styled from '@emotion/styled';
+import React from 'react';
 import { withProps } from 'recompose';
-
 import Icon from '../../Icon';
 import Typography from '../../Typography';
 
@@ -33,7 +32,7 @@ export const POPUP_POSITIONS = {
 export const DropdownIcon = withProps(({ disabled, theme }) => ({
   name: 'chevron_down',
   fill: disabled ? theme.uikit.colors.grey_disabled : 'black',
-}))(styled<typeof Icon, { disabled?: boolean; theme?: any }>(Icon)`
+}))(styled(Icon)<{ disabled?: boolean; theme?: any }>`
   height: 100%;
   width: 10px;
   padding: 10px;

@@ -20,18 +20,18 @@
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import * as React from 'react';
+import { TableProps } from 'react-table';
 import selectTable, {
-  SelectInputComponentProps,
   SelectAllInputComponentProps,
+  SelectInputComponentProps,
   SelectTableAdditionalProps,
 } from 'react-table/lib/hoc/selectTable';
 import DnaLoader from '../DnaLoader';
 import Checkbox from '../form/Checkbox';
+import useElementDimension from '../utils/Hook/useElementDimension';
+import DefaultNoDataComponent from './NoDataComponent';
 import { StyledTable, StyledTableProps } from './styledComponent';
 import TablePagination from './TablePagination';
-import DefaultNoDataComponent from './NoDataComponent';
-import { TableProps } from 'react-table';
-import useElementDimension from '../utils/Hook/useElementDimension';
 
 export { default as TablePagination, TableActionBar } from './TablePagination';
 

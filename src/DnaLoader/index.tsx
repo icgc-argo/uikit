@@ -17,14 +17,17 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from '@emotion/styled-base';
-import css from '@emotion/css';
-
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import range from 'lodash/range';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-const LoaderContainer = styled<'div', { dotsCount: number; theme?: any }>('div')`
+const LoaderContainer = styled('div')<{ dotsCount: number; theme?: any }>`
+  ${(props) => {
+    console.log('dna loader ', props);
+    return '';
+  }}
   padding-top: 15px;
   padding-bottom: 15px;
   width: ${({ dotsCount }) => dotsCount * 10}px;

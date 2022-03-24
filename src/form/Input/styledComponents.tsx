@@ -17,11 +17,20 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
 export { StyledInputWrapper } from '../common';
 
-export const StyledInput = styled<'input', { inputSize: string; theme?: any }>('input')`
+interface InputProps {
+  inputSize?: string;
+  size?: any;
+}
+
+interface StyledInputProps extends InputProps {
+  theme?: any;
+}
+
+export const StyledInput = styled('input')<StyledInputProps>`
   ${({ theme }) => css(theme.uikit.typography.default)};
   padding: ${({ theme, inputSize }) => theme.uikit.input.paddings[inputSize]};
   border: none;
