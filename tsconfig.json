@@ -19,7 +19,10 @@
     "outDir": "./dist",
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
-    "declaration": true
+    "declaration": true,
+    "paths": {
+      "src": ["./src"]
+    }
   },
   "exclude": [
     "node_modules",
