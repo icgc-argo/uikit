@@ -1,0 +1,13 @@
+.github/
+.idea/
+.storybook/
+.vscode/
+src/
+
+.env*
+.gitignore
+.huskyrc
+babel.config.js
+jest*
+testSetup.tsx
+*config.json
