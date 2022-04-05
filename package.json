@@ -20,7 +20,7 @@
     "publish-uikit": "cd dist && npm publish --access public",
     "watch": "tsc-watch -p ./tsconfig.json --onSuccess \"npm run build::babel\"",
     "postwatch": "rm -r dist",
-    "test": "jest src/ThemeProvider/*",
+    "test": "jest src/*",
     "test:watch": "npm run test -- --watch",
     "dev": "tsc-watch -p ./tsconfig.json --onSuccess \"npm run build::babel\""
   },

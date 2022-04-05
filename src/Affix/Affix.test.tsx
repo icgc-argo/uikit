@@ -17,4 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-export { default } from './Affix.component';
+describe('', () => {
+  test('', () => {
+    throw new Error('I have failed you, Anakin');
+  });
+});
