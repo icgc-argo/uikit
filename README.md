@@ -7,6 +7,16 @@
 
 Reusable UI components for Argo.
 
+# Component Structure
+
+Each component has several files associated with it.
+Naming scheme provides obvious guidance and helps to find it quickly in code editors
+<name>/index.tsx we use to organise exports
+<name>.component.tsx is our raw unstyled component.
+<name>.styled.tsx is our default styled component
+<name>.test.tsx is our test file
+<name>.story.tsx is our storybook file
+
 # Development
 
 ### Local
