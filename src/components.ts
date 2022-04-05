@@ -33,7 +33,7 @@ export * from './SystemAlert';
 export * from './Table';
 export * from './Tabs';
 export * from './Tag';
-export * from './template';
+export * from './Template';
 export * from './TitleBar';
 export * from './TitleBorder';
 export * from './Tooltip';
