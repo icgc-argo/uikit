@@ -1,1 +1,1 @@
-export { default, StyledTemplate } from './Template.styled';
+export { default, StyledTemplate, UseThemeTemplate } from './Template.styled';

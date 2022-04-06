@@ -5,11 +5,20 @@
 [![npm version](https://badge.fury.io/js/%40icgc-argo%2Fuikit.svg)](https://badge.fury.io/js/%40icgc-argo%2Fuikit)
 [![TypeScript](https://img.shields.io/badge/types-%20TypeScript-blue)](https://www.typescriptlang.org/)
 
+- ensure npm versions are the same
+
 Reusable UI components for Argo.
+Emotion 11 tested
+
+theme providers get merged
+
+i think its the fact that's in @icgc-argo that link doesn't break
 
 # Development
 
 ### Local
+
+npm i in package first, then link
 
 Both local development and building for publishing write to the dist folder. We use `npm link` for local development and avoid adding it to `package.json`.
 `npm run watch` will point to the consuming projects react libs in the global node folder. If you get an error about multiple versions of react, chances are something went wrong here.
@@ -24,6 +33,27 @@ UIKit lib:
 - Start watching: `npm run watch`
 
 NB: `npm link` installs to global node folder. be careful when using something like NVM which creates different global folders for different node versions. Both `uikit` and the consuming project will need to be using the same node version.
+
+Hooks warning: Duplicate React
+
+```
+  webpack: (config) => {
+    config.resolve.alias["react"] = path.resolve(
+      __dirname,
+      ".",
+      "node_modules",
+      "react"
+    );
+    config.resolve.alias["react-dom"] = path.resolve(
+      __dirname,
+      ".",
+      "node_modules",
+      "react-dom"
+    );
+
+    return config;
+  },
+```
 
 ### Storybook
 

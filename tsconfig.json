@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": false,
     "skipLibCheck": true,
@@ -8,7 +8,7 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": false,
     "esModuleInterop": true,
-    "module": "es6",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "resolveJsonModule": false,
     "isolatedModules": false,
@@ -19,7 +19,15 @@
     "outDir": "./dist",
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
-    "declaration": true
+    "declaration": true,
+    "paths": {
+      "src": ["./src"],
+      "src*": ["./src*"]
+    },
+    "plugins": [
+      { "transform": "typescript-transform-paths" }, // absolute paths for source files
+      { "transform": "typescript-transform-paths", "afterDeclarations": true } // absolute paths for .d.ts files
+    ]
   },
   "exclude": [
     "node_modules",
