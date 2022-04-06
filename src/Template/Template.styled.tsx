@@ -33,6 +33,3 @@ export const UseThemeTemplate = (props) => {
     />
   );
 };
-
-// add useTheme test
-// does next build ok
