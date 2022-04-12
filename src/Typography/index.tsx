@@ -33,7 +33,7 @@ const defaultTags = {
 };
 
 const createTypographyComponentMapFromTheme = memoize((themeObj) =>
-  Object.entries(themeObj.typography).reduce(
+  Object.entries(themeObj.uikit.typography).reduce(
     (acc, [key, value]) => ({
       ...acc,
       [key]: styled(defaultTags[key] || 'span')(
