@@ -1,35 +1,17 @@
-const path = require("path");
-
 module.exports = {
-  stories: ["../src/**/*stories.@(js|mdx|ts|tsx)"],
+  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
-    "@storybook/addon-knobs",
-    "@storybook/addon-actions",
-    "@storybook/addon-a11y",
-    "@storybook/addon-viewport",
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
   ],
-  babel: async (options) => ({
-    ...options,
-    presets: options.presets.concat([
-      [
-        "@emotion/babel-preset-css-prop",
-        {
-          autoLabel: true,
-          labelFormat: "Uikit-[local]",
-        },
-      ],
-    ]),
-  }),
+  framework: '@storybook/react',
+
   webpackFinal: async (config, { configType }) => {
     config.node = {
       __dirname: true,
       __filename: true,
     };
-
-    config.resolve.modules = [
-      ...(config.resolve.modules || []),
-      path.resolve(__dirname, "../"),
-    ];
 
     return config;
   },
