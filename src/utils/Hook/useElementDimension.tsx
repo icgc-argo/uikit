@@ -19,7 +19,7 @@
 
 import React from 'react';
 import debounce from 'lodash/debounce';
-import getElementResizeListener from 'src/utils/getElementResizeListener';
+import getElementResizeListener from '../getElementResizeListener';
 
 export default (
   parentRef: React.RefObject<HTMLElement>,

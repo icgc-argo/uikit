@@ -1,6 +1,6 @@
 import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
-import Template from './Template.component';
+import Template from './Template.comp';
 
 export default (props) => (
   <Template

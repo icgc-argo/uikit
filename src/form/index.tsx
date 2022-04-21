@@ -17,21 +17,20 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-export * from './Checkbox';
-export { default as Checkbox } from './Checkbox';
-export { default as FormCheckbox } from './FormCheckbox';
-export { default as FormControl } from './FormControl';
-export { default as FormHelperText } from './FormHelperText';
-export { default as FormRadio } from './FormRadio';
-export * from './Input';
-export { default as Input } from './Input';
-export { default as InputLabel } from './InputLabel';
-export * from './MultiSelect';
-export { default as MultiSelect } from './MultiSelect';
-export * from './Radio';
-export { default as Radio } from './Radio';
-export { default as RadioCheckboxGroup } from './RadioCheckboxGroup';
-export { default as Select } from './Select';
-export { default as Textarea } from './Textarea';
-
 export * from './common';
+export * from './Checkbox/Checkbox.comp';
+export { default as Checkbox } from './Checkbox/Checkbox.comp';
+export { default as FormCheckbox } from './FormCheckbox/FormCheckbox.comp';
+export { default as FormControl } from './FormControl/FormControl.comp';
+export { default as FormHelperText } from './FormHelperText/FormHelperText.comp';
+export { default as FormRadio } from './FormRadio/FormRadio.comp';
+export * from './Input/Input.comp';
+export { default as Input } from './Input/Input.comp';
+export { default as InputLabel } from './InputLabel/InputLabel.comp';
+export * from './MultiSelect/MultiSelect.comp';
+export { default as MultiSelect } from './MultiSelect/MultiSelect.comp';
+export * from './Radio/Radio.comp';
+export { default as Radio } from './Radio/Radio.comp';
+export { default as RadioCheckboxGroup } from './RadioCheckboxGroup/RadioCheckboxGroup.comp';
+export { default as Select } from './Select/Select.comp';
+export { default as Textarea } from './Textarea/Textarea.comp';
