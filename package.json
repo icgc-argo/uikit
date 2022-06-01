@@ -1,6 +1,6 @@
 {
   "name": "@icgc-argo/uikit",
-  "version": "1.15.0",
+  "version": "1.16.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/icgc-argo/uikit"
@@ -28,7 +28,6 @@
     "react": "16.x.x || 17.x.x",
     "react-dom": "16.x.x || 17.x.x"
   },
-
   "dependencies": {
     "@babel/runtime-corejs2": "^7.7.2",
     "@emotion/core": "^10.0.10",
