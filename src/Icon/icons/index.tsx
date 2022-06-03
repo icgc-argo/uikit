@@ -73,7 +73,6 @@ import info_transparent from './collection/info_transparent';
 import question_circle from './collection/question_circle';
 import bug from './collection/bug';
 import filter from './collection/filter';
-import legend from './collection/legend';
 
 /**
  * Icon path and property lookup object
@@ -136,7 +135,6 @@ const Icons = {
   question_circle,
   bug,
   filter,
-  legend,
 };
 
 export type UikitIconNames = keyof typeof Icons;
