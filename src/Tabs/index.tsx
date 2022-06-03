@@ -17,16 +17,18 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
-import css from '@emotion/css';
-import clsx from 'clsx';
-import useTheme from '../utils/useTheme';
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "@emotion/styled";
+import css from "@emotion/css";
+import clsx from "clsx";
+import useTheme from "../utils/useTheme";
 
 const TabsContext = React.createContext({ onChange: null, value: null });
 
-export const Button = styled<'button', { as?: keyof HTMLElementTagNameMap }>('button')`
+export const Button = styled<"button", { as?: keyof HTMLElementTagNameMap }>(
+  "button"
+)`
   ${({ theme }) => css(theme.typography.label)};
   color: ${({ theme }) => theme.colors.grey};
   display: flex;
@@ -86,7 +88,7 @@ export const Tab: React.ComponentType<
   );
 };
 
-const Container = styled('div')`
+const Container = styled("div")`
   display: flex;
 `;
 
@@ -94,7 +96,8 @@ const Tabs: React.ComponentType<{
   value: any;
   onChange?: (...any) => void;
   children: React.ReactElement[];
-}> = ({ value, onChange, children: childrenProp }) => {
+  containerProps?: {};
+}> = ({ value, onChange, children: childrenProp, containerProps }) => {
   const children = React.Children.map(childrenProp, (child) => {
     return React.cloneElement(child, {
       active: child.props.value == value,
@@ -108,7 +111,7 @@ const Tabs: React.ComponentType<{
 
   return (
     <TabsContext.Provider value={context}>
-      <Container>{children}</Container>
+      <Container {...containerProps}>{children}</Container>
     </TabsContext.Provider>
   );
 };
