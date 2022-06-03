@@ -26,7 +26,7 @@ import color from 'color';
 import useTheme from '../utils/useTheme';
 import DnaLoader from '../DnaLoader';
 
-const ContainerBackground = styled<'div', { loading?: boolean; theme?: any }>('div', {
+const ContainerBackground = styled<'div', { loading?: boolean }>('div', {
   shouldForwardProp: (prop) => isPropValid(prop) && prop !== 'loading',
 })`
   border-radius: 8px;

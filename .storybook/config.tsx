@@ -17,15 +17,28 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/core';
+import { configure, addDecorator, addParameters } from '@storybook/react';
+import { withInfo } from '@storybook/addon-info';
+import { withKnobs } from '@storybook/addon-knobs';
+import { withA11y } from '@storybook/addon-a11y';
 
-export default {
-  title: 'Slash',
-  viewBox: '0 0 20 20',
-  path:
-    'M13.001.373a1.539 1.539 0 0 0-1.37 1.01L5.477 17.537a1.543 1.543 0 1 0 2.885 1.093l6.154-16.153A1.539 1.539 0 0 0 13 .373z',
-  css: css`
-    width: 20px;
-    height: 20px;
-  `,
-};
+import ReactTable from 'react-table';
+import React from 'react';
+import PropTypesTable from './PropTypesTable';
+
+// automatically import all files ending in *.stories.js
+const req = require.context('../stories', true, /\.stories\.tsx$/);
+function loadStories() {
+  req.keys().forEach(filename => req(filename));
+}
+
+addParameters({
+  options: {
+    addonPanelInRight: true,
+  },
+});
+addDecorator(withA11y);
+addDecorator(withInfo({ inline: true, header: false, TableComponent: PropTypesTable }));
+addDecorator(withKnobs);
+
+configure(loadStories, module);

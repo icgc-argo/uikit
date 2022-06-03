@@ -83,8 +83,9 @@ const Tooltip: React.ComponentType<TooltipProps> = ({
     padding: 2px 4px;
     color: white;
     font-weight: normal;
-    ${arrow &&
-    `
+    ${
+      arrow &&
+      `
       &:before {
         content: '';
         display: block;
@@ -95,7 +96,8 @@ const Tooltip: React.ComponentType<TooltipProps> = ({
         pointer-events: none;
         ${arrowStyles[position]}
       }
-    `}
+    `
+    }
   `;
 
   return (

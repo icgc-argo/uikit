@@ -17,15 +17,50 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/core';
+const path = require('path');
 
-export default {
-  title: 'Slash',
-  viewBox: '0 0 20 20',
-  path:
-    'M13.001.373a1.539 1.539 0 0 0-1.37 1.01L5.477 17.537a1.543 1.543 0 1 0 2.885 1.093l6.154-16.153A1.539 1.539 0 0 0 13 .373z',
-  css: css`
-    width: 20px;
-    height: 20px;
-  `,
+module.exports = async ({ config }) => {
+  config.node = {
+    __dirname: true,
+    __filename: true,
+  };
+
+  config.resolve.modules = [...(config.resolve.modules || []), path.resolve(__dirname, '../')];
+
+  config.module.rules = [
+    ...(config.module.rules || []),
+    {
+      test: /\.(graphql|gql)$/,
+      exclude: /node_modules/,
+      loader: 'graphql-tag/loader',
+    },
+    {
+      test: /\.(ts|tsx)$/,
+      exclude: /(node_modules)/,
+      use: [
+        {
+          loader: require.resolve('react-docgen-typescript-loader'),
+        },
+        {
+          loader: require.resolve('babel-loader'),
+          options: {
+            presets: [
+              ['@babel/preset-typescript', { isTSX: true, allExtensions: true }],
+              [
+                '@emotion/babel-preset-css-prop',
+                {
+                  autoLabel: true,
+                  labelFormat: 'Uikit-[local]',
+                },
+              ],
+            ],
+          },
+        },
+      ],
+    },
+  ];
+  config.resolve.extensions = [...(config.resolve.extensions || []), '.ts', '.tsx'];
+
+  // Return the altered config
+  return config;
 };

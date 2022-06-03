@@ -26,7 +26,7 @@ import { text, select } from '@storybook/addon-knobs';
 import defaultTheme from '../theme/defaultTheme';
 const themeColors = Object.keys(defaultTheme.colors) as Array<keyof typeof defaultTheme.colors>;
 
-storiesOf(`${__dirname}`, module).add('Basic', () => {
+const PipeStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
   const colourKnobs = [
     select('Fill Colour: First', themeColors, 'accent1_dimmed', null),
     select('Fill Colour: Second', themeColors, 'warning_dark', null),
@@ -69,3 +69,5 @@ storiesOf(`${__dirname}`, module).add('Basic', () => {
     </div>
   );
 });
+
+export default PipeStories;

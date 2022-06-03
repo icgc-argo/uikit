@@ -172,10 +172,9 @@ const OptionsList: React.ComponentType<{
   /* %%%%%%%%%%%%%%%%%% ~ Option Rendering Logic ~ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
   const sortedOptions = React.useMemo(() => orderBy(options, ['isChecked'], ['desc']), [options]);
 
-  const selectedOptions = React.useMemo(
-    () => options.filter((option) => option.isChecked),
-    [options],
-  );
+  const selectedOptions = React.useMemo(() => options.filter((option) => option.isChecked), [
+    options,
+  ]);
 
   const queriedOptions = React.useMemo(
     () =>

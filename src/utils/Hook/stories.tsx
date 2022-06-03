@@ -25,7 +25,7 @@ import Button from '../../Button';
 import Hook from '.';
 import readme from './readme.md';
 
-storiesOf(`${__dirname}`, module).add(
+const HookStories = storiesOf(`${__dirname}`, module).add(
   'Basic',
   () => (
     <Hook
@@ -47,3 +47,5 @@ storiesOf(`${__dirname}`, module).add(
     },
   },
 );
+
+export default HookStories;

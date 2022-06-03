@@ -25,15 +25,12 @@ import Icon from '../../Icon';
 import Typography from '../../Typography';
 
 export type PopupPosition = 'UP' | 'DOWN';
-export const POPUP_POSITIONS = {
-  UP: 'UP' as PopupPosition,
-  DOWN: 'DOWN' as PopupPosition,
-};
+export const POPUP_POSITIONS = { UP: 'UP' as PopupPosition, DOWN: 'DOWN' as PopupPosition };
 
 export const DropdownIcon = withProps(({ disabled, theme }) => ({
   name: 'chevron_down',
   fill: disabled ? theme.colors.grey_disabled : 'black',
-}))(styled<typeof Icon, { disabled?: boolean; theme?: any }>(Icon)`
+}))(styled<typeof Icon, { disabled?: boolean }>(Icon)`
   height: 100%;
   width: 10px;
   padding: 10px;
@@ -41,7 +38,7 @@ export const DropdownIcon = withProps(({ disabled, theme }) => ({
     ${({ theme, disabled }) => (disabled ? theme.colors.grey_2 : theme.colors.grey_1)};
 `);
 
-export const OptionsList = styled('ol')<{ theme?: any }>`
+export const OptionsList = styled('ol')`
   list-style: none;
   margin: 0;
   padding: 0;
@@ -62,7 +59,7 @@ export const OptionsList = styled('ol')<{ theme?: any }>`
   }
 `;
 
-const OptionContainer = styled('li')<{ theme?: any }>`
+const OptionContainer = styled('li')`
   list-style: none;
   min: 100%;
   padding: 5px 10px;

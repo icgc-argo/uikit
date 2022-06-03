@@ -20,14 +20,14 @@
 import styled from '@emotion/styled';
 import Container from '../Container';
 
-export const PageContainer = styled('div')<{ theme?: any }>`
+export const PageContainer = styled('div')`
   display: grid;
   grid-template-rows: 58px 1fr;
   min-height: 100vh;
   background: ${({ theme }) => theme.colors.grey_4};
 `;
 
-export const Sidebar = styled('div')<{ theme?: any }>`
+export const Sidebar = styled('div')`
   z-index: 1;
   background: ${({ theme }) => theme.colors.white};
   box-shadow: ${({ theme }) => theme.shadows.pageElement};
@@ -39,7 +39,7 @@ export const Sidebar = styled('div')<{ theme?: any }>`
   height: calc(100vh - 58px);
 `;
 
-export const Collapsible = styled('div')<{ theme?: any }>`
+export const Collapsible = styled('div')`
   border-top: 1px solid ${({ theme }) => theme.colors.grey_2};
   min-height: 58px;
   width: 100%;
@@ -89,7 +89,7 @@ export const PageBody = styled.div<PageBodyProps>`
   }
 `;
 
-export const ContentHeader = styled('div')<{ theme?: any }>`
+export const ContentHeader = styled('div')`
   display: flex;
   align-items: center;
   height: 56px;

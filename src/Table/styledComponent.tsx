@@ -32,20 +32,10 @@ export type StyledTableProps = {
   isSelectTable?: boolean;
   withOutsideBorder?: boolean;
   cellAlignment?: 'top' | 'center' | 'bottom';
-  theme?: any;
 };
 
-interface TableProps {
-  theme?: any;
-  withOutsideBorder?: any;
-  withRowBorder?: any;
-  isSelectTable?: any;
-  cellAlignment?: any;
-  sortable?: any;
-}
-/* prettier-ignore */
-export const StyledTable = styled<typeof ReactTable, StyledTableProps>(ReactTable)<TableProps>`
-${reactTableDefaultStyle}
+export const StyledTable = styled<typeof ReactTable, StyledTableProps>(ReactTable)`
+  ${reactTableDefaultStyle}
 
   &.ReactTable .-loading.-active .-loading-inner {
     font-family: ${({ theme }) => theme.typography.data.fontFamily};
@@ -135,11 +125,7 @@ ${reactTableDefaultStyle}
     border-right: solid 1px ${({ theme }) => theme.colors.grey_2};
     display: flex;
     align-items: ${({ cellAlignment }) =>
-      cellAlignment === "top"
-        ? "flex-start"
-        : cellAlignment === "bottom"
-        ? "flex-end"
-        : "center"};
+      cellAlignment === 'top' ? 'flex-start' : cellAlignment === 'bottom' ? 'flex-end' : 'center'};
   }
 
   &.ReactTable .rt-tr {
@@ -165,7 +151,7 @@ ${reactTableDefaultStyle}
     border-bottom: solid 1px ${({ theme }) => theme.colors.grey_2};
 
     & .rt-tr .rt-th {
-      padding: ${({ sortable }) => (sortable ? "2px 6px" : "2px 8px")};
+      padding: ${({ sortable }) => (sortable ? '2px 6px' : '2px 8px')};
       border-left: none;
       border-right: none;
       text-align: left;

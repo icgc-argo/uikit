@@ -39,7 +39,7 @@ const RightComp = () => (
   </div>
 );
 
-storiesOf(`${__dirname}`, module).add(
+const SubMenuStories = storiesOf(`${__dirname}`, module).add(
   'Basic',
   () => (
     <SubMenu>
@@ -112,3 +112,5 @@ storiesOf(`${__dirname}`, module).add(
     },
   },
 );
+
+export default SubMenuStories;

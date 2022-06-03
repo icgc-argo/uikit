@@ -35,7 +35,7 @@ import AppBar, {
 // to simulate nextjs link or any other framework that needs to wrap href
 const CustomLink = ({ children, ...props }) => <div {...props}>{children}</div>;
 
-storiesOf(`${__dirname}`, module)
+const AppBarStories = storiesOf(`${__dirname}`, module)
   .add('Basic', () => {
     const LinkToHome = (props) => (
       <a style={{ cursor: 'pointer' }} {...props} onClick={() => action('fake navigate')('/')} />
@@ -86,7 +86,6 @@ storiesOf(`${__dirname}`, module)
                 </DropdownMenu>
               }
             >
-              AppBarStories
               <UserBadge firstName="Harvey" lastName="Specter" title="DCC Member" />
             </MenuItem>
           </MenuGroup>
@@ -97,3 +96,5 @@ storiesOf(`${__dirname}`, module)
   .add('NavBarElement', () => (
     <NavBarElement name="custom link comp" href="www.google.ca" LinkComp={CustomLink} active />
   ));
+
+export default AppBarStories;

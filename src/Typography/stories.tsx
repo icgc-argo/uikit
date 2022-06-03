@@ -24,7 +24,7 @@ import defaultTheme from '../theme/defaultTheme';
 
 import Typography, { TypographyVariant } from '.';
 
-storiesOf(`${__dirname}`, module)
+const TypographyStories = storiesOf(`${__dirname}`, module)
   .add('Basic', () => {
     const knobs = {
       variant: radios(
@@ -52,3 +52,5 @@ storiesOf(`${__dirname}`, module)
       ))}
     </>
   ));
+
+export default TypographyStories;

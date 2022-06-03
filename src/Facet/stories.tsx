@@ -23,7 +23,7 @@ import Facet from '.';
 import { FilterOption } from '../OptionsList';
 import { text } from '@storybook/addon-knobs';
 
-storiesOf(`${__dirname}`, module).add('Basic', () => {
+const FacetStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
   const knobs = {
     countUnit: text('count unit description label', 'files'),
   };
@@ -57,12 +57,7 @@ storiesOf(`${__dirname}`, module).add('Basic', () => {
           const currentIndex = options.findIndex((val) => val.key === facetValue);
           setOptions([
             ...options.slice(0, currentIndex),
-            ...[
-              {
-                ...options[currentIndex],
-                isChecked: !options[currentIndex].isChecked,
-              },
-            ],
+            ...[{ ...options[currentIndex], isChecked: !options[currentIndex].isChecked }],
             ...options.slice(currentIndex + 1, Infinity),
           ]);
         }}
@@ -78,3 +73,5 @@ storiesOf(`${__dirname}`, module).add('Basic', () => {
     </div>
   );
 });
+
+export default FacetStories;

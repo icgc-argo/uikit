@@ -72,12 +72,8 @@ const Select: React.ComponentType<{
   const [selectedValue, setSelectedValue] = useState(value);
   const [isExpanded, setExpanded] = useState(false);
 
-  const {
-    disabled: calcDisabled,
-    error: calcError,
-    handleBlur,
-    handleFocus,
-  } = useContext(FormControlContext) || {};
+  const { disabled: calcDisabled, error: calcError, handleBlur, handleFocus } =
+    useContext(FormControlContext) || {};
 
   const onBlur = (event) => {
     handleBlur?.();

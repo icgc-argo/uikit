@@ -21,7 +21,7 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 import OptionsList, { FilterOption } from '.';
 
-storiesOf(`${__dirname}`, module).add('Basic', () => {
+const OptionsListStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
   const exampleOptions: Array<FilterOption> = [
     { key: 'Helion', doc_count: 587 },
     { key: 'SCV', doc_count: 525 },
@@ -52,12 +52,7 @@ storiesOf(`${__dirname}`, module).add('Basic', () => {
           const currentIndex = options.findIndex((val) => val.key === facetValue);
           setOptions([
             ...options.slice(0, currentIndex),
-            ...[
-              {
-                ...options[currentIndex],
-                isChecked: !options[currentIndex].isChecked,
-              },
-            ],
+            ...[{ ...options[currentIndex], isChecked: !options[currentIndex].isChecked }],
             ...options.slice(currentIndex + 1, Infinity),
           ]);
         }}
@@ -73,3 +68,5 @@ storiesOf(`${__dirname}`, module).add('Basic', () => {
     </div>
   );
 });
+
+export default OptionsListStories;

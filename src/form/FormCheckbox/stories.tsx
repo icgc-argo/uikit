@@ -67,7 +67,7 @@ const createGroupKnobs = () => {
   return { hasError };
 };
 
-storiesOf(`${__dirname}`, module)
+const CheckboxStories = storiesOf(`${__dirname}`, module)
   .add('Default', () => (
     <FormCheckbox {...createKnobs()} aria-label="Item">
       Item
@@ -115,3 +115,5 @@ storiesOf(`${__dirname}`, module)
       </RadioCheckboxGroup>
     );
   });
+
+export default CheckboxStories;

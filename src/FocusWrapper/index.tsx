@@ -19,7 +19,7 @@
 
 import styled from '@emotion/styled-base';
 
-const FocusWrapper = styled('button')<{ theme?: any }>`
+const FocusWrapper = styled('button')`
   border: none;
   background: none;
   padding: 0px;

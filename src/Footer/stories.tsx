@@ -22,7 +22,7 @@ import React from 'react';
 import Footer from '.';
 import Container from '../Container';
 
-storiesOf(`${__dirname}`, module).add(
+const FooterStories = storiesOf(`${__dirname}`, module).add(
   'Basic',
   () => (
     <Container style={{ padding: '0 15px' }}>
@@ -44,3 +44,5 @@ storiesOf(`${__dirname}`, module).add(
     info: {},
   },
 );
+
+export default FooterStories;

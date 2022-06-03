@@ -24,7 +24,7 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import DropdownPanel, { TextInputFilter, ListFilter, FilterOption } from '.';
 import icons, { UikitIconNames } from 'src/Icon/icons';
 
-storiesOf(`${__dirname}`, module)
+const DropdownPanelStories = storiesOf(`${__dirname}`, module)
   .add('Basic', () => {
     const [open, setOpen] = useState(false);
 
@@ -172,3 +172,5 @@ storiesOf(`${__dirname}`, module)
       </DropdownPanel>
     );
   });
+
+export default DropdownPanelStories;

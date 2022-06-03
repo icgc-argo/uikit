@@ -34,7 +34,8 @@ const createKnobs = () => {
     disabled,
   };
 };
-
-storiesOf(`${__dirname}`, module).add('Basic', () => (
+const RadioStories = storiesOf(`${__dirname}`, module).add('Basic', () => (
   <Radio {...createKnobs()} onChange={action('radio on change')} aria-label="radio" />
 ));
+
+export default RadioStories;

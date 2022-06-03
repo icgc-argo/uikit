@@ -49,7 +49,7 @@ const createKnobs = () => {
   };
 };
 
-storiesOf(`${__dirname}`, module).add('Basic', () => {
+const InputStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
   const knobs = createKnobs();
   const [value, setValue] = React.useState('');
   const [valueTwo, setValueTwo] = React.useState('');
@@ -91,3 +91,5 @@ storiesOf(`${__dirname}`, module).add('Basic', () => {
     </div>
   );
 });
+
+export default InputStories;

@@ -21,7 +21,7 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 import SimpleTable from '.';
 
-storiesOf(`${__dirname}`, module).add('Basic', () => {
+const SimpleTableStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
   const fruitData = {
     Bananas: 39,
     Peaches: 194,
@@ -31,3 +31,5 @@ storiesOf(`${__dirname}`, module).add('Basic', () => {
   };
   return <SimpleTable data={fruitData} />;
 });
+
+export default SimpleTableStories;

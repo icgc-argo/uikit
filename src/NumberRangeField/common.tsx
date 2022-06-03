@@ -26,7 +26,7 @@ export const FieldInputWrapper = styled('div')`
   }
 `;
 
-export const FieldDescriptionLabel = styled('div')<{ theme?: any }>`
+export const FieldDescriptionLabel = styled('div')`
   display: flex;
   width: 15%;
   height: 30px;

@@ -22,7 +22,7 @@ import { storiesOf } from '@storybook/react';
 import useClickAway from '.';
 import { action } from '@storybook/addon-actions';
 
-storiesOf(`${__dirname}`, module).add(
+export default storiesOf(`${__dirname}`, module).add(
   'Basic',
   () => {
     const ref = React.createRef<HTMLButtonElement>();

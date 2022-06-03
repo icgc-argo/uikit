@@ -57,4 +57,6 @@ const SimpleTabs = React.forwardRef(() => {
   );
 });
 
-storiesOf(`${__dirname}`, module).add('Basic', () => <SimpleTabs />);
+const TabsStories = storiesOf(`${__dirname}`, module).add('Basic', () => <SimpleTabs />);
+
+export default TabsStories;

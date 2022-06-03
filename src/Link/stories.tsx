@@ -23,7 +23,7 @@ import Link, { LINK_VARIANTS } from '.';
 import { action } from '@storybook/addon-actions';
 import { select, boolean } from '@storybook/addon-knobs';
 
-storiesOf(`${__dirname}`, module).add('Basic', () => {
+const LinkStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
   const variant = select('variant', Object.values(LINK_VARIANTS), LINK_VARIANTS.BLOCK);
   const invert = boolean('invert', false);
   return (
@@ -34,3 +34,5 @@ storiesOf(`${__dirname}`, module).add('Basic', () => {
     </>
   );
 });
+
+export default LinkStories;

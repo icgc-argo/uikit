@@ -28,7 +28,7 @@ import Notification, {
 import { action } from '@storybook/addon-actions';
 import { select, text, boolean } from '@storybook/addon-knobs';
 
-storiesOf(`${__dirname}`, module).add('Basic', () => {
+const NotificationStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
   const variant = select(
     'variant',
     [undefined, ...Object.values(NOTIFICATION_VARIANTS)],
@@ -76,3 +76,5 @@ storiesOf(`${__dirname}`, module).add('Basic', () => {
     </>
   );
 });
+
+export default NotificationStories;

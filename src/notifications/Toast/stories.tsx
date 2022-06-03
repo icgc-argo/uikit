@@ -24,7 +24,7 @@ import { action } from '@storybook/addon-actions';
 
 import Toast, { TOAST_VARIANTS, TOAST_INTERACTION } from '.';
 
-storiesOf(`${__dirname}`, module).add('Basic', () => {
+const ToastStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
   const variant = select('variant', [undefined, ...Object.values(TOAST_VARIANTS)], undefined);
   const interactionType = select(
     'interactionType',
@@ -46,3 +46,5 @@ storiesOf(`${__dirname}`, module).add('Basic', () => {
     />
   );
 });
+
+export default ToastStories;

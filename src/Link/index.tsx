@@ -30,7 +30,6 @@ export type HyperLinkProps = {
   bold?: boolean;
   href?: string;
   invert?: boolean;
-  theme?: any;
 } & AnchorHTMLAttributes<HTMLAnchorElement>;
 
 const StyledLink = styled<'a', HyperLinkProps>('a')`

@@ -38,11 +38,7 @@ type TabStyleType = {
   border: string;
 };
 
-const Triangle = styled('div')<{
-  tabStyle: TabStyleType;
-  contHeight: number;
-  theme?: any;
-}>`
+const Triangle = styled('div')<{ tabStyle: TabStyleType; contHeight: number }>`
   transition: all 0.25s;
   width: 0px;
   position: absolute;
@@ -73,11 +69,7 @@ const Triangle = styled('div')<{
   }
 `;
 
-const BaseItemContainer = styled(FocusWrapper)<{
-  tabStyle: TabStyleType;
-  disabled?: boolean;
-  theme?: any;
-}>`
+const BaseItemContainer = styled(FocusWrapper)<{ tabStyle: TabStyleType; disabled?: boolean }>`
   width: 100%;
   position: relative;
   transition: all 0.25s;
@@ -108,10 +100,7 @@ const BaseItemContainer = styled(FocusWrapper)<{
           }
         `}
 `;
-const ActiveItemContainer = styled(BaseItemContainer)<{
-  tabStyle: TabStyleType;
-  theme?: any;
-}>`
+const ActiveItemContainer = styled(BaseItemContainer)<{ tabStyle: TabStyleType }>`
   border-color: ${({ theme }) => theme.colors.secondary};
   border-top-color: ${({ theme }) => theme.colors.secondary_2};
   border-bottom-color: ${({ theme }) => theme.colors.secondary_2};

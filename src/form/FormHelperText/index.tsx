@@ -51,7 +51,7 @@ const FormHelperText = React.forwardRef<
     onErrorOnly = false,
   } = props;
 
-  const StyledComponent = styled<any, any>(Component)<{ theme?: any }>`
+  const StyledComponent = styled<any, any>(Component)`
     ${({ theme }) => css(theme.typography.caption)};
     margin: 3px 7px;
     line-height: 14px;

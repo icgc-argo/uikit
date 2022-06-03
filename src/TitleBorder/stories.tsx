@@ -27,7 +27,7 @@ import Typography from '../Typography';
 
 const themeColors = Object.keys(defaultTheme.colors) as Array<keyof typeof defaultTheme.colors>;
 
-storiesOf(`${__dirname}`, module)
+const TitleBorderStories = storiesOf(`${__dirname}`, module)
   .add('Full width', () => {
     const knobs = {
       color: select('color', themeColors, 'primary', null),
@@ -51,3 +51,5 @@ storiesOf(`${__dirname}`, module)
       </>
     );
   });
+
+export default TitleBorderStories;

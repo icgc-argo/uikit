@@ -65,10 +65,10 @@ const Textarea = ({
     props.onFocus?.(event);
   };
 
-  const getCount = useCallback(
-    (newCount) => (isAscending ? newCount : countLimit - newCount),
-    [countLimit, isAscending],
-  );
+  const getCount = useCallback((newCount) => (isAscending ? newCount : countLimit - newCount), [
+    countLimit,
+    isAscending,
+  ]);
 
   const applyChanges = useCallback(
     (targetValue) => {

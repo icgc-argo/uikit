@@ -21,10 +21,7 @@ import styled from '@emotion/styled';
 import React from 'react';
 import defaultTheme from 'src/theme/defaultTheme';
 
-const TitleBorder = styled<
-  'hr',
-  { width?: string; color: keyof typeof defaultTheme.colors; theme?: any }
->('hr')`
+const TitleBorder = styled<'hr', { width?: string; color: keyof typeof defaultTheme.colors }>('hr')`
   border: 0;
   width: ${({ width }) => (width ? width : 'auto')};
   height: 3px;

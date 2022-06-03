@@ -22,7 +22,7 @@ import React from 'react';
 import ContentPlaceholder from '.';
 import { text } from '@storybook/addon-knobs';
 
-storiesOf(`${__dirname}`, module).add('Basic', () => (
+const ContentPlaceholderStories = storiesOf(`${__dirname}`, module).add('Basic', () => (
   <ContentPlaceholder
     title={text('title', 'You do not have any registration data uploaded.')}
     subtitle={text('subtitle', 'Follow the instructions above to get started.')}
@@ -30,3 +30,5 @@ storiesOf(`${__dirname}`, module).add('Basic', () => (
     <img alt="Chemistry beakers" src="/static/beakers.svg" />
   </ContentPlaceholder>
 ));
+
+export default ContentPlaceholderStories;

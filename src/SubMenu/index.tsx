@@ -188,7 +188,7 @@ const MenuItemComponent = React.forwardRef<
   },
 );
 
-const SubMenuComponent = styled('div')<{ theme?: any }>`
+const SubMenuComponent = styled('div')`
   background: ${({ theme }) => theme.colors.white};
   & > ${MenuItemContainer} {
     border-bottom: solid 1px ${({ theme }) => theme.colors.grey_2};

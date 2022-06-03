@@ -21,7 +21,7 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 import NumberRangeFacet from '.';
 
-storiesOf(`${__dirname}`, module).add('Basic', () => {
+const NumberRangeFacetStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
   const [range, setRange] = React.useState({ min: null, max: null });
   return (
     <div>
@@ -32,3 +32,5 @@ storiesOf(`${__dirname}`, module).add('Basic', () => {
     </div>
   );
 });
+
+export default NumberRangeFacetStories;

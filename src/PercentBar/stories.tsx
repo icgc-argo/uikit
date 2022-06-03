@@ -25,7 +25,7 @@ import { number, select } from '@storybook/addon-knobs';
 import defaultTheme from '../theme/defaultTheme';
 import PercentageBar from '.';
 
-storiesOf(`${__dirname}`, module).add('Basic', () => {
+const PercentBarStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
   const color = select('fill', [null, '#00f', ...Object.keys(defaultTheme.colors)], null);
   return (
     <div style={{ width: '100%', background: 'white' }}>
@@ -38,3 +38,5 @@ storiesOf(`${__dirname}`, module).add('Basic', () => {
     </div>
   );
 });
+
+export default PercentBarStories;

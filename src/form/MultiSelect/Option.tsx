@@ -22,7 +22,7 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import css from '@emotion/css';
 
-const Li = styled('li')<{ theme?: any }>`
+const Li = styled('li')`
   ${({ theme }) => css(theme.typography.data)};
   list-style: none;
   padding-left: 7px;

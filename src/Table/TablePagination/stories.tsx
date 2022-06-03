@@ -25,7 +25,7 @@ import { boolean } from '@storybook/addon-knobs';
 
 import Table from '..';
 
-storiesOf(`${__dirname}`, module).add(
+export default storiesOf(`${__dirname}`, module).add(
   'Basic',
   () => {
     const containerRef = React.createRef<HTMLDivElement>();

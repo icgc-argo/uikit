@@ -30,7 +30,7 @@ import Input from '../../form/Input';
 import FormCheckbox from '../FormCheckbox';
 import Typography from '../../Typography';
 
-storiesOf(`${__dirname}`, module)
+const FormControlStories = storiesOf(`${__dirname}`, module)
   .add(
     'FormCheckbox',
     () => {
@@ -125,3 +125,5 @@ storiesOf(`${__dirname}`, module)
       },
     },
   );
+
+export default FormControlStories;

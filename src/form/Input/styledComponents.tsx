@@ -21,7 +21,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 export { StyledInputWrapper } from '../common';
 
-export const StyledInput = styled<'input', { inputSize: string; theme?: any }>('input')`
+export const StyledInput = styled<'input', { inputSize: string }>('input')`
   ${({ theme }) => css(theme.typography.default)};
   padding: ${({ theme, inputSize }) => theme.input.paddings[inputSize]};
   border: none;

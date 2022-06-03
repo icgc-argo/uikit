@@ -26,7 +26,7 @@ import readme from './readme.md';
 import Tooltip from '.';
 import Icon from '../Icon';
 
-storiesOf(`${__dirname}`, module).add(
+const TooltipStories = storiesOf(`${__dirname}`, module).add(
   'Basic',
   () => {
     const knobs = {
@@ -82,3 +82,5 @@ storiesOf(`${__dirname}`, module).add(
     },
   },
 );
+
+export default TooltipStories;

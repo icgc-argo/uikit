@@ -24,7 +24,7 @@ import { action } from '@storybook/addon-actions';
 import ToastStack from '.';
 import { NOTIFICATION_VARIANTS } from '../Notification';
 
-storiesOf(`${__dirname}`, module).add('Basic', () => {
+const ToastStackStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
   const [stack, setStack] = React.useState([
     {
       id: String(Math.random()),
@@ -81,3 +81,5 @@ storiesOf(`${__dirname}`, module).add('Basic', () => {
     />
   );
 });
+
+export default ToastStackStories;

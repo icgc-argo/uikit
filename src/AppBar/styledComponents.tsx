@@ -36,7 +36,6 @@ export const MenuItemContainer = styled<
   'div',
   {
     active: boolean;
-    theme?: any;
   }
 >('div', {
   shouldForwardProp: (propName) => propName !== 'active',
@@ -67,7 +66,7 @@ export const MenuGroupDisplay = styled('div')`
     border-left: none;
   }
 `;
-export const AppBarContainer = styled('nav')<{ theme?: any }>`
+export const AppBarContainer = styled('nav')`
   display: flex;
   flex-direction: row;
   justify-content: space-between;

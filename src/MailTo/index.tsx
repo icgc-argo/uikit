@@ -21,7 +21,7 @@ import React from 'react';
 import Typography from '../Typography';
 import { styled } from '..';
 
-const Mail = styled('a')<{ theme?: any }>`
+const Mail = styled('a')`
   color: ${({ theme }) => theme.colors.black};
   text-decoration: none;
 `;

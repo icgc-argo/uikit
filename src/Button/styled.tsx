@@ -27,7 +27,6 @@ const StyledButton = styled<
     size: 'sm' | 'md';
     variant: 'primary' | 'secondary' | 'text';
     disabled: boolean;
-    theme?: any;
   }
 >(FocusWrapper)`
   ${({ theme }) => css(theme.typography.default)};

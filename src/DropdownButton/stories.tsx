@@ -25,7 +25,7 @@ import { action } from '@storybook/addon-actions';
 import { createKnobs as createButtonKnobs } from 'src/Button/stories';
 import Button from 'src/Button';
 
-storiesOf(`${__dirname}`, module).add('Basic', () => {
+const DropdownButtonStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
   const knobs = createButtonKnobs();
   const menuShown = boolean('menuShown', false);
   return (
@@ -43,3 +43,5 @@ storiesOf(`${__dirname}`, module).add('Basic', () => {
     </DropdownButton>
   );
 });
+
+export default DropdownButtonStories;
