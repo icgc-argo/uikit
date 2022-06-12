@@ -105,7 +105,7 @@ const ModalOverlay = styled('div')<{ theme?: any }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${({ theme }) => Color(theme.uikit.colors.primary_dark).alpha(0.8).hsl().string()};
+  background: hsla(230, 50%, 9.4%, 0.8);
 `;
 
 /**
