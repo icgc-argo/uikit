@@ -22,6 +22,26 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 import Banner, { BANNER_SIZE, BANNER_VARIANTS } from './index';
 
+export default {
+  component: Banner,
+  argTypes: {
+    variant: {
+      type: 'select',
+      options: Object.values(BANNER_VARIANTS),
+      defaultValue: BANNER_VARIANTS.ERROR,
+      // FILL REST OF THESE
+    },
+    /*  const size = select('size', [undefined, ...Object.values(BANNER_SIZE)], undefined);
+  const title = text('title', 'Hipster Ipsum');
+  const content = text(
+    'content',
+    'Lorem ipsum dolor amet helvetica post-ironic fingerstache trust fund pitchfork tofu venmo live-edge',
+  ); */
+  },
+};
+
+export const Basic = (args) => <Banner {...args} />;
+/* 
 storiesOf(`${__dirname}`, module).add('Basic', () => {
   const variant = select('variant', [undefined, ...Object.values(BANNER_VARIANTS)], undefined);
   const size = select('size', [undefined, ...Object.values(BANNER_SIZE)], undefined);
@@ -32,3 +52,4 @@ storiesOf(`${__dirname}`, module).add('Basic', () => {
   );
   return <Banner variant={variant} title={title} content={content} size={size} />;
 });
+ */

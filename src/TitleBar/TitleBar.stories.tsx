@@ -17,27 +17,16 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
-import { text } from '@storybook/addon-knobs';
 import React from 'react';
-import TitleBar from '.';
+import TitleBar from './index';
 
-const createKnobs = () => {
-  const className = text('className', undefined);
-  const id = text('id', undefined);
-
-  return {
-    className,
-    id,
-  };
+export default {
+  component: TitleBar,
 };
 
-storiesOf(`${__dirname}`, module).add('Basic', () => {
-  const props = createKnobs();
-  return (
-    <TitleBar {...props}>
-      <>Program Name</>
-      <>Subsection</>
-    </TitleBar>
-  );
-});
+export const Basic = (args) => (
+  <TitleBar>
+    <>Program Name</>
+    <>Subsection</>
+  </TitleBar>
+);

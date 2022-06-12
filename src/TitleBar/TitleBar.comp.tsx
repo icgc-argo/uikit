@@ -17,10 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import React from 'react';
 import Icon from '../Icon';
 import useTheme from '../utils/useTheme';
 
@@ -63,7 +62,7 @@ const interleave = (arr = [], y) => {
 const TitleBar: React.ComponentType<{
   className?: string;
   id?: string;
-  children: React.ReactNode | React.ReactNodeArray;
+  children: React.ReactNode;
 }> = ({ children, className, id }) => {
   const theme = useTheme();
 

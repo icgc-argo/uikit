@@ -26,4 +26,4 @@ export const wrapTheme = (component) => <ThemeProvider theme={theme}>{component}
 export const asyncDummyFunc = (data) =>
   new Promise((resolve) => setTimeout(() => resolve(data), 2500));
 
-export const placeholderImageURLRoot = 'http://placekitten.com/';
+export const placeholderImageURLRoot = 'http://placekitten.com/'; // TODO: replace this with anything other than remote url

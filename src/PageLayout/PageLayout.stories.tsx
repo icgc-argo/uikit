@@ -19,6 +19,8 @@
 
 import { storiesOf } from '@storybook/react';
 import React from 'react';
+import AppBar from '../AppBar/index';
+import Typography from '../Typography';
 import {
   ContentBody,
   ContentBox,
@@ -27,11 +29,9 @@ import {
   PageContainer,
   PageContent,
   Panel,
-} from './PageLayout.comp';
-import AppBar from '../AppBar/AppBar.comp';
-import Typography from '../Typography';
+} from './index';
 
-storiesOf(`${__dirname}`, module).add('Basic', () => (
+const PageExample = () => (
   <PageContainer>
     <AppBar>
       <Typography color="white">AppBar</Typography>
@@ -54,4 +54,11 @@ storiesOf(`${__dirname}`, module).add('Basic', () => (
       </PageContent>
     </PageBody>
   </PageContainer>
-));
+);
+
+export default {
+  title: 'PageLayout',
+  component: PageExample,
+};
+
+export const Basic = (args) => <PageExample />;

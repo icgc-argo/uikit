@@ -17,31 +17,31 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 import NumberRangeField from './index';
-import { boolean } from '@storybook/addon-knobs';
 
-export const createKnobs = () => {
-  const goButtonEnabled = boolean('is the go button enabled', false);
+export default {
+  title: 'NumberRangeField',
+  component: NumberRangeField,
+  argTypes: {
+    onGoClick: { action: 'clicked' },
+    goButtonEnabled: { control: 'boolean' },
+  },
+} as ComponentMeta<typeof NumberRangeField>;
 
-  return {
-    goButtonEnabled,
-  };
-};
-
-storiesOf(`${__dirname}`, module).add('Basic', () => {
-  const props = createKnobs();
+export const Basic: ComponentStory<typeof NumberRangeField> = (args) => {
   const [minimumInput, setMinimumInput] = React.useState('');
   const [maximumInput, setMaximumInput] = React.useState('');
+
   return (
     <NumberRangeField
       min={minimumInput}
-      onMinChange={setMinimumInput}
       max={maximumInput}
-      onMaxChange={setMaximumInput}
-      onGoClick={() => alert(`You set min to ${minimumInput} and max to ${maximumInput}`)}
-      {...props}
+      onMaxChange={(value) => setMaximumInput(value)}
+      onMinChange={(value) => setMinimumInput(value)}
+      goButtonEnabled
+      {...args}
     />
   );
-});
+};

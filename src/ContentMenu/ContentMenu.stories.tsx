@@ -17,34 +17,38 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
 import React from 'react';
-import { text, color } from '@storybook/addon-knobs';
 import ContentMenu from './index';
 
-storiesOf(`${__dirname}`, module).add('Basic', () => {
-  const contentNames = ['Sample Registration', 'Specimen', 'Donor', 'Treatment'];
-  const contents = contentNames.map((content, i) => ({
-    name: content,
-    disabled: i === 2 ? true : false, // set one as disabled
-    contentRef: React.createRef<any>(),
-  }));
+const contentNames = ['Sample Registration', 'Specimen', 'Donor', 'Treatment'];
+const contents = contentNames.map((content, i) => ({
+  name: content,
+  disabled: i === 2 ? true : false, // set one as disabled
+  contentRef: React.createRef<any>(),
+}));
 
-  return (
-    <div>
-      <p>// NB: Jump to content only works on window level</p>
-      <ContentMenu
-        title={text('Title', 'Clinical Files')}
-        contents={contents}
-        color={color('Border', '#0774d3')}
-      />
-      <div style={{ marginTop: '20px', border: '1px solid blue' }}>
-        {contents.map(({ name, contentRef }, i) => (
-          <div ref={contentRef} key={i} style={{ height: '40px' }}>
-            {name}
-          </div>
-        ))}
-      </div>
+export default {
+  component: ContentMenu,
+  argTypes: {
+    title: { control: 'text' },
+    color: { control: 'color' },
+  },
+  args: {
+    title: 'Clinical Files',
+    contents: contents,
+  },
+};
+
+export const Basic = (args) => (
+  <div>
+    <p>// NB: Jump to content only works on window level</p>
+    <ContentMenu contents={contents} {...args} />
+    <div style={{ marginTop: '20px', border: '1px solid blue' }}>
+      {contents.map(({ name, contentRef }, i) => (
+        <div ref={contentRef} key={i} style={{ height: '40px' }}>
+          {name}
+        </div>
+      ))}
     </div>
-  );
-});
+  </div>
+);

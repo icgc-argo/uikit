@@ -22,6 +22,12 @@ import React from 'react';
 import Typography from '../Typography';
 import InstructionBox from './InstructionBox.comp';
 
+export default {
+  component: InstructionBox,
+};
+
+export const Basic = (args) => <InstructionBox {...args} />;
+
 storiesOf(`${__dirname}`, module).add('Basic', () => (
   <div style={{ background: 'white' }}>
     <InstructionBox

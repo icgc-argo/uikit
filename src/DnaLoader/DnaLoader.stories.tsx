@@ -17,16 +17,18 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
 import React from 'react';
 import DnaLoader from './index';
-import { number } from '@storybook/addon-knobs';
 
-storiesOf(`${__dirname}`, module).add('Basic', () => {
-  const dotsCount = number('dotsCount', 5);
-  return (
-    <DnaLoader style={{ background: 'white' }} dotsCount={dotsCount}>
-      Skeleton
-    </DnaLoader>
-  );
-});
+export default {
+  component: DnaLoader,
+  argTypes: {
+    dotsCount: { control: 'number' },
+  },
+  args: {
+    style: { background: 'white' },
+    dotsCount: 5,
+  },
+};
+
+export const Basic = (args) => <DnaLoader {...args}>Skeleton</DnaLoader>;

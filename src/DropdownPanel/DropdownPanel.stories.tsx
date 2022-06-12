@@ -18,28 +18,32 @@
  */
 
 import { boolean, select, text } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import icons, { UikitIconNames } from '../Icon/icons';
-import DropdownPanel, { FilterOption, ListFilter, TextInputFilter } from './index';
+import DropdownPanel from './index';
 
-storiesOf(`${__dirname}`, module)
-  .add('Basic', () => {
-    const [open, setOpen] = useState(false);
+export default {
+  component: DropdownPanel,
+};
 
-    const knobs = {
-      customTrigger: text('customTrigger', ''),
-      triggerIcon: select('triggerIcon', Object.keys(icons) as UikitIconNames[], 'filter'),
-      triggerTooltip: text('triggerTooltip', 'Basic Dropdown Panel'),
-      active: boolean('active', false),
-    };
+export const Basic = () => {
+  const [open, setOpen] = useState(false);
 
-    return (
-      <DropdownPanel open={open} setOpen={setOpen} {...knobs}>
-        <p>Content goes here!</p>
-      </DropdownPanel>
-    );
-  })
+  const knobs = {
+    customTrigger: text('customTrigger', ''),
+    triggerIcon: select('triggerIcon', Object.keys(icons) as UikitIconNames[], 'filter'),
+    triggerTooltip: text('triggerTooltip', 'Basic Dropdown Panel'),
+    active: boolean('active', false),
+  };
+
+  return (
+    <DropdownPanel open={open} setOpen={setOpen} {...knobs}>
+      <p>Content goes here!</p>
+    </DropdownPanel>
+  );
+};
+
+/* 
   .add('With Text Input Filter', () => {
     const [filterText, setFilterText] = useState('');
     const [open, setOpen] = useState(false);
@@ -171,3 +175,4 @@ storiesOf(`${__dirname}`, module)
       </DropdownPanel>
     );
   });
+ */

@@ -119,3 +119,9 @@ hard to define what takes precedence when we mix styled and css
 Themes will merge with same versions of emotion
 UIKit theme is namespaced
 Please use as last theme provider
+
+# Storybook
+
+Storybook is used for our component sandbox.
+Component stories are colocated for convience and use <component-name>.stories.tsx as a naming convention.
+Colocated imports need to explicit import `index` inside their folder. eg. `import VerticalTabs from './index';`

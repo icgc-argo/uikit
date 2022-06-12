@@ -17,12 +17,11 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
 import React from 'react';
 import Legend from './Legend.comp';
 
-storiesOf(`${__dirname}`, module).add('Basic', () => (
-  <div style={{ position: 'relative', left: '50px' }}>
-    <Legend />
-  </div>
-));
+export default {
+  component: Legend,
+};
+
+export const Basic = () => <Legend />;

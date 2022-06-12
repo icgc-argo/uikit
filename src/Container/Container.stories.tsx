@@ -17,47 +17,27 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
+import { ClassNames } from '@emotion/react';
 import React from 'react';
 import Container from './index';
-import { ClassNames } from '@emotion/react';
 
-storiesOf(`${__dirname}`, module)
-  .add(
-    'Basic',
-    () => (
-      <ClassNames>
-        {({ css }) => (
-          <Container
-            className={css`
-              width: 174px;
-              height: 130px;
-            `}
-          />
-        )}
-      </ClassNames>
-    ),
-    {
-      info: {},
-    },
-  )
+export default {
+  component: Container,
+  argTypes: {
+    loading: { control: 'boolean' },
+  },
+};
 
-  .add(
-    'Loading',
-    () => (
-      <ClassNames>
-        {({ css }) => (
-          <Container
-            className={css`
-              width: 174px;
-              height: 130px;
-            `}
-            loading={true}
-          />
-        )}
-      </ClassNames>
-    ),
-    {
-      info: {},
-    },
-  );
+export const Basic = (args) => (
+  <ClassNames>
+    {({ css }) => (
+      <Container
+        className={css`
+          width: 174px;
+          height: 130px;
+        `}
+        {...args}
+      />
+    )}
+  </ClassNames>
+);

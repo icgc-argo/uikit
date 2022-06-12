@@ -17,20 +17,23 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
 import React from 'react';
 import Link, { LINK_VARIANTS } from './Link.comp';
-import { action } from '@storybook/addon-actions';
-import { select, boolean } from '@storybook/addon-knobs';
 
-storiesOf(`${__dirname}`, module).add('Basic', () => {
-  const variant = select('variant', Object.values(LINK_VARIANTS), LINK_VARIANTS.BLOCK);
-  const invert = boolean('invert', false);
-  return (
-    <>
-      <Link invert={invert} href="http://www.google.com" variant={variant}>
-        Link to Google
-      </Link>
-    </>
-  );
-});
+export default {
+  component: Link,
+  argTypes: {
+    variant: { options: Object.values(LINK_VARIANTS), control: 'radio' },
+  },
+};
+
+export const Basic = (args) => (
+  <Link href="http://www.google.com" {...args}>
+    Link to Google
+  </Link>
+);
+
+Basic.args = {
+  variant: LINK_VARIANTS.BLOCK,
+  invert: false,
+};

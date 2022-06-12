@@ -31,11 +31,9 @@ export const Sidebar = styled('div')<{ theme?: any }>`
   z-index: 1;
   background: ${({ theme }) => theme.uikit.colors.white};
   box-shadow: ${({ theme }) => theme.uikit.shadows.pageElement};
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   height: calc(100vh - 58px);
 `;
 

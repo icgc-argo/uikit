@@ -17,88 +17,82 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { radios, boolean, text } from '@storybook/addon-knobs';
 import { css } from '@emotion/react';
-import Button from './index';
-import { asyncDummyFunc, placeholderImageURLRoot } from '../testUtil';
+import { action } from '@storybook/addon-actions';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { string } from 'prop-types';
+import React from 'react';
 import Icon from '../Icon';
-import { BUTTON_VARIANTS, BUTTON_SIZES } from './constants';
+import { placeholderImageURLRoot } from '../testUtil';
+import { BUTTON_SIZES, BUTTON_VARIANTS } from './constants';
+import Button from './index';
 
-const dummyClick = action('Clicked!');
+const CustomLoaderComp = ({ theme, variant }) => (
+  <div>
+    <Icon
+      name="spinner"
+      width={'12px'}
+      height={'12px'}
+      fill={theme.uikit.button.textColors[variant].default}
+      css={css`
+        margin-right: 4px;
+      `}
+    />
+    VALIDATING FILES
+  </div>
+);
 
-export const createKnobs = () => {
-  const variant = radios('variant', BUTTON_VARIANTS, BUTTON_VARIANTS.PRIMARY);
-  const size = radios('size', BUTTON_SIZES, BUTTON_SIZES.MD);
-  const disabled = boolean('disabled', false);
-  const isAsync = boolean('isAsync', false);
-  const children = text('children', 'some button');
+export default {
+  component: Button,
+  argTypes: {
+    variant: { control: 'radio', options: BUTTON_VARIANTS },
+    size: { control: 'radio', options: BUTTON_SIZES },
+    disabled: { control: { type: 'boolean' } },
+    isAsync: { control: { type: 'boolean' } },
+    children: string,
+    onClick: { action: 'clicked' },
+  },
+  args: {
+    variant: BUTTON_VARIANTS.PRIMARY,
+    size: BUTTON_SIZES.MD,
+    disabled: false,
+    isAsync: false,
+    children: 'Click me',
+  },
+} as ComponentMeta<typeof Button>;
 
-  const className = text('className', undefined);
-  const id = text('id', undefined);
+const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
-  return {
-    variant,
-    size,
-    disabled,
-    isAsync,
-    children,
-    className,
-    id,
-  };
+export const Basic: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+
+export const MultipleChildNodes = Template.bind({});
+MultipleChildNodes.args = {
+  children: (
+    <>
+      <img src={`${placeholderImageURLRoot}/12/20`} />
+      <span style={{ color: '#64D518' }}>Red Span</span>
+      <img src={`${placeholderImageURLRoot}/20/20`} />
+      <img src={`${placeholderImageURLRoot}/7/7`} />
+    </>
+  ),
 };
 
-storiesOf(`${__dirname}`, module)
-  .add('Basic', () => {
-    const props = createKnobs();
-    return <Button {...props} onClick={props.isAsync ? asyncDummyFunc : dummyClick} />;
-  })
-  .add('Button with multiple child nodes', () => {
-    const props = createKnobs();
-    return (
-      <Button {...props} onClick={props.isAsync ? asyncDummyFunc : dummyClick}>
-        <img src={`${placeholderImageURLRoot}/12/20`} />
-        <span style={{ color: '#64D518' }}>Red Span</span>
-        <img src={`${placeholderImageURLRoot}/20/20`} />
-        <img src={`${placeholderImageURLRoot}/7/7`} />
-      </Button>
-    );
-  })
-  .add('Loader on click', () => {
-    const props = createKnobs();
+export const Loader = Template.bind({});
+Loader.args = {
+  onClick: (e) => {
+    action('click')(e);
+    return new Promise((resolve) => setTimeout(resolve, 1500));
+  },
+  isAsync: true,
+};
 
-    return (
-      <Button onClick={async () => new Promise((resolve) => setTimeout(resolve, 1500))} isAsync>
-        Click me!
-      </Button>
-    );
-  })
-  .add('Custom Loader', () => {
-    const props = createKnobs();
-    const CustomLoader = ({ theme, variant }) => (
-      <div>
-        <Icon
-          name="spinner"
-          width={'12px'}
-          height={'12px'}
-          fill={theme.uikit.button.textColors[variant].default}
-          css={css`
-            margin-right: 4px;
-          `}
-        />
-        VALIDATING FILES
-      </div>
-    );
-
-    return (
-      <Button
-        Loader={CustomLoader}
-        onClick={async () => new Promise((resolve) => setTimeout(resolve, 1500))}
-        isAsync
-      >
-        Upload files...
-      </Button>
-    );
-  });
+export const CustomLoader = Template.bind({});
+CustomLoader.args = {
+  children: 'Upload Files...',
+  Loader: CustomLoaderComp,
+  onClick: (e) => {
+    action('click')(e);
+    return new Promise((resolve) => setTimeout(resolve, 1500));
+  },
+  isAsync: true,
+};

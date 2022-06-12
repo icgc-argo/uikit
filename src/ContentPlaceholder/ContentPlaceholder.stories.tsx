@@ -17,16 +17,23 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
 import React from 'react';
 import ContentPlaceholder from './index';
-import { text } from '@storybook/addon-knobs';
 
-storiesOf(`${__dirname}`, module).add('Basic', () => (
-  <ContentPlaceholder
-    title={text('title', 'You do not have any registration data uploaded.')}
-    subtitle={text('subtitle', 'Follow the instructions above to get started.')}
-  >
+export default {
+  component: ContentPlaceholder,
+  argTypes: {
+    title: { control: 'text' },
+    subtitle: { control: 'text' },
+  },
+  args: {
+    title: 'You do not have any registration data uploaded.',
+    subtitle: 'Follow the instructions above to get started.',
+  },
+};
+
+export const Basic = (args) => (
+  <ContentPlaceholder {...args}>
     <img alt="Chemistry beakers" src="/static/beakers.svg" />
   </ContentPlaceholder>
-));
+);

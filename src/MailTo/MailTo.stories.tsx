@@ -18,17 +18,14 @@
  */
 
 import React from 'react';
-import FileSelectButton from './index';
+import MailTo from './index';
 
 export default {
-  component: FileSelectButton,
-  argTypes: {
-    onFilesSelect: { action: 'on files select' },
-  },
+  component: MailTo,
 };
 
-export const Basic = (args) => <FileSelectButton {...args}>Upload File</FileSelectButton>;
-
+export const Basic = (args) => <MailTo {...args} />;
 Basic.args = {
-  inputProps: { accept: '.tsv' },
+  link: 'admin@example.com',
+  children: 'Contact Admin',
 };

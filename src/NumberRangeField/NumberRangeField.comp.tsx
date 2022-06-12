@@ -25,7 +25,7 @@ import { useTheme } from '../ThemeProvider';
 import Typography from '../Typography';
 import { FieldDescriptionLabel, FieldInputWrapper } from './common';
 
-const NumberRangeField: React.ComponentType<{
+export const NumberRangeField: React.ComponentType<{
   min: string;
   onMinChange: React.Dispatch<React.SetStateAction<string>>;
   max: string;

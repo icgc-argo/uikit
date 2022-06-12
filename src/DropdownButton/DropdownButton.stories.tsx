@@ -17,29 +17,23 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
 import React from 'react';
-import DropdownButton from './index';
-import { select, boolean } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
-import { createKnobs as createButtonKnobs } from '../Button/Button.stories';
 import Button from '../Button';
+import DropdownButton from './index';
 
-storiesOf(`${__dirname}`, module).add('Basic', () => {
-  const knobs = createButtonKnobs();
-  const menuShown = boolean('menuShown', false);
-  return (
-    <DropdownButton
-      onItemClick={action('onItemClick')}
-      menuItems={[
-        { display: <strong>Some Text</strong>, value: '1' },
-        { display: 'Some Text', value: '2' },
-        { display: <Button size="sm">Some Text</Button>, value: '4' },
-      ]}
-      menuShown={menuShown}
-      {...knobs}
-    >
-      Click me!
-    </DropdownButton>
-  );
-});
+export default {
+  component: DropdownButton,
+  argTypes: {
+    onItemClick: { action: 'clicked' },
+    menuShown: { control: 'boolean' },
+  },
+  args: {
+    menuItems: [
+      { display: <strong>Some Text</strong>, value: '1' },
+      { display: 'Some Text', value: '2' },
+      { display: <Button size="sm">Some Text</Button>, value: '4' },
+    ],
+  },
+};
+
+export const Basic = (args) => <DropdownButton {...args}>Click me!</DropdownButton>;

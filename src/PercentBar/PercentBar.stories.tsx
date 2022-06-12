@@ -17,22 +17,18 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { number, select } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
 import React from 'react';
-import defaultTheme from '../theme/defaultTheme';
-import PercentageBar from './PercentBar.comp';
+import PercentBar from './index';
 
-storiesOf(`${__dirname}`, module).add('Basic', () => {
-  const color = select('fill', [null, '#00f', ...Object.keys(defaultTheme.colors)], null);
-  return (
-    <div style={{ width: '100%', background: 'white' }}>
-      <PercentageBar
-        num={number('nom', 50)}
-        den={number('denom', 100)}
-        length={number('denom', 120)}
-        fillColor={color}
-      />
-    </div>
-  );
-});
+export default {
+  title: 'PercentBar',
+  component: PercentBar,
+};
+
+export const Basic = (args) => (
+  <div style={{ width: '100%', background: 'white' }}>
+    <PercentBar {...args} />
+  </div>
+);
+
+Basic.args = { num: 50, den: 100, length: 120, fillColor: 'blue' };

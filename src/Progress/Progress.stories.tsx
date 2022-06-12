@@ -17,36 +17,21 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { boolean, select, text } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
 import React from 'react';
-import Progress, { ProgressItem, PROGRESS_STATUS } from './Progress.comp';
+import Progress, { ProgressItem } from './Progress.comp';
 
-storiesOf(`${__dirname}`, module)
-  .add('Basic', () => {
-    const state = select('state', PROGRESS_STATUS, PROGRESS_STATUS.SUCCESS);
-    const title = text('text', 'Upload');
-    const completed = boolean('completed', false);
+const ProgressExample = () => (
+  <Progress>
+    <ProgressItem state="success" text="Success" />
+    <ProgressItem state="pending" text="Pending" />
+    <ProgressItem state="disabled" text="Disabled" />
+    <ProgressItem state="error" text="Error" />
+  </Progress>
+);
 
-    return (
-      <Progress>
-        <ProgressItem text={title} state={state} completed={completed} />
-      </Progress>
-    );
-  })
-  .add('Progress Bar', () => {
-    const knobs = (index = 0, state = PROGRESS_STATUS.SUCCESS, title = 'Success') => ({
-      state: select(`${index} - state`, PROGRESS_STATUS, state),
-      text: text(`${index} - text`, title),
-      completed: boolean(`${index} - completed`, false),
-    });
+export default {
+  title: 'Progress',
+  component: ProgressExample,
+};
 
-    return (
-      <Progress>
-        <ProgressItem {...knobs(0)} />
-        <ProgressItem {...knobs(1, PROGRESS_STATUS.PENDING, 'Pending')} />
-        <ProgressItem {...knobs(2, PROGRESS_STATUS.DISABLED, 'Disabled')} />
-        <ProgressItem {...knobs(3, PROGRESS_STATUS.ERROR, 'Error')} />
-      </Progress>
-    );
-  });
+export const Basic = (args) => <ProgressExample />;
