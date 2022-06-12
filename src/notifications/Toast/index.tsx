@@ -44,12 +44,4 @@ function Toast({
 export const TOAST_VARIANTS = NOTIFICATION_VARIANTS;
 export const TOAST_INTERACTION = NOTIFICATION_INTERACTION;
 
-Toast.propTypes = omit(Notification.propTypes, [
-  'icon',
-  'size',
-  'actionText',
-  'dismissText',
-  'noShadow',
-]);
-
 export default Toast;

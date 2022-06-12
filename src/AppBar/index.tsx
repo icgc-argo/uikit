@@ -143,8 +143,6 @@ export const MenuItem = React.forwardRef<
 
 const AppBar = AppBarContainer;
 
-AppBar.propTypes = {};
-
 export default AppBar;
 
 export { DropdownMenu, DropdownMenuItem } from './DropdownMenu';

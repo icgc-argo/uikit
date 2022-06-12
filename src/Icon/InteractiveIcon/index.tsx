@@ -72,6 +72,5 @@ const InteractiveIcon = ({
     </Tooltip>
   );
 };
-InteractiveIcon.propTypes = Icon.propTypes;
 
 export default InteractiveIcon;
