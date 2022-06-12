@@ -17,14 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
+import isPropValid from '@emotion/is-prop-valid';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import isPropValid from '@emotion/is-prop-valid';
-
-import color from 'color';
-import useTheme from '../utils/useTheme';
+import React from 'react';
 import DnaLoader from '../DnaLoader';
+import useTheme from '../utils/useTheme';
+
 export interface ContainerBackgroundProps {
   loading?: boolean;
   theme?: any;
@@ -49,7 +48,7 @@ const LoadingOverlay = () => {
         right: 0px;
         top: 0px;
         bottom: 0px;
-        background: ${color(theme.uikit.colors.white).alpha(0.7).hsl().string()};
+        background: hsla(0, 0%, 100%, 0.7)
         display: flex;
         justify-content: center;
         align-items: center;

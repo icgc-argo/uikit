@@ -19,7 +19,6 @@
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import Color from 'color';
 import React from 'react';
 import { BUTTON_SIZES, BUTTON_VARIANTS } from 'src/Button/constants';
 import { ButtonSize } from 'src/Button/types';
