@@ -19,7 +19,6 @@
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 const Li = styled('li')<{ theme?: any }>`
@@ -36,9 +35,5 @@ const Li = styled('li')<{ theme?: any }>`
 function Option({ ...other }) {
   return <Li {...other} />;
 }
-
-Option.propTypes = {
-  value: PropTypes.any,
-};
 
 export default Option;

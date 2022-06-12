@@ -20,7 +20,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import range from 'lodash/range';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 const LoaderContainer = styled('div')<{ dotsCount: number; theme?: any }>`
@@ -100,9 +99,5 @@ const DnaLoader = ({ dotsCount = 5, ...rest }) => (
     </div>
   </LoaderContainer>
 );
-
-DnaLoader.propTypes = {
-  dotsCount: PropTypes.number,
-};
 
 export default DnaLoader;
