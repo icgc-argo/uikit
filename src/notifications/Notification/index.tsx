@@ -18,7 +18,6 @@
  */
 
 import { css } from '@emotion/react';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { UikitIconNames } from 'src/Icon/icons';
 import FocusWrapper from '../../FocusWrapper';
@@ -208,27 +207,5 @@ export const NOTIFICATION_SIZES = Object.freeze({
   MD: 'MD' as NotificationSize,
   SM: 'SM' as NotificationSize,
 });
-
-Notification.propTypes = {
-  title: PropTypes.node,
-  content: PropTypes.node,
-  icon: PropTypes.node,
-  onInteraction: PropTypes.func,
-  variant: PropTypes.oneOf([
-    NOTIFICATION_VARIANTS.INFO,
-    NOTIFICATION_VARIANTS.SUCCESS,
-    NOTIFICATION_VARIANTS.WARNING,
-    NOTIFICATION_VARIANTS.ERROR,
-  ]),
-  interactionType: PropTypes.oneOf([
-    NOTIFICATION_INTERACTION.NONE,
-    NOTIFICATION_INTERACTION.CLOSE,
-    NOTIFICATION_INTERACTION.ACTION_DISMISS,
-  ]),
-  actionText: PropTypes.string,
-  dismissText: PropTypes.string,
-  size: PropTypes.oneOf([NOTIFICATION_SIZES.MD, NOTIFICATION_SIZES.SM]),
-  noShadow: PropTypes.bool,
-};
 
 export default Notification;

@@ -18,7 +18,6 @@
  */
 
 import { css } from '@emotion/react';
-import PropTypes from 'prop-types';
 import React from 'react';
 import logo from '../assets/logo_white.svg';
 import Typography from '../Typography';
@@ -89,13 +88,6 @@ export const UserBadge = ({
   );
 };
 
-UserBadge.propTypes = {
-  firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired,
-  title: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.oneOf([null]).isRequired])
-    .isRequired,
-};
-
 export const Logo = ({ DomComponent = (props) => <span {...props} /> }) => {
   const ContainerComponent = LogoContainer.withComponent(DomComponent);
   return (
@@ -103,10 +95,6 @@ export const Logo = ({ DomComponent = (props) => <span {...props} /> }) => {
       <LogoImage src={logo} alt="Argo Logo" />
     </ContainerComponent>
   );
-};
-
-Logo.propTypes = {
-  DomComponent: PropTypes.func,
 };
 
 export const Section = (props) => <SectionDisplay {...props} />;

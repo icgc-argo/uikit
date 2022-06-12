@@ -17,13 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
-import Icon from '../Icon';
-import icgcLogo from '../assets/icgc_logo.svg';
 import { css } from '@emotion/react';
-import { Row, Col } from 'react-grid-system';
+import styled from '@emotion/styled';
+import React from 'react';
+import { Col, Row } from 'react-grid-system';
+import icgcLogo from '../assets/icgc_logo.svg';
+import Icon from '../Icon';
 import A from '../Link';
 
 const Container = styled('footer')<{ theme?: any }>`
@@ -114,11 +113,5 @@ const Footer = ({
     </Row>
   </Container>
 );
-
-Footer.propTypes = {
-  version: PropTypes.string,
-  apiVersion: PropTypes.string,
-  links: PropTypes.array,
-};
 
 export default Footer;

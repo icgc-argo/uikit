@@ -18,7 +18,6 @@
  */
 
 import differenceBy from 'lodash/differenceBy';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { styled } from '../..';
 import Toast from '../Toast';
@@ -116,20 +115,6 @@ const ToastStack = ({ toastConfigs = [], onInteraction = ({ id, toastIndex, payl
       ))}
     </StackContainer>
   );
-};
-
-ToastStack.propTypes = {
-  /**
-   * This is directly the props that goes to `Toast` component, with addition of a unique `id` field.
-   * Check out https://argo-ui-storybook.netlify.com/?path=/story/uikit-toast--basic
-   */
-  toastConfigs: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      ...Toast.propTypes,
-    }),
-  ),
-  onInteraction: PropTypes.func,
 };
 
 export default ToastStack;

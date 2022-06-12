@@ -18,7 +18,6 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import floor from 'lodash/floor';
 import ceil from 'lodash/ceil';
 import range from 'lodash/range';
@@ -229,17 +228,5 @@ function TablePagination(props) {
     </TableActionBar>
   );
 }
-
-TablePagination.propTypes = {
-  /*
-   * check https://github.com/tannerlinsley/react-table/blob/v6/src/pagination.js
-   */
-  pages: PropTypes.number.isRequired,
-  page: PropTypes.number.isRequired,
-  showPageSizeOptions: PropTypes.bool,
-  pageSizeOptions: PropTypes.array,
-  onPageSizeChange: PropTypes.func,
-  onPageChange: PropTypes.func,
-};
 
 export default TablePagination;
