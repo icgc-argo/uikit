@@ -17,13 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import styled from '@emotion/styled';
-import Button from '../index';
-import Icon from '../../Icon';
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import React from 'react';
+import Icon from '../../Icon';
 import useTheme from '../../utils/useTheme';
-import urlJoin from 'url-join';
+import Button from '../index';
 
 /**
  * Social login for Google
@@ -35,15 +34,14 @@ const StyledLink = styled('a')`
 `;
 
 const GoogleLogin: React.ComponentType<{
+  url: string;
   id?: string;
-  link: string;
   className?: string;
-  redirectPath?: string;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
-}> = ({ link, id, className, onClick, redirectPath = '' }) => {
+}> = ({ url, id, className, onClick }) => {
   const theme = useTheme();
   return (
-    <StyledLink id={id} href={urlJoin(link, redirectPath)} className={className} onClick={onClick}>
+    <StyledLink id={id} href={url} className={className} onClick={onClick}>
       <Button
         css={css`
           padding: 10px 13px;

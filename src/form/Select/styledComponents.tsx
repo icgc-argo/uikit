@@ -17,9 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import React from 'react';
-import { withProps } from 'recompose';
+import React, { ReactNode } from 'react';
 import Icon from '../../Icon';
 import Typography from '../../Typography';
 
@@ -29,16 +29,18 @@ export const POPUP_POSITIONS = {
   DOWN: 'DOWN' as PopupPosition,
 };
 
-export const DropdownIcon = withProps(({ disabled, theme }) => ({
-  name: 'chevron_down',
-  fill: disabled ? theme.uikit.colors.grey_disabled : 'black',
-}))(styled(Icon)<{ disabled?: boolean; theme?: any }>`
-  height: 100%;
-  width: 10px;
-  padding: 10px;
-  border-left: solid 1px
-    ${({ theme, disabled }) => (disabled ? theme.uikit.colors.grey_2 : theme.uikit.colors.grey_1)};
-`);
+export const DropdownIcon = ({ disabled, theme }) => (
+  <Icon
+    name="chevron_down"
+    fill={disabled ? theme.colors.grey_disabled : 'black'}
+    css={css`
+      height: 100%;
+      width: 10px;
+      padding: 10px;
+      border-left: solid 1px ${disabled ? theme.colors.grey_2 : theme.colors.grey_1};
+    `}
+  />
+);
 
 export const OptionsList = styled('ol')<{ theme?: any }>`
   list-style: none;
@@ -71,10 +73,11 @@ const OptionContainer = styled('li')<{ theme?: any }>`
   }
 `;
 
-const OptionContent = withProps(() => ({
-  variant: 'paragraph',
-  component: 'span',
-}))(Typography);
+const OptionContent = ({ children }: { children?: ReactNode }) => (
+  <Typography variant="paragraph" component="span">
+    {children}
+  </Typography>
+);
 
 export const Option = ({ value, children, ...props }) => (
   <OptionContainer data-value={value} role="option" {...props}>

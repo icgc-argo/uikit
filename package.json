@@ -11,8 +11,6 @@
     "storybook": "NODE_PATH=./ start-storybook -s ./ -p 6006",
     "build-storybook": "build-storybook",
     "create-component": "plop --plopfile ./src/plopfile.js",
-    "gitmoji-config": "gitmoji -g",
-    "commit": "gitmoji -c",
     "type-check": "ttsc -p ./tsconfig.json",
     "clean-dist": "npx rimraf dist",
     "build:assets": "cp -r ./src/assets ./dist/assets",
@@ -34,23 +32,16 @@
   },
   "dependencies": {
     "clsx": "^1.0.4",
-    "color": "^3.1.2",
     "element-resize-detector": "^1.1.15",
     "lodash": "^4.17.14",
     "react-grid-system": "^4.4.6",
     "react-table": "6.10.0",
     "react-tippy": "^1.2.3",
-    "react-transition-group": "^4.3.0",
-    "recompose": "^0.30.0",
-    "url-join": "^4.0.0"
+    "react-transition-group": "^4.3.0"
   },
   "devDependencies": {
-    "jsdom": "^14.0.0",
     "@babel/cli": "^7.7.0",
     "@babel/core": "^7.4.3",
-    "@babel/runtime": "^7.17.8",
-    "@babel/runtime-corejs2": "^7.7.2",
-    "@types/lodash": "^4.14.138",
     "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
     "@babel/plugin-proposal-optional-chaining": "^7.2.0",
     "@babel/plugin-transform-modules-commonjs": "^7.17.7",
