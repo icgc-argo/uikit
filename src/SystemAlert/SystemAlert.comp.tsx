@@ -26,7 +26,7 @@ import { useTheme } from '../ThemeProvider';
 import Typography from '../Typography';
 import { ThemeColorNames } from '../theme/types';
 
-type AlertLevel = 'error' | 'warning' | 'info';
+export type AlertLevel = 'error' | 'warning' | 'info';
 
 type AlertVariant = {
   [key in AlertLevel]: {
@@ -36,7 +36,7 @@ type AlertVariant = {
   };
 };
 
-const ALERT_VARIANTS: AlertVariant = {
+export const ALERT_VARIANTS: AlertVariant = {
   error: {
     color: 'error',
     icon: 'warning_transparent',
