@@ -31,13 +31,13 @@
     "react-dom": "^16.8.6 || ^17.0.2"
   },
   "dependencies": {
-    "clsx": "^1.0.4",
-    "element-resize-detector": "^1.1.15",
+    "clsx": "^1.2.1",
+    "element-resize-detector": "^1.2.4",
     "lodash": "^4.17.14",
     "react-grid-system": "^4.4.6",
     "react-table": "6.10.0",
     "react-tippy": "^1.2.3",
-    "react-transition-group": "^4.3.0"
+    "react-transition-group": "^4.4.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.0",
