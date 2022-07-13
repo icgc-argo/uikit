@@ -28,6 +28,7 @@ interface ButtonProps {
   as?: keyof HTMLElementTagNameMap;
   theme?: any;
 }
+
 export const Button = styled('button')<ButtonProps>`
   ${({ theme }) => css(theme.uikit.typography.label)};
   color: ${({ theme }) => theme.uikit.colors.grey};

@@ -17,11 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 import Tabs, { Tab } from '.';
-import Typography from '../Typography';
-import { action } from '@storybook/addon-actions';
 
 function TabContainer(props) {
   return (
@@ -57,4 +55,4 @@ const SimpleTabs = React.forwardRef(() => {
   );
 });
 
-storiesOf(`${__dirname}`, module).add('Basic', () => <SimpleTabs />);
+export const Basic = () => <SimpleTabs />;

@@ -19,11 +19,10 @@
 
 import { action } from '@storybook/addon-actions';
 import { select, text } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
 import React from 'react';
 import Toast, { TOAST_INTERACTION, TOAST_VARIANTS } from './index';
 
-storiesOf(`${__dirname}`, module).add('Basic', () => {
+export const Basic = () => {
   const variant = select('variant', [undefined, ...Object.values(TOAST_VARIANTS)], undefined);
   const interactionType = select(
     'interactionType',
@@ -44,4 +43,4 @@ storiesOf(`${__dirname}`, module).add('Basic', () => {
       interactionType={interactionType}
     />
   );
-});
+};

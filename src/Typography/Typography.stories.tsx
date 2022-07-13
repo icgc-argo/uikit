@@ -18,36 +18,31 @@
  */
 
 import { boolean, radios, select } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
 import React from 'react';
 import Typography, { TypographyVariant } from './index';
 import defaultTheme from '../theme/defaultTheme';
 
-storiesOf(`${__dirname}`, module)
-  .add('Basic', () => {
-    const knobs = {
-      variant: radios(
-        'variant',
-        // @ts-ignore storybook type scary
-        Object.keys(defaultTheme.typography) as Array<TypographyVariant>,
-        'hero',
-      ),
-      component: select(
-        'component',
-        [null, 'h1', 'h2', 'h3', 'h4', 'h5', 'div', 'span', 'p'],
-        null,
-      ),
-      bold: boolean('bold', false),
-      color: select('color', [null, '#00f', ...Object.keys(defaultTheme.colors)], null),
-    };
-    return <Typography {...knobs}>Skeleton</Typography>;
-  })
-  .add('List', () => (
-    <>
-      {Object.entries(defaultTheme.typography).map(([key]) => (
-        <div key={key}>
-          <Typography variant={key as keyof typeof defaultTheme.typography}>{key}</Typography>
-        </div>
-      ))}
-    </>
-  ));
+export const Basic = () => {
+  const knobs = {
+    variant: radios(
+      'variant',
+      // @ts-ignore storybook type scary
+      Object.keys(defaultTheme.typography) as Array<TypographyVariant>,
+      'hero',
+    ),
+    component: select('component', [null, 'h1', 'h2', 'h3', 'h4', 'h5', 'div', 'span', 'p'], null),
+    bold: boolean('bold', false),
+    color: select('color', [null, '#00f', ...Object.keys(defaultTheme.colors)], null),
+  };
+  return <Typography {...knobs}>Skeleton</Typography>;
+};
+
+export const List = () => (
+  <>
+    {Object.entries(defaultTheme.typography).map(([key]) => (
+      <div key={key}>
+        <Typography variant={key as keyof typeof defaultTheme.typography}>{key}</Typography>
+      </div>
+    ))}
+  </>
+);

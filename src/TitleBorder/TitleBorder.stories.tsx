@@ -18,7 +18,6 @@
  */
 
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import defaultTheme from '../theme/defaultTheme';
 import { select, number } from '@storybook/addon-knobs';
 import TitleBorder from './index';
@@ -26,27 +25,35 @@ import Typography from '../Typography';
 
 const themeColors = Object.keys(defaultTheme.colors) as Array<keyof typeof defaultTheme.colors>;
 
-storiesOf(`${__dirname}`, module)
-  .add('Full width', () => {
-    const knobs = {
-      color: select('color', themeColors, 'primary', null),
-    };
-    return (
-      <div>
-        <TitleBorder {...knobs} />
-        <Typography variant="subtitle">Title</Typography>
-      </div>
-    );
-  })
-  .add('Fixed width', () => {
-    const knobs = {
-      color: select('color', themeColors, 'primary', null),
-      width: String(number('Width', 45)),
-    };
-    return (
-      <>
-        <Typography variant="subtitle">A longer title, but shorter border</Typography>
-        <TitleBorder {...knobs} />
-      </>
-    );
-  });
+export const FullWidth = () => {
+  const knobs = {
+    color: select('color', themeColors, 'primary', null),
+  };
+  return (
+    <div>
+      <TitleBorder {...knobs} />
+      <Typography variant="subtitle">Title</Typography>
+    </div>
+  );
+};
+
+FullWidth.story = {
+  name: 'Full width',
+};
+
+export const FixedWidth = () => {
+  const knobs = {
+    color: select('color', themeColors, 'primary', null),
+    width: String(number('Width', 45)),
+  };
+  return (
+    <>
+      <Typography variant="subtitle">A longer title, but shorter border</Typography>
+      <TitleBorder {...knobs} />
+    </>
+  );
+};
+
+FixedWidth.story = {
+  name: 'Fixed width',
+};

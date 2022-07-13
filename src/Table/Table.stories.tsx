@@ -18,7 +18,6 @@
  */
 
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
@@ -31,169 +30,173 @@ export const TABLE_VARIANTS: { [k in TableVariant]: k } = {
   STATIC: 'STATIC',
 };
 
-storiesOf(`${__dirname}`, module)
-  .add(
-    'Basic',
-    () => {
-      const knobs = {
-        sortable: boolean('sortable', true),
-        loading: boolean('loading', false),
-        showPagination: boolean('showPagination', false),
-        showPaginationTop: boolean('showPaginationTop', false),
-        showPaginationBottom: boolean('showPaginationBottom', false),
-        stripped: boolean('stripped', true),
-        withResizeBlur: boolean('withResizeBlur', false),
-        withRowBorder: boolean('withRowBorder', false),
-        withOutsideBorder: boolean('withOutsideBorder', false),
-        cellAlignment: select('cellAlignment', ['top', 'center', 'bottom'], 'center'),
-      };
-      const containerRef = React.createRef<HTMLDivElement>();
-      return (
-        <div ref={containerRef}>
-          <Table
-            {...knobs}
-            parentRef={containerRef}
-            data={[
-              { id: 1, prop2: 5, prop3: 'some text 1' },
-              {
-                id: 2,
-                prop2: 4,
-                prop3:
-                  'a large section of text that will probably be big enough to demonstrate the vertical alignment of cells',
-              },
-              { id: 3, prop2: 3, prop3: 'some text 3' },
-              { id: 4, prop2: 2, prop3: 'some text 4' },
-              { id: 5, prop2: 1, prop3: 'some text 5' },
-            ]}
-            columns={[
-              {
-                sortable: false,
-                Header: 'ID',
-                accessor: 'id',
-              },
-              {
-                Header: 'Property 2',
-                accessor: 'prop2',
-              },
-              {
-                Header: 'Property 3',
-                accessor: 'prop3',
-              },
-            ]}
-          />
-        </div>
-      );
+export const Basic = () => {
+  const knobs = {
+    sortable: boolean('sortable', true),
+    loading: boolean('loading', false),
+    showPagination: boolean('showPagination', false),
+    showPaginationTop: boolean('showPaginationTop', false),
+    showPaginationBottom: boolean('showPaginationBottom', false),
+    stripped: boolean('stripped', true),
+    withResizeBlur: boolean('withResizeBlur', false),
+    withRowBorder: boolean('withRowBorder', false),
+    withOutsideBorder: boolean('withOutsideBorder', false),
+    cellAlignment: select('cellAlignment', ['top', 'center', 'bottom'], 'center'),
+  };
+  const containerRef = React.createRef<HTMLDivElement>();
+  return (
+    <div ref={containerRef}>
+      <Table
+        {...knobs}
+        parentRef={containerRef}
+        data={[
+          { id: 1, prop2: 5, prop3: 'some text 1' },
+          {
+            id: 2,
+            prop2: 4,
+            prop3:
+              'a large section of text that will probably be big enough to demonstrate the vertical alignment of cells',
+          },
+          { id: 3, prop2: 3, prop3: 'some text 3' },
+          { id: 4, prop2: 2, prop3: 'some text 4' },
+          { id: 5, prop2: 1, prop3: 'some text 5' },
+        ]}
+        columns={[
+          {
+            sortable: false,
+            Header: 'ID',
+            accessor: 'id',
+          },
+          {
+            Header: 'Property 2',
+            accessor: 'prop2',
+          },
+          {
+            Header: 'Property 3',
+            accessor: 'prop3',
+          },
+        ]}
+      />
+    </div>
+  );
+};
+
+Basic.story = {
+  parameters: { info: { text: readme } },
+};
+
+export const Variants = () => {
+  const knobs = {
+    variant: select('variant', TABLE_VARIANTS, TABLE_VARIANTS.DEFAULT),
+  };
+  const containerRef = React.createRef<HTMLDivElement>();
+  return (
+    <div ref={containerRef}>
+      <Table
+        {...knobs}
+        parentRef={containerRef}
+        data={[
+          { id: 1, prop2: 5, prop3: 'some text 1' },
+          { id: 2, prop2: 4, prop3: 'some text 2' },
+          { id: 3, prop2: 3, prop3: 'some text 3' },
+          { id: 4, prop2: 2, prop3: 'some text 4' },
+          { id: 5, prop2: 1, prop3: 'some text 5' },
+        ]}
+        columns={[
+          {
+            sortable: false,
+            Header: 'ID',
+            accessor: 'id',
+          },
+          {
+            Header: 'Property 2',
+            accessor: 'prop2',
+          },
+          {
+            Header: 'Property 3',
+            accessor: 'prop3',
+          },
+        ]}
+      />
+    </div>
+  );
+};
+
+Variants.story = {
+  parameters: { info: { text: readme } },
+};
+
+export const _SelectTable = () => {
+  const containerRef = React.createRef<HTMLDivElement>();
+  return (
+    <div ref={containerRef}>
+      <SelectTable
+        //props to control selection
+        keyField="idField"
+        parentRef={containerRef}
+        isSelected={(idField) => idField === 'id_2'}
+        toggleSelection={action('toggle')}
+        toggleAll={action('toggleAll')}
+        //basic table props
+        data={[
+          { idField: 'id_1', prop2: 5, prop3: 'some text 1' },
+          { idField: 'id_2', prop2: 4, prop3: 'some text 2' },
+          { idField: 'id_3', prop2: 3, prop3: 'some text 3' },
+          { idField: 'id_4', prop2: 2, prop3: 'some text 4' },
+          { idField: 'id_5', prop2: 1, prop3: 'some text 5' },
+        ]}
+        columns={[
+          {
+            sortable: false,
+            Header: 'ID',
+            accessor: 'idField',
+          },
+          {
+            Header: 'Property 2',
+            accessor: 'prop2',
+          },
+          {
+            Header: 'Property 3',
+            accessor: 'prop3',
+          },
+        ]}
+      />
+    </div>
+  );
+};
+
+_SelectTable.story = {
+  name: 'SelectTable',
+
+  parameters: {
+    info: {
+      text: `${readme} ${selectTableDoc}`,
     },
-    { info: { text: readme } },
-  )
-  .add(
-    'Variants',
-    () => {
-      const knobs = {
-        variant: select('variant', TABLE_VARIANTS, TABLE_VARIANTS.DEFAULT),
-      };
-      const containerRef = React.createRef<HTMLDivElement>();
-      return (
-        <div ref={containerRef}>
-          <Table
-            {...knobs}
-            parentRef={containerRef}
-            data={[
-              { id: 1, prop2: 5, prop3: 'some text 1' },
-              { id: 2, prop2: 4, prop3: 'some text 2' },
-              { id: 3, prop2: 3, prop3: 'some text 3' },
-              { id: 4, prop2: 2, prop3: 'some text 4' },
-              { id: 5, prop2: 1, prop3: 'some text 5' },
-            ]}
-            columns={[
-              {
-                sortable: false,
-                Header: 'ID',
-                accessor: 'id',
-              },
-              {
-                Header: 'Property 2',
-                accessor: 'prop2',
-              },
-              {
-                Header: 'Property 3',
-                accessor: 'prop3',
-              },
-            ]}
-          />
-        </div>
-      );
-    },
-    { info: { text: readme } },
-  )
-  .add(
-    'SelectTable',
-    () => {
-      const containerRef = React.createRef<HTMLDivElement>();
-      return (
-        <div ref={containerRef}>
-          <SelectTable
-            //props to control selection
-            keyField="idField"
-            parentRef={containerRef}
-            isSelected={(idField) => idField === 'id_2'}
-            toggleSelection={action('toggle')}
-            toggleAll={action('toggleAll')}
-            //basic table props
-            data={[
-              { idField: 'id_1', prop2: 5, prop3: 'some text 1' },
-              { idField: 'id_2', prop2: 4, prop3: 'some text 2' },
-              { idField: 'id_3', prop2: 3, prop3: 'some text 3' },
-              { idField: 'id_4', prop2: 2, prop3: 'some text 4' },
-              { idField: 'id_5', prop2: 1, prop3: 'some text 5' },
-            ]}
-            columns={[
-              {
-                sortable: false,
-                Header: 'ID',
-                accessor: 'idField',
-              },
-              {
-                Header: 'Property 2',
-                accessor: 'prop2',
-              },
-              {
-                Header: 'Property 3',
-                accessor: 'prop3',
-              },
-            ]}
-          />
-        </div>
-      );
-    },
-    {
-      info: {
-        text: `${readme} ${selectTableDoc}`,
-      },
-    },
-  )
-  .add('No Data', () => {
-    const containerRef = React.createRef<HTMLDivElement>();
-    return (
-      <div ref={containerRef}>
-        <Table
-          parentRef={containerRef}
-          columns={[
-            {
-              sortable: false,
-              Header: 'ID',
-              accessor: 'idField',
-            },
-            {
-              Header: 'Property 2',
-              accessor: 'prop2',
-            },
-            {
-              Header: 'Property 3',
-              accessor: 'prop3',
-            },
-          ]}
-        />
-      </div>
-    );
-  });
+  },
+};
+
+export const NoData = () => {
+  const containerRef = React.createRef<HTMLDivElement>();
+  return (
+    <div ref={containerRef}>
+      <Table
+        parentRef={containerRef}
+        columns={[
+          {
+            sortable: false,
+            Header: 'ID',
+            accessor: 'idField',
+          },
+          {
+            Header: 'Property 2',
+            accessor: 'prop2',
+          },
+          {
+            Header: 'Property 3',
+            accessor: 'prop3',
+          },
+        ]}
+      />
+    </div>
+  );
+};

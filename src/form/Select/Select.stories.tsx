@@ -19,7 +19,6 @@
 
 import { action } from '@storybook/addon-actions';
 import { boolean, radios, text } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
 import React from 'react';
 import Select from './Select.comp';
 
@@ -48,7 +47,7 @@ const createKnobs = () => {
   };
 };
 
-storiesOf(`${__dirname}`, module).add('Basic', () => {
+export const Basic = () => {
   const knobs = createKnobs();
   const [value, setValue] = React.useState('');
   const [valueTwo, setValueTwo] = React.useState('');
@@ -89,4 +88,4 @@ storiesOf(`${__dirname}`, module).add('Basic', () => {
       />
     </div>
   );
-});
+};

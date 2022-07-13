@@ -19,7 +19,6 @@
 
 import { action } from '@storybook/addon-actions';
 import { boolean, radios, select, text } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
 import React from 'react';
 import Icon from '../../Icon';
 import Input, { INPUT_PRESETS } from './Input.comp';
@@ -74,26 +73,31 @@ const createKnobs = () => {
   };
 };
 
-storiesOf(`${__dirname}`, module)
-  .add('Basic', () => {
-    return (
-      <div style={{ width: '200px' }}>
-        <Input aria-label="demo-input" {...createKnobs()} />
-      </div>
-    );
-  })
-  .add('With preset', () => {
-    const preset = select('preset', [null, ...Object.values(INPUT_PRESETS)], null);
-    return (
-      <div style={{ width: '200px' }}>
-        <Input aria-label="demo-input" preset={preset} {...createKnobs()} />
-      </div>
-    );
-  })
-  .add('With icon', () => {
-    return (
-      <div style={{ width: '200px' }}>
-        <Input aria-label="demo-input" icon={<Icon name="search" />} {...createKnobs()} />
-      </div>
-    );
-  });
+export const Basic = () => {
+  return (
+    <div style={{ width: '200px' }}>
+      <Input aria-label="demo-input" {...createKnobs()} />
+    </div>
+  );
+};
+
+export const WithPreset = () => {
+  const preset = select('preset', [null, ...Object.values(INPUT_PRESETS)], null);
+  return (
+    <div style={{ width: '200px' }}>
+      <Input aria-label="demo-input" preset={preset} {...createKnobs()} />
+    </div>
+  );
+};
+
+export const WithIcon = () => {
+  return (
+    <div style={{ width: '200px' }}>
+      <Input aria-label="demo-input" icon={<Icon name="search" />} {...createKnobs()} />
+    </div>
+  );
+};
+
+WithIcon.story = {
+  name: 'With icon',
+};

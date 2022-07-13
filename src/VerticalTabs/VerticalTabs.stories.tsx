@@ -19,7 +19,6 @@
 
 import { css } from '@emotion/react';
 import { action } from '@storybook/addon-actions';
-import { storiesOf } from '@storybook/react';
 import React from 'react';
 import VerticalTabs from './index';
 
@@ -37,7 +36,7 @@ const LoremTooltip = (
   </>
 );
 
-storiesOf(`${__dirname}`, module).add('Basic', () => {
+export const Basic = () => {
   const [activeItem, setActiveItem] = React.useState(0);
   const onClick = (num: number) => (e) => {
     setActiveItem(num);
@@ -73,4 +72,4 @@ storiesOf(`${__dirname}`, module).add('Basic', () => {
       </VerticalTabs>
     </div>
   );
-});
+};

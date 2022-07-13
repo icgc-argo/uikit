@@ -19,108 +19,77 @@
 
 import { action } from '@storybook/addon-actions';
 import { boolean } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
 import React, { useState } from 'react';
-import Input from '../../form/Input';
-import MultiSelect, { Option } from '../../form/MultiSelect';
+import InputComp from '../../form/Input';
+import MultiSelectComp, { Option } from '../../form/MultiSelect';
 import Typography from '../../Typography';
-import FormCheckbox from '../FormCheckbox/FormCheckbox.comp';
+import FormCheckboxComp from '../FormCheckbox/FormCheckbox.comp';
 import FormHelperText from '../FormHelperText';
 import InputLabel from '../InputLabel';
 import FormControl from './FormControl.comp';
 
-storiesOf(`${__dirname}`, module)
-  .add(
-    'FormCheckbox',
-    () => {
-      const [checked, setChecked] = useState(false);
-      const disabled = boolean('disabled', false);
-      const error = boolean('error', false);
-      const required = boolean('required', true);
-      const value = 'myCheckbox';
+export const FormCheckbox = (args) => {
+  const [checked, setChecked] = useState(false);
+  const value = 'myCheckbox';
 
-      return (
-        <FormControl disabled={disabled} error={error} required={required}>
-          <FormCheckbox
-            aria-label="I agree with the terms and conditions"
-            checked={checked}
-            onChange={() => {
-              if (disabled) {
-                action('checkbox clicked while disabled')(value, checked);
-              } else {
-                action('checkbox clicked')(value, !checked);
-                setChecked(!checked);
-              }
-            }}
-            value={value}
-          >
-            <Typography bold component="span">
-              I agree
-            </Typography>{' '}
-            with the terms and conditions.
-          </FormCheckbox>
-
-          <FormHelperText onErrorOnly>This field is required!</FormHelperText>
-        </FormControl>
-      );
-    },
-    {
-      info: {
-        propTablesExclude: [FormCheckbox, Typography],
-      },
-    },
-  )
-  .add(
-    'MultiSelect',
-    () => {
-      const [value, setValue] = React.useState([]);
-      return (
-        <FormControl
-          error={boolean('error', false)}
-          required={boolean('required', true)}
-          disabled={boolean('disabled', false)}
-        >
-          <InputLabel htmlFor="country">Country</InputLabel>
-          <MultiSelect
-            aria-label="multi-select"
-            inputProps={{ id: 'country' }}
-            value={value}
-            onChange={(event) => setValue(event.target.value)}
-            placeholder="Add one or more..."
-          >
-            <Option value="Australia">Australia</Option>
-            <Option value="Cambodia">Cambodia</Option>
-            <Option value="Cameroon">Cameroon</Option>
-            <Option value="Canada">Canada</Option>
-          </MultiSelect>
-
-          <FormHelperText>Some helper text</FormHelperText>
-        </FormControl>
-      );
-    },
-    {
-      info: {
-        propTablesExclude: [Option, MultiSelect],
-      },
-    },
-  )
-  .add(
-    'Input',
-    () => (
-      <FormControl
-        required={boolean('required', true)}
-        disabled={boolean('disabled', false)}
-        error={boolean('error', false)}
+  return (
+    <FormControl {...args}>
+      <FormCheckboxComp
+        aria-label="I agree with the terms and conditions"
+        checked={checked}
+        onChange={() => {
+          if (args.disabled) {
+            action('checkbox clicked while disabled')(value, checked);
+          } else {
+            action('checkbox clicked')(value, !checked);
+            setChecked(!checked);
+          }
+        }}
+        value={value}
       >
-        <InputLabel htmlFor="text-input">text input</InputLabel>
-        <Input aria-label="text input" id="text-input" placeholder="put some text" />
-        <FormHelperText>Some helper text</FormHelperText>
-        <FormHelperText onErrorOnly>This field has an error!</FormHelperText>
-      </FormControl>
-    ),
-    {
-      info: {
-        propTablesExclude: [Input],
-      },
-    },
+        <Typography bold component="span">
+          I agree
+        </Typography>{' '}
+        with the terms and conditions.
+      </FormCheckboxComp>
+
+      <FormHelperText onErrorOnly>This field is required!</FormHelperText>
+    </FormControl>
   );
+};
+
+export const _MultiSelect = () => {
+  const [value, setValue] = React.useState([]);
+  return (
+    <FormControl>
+      <InputLabel htmlFor="country">Country</InputLabel>
+      <MultiSelectComp
+        aria-label="multi-select"
+        inputProps={{ id: 'country' }}
+        value={value}
+        onChange={(event) => setValue(event.target.value)}
+        placeholder="Add one or more..."
+      >
+        <Option value="Australia">Australia</Option>
+        <Option value="Cambodia">Cambodia</Option>
+        <Option value="Cameroon">Cameroon</Option>
+        <Option value="Canada">Canada</Option>
+      </MultiSelectComp>
+
+      <FormHelperText>Some helper text</FormHelperText>
+    </FormControl>
+  );
+};
+
+export const Input = () => (
+  <FormControl>
+    <InputLabel htmlFor="text-input">text input</InputLabel>
+    <InputComp aria-label="text input" id="text-input" placeholder="put some text" />
+    <FormHelperText>Some helper text</FormHelperText>
+    <FormHelperText onErrorOnly>This field has an error!</FormHelperText>
+  </FormControl>
+);
+
+export default {
+  component: FormControl,
+};
