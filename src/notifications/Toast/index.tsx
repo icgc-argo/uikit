@@ -17,20 +17,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import omit from 'lodash/omit';
-import React from 'react';
+import { Toast } from 'src/notifications/Toast/types';
 import Notification, { NOTIFICATION_INTERACTION, NOTIFICATION_VARIANTS } from '../Notification';
 
-function Toast({
-  variant,
-  title,
-  content,
-  onInteraction,
-  interactionType,
-  top = '70px',
-  right = '30px',
-  width = '400px',
-}) {
+function Toast({ variant, title, content, onInteraction, interactionType }: Toast) {
   return (
     <Notification
       variant={variant}

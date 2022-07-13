@@ -19,6 +19,7 @@
 
 import differenceBy from 'lodash/differenceBy';
 import React from 'react';
+import { ToastStackItem } from 'src/notifications/ToastStack/types';
 import { styled } from '../..';
 import Toast from '../Toast';
 
@@ -60,11 +61,12 @@ const AnimatedContainer = styled('div')<{ unMounting?: boolean }>`
   animation: ${({ unMounting }) => (unMounting ? 'exit' : 'enter')} ${ANIMATION_DURATION / 1000}s
     ease-in-out;
 `;
+
 const ToastStack = ({ toastConfigs = [], onInteraction = ({ id, toastIndex, payload }) => {} }) => {
   // holds on to a local copy of toastConfigs for timing with animation
   const convertToLocalStack = (toastConfigs) =>
     toastConfigs.map((i) => ({ ...i, unMounting: false }));
-  const [stack, setStack] = React.useState(convertToLocalStack(toastConfigs));
+  const [stack, setStack] = React.useState<ToastStackItem[]>(convertToLocalStack(toastConfigs));
   const previousToastConfigs = usePrevious(toastConfigs);
 
   // this ensures previously registered timeouts are canceled on new render
