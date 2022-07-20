@@ -17,13 +17,15 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { ThemeProvider } from 'emotion-theming';
-import theme from './theme/defaultTheme';
-import React from 'react';
+import ThemeProvider from './ThemeProvider';
+import { FC, ReactElement } from 'react';
+import { render, RenderOptions } from '@testing-library/react';
 
-export const wrapTheme = (component) => <ThemeProvider theme={theme}>{component}</ThemeProvider>;
+const GlobalProviders: FC<{ children: React.ReactNode }> = ({ children }) => (
+  <ThemeProvider>{children}</ThemeProvider>
+);
 
-export const asyncDummyFunc = (data) =>
-  new Promise((resolve) => setTimeout(() => resolve(data), 2500));
+const customRender = (ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>) =>
+  render(ui, { wrapper: GlobalProviders, ...options });
 
-export const placeholderImageURLRoot = 'http://placekitten.com/';
+export { customRender as render };
