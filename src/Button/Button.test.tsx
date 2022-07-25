@@ -18,6 +18,7 @@
  */
 
 import { fireEvent, screen } from '@testing-library/react';
+
 import { render } from '../testUtil';
 import Button from './index';
 
