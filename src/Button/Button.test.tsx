@@ -17,21 +17,41 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import TitleBar from '.';
-import { expect } from 'chai';
-import { shallow } from 'enzyme';
-import ThemeProvider from '../ThemeProvider';
+import { fireEvent, screen } from '@testing-library/react';
+import { render } from '../testUtil';
+import Button from './index';
 
-describe('TitleBar', () => {
-  it('Render title bar correctly', () => {
-    const wrapper = shallow(
-      <ThemeProvider>
-        <TitleBar>
-          <a href="#">link in title</a>
-        </TitleBar>
-      </ThemeProvider>,
-    );
-    expect(wrapper.contains('link in title'));
+const defaultProps = Object.freeze({
+  onClick: jest.fn(),
+  text: 'Test Button',
+});
+
+const getButtonEl = async () => {
+  const buttonChildNode = await screen.findByText(defaultProps.text);
+  const buttonEl = buttonChildNode.closest('button');
+  return buttonEl;
+};
+
+describe('Button', () => {
+  test('should display children', async () => {
+    render(<Button>{defaultProps.text}</Button>);
+    const buttonChildNode = await screen.findByText(defaultProps.text);
+    expect(buttonChildNode).toBeVisible();
+  });
+
+  test('should be disabled when passed disabled prop', async () => {
+    render(<Button disabled={true}>{defaultProps.text}</Button>);
+    const buttonEl = await getButtonEl();
+    expect(buttonEl).toBeDisabled();
+  });
+
+  test('should fire on click function', async () => {
+    const onClick = defaultProps.onClick;
+    render(<Button onClick={onClick}>{defaultProps.text}</Button>);
+    const buttonEl = await getButtonEl();
+    if (buttonEl) {
+      fireEvent.click(buttonEl);
+    }
+    expect(onClick).toHaveBeenCalled();
   });
 });

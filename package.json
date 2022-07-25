@@ -21,7 +21,7 @@
     "build": "npm run clean-dist && npm run build:ts && npm run build:assets && npm run build:cleanup",
     "publish-uikit": "cd dist && npm publish --access public",
     "postwatch": "npm run clean-dist",
-    "test": "jest src/ThemeProvider/*",
+    "test": "jest --config jest.config.ts",
     "test:watch": "npm run test -- --watch"
   },
   "peerDependencies": {
@@ -64,8 +64,9 @@
     "@storybook/addons": "^6.4.13",
     "@storybook/react": "^6.4.13",
     "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^12.1.4",
+    "@testing-library/react": "^12.1.5",
     "@types/expect": "^24.3.0",
+    "@types/jest": "^27.5.2",
     "@types/react": "^17.0.38",
     "@types/react-table": "^6.8.5",
     "babel-jest": "^27.5.1",
@@ -80,12 +81,12 @@
     "pretty-quick": "^2.0.1",
     "react-docgen-typescript-loader": "^3.7.2",
     "react-json-view": "^1.21.3",
-    "ts-jest": "^27.1.3",
+    "ts-jest": "^27.1.5",
     "ts-node": "^8.10.2",
     "ts-node-dev": "^1.1.8",
     "tsc-watch": "^4.5.0",
     "ttypescript": "^1.5.13",
-    "typescript": "^4.6.3",
+    "typescript": "^4.7.4",
     "typescript-transform-paths": "^3.3.1"
   },
   "engines": {
