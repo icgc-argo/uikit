@@ -18,14 +18,13 @@
  */
 
 import { fireEvent, screen } from '@testing-library/react';
-
 import { render } from '../testUtil';
 import Button from './index';
 
-const defaultProps = {
+const defaultProps = Object.freeze({
   onClick: jest.fn(),
   text: 'Test Button',
-};
+});
 
 const getButtonEl = async () => {
   const buttonChildNode = await screen.findByText(defaultProps.text);
@@ -47,8 +46,8 @@ describe('Button', () => {
   });
 
   test('should fire on click function', async () => {
-    const onClick = jest.fn();
-    render(<Button onClick={onClick}>Test Button</Button>);
+    const onClick = defaultProps.onClick;
+    render(<Button onClick={onClick}>{defaultProps.text}</Button>);
     const buttonEl = await getButtonEl();
     if (buttonEl) {
       fireEvent.click(buttonEl);
