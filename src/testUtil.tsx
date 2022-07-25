@@ -17,9 +17,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import ThemeProvider from './ThemeProvider';
 import { FC, ReactElement } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
+
+import ThemeProvider from './ThemeProvider';
 
 const GlobalProviders: FC<{ children: React.ReactNode }> = ({ children }) => (
   <ThemeProvider>{children}</ThemeProvider>
