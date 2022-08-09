@@ -18,6 +18,8 @@
  */
 
 import { fireEvent, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { EventTargetMock } from '../../utils/testing';
 import { render } from '../testUtil';
 import Button from './index';
 
@@ -46,12 +48,62 @@ describe('Button', () => {
   });
 
   test('should fire on click function', async () => {
+    const user = userEvent.setup();
     const onClick = defaultProps.onClick;
     render(<Button onClick={onClick}>{defaultProps.text}</Button>);
     const buttonEl = await getButtonEl();
     if (buttonEl) {
-      fireEvent.click(buttonEl);
+      await user.click(buttonEl);
     }
     expect(onClick).toHaveBeenCalled();
+  });
+
+  test('should recieve focus', async () => {
+    const user = userEvent.setup();
+    const onClick = defaultProps.onClick;
+    render(<Button onClick={onClick}>{defaultProps.text}</Button>);
+    const buttonEl = await getButtonEl();
+    if (buttonEl) {
+      await user.click(buttonEl);
+    }
+    expect(buttonEl).toHaveFocus();
+  });
+
+  test('full event should be passed to handler', async () => {
+    const user = userEvent.setup();
+
+    const eventTargetMock = new EventTargetMock();
+    const onClick = eventTargetMock.createFunc();
+
+    render(<Button onClick={onClick}>{defaultProps.text}</Button>);
+
+    const buttonEl = await getButtonEl();
+    if (buttonEl) {
+      await user.click(buttonEl);
+    }
+
+    expect(onClick).toBeCalledTimes(1);
+    expect(buttonEl).toEqual(eventTargetMock.target);
+  });
+
+  test('full event handler should be bubbled to parent', async () => {
+    const user = userEvent.setup();
+
+    const eventTargetMock = new EventTargetMock();
+    const onClick = eventTargetMock.createFunc();
+
+    render(
+      <div onClick={onClick}>
+        <Button>{defaultProps.text}</Button>
+      </div>,
+    );
+
+    const buttonEl = await getButtonEl();
+    if (buttonEl) {
+      await user.click(buttonEl);
+    }
+
+    expect(onClick).toBeCalledTimes(1);
+    expect(buttonEl).toEqual(eventTargetMock.target);
   });
 });
