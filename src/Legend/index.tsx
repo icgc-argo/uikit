@@ -21,7 +21,7 @@ import React, { useState, createRef } from 'react';
 import { css, SerializedStyles } from '@emotion/core';
 
 import Button from 'src/Button';
-import { MenuItem } from 'src/DropdownButton';
+import { DropdownButtonMenuItem } from 'src/DropdownButton';
 import Icon from 'src/Icon';
 import { useTheme } from 'src/ThemeProvider';
 
@@ -160,7 +160,7 @@ const Legend = () => {
           `}
         >
           {menuItems.map((item) => (
-            <MenuItem
+            <DropdownButtonMenuItem
               key={String(item.value)}
               css={css`
                 ${menuItemStyles}
@@ -168,7 +168,7 @@ const Legend = () => {
               {...item}
             >
               {item.display}
-            </MenuItem>
+            </DropdownButtonMenuItem>
           ))}
         </div>
       )}

@@ -28,16 +28,16 @@ import concat from 'lodash/concat';
 import ViewAmountController from './ViewAmountController';
 import Tooltip from 'src/Tooltip';
 
-export type FilterOption = {
+export type OptionsListFilterOption = {
   key: string;
   doc_count: number;
   isChecked: boolean;
 };
 
-type SelectableFilterOption = FilterOption & { isChecked: boolean };
+type SelectableFilterOption = OptionsListFilterOption & { isChecked: boolean };
 
 const OptionsList: React.ComponentType<{
-  options: Array<FilterOption>;
+  options: Array<OptionsListFilterOption>;
   searchQuery?: string;
   defaultRenderLimit?: number;
   countUnit?: string;

@@ -17,18 +17,16 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "@emotion/styled";
-import css from "@emotion/css";
-import clsx from "clsx";
-import useTheme from "../utils/useTheme";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
+import css from '@emotion/css';
+import clsx from 'clsx';
+import useTheme from '../utils/useTheme';
 
 const TabsContext = React.createContext({ onChange: null, value: null });
 
-export const Button = styled<"button", { as?: keyof HTMLElementTagNameMap }>(
-  "button"
-)`
+export const Button = styled<'button', { as?: keyof HTMLElementTagNameMap }>('button')`
   ${({ theme }) => css(theme.typography.label)};
   color: ${({ theme }) => theme.colors.grey};
   display: flex;
@@ -88,7 +86,7 @@ export const Tab: React.ComponentType<
   );
 };
 
-const Container = styled("div")`
+const Container = styled('div')`
   display: flex;
 `;
 

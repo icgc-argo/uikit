@@ -113,7 +113,7 @@ export const Section = (props) => <SectionDisplay {...props} />;
 
 export const MenuGroup = (props) => <MenuGroupDisplay {...props} />;
 
-export const MenuItem = React.forwardRef<
+export const AppBarMenuItem = React.forwardRef<
   HTMLDivElement,
   {
     active?: boolean;
@@ -153,11 +153,9 @@ export const MenuItem = React.forwardRef<
   },
 );
 
-const AppBar = AppBarContainer;
+export const AppBar = AppBarContainer;
 
 AppBar.propTypes = {};
-
-export default AppBar;
 
 export { DropdownMenu, DropdownMenuItem } from './DropdownMenu';
 
@@ -188,9 +186,9 @@ export const NavBarElement = ({
       {name}
     </DropdownMenuItem>
   ) : (
-    <MenuItem ref={React.createRef()} active={active}>
+    <AppBarMenuItem ref={React.createRef()} active={active}>
       <Typography variant={'default'}>{name}</Typography>
-    </MenuItem>
+    </AppBarMenuItem>
   );
 
   return shouldRender ? (

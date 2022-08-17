@@ -22,7 +22,7 @@ import { MenuItem } from '../SubMenu';
 
 import { css } from '@emotion/core';
 
-import OptionsList, { FilterOption } from 'src/OptionsList';
+import OptionsList, { OptionsListFilterOption } from 'src/OptionsList';
 
 const Facet = ({
   subMenuName,
@@ -35,7 +35,7 @@ const Facet = ({
   parseDisplayValue,
 }: {
   subMenuName: string;
-  options: Array<FilterOption>;
+  options: Array<OptionsListFilterOption>;
   isExpanded?: boolean;
   onClick?: (e: any) => void;
   countUnit?: string;
@@ -55,7 +55,10 @@ const Facet = ({
         chevronOnLeftSide={true}
         isFacetVariant={true}
         searchBar={true}
-        searchStateParams={{ query: searchQueryState, querySetter: setSearchQueryState }}
+        searchStateParams={{
+          query: searchQueryState,
+          querySetter: setSearchQueryState,
+        }}
         css={css`
           width: 100%;
         `}
