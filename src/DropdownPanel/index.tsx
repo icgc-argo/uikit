@@ -17,17 +17,16 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { RefObject, useEffect, useRef, useState } from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import debounce from 'lodash/debounce';
-
-import Button from 'src/Button';
-import Icon from 'src/Icon';
+import React, { RefObject, useEffect, useRef, useState } from 'react';
+import { Button } from 'src/Button';
+import { Input } from 'src/form/Input';
+import { Icon } from 'src/Icon';
 import { UikitIconNames } from 'src/Icon/icons';
-import { Input } from 'src/form';
-import Tag from 'src/Tag';
-import Tooltip from 'src/Tooltip';
+import { Tag } from 'src/Tag';
+import { Tooltip } from 'src/Tooltip';
 import useTheme from 'src/utils/useTheme';
 
 const FILL_COLOUR = '#0774D3';
@@ -473,7 +472,7 @@ export const ListFilter = ({
   );
 };
 
-const DropdownPanel = ({
+export const DropdownPanel = ({
   customTrigger = undefined,
   inputLabel = 'Filter',
   triggerIcon = 'filter',
@@ -622,5 +621,3 @@ const DropdownPanel = ({
     </>
   );
 };
-
-export default DropdownPanel;

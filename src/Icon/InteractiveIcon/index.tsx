@@ -17,13 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
 import { css } from '@emotion/core';
-
+import React from 'react';
+import { Icon } from 'src/Icon';
 import { ThemeColorNames } from 'src/theme/types';
-import Icon from 'src/Icon';
-import Tooltip, { TooltipProps } from 'src/Tooltip';
 import { useTheme } from 'src/ThemeProvider';
+import { Tooltip, TooltipProps } from 'src/Tooltip';
 
 // dims corresponding hex code for a 25% dim
 const dimColour = (hex: string) => `${hex}BF`;

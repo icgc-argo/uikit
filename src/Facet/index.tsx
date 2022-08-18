@@ -17,14 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { css } from '@emotion/core';
 import React from 'react';
+import { OptionsList, OptionsListFilterOption } from 'src/OptionsList';
 import { MenuItem } from '../SubMenu';
 
-import { css } from '@emotion/core';
-
-import OptionsList, { OptionsListFilterOption } from 'src/OptionsList';
-
-const Facet = ({
+export const Facet = ({
   subMenuName,
   options,
   isExpanded,
@@ -75,5 +73,3 @@ const Facet = ({
     </>
   );
 };
-
-export default Facet;

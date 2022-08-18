@@ -17,18 +17,17 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { ReactNode, useContext, useRef, useState } from 'react';
 import { css } from '@emotion/core';
-
+import React, { ReactNode, useContext, useRef, useState } from 'react';
 import { UikitTheme } from '../..';
-import Icon from '../../Icon';
+import { Icon } from '../../Icon';
 import { useTheme } from '../../ThemeProvider';
-import Checkbox from '../Checkbox';
+import { Checkbox } from '../Checkbox';
 import { RadioCheckboxWrapper } from '../common';
-import FormControlContext from '../FormControl/FormControlContext';
-import RadioCheckContext from '../RadioCheckboxGroup/RadioCheckContext';
+import { FormControlContext } from '../FormControl/FormControlContext';
+import { RadioCheckContext } from '../RadioCheckboxGroup/RadioCheckContext';
 
-const FormCheckbox = ({
+export const FormCheckbox = ({
   checked,
   children,
   value,
@@ -127,5 +126,3 @@ const FormCheckbox = ({
     </RadioCheckboxWrapper>
   );
 };
-
-export default FormCheckbox;

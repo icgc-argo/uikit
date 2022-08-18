@@ -19,9 +19,9 @@
 
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import FocusWrapper from 'src/FocusWrapper';
+import { FocusWrapper } from 'src/FocusWrapper';
 
-const StyledButton = styled<
+export const StyledButton = styled<
   typeof FocusWrapper,
   {
     size: 'sm' | 'md';
@@ -69,4 +69,3 @@ const StyledButton = styled<
     color: ${({ theme, variant }) => theme.button.textColors[variant].disabled};
   }
 `;
-export default StyledButton;

@@ -20,11 +20,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import Icon from '../Icon';
+import { Icon } from '../Icon';
 import icgcLogo from '../assets/icgc_logo.svg';
 import css from '@emotion/css';
 import { Row, Col } from 'react-grid-system';
-import A from '../Link';
+import { Link as A } from '../Link';
 
 const Container = styled('footer')`
   ${({ theme }) => css(theme.typography.paragraph)};
@@ -36,7 +36,7 @@ const Container = styled('footer')`
   }
 `;
 
-const Footer = ({
+export const Footer = ({
   version = '[version]',
   apiVersion = null,
   links = [],
@@ -120,5 +120,3 @@ Footer.propTypes = {
   apiVersion: PropTypes.string,
   links: PropTypes.array,
 };
-
-export default Footer;

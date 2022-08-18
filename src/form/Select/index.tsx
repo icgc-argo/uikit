@@ -17,22 +17,21 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { useState, useEffect, useContext } from 'react';
 import { css } from '@emotion/core';
-
-import { StyledInputWrapper, INPUT_SIZES, InputSize, StyledInputWrapperProps } from '../common';
-import Typography from '../../Typography';
+import React, { useContext, useEffect, useState } from 'react';
+import { Tooltip } from 'src/Tooltip';
+import { Typography } from '../../Typography';
+import useTheme from '../../utils/useTheme';
+import { InputSize, INPUT_SIZES, StyledInputWrapper, StyledInputWrapperProps } from '../common';
+import { FormControlContext } from '../FormControl/FormControlContext';
 import {
   DropdownIcon,
-  OptionsList,
-  Option,
   HiddenSelect,
-  POPUP_POSITIONS,
+  Option,
+  OptionsList,
   PopupPosition,
+  POPUP_POSITIONS,
 } from './styledComponents';
-import useTheme from '../../utils/useTheme';
-import Tooltip from 'src/Tooltip';
-import FormControlContext from '../FormControl/FormControlContext';
 
 type OptionsType = {
   content: any;
@@ -40,7 +39,7 @@ type OptionsType = {
   value: any;
 };
 
-const Select: React.ComponentType<{
+export const Select: React.ComponentType<{
   ['aria-label']: string;
   options?: OptionsType[];
   size?: InputSize;
@@ -237,5 +236,3 @@ const Select: React.ComponentType<{
     </div>
   );
 };
-
-export default Select;

@@ -17,17 +17,16 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import FormControlContext from '../FormControl/FormControlContext';
+import css from '@emotion/css';
 import styled from '@emotion/styled';
 import clsx from 'clsx';
-import css from '@emotion/css';
-import Icon from '../../Icon';
-import pick from 'lodash/pick';
 import get from 'lodash/get';
+import pick from 'lodash/pick';
+import React from 'react';
+import { Icon } from '../../Icon';
+import { FormControlContext } from '../FormControl/FormControlContext';
 
-const InputLabel = React.forwardRef<
+export const InputLabel = React.forwardRef<
   HTMLLabelElement,
   {
     /**
@@ -77,5 +76,3 @@ const InputLabel = React.forwardRef<
 });
 
 InputLabel.displayName = 'InputLabel';
-
-export default InputLabel;

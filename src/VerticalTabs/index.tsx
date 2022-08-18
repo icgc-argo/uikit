@@ -17,21 +17,15 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, {
-  HtmlHTMLAttributes,
-  HTMLAttributes,
-  ReactNode,
-  ReactElement,
-  MouseEventHandler,
-} from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
+import React, { HTMLAttributes, HtmlHTMLAttributes, MouseEventHandler, ReactNode } from 'react';
+import { FocusWrapper } from 'src/FocusWrapper';
+import { Tag } from 'src/Tag';
+import { Tooltip } from 'src/Tooltip';
+import { Typography } from 'src/Typography';
+import { useElementDimension } from 'src/utils/Hook/useElementDimension';
 import { useTheme } from '../ThemeProvider';
-import Typography from 'src/Typography';
-import Tag from 'src/Tag';
-import FocusWrapper from 'src/FocusWrapper';
-import useElementDimension from 'src/utils/Hook/useElementDimension';
-import Tooltip from 'src/Tooltip';
 
 type TabStyleType = {
   background: string;
@@ -220,4 +214,4 @@ const output: typeof VerticalTabs & {
   return output;
 })();
 
-export default output;
+output;

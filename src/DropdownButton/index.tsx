@@ -19,10 +19,9 @@
 
 import * as React from 'react';
 import { css, SerializedStyles } from '@emotion/core';
-
-import Typography from 'src/Typography';
-import Button from 'src/Button';
-import useClickAway from 'src/utils/useClickAway';
+import { Typography } from 'src/Typography';
+import { Button } from 'src/Button';
+import { useClickAway } from 'src/utils/useClickAway';
 import { useTheme } from 'src/ThemeProvider';
 
 export const DropdownButtonMenuItem: typeof Typography = (props) => {
@@ -142,5 +141,3 @@ export function DropdownButton<ValueType = string>({
     </Button>
   );
 }
-
-export default DropdownButton;

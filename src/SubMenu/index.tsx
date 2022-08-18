@@ -17,13 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import styled from '@emotion/styled';
 import css from '@emotion/css';
-import Icon from '../Icon';
-import Input from '../form/Input';
+import styled from '@emotion/styled';
+import React from 'react';
+import { Input } from '../form/Input';
+import { Icon } from '../Icon';
 import useTheme from '../utils/useTheme';
-import { MenuItemContainer, IconContainer, ContentContainer } from './styledComponents';
+import { ContentContainer, IconContainer, MenuItemContainer } from './styledComponents';
 
 const MenuItemComponent = React.forwardRef<
   HTMLDivElement,
@@ -204,5 +204,3 @@ export const SubMenu: typeof SubMenuComponent & {
   output.Item = MenuItem;
   return output;
 })();
-
-export default SubMenu;

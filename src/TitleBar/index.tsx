@@ -17,11 +17,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
 import css from '@emotion/css';
-import Icon from '../Icon';
+import styled from '@emotion/styled';
+import React from 'react';
+import { Icon } from '../Icon';
 import useTheme from '../utils/useTheme';
 
 const Nav = styled('nav')`
@@ -60,7 +59,7 @@ const interleave = (arr = [], y) => {
   return xs.length === 0 ? [x] : [x, y, ...interleave(xs, y)];
 };
 
-const TitleBar: React.ComponentType<{
+export const TitleBar: React.ComponentType<{
   className?: string;
   id?: string;
   children: React.ReactNode | React.ReactNodeArray;
@@ -86,5 +85,3 @@ const TitleBar: React.ComponentType<{
     </Nav>
   );
 };
-
-export default TitleBar;

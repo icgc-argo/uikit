@@ -19,7 +19,7 @@
 
 import React from 'react';
 
-const FormControlContext = React.createContext<{
+export const FormControlContext = React.createContext<{
   disabled?: boolean;
   error?: string | boolean;
   focused?: boolean;
@@ -27,5 +27,3 @@ const FormControlContext = React.createContext<{
   handleBlur?: () => any;
   required?: boolean;
 }>({});
-
-export default FormControlContext;

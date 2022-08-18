@@ -36,7 +36,7 @@ const PipeContainer = styled('div')`
   height: 14px;
 `;
 
-const PipeItem = styled<'div', { fill: keyof typeof defaultTheme.colors }>('div')`
+export const PipeItem = styled<'div', { fill: keyof typeof defaultTheme.colors }>('div')`
   flex-grow: 1;
   background-color: ${({ theme, fill }) => theme.colors[fill]};
   margin-right: 1px;
@@ -60,5 +60,3 @@ const Pipe: React.ComponentType<{}> & { Item: typeof PipeItem } = ({ children })
 );
 
 Pipe.Item = PipeItem;
-
-export default Pipe;

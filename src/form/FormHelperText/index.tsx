@@ -18,13 +18,13 @@
  */
 
 import React from 'react';
-import FormControlContext from '../FormControl/FormControlContext';
+import { FormControlContext } from '../FormControl/FormControlContext';
 import styled from '@emotion/styled';
 import clsx from 'clsx';
 import css from '@emotion/css';
 import pick from 'lodash/pick';
 
-const FormHelperText = React.forwardRef<
+export const FormHelperText = React.forwardRef<
   any,
   {
     /**
@@ -80,5 +80,3 @@ const FormHelperText = React.forwardRef<
 });
 
 FormHelperText.displayName = 'FormHelperText';
-
-export default FormHelperText;
