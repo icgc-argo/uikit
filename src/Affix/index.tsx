@@ -19,7 +19,7 @@
 
 import React from 'react';
 
-export default function Affix(props: {
+export function Affix(props: {
   top: number;
   children: React.ReactNode;
   offset?: number;

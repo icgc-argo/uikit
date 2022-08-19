@@ -19,13 +19,12 @@
 
 import * as React from 'react';
 import { css, SerializedStyles } from '@emotion/core';
-
-import Typography from 'src/Typography';
-import Button from 'src/Button';
-import useClickAway from 'src/utils/useClickAway';
+import { Typography } from 'src/Typography';
+import { Button } from 'src/Button';
+import { useClickAway } from 'src/utils/useClickAway';
 import { useTheme } from 'src/ThemeProvider';
 
-export const MenuItem: typeof Typography = (props) => {
+export const DropdownButtonMenuItem: typeof Typography = (props) => {
   const theme = useTheme();
   return (
     <Typography
@@ -60,7 +59,7 @@ export interface DownloadButtonProps<ValueType>
   menuItemStyles?: string;
 }
 
-function DropdownButton<ValueType = string>({
+export function DropdownButton<ValueType = string>({
   children,
   onItemClick,
   menuItems,
@@ -126,7 +125,7 @@ function DropdownButton<ValueType = string>({
           `}
         >
           {menuItems.map((item) => (
-            <MenuItem
+            <DropdownButtonMenuItem
               key={String(item.value)}
               onClick={() => (rest.isLoading ? null : onItemClick(item))}
               css={css`
@@ -135,12 +134,10 @@ function DropdownButton<ValueType = string>({
               {...item}
             >
               {item.display}
-            </MenuItem>
+            </DropdownButtonMenuItem>
           ))}
         </div>
       )}
     </Button>
   );
 }
-
-export default DropdownButton;

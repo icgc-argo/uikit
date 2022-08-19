@@ -17,18 +17,17 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import Color from 'color';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-
-import Typography from '../Typography';
-import Button from '../Button';
-import Icon from '../Icon';
-import FocusWrapper from '../FocusWrapper';
-import { UikitIconNames } from 'src/Icon/icons';
+import Color from 'color';
+import React from 'react';
 import { BUTTON_SIZES, BUTTON_VARIANTS } from 'src/Button/constants';
 import { ButtonSize } from 'src/Button/types';
+import { UikitIconNames } from 'src/Icon/icons';
+import { Button } from '../Button';
+import { FocusWrapper } from '../FocusWrapper';
+import { Icon } from '../Icon';
+import { Typography } from '../Typography';
 
 const DefaultFooter = ({
   actionVisible,
@@ -228,10 +227,8 @@ const ModalComponent: React.ComponentType<{
 };
 
 const Overlay = (props) => <ModalOverlay {...props} />;
-const Modal: typeof ModalComponent & { Overlay: typeof Overlay } = (() => {
+export const Modal: typeof ModalComponent & { Overlay: typeof Overlay } = (() => {
   const output = ModalComponent as any;
   output.Overlay = Overlay;
   return output;
 })();
-
-export default Modal;

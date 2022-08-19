@@ -17,12 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import HyperLink from 'src/Link';
 import { css } from '@emotion/core';
-import Icon from 'src/Icon';
+import { Icon } from 'src/Icon';
+import { Link as HyperLink } from 'src/Link';
 import { useTheme } from 'src/ThemeProvider';
 
-const ViewAmountController: React.ComponentType<{
+export const ViewAmountController: React.ComponentType<{
   /** Function to handle what happens when the selectAll/DeselectAll button is clicked */
   selectAllHander: () => any;
   /** Function to handle what happens when more/less toggle is clicked */
@@ -108,5 +108,3 @@ const ViewAmountController: React.ComponentType<{
     )
   );
 };
-
-export default ViewAmountController;

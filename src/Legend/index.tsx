@@ -17,12 +17,11 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { useState, createRef } from 'react';
 import { css, SerializedStyles } from '@emotion/core';
-
-import Button from 'src/Button';
-import { MenuItem } from 'src/DropdownButton';
-import Icon from 'src/Icon';
+import React, { createRef, useState } from 'react';
+import { Button } from 'src/Button';
+import { DropdownButtonMenuItem } from 'src/DropdownButton';
+import { Icon } from 'src/Icon';
 import { useTheme } from 'src/ThemeProvider';
 
 type LegendItemConfig<ValueType = string> = {
@@ -66,7 +65,7 @@ const menuItems: LegendProps<LegendOptionValues>['menuItems'] = [
   },
 ];
 
-const Legend = () => {
+export const Legend = () => {
   const theme = useTheme();
   const menuStyles = css`
     display: flex;
@@ -160,7 +159,7 @@ const Legend = () => {
           `}
         >
           {menuItems.map((item) => (
-            <MenuItem
+            <DropdownButtonMenuItem
               key={String(item.value)}
               css={css`
                 ${menuItemStyles}
@@ -168,12 +167,10 @@ const Legend = () => {
               {...item}
             >
               {item.display}
-            </MenuItem>
+            </DropdownButtonMenuItem>
           ))}
         </div>
       )}
     </Button>
   );
 };
-
-export default Legend;

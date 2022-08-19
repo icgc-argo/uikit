@@ -48,7 +48,7 @@ const StyledLink = styled<'a', HyperLinkProps>('a')`
   }
 `;
 
-const Link = React.forwardRef<HTMLAnchorElement, HyperLinkProps>(
+export const Link = React.forwardRef<HTMLAnchorElement, HyperLinkProps>(
   (
     {
       href,
@@ -82,5 +82,3 @@ export const LINK_VARIANTS = Object.freeze({
   INLINE: 'INLINE' as LinkVariant,
   BLOCK: 'BLOCK' as LinkVariant,
 });
-
-export default Link;

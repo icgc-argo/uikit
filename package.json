@@ -1,6 +1,9 @@
 {
   "name": "@icgc-argo/uikit",
   "version": "1.16.0",
+  "description": "ARGO UI component library",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/icgc-argo/uikit"
@@ -9,20 +12,17 @@
     "storybook": "NODE_PATH=./ start-storybook -s ./ -p 6006",
     "build-storybook": "build-storybook",
     "create-component": "plop --plopfile ./src/plopfile.js",
-    "gitmoji-config": "gitmoji -g",
-    "commit": "gitmoji -c",
     "type-check": "tsc -p ./tsconfig.json",
     "test": "NODE_PATH=./ ts-mocha -p ./tsconfig.test.json ./testSetup.tsx src/testSetup.tsx src/**/*.test.tsx",
     "test:watch": "NODE_PATH=./ ts-mocha --watch -p ./tsconfig.test.json ./testSetup.tsx src/testSetup.tsx src/**/*.test.tsx",
     "build::assets": "cp ./package.json ./dist/package.json && cp -r ./src/assets ./dist/assets && cp ./README.md ./dist/README.md",
     "build::ts": "tsc -p ./tsconfig.json",
-    "build::babel": "babel ./dist --out-dir ./dist",
-    "build::cleanup": "rm ./dist/**/*.jsx ./dist/*.jsx",
-    "build": "rm -rf ./dist && npm run build::ts && npm run build::babel && npm run build::assets && npm run build::cleanup",
-    "publish-uikit": "cd dist && npm publish --access public",
-    "prewatch": "rm -rf dist && mkdir dist && cd dist && npm link react react-dom",
-    "watch": "rm -rf ./dist && tsc-watch -p ./tsconfig.json --onSuccess \"npm run build::babel\"",
-    "postwatch": "rm -r dist"
+    "build::babel": "babel ./src --extensions .tsx,.ts,.js --out-dir ./dist",
+    "clean": "rm -rf dist && mkdir dist",
+    "declarations": "ttsc --emitDeclarationOnly",
+    "watch": "npm run clean && npm run build::assets && (npm run build::babel -- --watch --source-maps=inline & npm run declarations -- --watch)",
+    "build": "npm run clean && npm run build::assets && npm run declarations && npm run build::babel",
+    "publish-uikit": "cd dist && npm publish --access public"
   },
   "peerDependencies": {
     "react": "16.x.x || 17.x.x",
@@ -59,18 +59,23 @@
     "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.16.0",
     "@babel/preset-react": "^7.16.0",
-    "@babel/preset-typescript": "^7.16.0",
+    "@babel/preset-typescript": "^7.18.6",
     "@babel/register": "^7.4.0",
     "@emotion/babel-preset-css-prop": "^10.0.9",
     "babel-loader": "^8.0.5",
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-preset-env": "^1.7.0",
-    "ts-node-dev": "^1.1.8",
-    "tsc-watch": "^4.5.0",
-    "typescript": "^3.9.5",
+    "husky": "^2.2.0",
     "plop": "^2.3.0",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
-    "husky": "^2.2.0"
+    "ts-node-dev": "^1.1.8",
+    "ttypescript": "^1.5.13",
+    "typescript": "^3.9.5"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "trailingComma": "all",
+    "singleQuote": true
   }
 }

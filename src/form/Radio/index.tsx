@@ -17,10 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import css from '@emotion/css';
+import React from 'react';
 
 /*
  * :before
@@ -95,7 +93,7 @@ export const StyledRadio = styled<'div', StyledRadioProps>('div')`
  * ::before - checked dot
  * ::after - circle outline
  */
-const Radio = ({
+export const Radio = ({
   disabled = false,
   checked,
   onChange,
@@ -130,5 +128,3 @@ const Radio = ({
     </StyledRadio>
   );
 };
-
-export default Radio;

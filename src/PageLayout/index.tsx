@@ -18,7 +18,7 @@
  */
 
 import styled from '@emotion/styled';
-import Container from '../Container';
+import { Container } from '../Container';
 
 export const PageContainer = styled('div')`
   display: grid;

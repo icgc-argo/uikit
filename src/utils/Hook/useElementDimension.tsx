@@ -17,11 +17,11 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
 import debounce from 'lodash/debounce';
-import getElementResizeListener from 'src/utils/getElementResizeListener';
+import React from 'react';
+import { getElementResizeListener } from 'src/utils/getElementResizeListener';
 
-export default (
+export const useElementDimension = (
   parentRef: React.RefObject<HTMLElement>,
   _config: { resizeDebounce?: number } = {},
 ) => {

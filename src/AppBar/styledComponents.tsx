@@ -21,7 +21,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { withProps } from 'recompose';
 
-import Typography from '../Typography';
+import { Typography } from '../Typography';
 
 const MenuItemTypography: typeof Typography = withProps(() => ({
   variant: 'navigation',

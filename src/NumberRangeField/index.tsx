@@ -18,14 +18,14 @@
  */
 
 import { css } from '@emotion/core';
-import { FieldDescriptionLabel, FieldInputWrapper } from './common';
 import React from 'react';
-import Input from 'src/form/Input';
-import Button from 'src/Button';
+import { Button } from 'src/Button';
+import { Input } from 'src/form/Input';
 import { useTheme } from 'src/ThemeProvider';
-import Typography from 'src/Typography';
+import { Typography } from 'src/Typography';
+import { FieldDescriptionLabel, FieldInputWrapper } from './common';
 
-const NumberRangeField: React.ComponentType<{
+export const NumberRangeField: React.ComponentType<{
   min: string;
   onMinChange: React.Dispatch<React.SetStateAction<string>>;
   max: string;
@@ -128,5 +128,3 @@ const NumberRangeField: React.ComponentType<{
     </div>
   );
 };
-
-export default NumberRangeField;

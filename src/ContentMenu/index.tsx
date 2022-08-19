@@ -18,7 +18,7 @@
  */
 
 import React from 'react';
-import Typography from 'src/Typography';
+import { Typography } from 'src/Typography';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 
@@ -73,7 +73,7 @@ const MenuItem = ({ name, onClick, disabled, active }) => {
   );
 };
 
-const Menu = ({
+export const Menu = ({
   title,
   contents,
   color,
@@ -113,5 +113,3 @@ const Menu = ({
     </div>
   );
 };
-
-export default Menu;

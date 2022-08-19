@@ -18,11 +18,10 @@
  */
 
 import React from 'react';
-import Typography from '../../Typography';
-import PropTypes from 'prop-types';
-import RadioCheckContext from './RadioCheckContext';
+import { Typography } from '../../Typography';
+import { RadioCheckContext } from './RadioCheckContext';
 
-const RadioCheckboxGroup: React.ComponentType<{
+export const RadioCheckboxGroup: React.ComponentType<{
   onChange?: (e: any) => void;
   hasError?: boolean;
   isChecked?: boolean | ((a: any) => boolean);
@@ -47,5 +46,3 @@ const RadioCheckboxGroup: React.ComponentType<{
     </div>
   );
 };
-
-export default RadioCheckboxGroup;

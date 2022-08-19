@@ -17,27 +17,27 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import Checkbox from 'src/form/Checkbox';
 import { css } from '@emotion/core';
-import Tag from 'src/Tag';
-import Typography from 'src/Typography';
-import useTheme from 'src/utils/useTheme';
-import orderBy from 'lodash/orderBy';
 import concat from 'lodash/concat';
-import ViewAmountController from './ViewAmountController';
-import Tooltip from 'src/Tooltip';
+import orderBy from 'lodash/orderBy';
+import React from 'react';
+import { Checkbox } from 'src/form/Checkbox';
+import { Tag } from 'src/Tag';
+import { Tooltip } from 'src/Tooltip';
+import { Typography } from 'src/Typography';
+import useTheme from 'src/utils/useTheme';
+import { ViewAmountController } from './ViewAmountController';
 
-export type FilterOption = {
+export type OptionsListFilterOption = {
   key: string;
   doc_count: number;
   isChecked: boolean;
 };
 
-type SelectableFilterOption = FilterOption & { isChecked: boolean };
+type SelectableFilterOption = OptionsListFilterOption & { isChecked: boolean };
 
-const OptionsList: React.ComponentType<{
-  options: Array<FilterOption>;
+export const OptionsList: React.ComponentType<{
+  options: Array<OptionsListFilterOption>;
   searchQuery?: string;
   defaultRenderLimit?: number;
   countUnit?: string;
@@ -263,5 +263,3 @@ const OptionsList: React.ComponentType<{
     </>
   );
 };
-
-export default OptionsList;

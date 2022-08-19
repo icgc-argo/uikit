@@ -17,18 +17,16 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { SVGAttributes } from 'react';
-import PropTypes, { string } from 'prop-types';
-import icons from './icons';
 import { css } from '@emotion/core';
-import useTheme from '../utils/useTheme';
+import get from 'lodash/get';
+import React, { SVGAttributes } from 'react';
 import defaultTheme from '../theme/defaultTheme';
 import { ThemeColorNames } from '../theme/types';
-import { UikitIconNames } from './icons';
-import { SvgProperties } from 'csstype';
-import get from 'lodash/get';
+import useTheme from '../utils/useTheme';
+import icons, { UikitIconNames } from './icons';
 export type Outline = { color: keyof ThemeColorNames | string; width: number };
-const Icon: React.ComponentType<
+
+export const Icon: React.ComponentType<
   {
     name: UikitIconNames;
     className?: string;
@@ -111,5 +109,3 @@ export const ICON_NAMES = Object.freeze(Object.entries(icons).reduce(toKeyValueM
 export const BUILT_IN_ICON_COLORS: { [k in UikitIconNames]: UikitIconNames } = Object.freeze(
   Object.entries(defaultTheme.colors).reduce(toKeyValueMap, {}),
 );
-
-export default Icon;

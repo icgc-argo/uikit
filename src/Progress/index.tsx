@@ -17,11 +17,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-
-import Icon from '../Icon';
+import React from 'react';
+import { Icon } from '../Icon';
 
 export type ProgressStatus = 'success' | 'error' | 'pending' | 'disabled' | 'locked' | 'closed';
 
@@ -164,10 +163,8 @@ export const ProgressItem = ({
   </div>
 );
 
-const Progress: React.ComponentType<{}> & { Item: typeof ProgressItem } = ({ children }) => (
+export const Progress: React.ComponentType<{}> & { Item: typeof ProgressItem } = ({ children }) => (
   <ProgressSection>{children}</ProgressSection>
 );
 
 Progress.Item = ProgressItem;
-
-export default Progress;

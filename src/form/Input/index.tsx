@@ -17,15 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { useState, useContext } from 'react';
-import PropTypes from 'prop-types';
-
-import Button from 'src/Button';
-import Icon from '../../Icon';
-import { INPUT_SIZES, StyledInputWrapper, StyledInputWrapperProps } from '../common';
-import { StyledInput, IconWrapper } from './styledComponents';
-import FormControlContext from '../FormControl/FormControlContext';
 import css from '@emotion/css';
+import React, { useContext, useState } from 'react';
+import { Button } from 'src/Button';
+import { Icon } from '../../Icon';
+import { INPUT_SIZES, StyledInputWrapper, StyledInputWrapperProps } from '../common';
+import { FormControlContext } from '../FormControl/FormControlContext';
+import { IconWrapper, StyledInput } from './styledComponents';
 
 type InputPreset = 'default' | 'search';
 export const INPUT_PRESETS = {
@@ -66,7 +64,7 @@ type InputProps = {
   dataSize?: number;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>;
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
       preset = INPUT_PRESETS.DEFAULT,
@@ -180,5 +178,3 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     );
   },
 );
-
-export default Input;

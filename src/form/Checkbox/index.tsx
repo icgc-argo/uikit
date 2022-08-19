@@ -121,7 +121,7 @@ export const StyledCheckbox = styled<
 /*
  * Basic checkbox input
  */
-const Checkbox = ({
+export const Checkbox = ({
   checked = false,
   disabled = false,
   forwardedRefs,
@@ -182,5 +182,3 @@ const Checkbox = ({
     </StyledCheckbox>
   );
 };
-
-export default Checkbox;

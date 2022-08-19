@@ -18,7 +18,7 @@
  */
 import React, { RefObject } from 'react';
 
-export default function useClickAway({
+export function useClickAway({
   domElementRef,
   onClickAway = (event) => {},
   onElementClick = (event) => {},

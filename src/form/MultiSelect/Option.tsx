@@ -33,12 +33,10 @@ const Li = styled('li')`
   }
 `;
 
-function Option({ ...other }) {
+export function Option({ ...other }) {
   return <Li {...other} />;
 }
 
 Option.propTypes = {
   value: PropTypes.any,
 };
-
-export default Option;

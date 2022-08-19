@@ -21,7 +21,7 @@ import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { Row, Col } from 'react-grid-system';
-import Typography from '../Typography';
+import { Typography } from '../Typography';
 import React from 'react';
 
 import { INPUT_STATES as INPUT_THEME_STATES } from '../theme/defaultTheme/input';
