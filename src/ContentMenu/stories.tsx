@@ -20,9 +20,9 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { text, color } from '@storybook/addon-knobs';
-import ContentMenu from '.';
+import { Menu as ContentMenu } from '.';
 
-const ContentMenuStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`ContentMenu`, module).add('Basic', () => {
   const contentNames = ['Sample Registration', 'Specimen', 'Donor', 'Treatment'];
   const contents = contentNames.map((content, i) => ({
     name: content,
@@ -48,5 +48,3 @@ const ContentMenuStories = storiesOf(`${__dirname}`, module).add('Basic', () => 
     </div>
   );
 });
-
-export default ContentMenuStories;

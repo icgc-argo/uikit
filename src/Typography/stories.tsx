@@ -17,14 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
+import { boolean, radios, select } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-import { radios, select, boolean } from '@storybook/addon-knobs';
+import React from 'react';
+import { Typography, TypographyVariant } from '.';
 import defaultTheme from '../theme/defaultTheme';
 
-import Typography, { TypographyVariant } from '.';
-
-const TypographyStories = storiesOf(`${__dirname}`, module)
+storiesOf(`Typography`, module)
   .add('Basic', () => {
     const knobs = {
       variant: radios(
@@ -52,5 +51,3 @@ const TypographyStories = storiesOf(`${__dirname}`, module)
       ))}
     </>
   ));
-
-export default TypographyStories;

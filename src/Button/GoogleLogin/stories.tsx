@@ -18,11 +18,7 @@
  */
 
 import { storiesOf } from '@storybook/react';
+import { GoogleLogin } from './index';
 import React from 'react';
-import Google from '.';
 
-const GoogleStories = storiesOf(`${__dirname}`, module).add('Basic', () => (
-  <Google link="/">Skeleton</Google>
-));
-
-export default GoogleStories;
+storiesOf(`GoogleLogin`, module).add('Basic', () => <GoogleLogin link="/">Skeleton</GoogleLogin>);

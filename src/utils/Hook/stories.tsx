@@ -17,15 +17,14 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { action } from '@storybook/addon-actions';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import { action } from '@storybook/addon-actions';
-
-import Button from '../../Button';
 import Hook from '.';
+import { Button } from '../../Button';
 import readme from './readme.md';
 
-const HookStories = storiesOf(`${__dirname}`, module).add(
+storiesOf(`Hook`, module).add(
   'Basic',
   () => (
     <Hook
@@ -47,5 +46,3 @@ const HookStories = storiesOf(`${__dirname}`, module).add(
     },
   },
 );
-
-export default HookStories;

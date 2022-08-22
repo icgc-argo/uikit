@@ -17,15 +17,14 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { select } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import { select } from '@storybook/addon-knobs';
-import { Container, Row, Col } from 'react-grid-system';
+import { Col, Row } from 'react-grid-system';
+import { Icon } from '.';
 import defaultTheme from '../theme/defaultTheme';
-
-import Typography from '../Typography';
-import icons, { UikitIconNames } from './icons';
-import Icon from '.';
+import { Typography } from '../Typography';
+import { Icons as icons, UikitIconNames } from './icons';
 
 const createKnobs = () => {
   const fill = select('fill', [null, '#00f', ...Object.keys(defaultTheme.colors)], null);
@@ -34,7 +33,7 @@ const createKnobs = () => {
   };
 };
 
-const IconStories = storiesOf(`${__dirname}`, module)
+storiesOf(`Icon`, module)
   .add('Basic', () => {
     const name = select('name', Object.keys(icons) as UikitIconNames[], 'spinner');
     const { fill } = createKnobs();
@@ -67,13 +66,14 @@ const IconStories = storiesOf(`${__dirname}`, module)
         </div>
       </Col>
     );
+
     return (
       <Row nogutter>
-        {Object.keys(icons).map((iconName) => (
-          <IconStoryDisplay iconName={iconName} />
-        ))}
+        {Object.keys(icons)
+          .slice(0, -2) // remove properties that aren't icons
+          .map((iconName) => (
+            <IconStoryDisplay iconName={iconName} />
+          ))}
       </Row>
     );
   });
-
-export default IconStories;

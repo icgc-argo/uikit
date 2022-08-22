@@ -19,10 +19,10 @@
 
 import { storiesOf } from '@storybook/react';
 import React, { useCallback, useState } from 'react';
-import FormCheckbox from '.';
+import { FormCheckbox } from '.';
 import { boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import RadioCheckboxGroup from '../RadioCheckboxGroup';
+import { RadioCheckboxGroup } from '../RadioCheckboxGroup';
 
 const createKnobs = () => {
   const [checked, setChecked] = useState(false);
@@ -67,7 +67,7 @@ const createGroupKnobs = () => {
   return { hasError };
 };
 
-const CheckboxStories = storiesOf(`${__dirname}`, module)
+storiesOf(`form/FormCheckbox`, module)
   .add('Default', () => (
     <FormCheckbox {...createKnobs()} aria-label="Item">
       Item
@@ -115,5 +115,3 @@ const CheckboxStories = storiesOf(`${__dirname}`, module)
       </RadioCheckboxGroup>
     );
   });
-
-export default CheckboxStories;

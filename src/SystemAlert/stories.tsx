@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import SystemAlert, { Alert } from '.';
+import { SystemAlert, Alert } from './index';
 import { select, boolean } from '@storybook/addon-knobs';
 import { find } from 'lodash';
 
@@ -36,8 +36,8 @@ const getNewMessage = {
   kickstarter edison bulb, street art taxidermy iPhone pitchfork woke fashion axe leggings af sartorial fanny pack.`,
 };
 
-const SystemAlertStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
-  const variant = select('variant', [undefined, 'error', 'warning', 'info'], 'error');
+storiesOf(`SystemAlert`, module).add('Basic', () => {
+  const variant = select('variant', ['error', 'warning', 'info'], 'error');
   const dismissable = boolean('dismissable', true);
 
   const messageSize = select(' message length', ['original', 'short', 'long'], 'original');
@@ -57,5 +57,3 @@ const SystemAlertStories = storiesOf(`${__dirname}`, module).add('Basic', () => 
     <div />
   );
 });
-
-export default SystemAlertStories;

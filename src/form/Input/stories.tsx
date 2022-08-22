@@ -17,13 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { text, boolean, radios, select } from '@storybook/addon-knobs';
-
-import Input, { INPUT_PRESETS } from '.';
-import Icon from '../../Icon';
 import { action } from '@storybook/addon-actions';
+import { boolean, radios, select, text } from '@storybook/addon-knobs';
+import { storiesOf } from '@storybook/react';
+import React from 'react';
+import { Input, INPUT_PRESETS } from '.';
+import { Icon } from '../../Icon';
 
 const createKnobs = () => {
   const [value, setValue] = React.useState('');
@@ -75,7 +74,7 @@ const createKnobs = () => {
   };
 };
 
-const InputStories = storiesOf(`${__dirname}`, module)
+storiesOf(`form/Input`, module)
   .add('Basic', () => {
     return (
       <div style={{ width: '200px' }}>
@@ -98,5 +97,3 @@ const InputStories = storiesOf(`${__dirname}`, module)
       </div>
     );
   });
-
-export default InputStories;

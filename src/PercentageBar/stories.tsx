@@ -17,15 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { number, select } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import css from '@emotion/css';
-import { number, select } from '@storybook/addon-knobs';
-
+import { PercentageBar } from '.';
 import defaultTheme from '../theme/defaultTheme';
-import PercentageBar from '.';
 
-const PercentageBarStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`PercentageBar`, module).add('Basic', () => {
   const color = select('fill', [null, '#00f', ...Object.keys(defaultTheme.colors)], null);
   return (
     <div style={{ width: '100%', background: 'white' }}>
@@ -33,5 +31,3 @@ const PercentageBarStories = storiesOf(`${__dirname}`, module).add('Basic', () =
     </div>
   );
 });
-
-export default PercentageBarStories;

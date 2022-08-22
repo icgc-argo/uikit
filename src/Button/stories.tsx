@@ -17,17 +17,15 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { radios, boolean, text } from '@storybook/addon-knobs';
 import { css } from '@emotion/core';
-
-import Button from '.';
+import { action } from '@storybook/addon-actions';
+import { boolean, radios, text } from '@storybook/addon-knobs';
+import { storiesOf } from '@storybook/react';
+import React from 'react';
+import { Icon } from '../Icon';
+import { Button } from '.';
 import { asyncDummyFunc, placeholderImageURLRoot } from '../testUtil';
-import Icon from 'src/Icon';
-
-import { BUTTON_VARIANTS, BUTTON_SIZES } from './constants';
+import { BUTTON_SIZES, BUTTON_VARIANTS } from './constants';
 
 const dummyClick = action('Clicked!');
 
@@ -38,8 +36,8 @@ export const createKnobs = () => {
   const isAsync = boolean('isAsync', false);
   const children = text('children', 'some button');
 
-  const className = text('className', undefined);
-  const id = text('id', undefined);
+  const className = text('className', '');
+  const id = text('id', '');
 
   return {
     variant,
@@ -52,7 +50,7 @@ export const createKnobs = () => {
   };
 };
 
-const ButtonStories = storiesOf(`${__dirname}`, module)
+storiesOf('Button', module)
   .add('Basic', () => {
     const props = createKnobs();
     return <Button {...props} onClick={props.isAsync ? asyncDummyFunc : dummyClick} />;
@@ -104,5 +102,3 @@ const ButtonStories = storiesOf(`${__dirname}`, module)
       </Button>
     );
   });
-
-export default ButtonStories;

@@ -19,8 +19,7 @@
 
 import { configure, addDecorator } from '@storybook/react';
 import React from 'react';
-
-import { ThemeProvider } from '../src';
+import { ThemeProvider } from '../src/ThemeProvider';
 
 const req = require.context('../src', true, /.stories\.tsx$/);
 function loadStories() {

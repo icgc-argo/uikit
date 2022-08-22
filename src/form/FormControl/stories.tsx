@@ -21,16 +21,15 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean } from '@storybook/addon-knobs';
+import { FormControl } from '.';
+import { FormHelperText } from '../FormHelperText';
+import { InputLabel } from '../InputLabel';
+import { MultiSelect, Option } from '../../form/MultiSelect';
+import { Input } from '../../form/Input';
+import { FormCheckbox } from '../FormCheckbox';
+import { Typography } from '../../Typography';
 
-import FormControl from '.';
-import FormHelperText from '../FormHelperText';
-import InputLabel from '../InputLabel';
-import MultiSelect, { Option } from '../../form/MultiSelect';
-import Input from '../../form/Input';
-import FormCheckbox from '../FormCheckbox';
-import Typography from '../../Typography';
-
-const FormControlStories = storiesOf(`${__dirname}`, module)
+storiesOf(`form/FormControl`, module)
   .add(
     'FormCheckbox',
     () => {
@@ -125,5 +124,3 @@ const FormControlStories = storiesOf(`${__dirname}`, module)
       },
     },
   );
-
-export default FormControlStories;

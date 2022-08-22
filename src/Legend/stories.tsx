@@ -19,9 +19,9 @@
 
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import Legend from '.';
+import { Legend } from '.';
 
-storiesOf(`${__dirname}`, module).add('Basic', () => (
+storiesOf(`Legend`, module).add('Basic', () => (
   <div style={{ position: 'relative', left: '50px' }}>
     <Legend />
   </div>

@@ -499,3 +499,5 @@ export const MultiSelect = ({
     </Container>
   );
 };
+
+export { Option } from './Option';

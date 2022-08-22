@@ -62,3 +62,17 @@ To keep commit messages consistent, we use [gitmoji-cli](https://www.npmjs.com/p
 
   2. Run `npm run build-uikit` which performs the following:
   3. Run `npm run publish-uikit` to publish latest version to npm
+
+# Dependencies
+
+react/react-dom are needed as dependencies for storybook
+project does not work if they are just defined as peerDeps
+
+# Storybook
+
+Stories are written in the older `storiesOf` style
+https://github.com/storybookjs/storybook/blob/master/lib/core/docs/storiesOf.md
+
+- No explicit export from module required
+- Use a constant string for story name
+  - Stories can break easily when you use dynamic vars as story name `${__dirname}` (too many '/', diff OS)

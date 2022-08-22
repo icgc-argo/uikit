@@ -33,7 +33,7 @@ type InteractiveIconProps = React.ComponentProps<typeof Icon> &
     hoverFill?: keyof ThemeColorNames | string;
   };
 
-const InteractiveIcon = ({
+export const InteractiveIcon = ({
   disabled,
   onClick,
   name,

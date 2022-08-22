@@ -19,7 +19,7 @@
 
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import Checkbox, { STYLEDCHECKBOX_SIZES } from '.';
+import { Checkbox, STYLEDCHECKBOX_SIZES } from '.';
 import { boolean, radios } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
@@ -35,7 +35,7 @@ const createKnobs = () => {
   };
 };
 
-const CheckboxStories = storiesOf(`${__dirname}`, module).add('Basic', () => (
+storiesOf(`form/Checkbox`, module).add('Basic', () => (
   <Checkbox
     value="example"
     {...createKnobs()}
@@ -43,5 +43,3 @@ const CheckboxStories = storiesOf(`${__dirname}`, module).add('Basic', () => (
     aria-label="checkbox"
   />
 ));
-
-export default CheckboxStories;

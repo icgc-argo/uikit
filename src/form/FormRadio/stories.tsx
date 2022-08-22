@@ -17,14 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
-import React, { useState } from 'react';
-import { boolean, button } from '@storybook/addon-knobs';
-import FormRadio from '.';
 import { action } from '@storybook/addon-actions';
-import Hook from '../../utils/Hook';
-import Checkbox from '../FormCheckbox';
-import RadioCheckboxGroup from '../RadioCheckboxGroup';
+import { boolean } from '@storybook/addon-knobs';
+import { storiesOf } from '@storybook/react';
+import React from 'react';
+import { FormRadio } from '.';
+import { RadioCheckboxGroup } from '../RadioCheckboxGroup';
 
 const createKnobs = () => {
   const checked = boolean('checked', false);
@@ -41,7 +39,7 @@ const createGroupKnobs = () => {
   return { hasError };
 };
 
-const RadioStories = storiesOf(`${__dirname}`, module)
+storiesOf(`form/FormRadio`, module)
   .add('Radio', () => <FormRadio {...createKnobs()}>Single Radio Button</FormRadio>)
   .add('Radio Group', () => {
     const [selectedItem, setSelected] = React.useState('one');
@@ -87,5 +85,3 @@ const RadioStories = storiesOf(`${__dirname}`, module)
       </RadioCheckboxGroup>
     );
   });
-
-export default RadioStories;

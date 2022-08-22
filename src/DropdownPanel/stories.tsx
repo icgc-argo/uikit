@@ -17,14 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { useRef, useState } from 'react';
-import { storiesOf } from '@storybook/react';
 import { boolean, select, text } from '@storybook/addon-knobs';
+import { storiesOf } from '@storybook/react';
+import React, { useRef, useState } from 'react';
+import { Icons as icons, UikitIconNames } from '../Icon/icons';
+import { DropdownPanel, FilterOption, ListFilter, TextInputFilter } from '.';
 
-import DropdownPanel, { TextInputFilter, ListFilter, FilterOption } from '.';
-import icons, { UikitIconNames } from 'src/Icon/icons';
-
-const DropdownPanelStories = storiesOf(`${__dirname}`, module)
+storiesOf(`DropdownPanel`, module)
   .add('Basic', () => {
     const [open, setOpen] = useState(false);
 
@@ -172,5 +171,3 @@ const DropdownPanelStories = storiesOf(`${__dirname}`, module)
       </DropdownPanel>
     );
   });
-
-export default DropdownPanelStories;

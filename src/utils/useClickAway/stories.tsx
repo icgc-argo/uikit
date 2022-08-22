@@ -19,10 +19,10 @@
 
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import useClickAway from '.';
+import { useClickAway } from '.';
 import { action } from '@storybook/addon-actions';
 
-export default storiesOf(`${__dirname}`, module).add(
+storiesOf(`useClickAway`, module).add(
   'Basic',
   () => {
     const ref = React.createRef<HTMLButtonElement>();
