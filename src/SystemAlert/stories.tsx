@@ -2,7 +2,8 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { SystemAlert, Alert } from './index';
 import { select, boolean } from '@storybook/addon-knobs';
-import { find } from 'lodash';
+import { find, valuesIn } from 'lodash';
+import { action } from '@storybook/addon-actions';
 
 type ModifiedAlert = Omit<Alert, 'dismissable'>;
 
@@ -39,19 +40,19 @@ const getNewMessage = {
 storiesOf(`SystemAlert`, module).add('Basic', () => {
   const variant = select('variant', ['error', 'warning', 'info'], 'error');
   const dismissable = boolean('dismissable', true);
-
   const messageSize = select(' message length', ['original', 'short', 'long'], 'original');
 
-  const defaultAlert = find(mockNotifications, (v) => v.level === variant);
-  const [currentAlert, setCurrentAlert] = React.useState(defaultAlert);
-  return currentAlert ? (
+  const alert = find(mockNotifications, (v) => v.level === variant);
+  console.log('v', variant), 'a', alert;
+
+  return alert ? (
     <SystemAlert
       alert={{
-        ...currentAlert,
+        ...alert,
         dismissable,
-        message: getNewMessage[messageSize](currentAlert.message),
+        message: getNewMessage[messageSize](alert.message),
       }}
-      onClose={() => setCurrentAlert(null)}
+      onClose={action('close')}
     />
   ) : (
     <div />
