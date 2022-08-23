@@ -19,7 +19,7 @@
 
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { useClickAway } from '.';
+import { useClickAway } from './index';
 import { action } from '@storybook/addon-actions';
 
 storiesOf(`useClickAway`, module).add(

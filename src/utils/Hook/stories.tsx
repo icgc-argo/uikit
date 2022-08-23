@@ -20,7 +20,7 @@
 import { action } from '@storybook/addon-actions';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import Hook from '.';
+import Hook from './index';
 import { Button } from '../../Button';
 import readme from './readme.md';
 
