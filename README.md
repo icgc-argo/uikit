@@ -5,41 +5,41 @@
 [![npm version](https://badge.fury.io/js/%40icgc-argo%2Fuikit.svg)](https://badge.fury.io/js/%40icgc-argo%2Fuikit)
 [![TypeScript](https://img.shields.io/badge/types-%20TypeScript-blue)](https://www.typescriptlang.org/)
 
-Reusable UI components for Argo.
+Reusable UI components for ARGO projects.
 
 # Development
 
-### Local
+### Local Dev
 
-Both local development and building for publishing write to the dist folder. We use `npm link` for local development and avoid adding it to `package.json`.
-`npm run watch` will point to the consuming projects react libs in the global node folder. If you get an error about multiple versions of react, chances are something went wrong here.
-
-Consuming project folder eg. `platform-ui`:
-
-- run `npm link` from both `react` and `react-dom` node_modules.
-
-UIKit lib:
+UIKit:
 
 - Install dependencies: `npm i`
 - Start watching: `npm run watch`
 
-NB: `npm link` installs to global node folder. be careful when using something like NVM which creates different global folders for different node versions. Both `uikit` and the consuming project will need to be using the same node version.
+Consumer project:
+
+- `npm i <root_path_to_uikit>`
+
+Notes:
+
+- make sure to run `watch` first as `dist` folder is used
+- assets will require a restart of watcher
+- typescript changes often need vscode to restart the TS server
+- avoid default exports for anything that needs to be used by 3rd party
+
+### Testing
+
+react-testing-lib with Jest test runner
+see Button.test.tsx for example
 
 ### Storybook
 
-- `npm run storybook` for starting the storybook on port 6006 for isolated component development.
+- `npm run storybook`
 - `npm run build-storybook` creates static storybook build in `./storybook-static`
 
 ### Component Boilerplate
 
 - creating a new component: `npm run create-component`
-
-### Writing commits
-
-To keep commit messages consistent, we use [gitmoji-cli](https://www.npmjs.com/package/gitmoji-cli), available as a dev dependency
-
-- `npm run commit` will start interactive commit tool
-- configuring gitmoji-cli: `npm run gitmoji-config`
 
 ### Type checking
 
