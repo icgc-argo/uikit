@@ -78,3 +78,5 @@ chromedriver.log
 dist
 
 **/.DS_STORE
+
+storybook-static
