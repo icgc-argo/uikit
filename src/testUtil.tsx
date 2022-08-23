@@ -27,3 +27,18 @@ export const asyncDummyFunc = (data) =>
   new Promise((resolve) => setTimeout(() => resolve(data), 2500));
 
 export const placeholderImageURLRoot = 'http://placekitten.com/';
+
+/**
+ * keeps event properties around to use in assertions
+ * workaround for react event pooling
+ */
+
+export class EventTargetMock {
+  target: any;
+  handler: any;
+  constructor() {
+    this.handler = jest.fn((e) => {
+      this.target = e.target;
+    });
+  }
+}
