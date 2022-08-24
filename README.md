@@ -13,7 +13,7 @@ Reusable UI components for ARGO projects.
 
 UIKit:
 
-- Install dependencies: `npm i`
+- Install dependencies: `npm ci`
 - Start watching: `npm run watch`
 
 Consumer project:
