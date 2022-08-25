@@ -13,8 +13,6 @@
     "build-storybook": "build-storybook",
     "create-component": "plop --plopfile ./src/plopfile.js",
     "type-check": "tsc -p ./tsconfig.json",
-    "test": "NODE_PATH=./ ts-mocha -p ./tsconfig.test.json ./testSetup.tsx src/testSetup.tsx src/**/*.test.tsx",
-    "test:watch": "NODE_PATH=./ ts-mocha --watch -p ./tsconfig.test.json ./testSetup.tsx src/testSetup.tsx src/**/*.test.tsx",
     "build::assets": "cp ./package.json ./dist/package.json && cp -r ./src/assets ./dist/assets && cp ./README.md ./dist/README.md",
     "build::ts": "tsc -p ./tsconfig.json",
     "build::babel": "babel ./src --extensions .tsx,.ts,.js --out-dir ./dist",
@@ -22,7 +20,9 @@
     "declarations": "ttsc --emitDeclarationOnly",
     "watch": "npm run clean && npm run build::assets && (npm run build::babel -- --watch --source-maps=inline & npm run declarations -- --watch)",
     "build": "npm run clean && npm run build::assets && npm run declarations && npm run build::babel",
-    "publish-uikit": "cd dist && npm publish --access public"
+    "publish-uikit": "cd dist && npm publish --access public",
+    "test": "jest --config jest.config.ts",
+    "test:watch": "npm run test -- --watch"
   },
   "peerDependencies": {
     "react": "16.x.x || 17.x.x",
@@ -85,7 +85,12 @@
     "react-json-view": "^1.21.3",
     "ts-node-dev": "^1.1.8",
     "ttypescript": "^1.5.13",
-    "typescript": "^3.9.5"
+    "typescript": "^3.9.5",
+    "ts-jest": "^27.1.5",
+    "jest": "^27.5.1",
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.5",
+    "@testing-library/user-event": "^14.4.0"
   },
   "prettier": {
     "printWidth": 100,
