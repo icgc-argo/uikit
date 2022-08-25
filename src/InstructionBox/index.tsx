@@ -18,7 +18,7 @@
  */
 
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import { styled } from '../ThemeProvider';
 import React from 'react';
 import { Col, Row, ScreenClassRender } from 'react-grid-system';
 import { useTheme } from 'src/ThemeProvider';

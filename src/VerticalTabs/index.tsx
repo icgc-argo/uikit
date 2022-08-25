@@ -18,7 +18,7 @@
  */
 
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import { styled } from '../ThemeProvider';
 import React, { HTMLAttributes, HtmlHTMLAttributes, MouseEventHandler, ReactNode } from 'react';
 import { FocusWrapper } from 'src/FocusWrapper';
 import { Tag } from 'src/Tag';

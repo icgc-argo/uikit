@@ -19,7 +19,7 @@
 
 import React from 'react';
 import { Typography } from 'src/Typography';
-import styled from '@emotion/styled';
+import { styled } from '../ThemeProvider';
 import { css } from '@emotion/core';
 
 const Cont = styled('div')`

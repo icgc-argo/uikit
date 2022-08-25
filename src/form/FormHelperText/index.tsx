@@ -19,7 +19,7 @@
 
 import React from 'react';
 import { FormControlContext } from '../FormControl/FormControlContext';
-import styled from '@emotion/styled';
+import { styled } from '../../ThemeProvider';
 import clsx from 'clsx';
 import css from '@emotion/css';
 import pick from 'lodash/pick';
@@ -52,7 +52,7 @@ export const FormHelperText = React.forwardRef<
   } = props;
 
   const StyledComponent = styled<any, any>(Component)`
-    ${({ theme }) => css(theme.typography.caption)};
+    ${({ theme }) => css(theme.typography.caption as any)};
     margin: 3px 7px;
     line-height: 14px;
 

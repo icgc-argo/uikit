@@ -19,7 +19,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
+import { styled } from '../ThemeProvider';
 import { Icon } from '../Icon';
 import icgcLogo from '../assets/icgc_logo.svg';
 import css from '@emotion/css';
@@ -27,7 +27,7 @@ import { Row, Col } from 'react-grid-system';
 import { Link as A } from '../Link';
 
 const Container = styled('footer')`
-  ${({ theme }) => css(theme.typography.paragraph)};
+  ${({ theme }) => css(theme.typography.paragraph as any)};
   font-size: 11px;
   min-height: 58px;
 

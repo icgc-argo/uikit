@@ -18,11 +18,10 @@
  */
 
 import React from 'react';
-import styled from '@emotion/styled';
 import { withProps } from 'recompose';
-
 import { Icon } from '../../Icon';
 import { Typography } from '../../Typography';
+import { styled } from '../../ThemeProvider';
 
 export type PopupPosition = 'UP' | 'DOWN';
 export const POPUP_POSITIONS = { UP: 'UP' as PopupPosition, DOWN: 'DOWN' as PopupPosition };

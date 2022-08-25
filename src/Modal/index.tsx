@@ -18,7 +18,7 @@
  */
 
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import { styled } from '../ThemeProvider';
 import Color from 'color';
 import React from 'react';
 import { BUTTON_SIZES, BUTTON_VARIANTS } from 'src/Button/constants';

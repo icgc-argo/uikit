@@ -18,7 +18,7 @@
  */
 
 import css from '@emotion/css';
-import styled from '@emotion/styled-base';
+import { styled } from '../ThemeProvider';
 import range from 'lodash/range';
 import PropTypes from 'prop-types';
 import React from 'react';

@@ -18,7 +18,7 @@
  */
 
 import React from 'react';
-import { styled } from '..';
+import { styled } from '../ThemeProvider';
 import { Typography } from '../Typography';
 
 const Mail = styled('a')`

@@ -18,7 +18,7 @@
  */
 
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import { styled } from '../ThemeProvider';
 import { FocusWrapper } from 'src/FocusWrapper';
 
 export const StyledButton = styled<
@@ -29,7 +29,7 @@ export const StyledButton = styled<
     disabled: boolean;
   }
 >(FocusWrapper)`
-  ${({ theme }) => css(theme.typography.default)};
+  ${({ theme }) => css(theme.typography.default as any)};
   transition: all 0.25s;
   display: flex;
   align-items: center;

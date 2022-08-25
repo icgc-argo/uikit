@@ -17,12 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import styled from '@emotion/styled';
+import { styled } from '../../ThemeProvider';
 import { css } from '@emotion/core';
 export { StyledInputWrapper } from '../common';
 
 export const StyledInput = styled<'input', { inputSize: string }>('input')`
-  ${({ theme }) => css(theme.typography.default)};
+  ${({ theme }) => css(theme.typography.default as any)};
   padding: ${({ theme, inputSize }) => theme.input.paddings[inputSize]};
   border: none;
   outline: none;
