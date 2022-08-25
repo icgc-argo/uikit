@@ -17,12 +17,11 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-
-import Table, { SelectTable, TableVariant } from '.';
+import { boolean, select } from '@storybook/addon-knobs';
+import { storiesOf } from '@storybook/react';
+import React from 'react';
+import { SelectTable, Table, TableVariant } from '.';
 import readme from './readme.md';
 import selectTableDoc from './selectTable.md';
 
@@ -31,7 +30,7 @@ export const TABLE_VARIANTS: { [k in TableVariant]: k } = {
   STATIC: 'STATIC',
 };
 
-const TableStories = storiesOf(`${__dirname}`, module)
+storiesOf(`Table`, module)
   .add(
     'Basic',
     () => {
@@ -197,5 +196,3 @@ const TableStories = storiesOf(`${__dirname}`, module)
       </div>
     );
   });
-
-export default TableStories;

@@ -214,4 +214,4 @@ const output: typeof VerticalTabs & {
   return output;
 })();
 
-output;
+export { output as VerticalTabs };

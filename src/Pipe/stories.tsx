@@ -17,16 +17,16 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import css from '@emotion/css';
+import { select, text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import css from '@emotion/css';
-import Pipe from '.';
-import { text, select } from '@storybook/addon-knobs';
-
+import { Pipe } from '.';
 import defaultTheme from '../theme/defaultTheme';
+
 const themeColors = Object.keys(defaultTheme.colors) as Array<keyof typeof defaultTheme.colors>;
 
-const PipeStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`Pipe`, module).add('Basic', () => {
   const colourKnobs = [
     select('Fill Colour: First', themeColors, 'accent1_dimmed', null),
     select('Fill Colour: Second', themeColors, 'warning_dark', null),
@@ -69,5 +69,3 @@ const PipeStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
     </div>
   );
 });
-
-export default PipeStories;

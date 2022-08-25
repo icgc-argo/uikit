@@ -17,15 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { storiesOf } from '@storybook/react';
 import React from 'react';
-
-import SubMenu from '.';
-import Button from '../Button';
+import { SubMenu } from '.';
+import { Button } from '../Button';
+import { Icon } from '../Icon';
 import Hook from '../utils/Hook';
-import Icon from '../Icon';
-
 import readme from './readme.md';
 
 const RightComp = () => (
@@ -38,8 +36,7 @@ const RightComp = () => (
     Right
   </div>
 );
-
-const SubMenuStories = storiesOf(`${__dirname}`, module).add(
+storiesOf(`SubMenu`, module).add(
   'Basic',
   () => (
     <SubMenu>
@@ -112,5 +109,3 @@ const SubMenuStories = storiesOf(`${__dirname}`, module).add(
     },
   },
 );
-
-export default SubMenuStories;

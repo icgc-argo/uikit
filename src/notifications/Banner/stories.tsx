@@ -17,14 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { select, text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import { select, text } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { Banner, BANNER_SIZE, BANNER_VARIANTS } from '.';
 
-import Banner, { BANNER_VARIANTS, BANNER_SIZE } from '.';
-
-const BannerStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`Banner`, module).add('Basic', () => {
   const variant = select('variant', [undefined, ...Object.values(BANNER_VARIANTS)], undefined);
   const size = select('size', [undefined, ...Object.values(BANNER_SIZE)], undefined);
   const title = text('title', 'Hipster Ipsum');
@@ -34,5 +32,3 @@ const BannerStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
   );
   return <Banner variant={variant} title={title} content={content} size={size} />;
 });
-
-export default BannerStories;

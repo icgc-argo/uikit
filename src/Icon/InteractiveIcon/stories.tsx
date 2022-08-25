@@ -17,17 +17,15 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-
-import { select, boolean, text } from '@storybook/addon-knobs';
-
-import InteractiveIcon from '.';
-import icons, { UikitIconNames } from '../icons';
-import defaultTheme from 'src/theme/defaultTheme';
 import { css } from '@emotion/core';
+import { boolean, select, text } from '@storybook/addon-knobs';
+import { storiesOf } from '@storybook/react';
+import React from 'react';
+import defaultTheme from '../../theme/defaultTheme';
+import { InteractiveIcon } from './index';
+import { Icons as icons, UikitIconNames } from '../icons';
 
-const InteractiveIconStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`InteractiveIcon`, module).add('Basic', () => {
   const knobs = {
     text: text('value', 'confused?'),
     fill: select('fill', [null, '#00f', ...Object.keys(defaultTheme.colors)], null),
@@ -47,5 +45,3 @@ const InteractiveIconStories = storiesOf(`${__dirname}`, module).add('Basic', ()
     </div>
   );
 });
-
-export default InteractiveIconStories;

@@ -21,10 +21,9 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, number, radios, text } from '@storybook/addon-knobs';
+import { Textarea } from '.';
 
-import Textarea from '.';
-
-export default storiesOf(`${__dirname}`, module).add(
+storiesOf(`form/Textarea`, module).add(
   'Basic',
   () => {
     const labelForCounterKnobs = 'Counter props';

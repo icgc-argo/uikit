@@ -19,11 +19,11 @@
 
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import Facet from '.';
-import { FilterOption } from '../OptionsList';
+import { Facet } from '.';
+import { OptionsListFilterOption as FilterOption } from '../OptionsList';
 import { text } from '@storybook/addon-knobs';
 
-const FacetStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`Facet`, module).add('Basic', () => {
   const knobs = {
     countUnit: text('count unit description label', 'files'),
   };
@@ -73,5 +73,3 @@ const FacetStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
     </div>
   );
 });
-
-export default FacetStories;

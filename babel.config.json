@@ -19,9 +19,9 @@
     [
       "module-resolver",
       {
-        "root": ["./dist"],
+        "root": ["."],
         "alias": {
-          "src": "./dist"
+          "src": "./src"
         }
       }
     ]

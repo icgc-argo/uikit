@@ -79,7 +79,7 @@ import legend from './collection/legend';
  * Icon path and property lookup object
  * css - sensible defaults - can be overridden from component
  */
-const Icons = {
+export const Icons = {
   spinner,
   chevron_up,
   chevron_down,
@@ -140,5 +140,3 @@ const Icons = {
 };
 
 export type UikitIconNames = keyof typeof Icons;
-
-export default Icons;

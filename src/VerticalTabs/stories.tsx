@@ -17,12 +17,11 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-
 import { css } from '@emotion/core';
-import VerticalTabs from '.';
+import { action } from '@storybook/addon-actions';
+import { storiesOf } from '@storybook/react';
+import React from 'react';
+import { VerticalTabs } from '.';
 
 const LoremTooltip = (
   <>
@@ -38,7 +37,7 @@ const LoremTooltip = (
   </>
 );
 
-const VerticalTabsStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`VerticalTabs`, module).add('Basic', () => {
   const [activeItem, setActiveItem] = React.useState(0);
   const onClick = (num: number) => (e) => {
     setActiveItem(num);
@@ -75,5 +74,3 @@ const VerticalTabsStories = storiesOf(`${__dirname}`, module).add('Basic', () =>
     </div>
   );
 });
-
-export default VerticalTabsStories;

@@ -19,9 +19,9 @@
 
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import Affix from '.';
+import { Affix } from '.';
 
-const AffixStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf('Affix', module).add('Basic', () => {
   return (
     <div style={{ height: '200vh' }}>
       Some text
@@ -29,5 +29,3 @@ const AffixStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
     </div>
   );
 });
-
-export default AffixStories;

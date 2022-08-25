@@ -23,7 +23,8 @@ import React, { SVGAttributes } from 'react';
 import defaultTheme from '../theme/defaultTheme';
 import { ThemeColorNames } from '../theme/types';
 import useTheme from '../utils/useTheme';
-import icons, { UikitIconNames } from './icons';
+import { Icons as icons, UikitIconNames } from './icons';
+
 export type Outline = { color: keyof ThemeColorNames | string; width: number };
 
 export const Icon: React.ComponentType<
@@ -38,6 +39,7 @@ export const Icon: React.ComponentType<
   } & SVGAttributes<SVGElement>
 > = ({ name, width, height, fill, className, title, outline, ...rest }) => {
   const theme = useTheme();
+
   const svg: Omit<typeof icons[typeof name], 'fillRule'> & {
     mask?: string;
     pathDefinitions?: any[];

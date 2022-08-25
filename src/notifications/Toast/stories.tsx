@@ -17,14 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { action } from '@storybook/addon-actions';
+import { select, text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import { select, text } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { Toast, TOAST_INTERACTION, TOAST_VARIANTS } from '.';
 
-import Toast, { TOAST_VARIANTS, TOAST_INTERACTION } from '.';
-
-const ToastStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`Toast`, module).add('Basic', () => {
   const variant = select('variant', [undefined, ...Object.values(TOAST_VARIANTS)], undefined);
   const interactionType = select(
     'interactionType',
@@ -46,5 +45,3 @@ const ToastStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
     />
   );
 });
-
-export default ToastStories;
