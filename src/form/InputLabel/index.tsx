@@ -18,7 +18,7 @@
  */
 
 import css from '@emotion/css';
-import styled from '@emotion/styled';
+import { styled } from '../../ThemeProvider';
 import clsx from 'clsx';
 import get from 'lodash/get';
 import pick from 'lodash/pick';
@@ -40,7 +40,7 @@ export const InputLabel = React.forwardRef<
   const { className: classNameProp, children, ...other } = props;
 
   const Label = styled('label')`
-    ${({ theme }) => css(theme.typography.label)};
+    ${({ theme }) => css(theme.typography.label as any)};
     margin-top: 7px;
     &.disabled {
     }

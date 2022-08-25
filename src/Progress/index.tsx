@@ -18,7 +18,7 @@
  */
 
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import { styled } from '../ThemeProvider';
 import React from 'react';
 import { Icon } from '../Icon';
 
@@ -111,7 +111,7 @@ const Separator = styled<'div', { state: ProgressStatus }>('div')`
 `;
 
 const Text = styled('div')<{ completed: boolean; state: ProgressStatus }>`
-  ${({ theme }) => theme.typography.caption};
+  ${({ theme }) => theme.typography.caption as any};
   font-weight: ${({ completed }) => (completed ? 600 : 'normal')};
   color: ${({ theme, state }) => (state === 'locked' ? theme.colors.grey : theme.colors.black)};
 `;

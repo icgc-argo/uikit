@@ -19,7 +19,7 @@
 
 import React from 'react';
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import { styled } from '../ThemeProvider';
 import isPropValid from '@emotion/is-prop-valid';
 
 import color from 'color';

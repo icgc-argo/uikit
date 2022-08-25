@@ -19,7 +19,7 @@
 
 import React, { AnchorHTMLAttributes } from 'react';
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import { styled } from '../ThemeProvider';
 
 type LinkVariant = 'INLINE' | 'BLOCK';
 export type HyperLinkProps = {
@@ -33,7 +33,7 @@ export type HyperLinkProps = {
 } & AnchorHTMLAttributes<HTMLAnchorElement>;
 
 const StyledLink = styled<'a', HyperLinkProps>('a')`
-  ${({ theme }) => css(theme.typography.default)}
+  ${({ theme }) => css(theme.typography.default as any)}
   cursor: pointer;
   color: ${({ theme, invert }) => (invert ? theme.colors.white : theme.colors.accent2_dark)};
   text-decoration: ${({ underline }) => (underline ? 'underline' : 'none')};

@@ -19,7 +19,7 @@
 
 // @flow
 import { css, Global } from '@emotion/core';
-import styled from '@emotion/styled';
+import { styled } from '../ThemeProvider';
 import { merge } from 'lodash';
 import * as React from 'react';
 import { Tooltip as ReactTippy, TooltipProps as TippyProps } from 'react-tippy';
@@ -81,9 +81,8 @@ export const Tooltip: React.ComponentType<TooltipProps> = ({
     padding: 2px 4px;
     color: white;
     font-weight: normal;
-    ${
-      arrow &&
-      `
+    ${arrow &&
+    `
       &:before {
         content: '';
         display: block;
@@ -94,8 +93,7 @@ export const Tooltip: React.ComponentType<TooltipProps> = ({
         pointer-events: none;
         ${arrowStyles[position]}
       }
-    `
-    }
+    `}
   `;
 
   return (

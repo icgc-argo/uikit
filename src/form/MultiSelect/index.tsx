@@ -18,7 +18,7 @@
  */
 
 import css from '@emotion/css';
-import styled from '@emotion/styled';
+import { styled } from '../../ThemeProvider';
 import clsx from 'clsx';
 import compact from 'lodash/compact';
 import find from 'lodash/find';
@@ -100,7 +100,7 @@ const InputBox = styled(StyledInputWrapper)`
 `;
 
 const Input = styled<'input', { autoComplete: string; single?: boolean }>('input')`
-  ${({ theme }) => css(theme.typography.default)};
+  ${({ theme }) => css(theme.typography.default as any)};
   background-color: transparent;
   border: none;
   display: block;
@@ -113,7 +113,7 @@ const Input = styled<'input', { autoComplete: string; single?: boolean }>('input
 `;
 
 const PlaceHolder = styled('span')`
-  ${({ theme }) => css(theme.typography.data)};
+  ${({ theme }) => css(theme.typography.data as any)};
   color: ${({ theme }) => theme.multiSelect.placeHolderColor};
   position: absolute;
   pointer-events: none;

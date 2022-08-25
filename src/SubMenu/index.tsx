@@ -18,7 +18,7 @@
  */
 
 import css from '@emotion/css';
-import styled from '@emotion/styled';
+import { styled } from '../ThemeProvider';
 import React from 'react';
 import { Input } from '../form/Input';
 import { Icon } from '../Icon';

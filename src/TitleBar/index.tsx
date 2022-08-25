@@ -18,14 +18,14 @@
  */
 
 import css from '@emotion/css';
-import styled from '@emotion/styled';
+import { styled } from '../ThemeProvider';
 import React from 'react';
 import { Icon } from '../Icon';
 import useTheme from '../utils/useTheme';
 
 const Nav = styled('nav')`
   padding: 18px 29px 18px 0;
-  ${({ theme }) => css(theme.typography.title)};
+  ${({ theme }) => css(theme.typography.title as any)};
   & a {
     color: ${({ theme }) => theme.titleBar.linkColor};
     text-decoration: none;
@@ -42,7 +42,7 @@ const Ol = styled('ol')`
 
 const Li = styled('li')`
   list-style: none;
-  ${({ theme }) => css(theme.typography.title)};
+  ${({ theme }) => css(theme.typography.title as any)};
 `;
 
 const Sep = styled('li')`

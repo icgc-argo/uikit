@@ -19,11 +19,11 @@
 
 import React, { LiHTMLAttributes } from 'react';
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
 import clsx from 'clsx';
+import { styled } from '../ThemeProvider';
 
 const Ul = styled('ul')`
-  ${({ theme }) => css(theme.typography.paragraph)};
+  ${({ theme }) => css(theme.typography.paragraph as any)};
   position: absolute;
   background-color: ${({ theme }) => theme.colors.grey_4};
   left: 0;

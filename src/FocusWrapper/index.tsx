@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import styled from '@emotion/styled-base';
+import { styled } from '../ThemeProvider';
 
 export const FocusWrapper = styled('button')`
   border: none;

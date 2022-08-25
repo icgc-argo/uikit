@@ -18,7 +18,7 @@
  */
 
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import { styled } from '../ThemeProvider';
 import React from 'react';
 import { Button } from 'src/Button';
 import { INPUT_SIZES, INPUT_STATES, StyledInputWrapper } from 'src/form/common';

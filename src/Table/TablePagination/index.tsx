@@ -18,7 +18,7 @@
  */
 
 import css from '@emotion/css';
-import styled from '@emotion/styled';
+import { styled } from '../../ThemeProvider';
 import ceil from 'lodash/ceil';
 import floor from 'lodash/floor';
 import range from 'lodash/range';
@@ -81,7 +81,7 @@ const DoubleArrow: React.ComponentType<{ transform?: string }> = ({ transform })
 );
 
 const A = styled('a')`
-  ${({ theme }) => css(theme.typography.data)};
+  ${({ theme }) => theme.typography.data as any};
   background-color: #fff;
   border-radius: 50%;
   cursor: pointer;

@@ -18,7 +18,7 @@
  */
 
 import css from '@emotion/css';
-import styled from '@emotion/styled';
+import { styled } from '../ThemeProvider';
 import clsx from 'clsx';
 import React from 'react';
 import useTheme from '../utils/useTheme';
@@ -26,7 +26,7 @@ import useTheme from '../utils/useTheme';
 const TabsContext = React.createContext({ onChange: null, value: null });
 
 export const TabButton = styled<'button', { as?: keyof HTMLElementTagNameMap }>('button')`
-  ${({ theme }) => css(theme.typography.label)};
+  ${({ theme }) => css(theme.typography.label as any)};
   color: ${({ theme }) => theme.colors.grey};
   display: flex;
   border: 0;
