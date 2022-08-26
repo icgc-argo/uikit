@@ -18,13 +18,13 @@
  */
 
 import React from 'react';
-import FormControlContext from '../FormControl/FormControlContext';
-import styled from '@emotion/styled';
+import { FormControlContext } from '../FormControl/FormControlContext';
+import { styled } from '../../ThemeProvider';
 import clsx from 'clsx';
 import css from '@emotion/css';
 import pick from 'lodash/pick';
 
-const FormHelperText = React.forwardRef<
+export const FormHelperText = React.forwardRef<
   any,
   {
     /**
@@ -52,7 +52,7 @@ const FormHelperText = React.forwardRef<
   } = props;
 
   const StyledComponent = styled<any, any>(Component)`
-    ${({ theme }) => css(theme.typography.caption)};
+    ${({ theme }) => css(theme.typography.caption as any)};
     margin: 3px 7px;
     line-height: 14px;
 
@@ -80,5 +80,3 @@ const FormHelperText = React.forwardRef<
 });
 
 FormHelperText.displayName = 'FormHelperText';
-
-export default FormHelperText;

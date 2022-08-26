@@ -18,17 +18,17 @@
  */
 
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import Notification, {
+import {
+  Notification,
   NOTIFICATION_INTERACTION,
-  NOTIFICATION_VARIANTS,
   NOTIFICATION_SIZES,
+  NOTIFICATION_VARIANTS,
 } from '../Notification';
 
 export const BANNER_VARIANTS = NOTIFICATION_VARIANTS;
 export const BANNER_SIZE = NOTIFICATION_SIZES;
 
-function Banner({
+export function Banner({
   title,
   content,
   variant,
@@ -52,5 +52,3 @@ function Banner({
     />
   );
 }
-
-export default Banner;

@@ -17,14 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-
-import ToastStack from '.';
+import { storiesOf } from '@storybook/react';
+import React from 'react';
+import { ToastStack } from '.';
 import { NOTIFICATION_VARIANTS } from '../Notification';
 
-const ToastStackStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`ToastStack`, module).add('Basic', () => {
   const [stack, setStack] = React.useState([
     {
       id: String(Math.random()),
@@ -81,5 +80,3 @@ const ToastStackStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
     />
   );
 });
-
-export default ToastStackStories;

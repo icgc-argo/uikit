@@ -17,16 +17,15 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
 import { css } from '@emotion/core';
-
-import Icon from '../Icon';
+import React from 'react';
+import { Icon } from '../Icon';
 import useTheme from '../utils/useTheme';
-import { BUTTON_VARIANTS, BUTTON_SIZES } from './constants';
-import StyledButton from './styled';
-import { ButtonVariant, ButtonSize } from './types';
+import { BUTTON_SIZES, BUTTON_VARIANTS } from './constants';
+import { StyledButton } from './styled';
+import { ButtonSize, ButtonVariant } from './types';
 
-const Button = React.forwardRef<
+export const Button = React.forwardRef<
   HTMLButtonElement,
   {
     /**
@@ -141,5 +140,3 @@ const DefaultLoader = ({ variant, theme }) => (
     fill={theme.button.textColors[variant].default}
   />
 );
-
-export default Button;

@@ -18,10 +18,10 @@
  */
 
 import React from 'react';
-import styled from '@emotion/styled';
+import { styled } from '../ThemeProvider';
 import { withProps } from 'recompose';
 
-import Typography from '../Typography';
+import { Typography } from '../Typography';
 
 const MenuItemTypography: typeof Typography = withProps(() => ({
   variant: 'navigation',

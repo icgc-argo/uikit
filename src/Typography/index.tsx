@@ -17,10 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import * as React from 'react';
-import styled from '@emotion/styled';
+import { styled } from '../ThemeProvider';
 import memoize from 'lodash/memoize';
-
+import * as React from 'react';
 import defaultTheme from '../theme/defaultTheme';
 import { useTheme } from '../ThemeProvider';
 
@@ -58,7 +57,7 @@ const createStyledDomComponent = memoize(
 );
 
 export type TypographyVariant = keyof typeof defaultTheme.typography;
-const Typography: React.ComponentType<
+export const Typography: React.ComponentType<
   {
     /**
      * a typography as defined in theme.typography
@@ -86,5 +85,3 @@ const Typography: React.ComponentType<
   const StyledText = createStyledDomComponent(Component);
   return <StyledText {...rest} bold={bold} color={color} />;
 };
-
-export default Typography;

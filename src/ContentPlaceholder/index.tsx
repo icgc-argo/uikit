@@ -19,10 +19,10 @@
 
 import React from 'react';
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import { styled } from '../ThemeProvider';
 
 import noDataSvg from 'src/assets/noData.svg';
-import Typography from '../Typography';
+import { Typography } from '../Typography';
 
 const Container = styled('div')`
   display: flex;
@@ -38,7 +38,7 @@ type ContentPlaceholderProps = {
   link?: React.ReactNode;
 } & React.ComponentProps<typeof Container>;
 
-const ContentPlaceholder: React.ComponentType<ContentPlaceholderProps> = ({
+export const ContentPlaceholder: React.ComponentType<ContentPlaceholderProps> = ({
   children = <img alt="no data found" src={noDataSvg} />,
   title = 'No Data Found.',
   subtitle,
@@ -73,5 +73,3 @@ const ContentPlaceholder: React.ComponentType<ContentPlaceholderProps> = ({
     {link}
   </Container>
 );
-
-export default ContentPlaceholder;

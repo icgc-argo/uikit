@@ -18,12 +18,10 @@
  */
 
 import React from 'react';
-import Checkbox from '../Checkbox';
+import { Checkbox } from '../Checkbox';
 
-const RadioCheckContext = React.createContext<{
+export const RadioCheckContext = React.createContext<{
   isChecked?: boolean | ((e: any) => boolean);
   onChange?: React.ComponentProps<typeof Checkbox>['onChange'];
   disabled?: boolean;
 }>({});
-
-export default RadioCheckContext;

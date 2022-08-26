@@ -19,14 +19,14 @@
 
 import React from 'react';
 import { css } from '@emotion/core';
-
-import Button from 'src/Button';
+import { Button } from 'src/Button';
 
 type FileSelectButtonProps = Omit<React.ComponentProps<typeof Button>, 'onClick'> & {
   inputProps?: Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>;
   onFilesSelect: (files: FileList) => void;
 };
-const FileSelectButton: React.ComponentType<FileSelectButtonProps> = ({
+
+export const FileSelectButton: React.ComponentType<FileSelectButtonProps> = ({
   children,
   inputProps,
   onFilesSelect,
@@ -59,5 +59,3 @@ const FileSelectButton: React.ComponentType<FileSelectButtonProps> = ({
     </Button>
   );
 };
-
-export default FileSelectButton;

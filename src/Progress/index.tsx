@@ -17,11 +17,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
-
-import Icon from '../Icon';
+import { styled } from '../ThemeProvider';
+import React from 'react';
+import { Icon } from '../Icon';
 
 export type ProgressStatus = 'success' | 'error' | 'pending' | 'disabled' | 'locked' | 'closed';
 
@@ -112,7 +111,7 @@ const Separator = styled<'div', { state: ProgressStatus }>('div')`
 `;
 
 const Text = styled('div')<{ completed: boolean; state: ProgressStatus }>`
-  ${({ theme }) => theme.typography.caption};
+  ${({ theme }) => theme.typography.caption as any};
   font-weight: ${({ completed }) => (completed ? 600 : 'normal')};
   color: ${({ theme, state }) => (state === 'locked' ? theme.colors.grey : theme.colors.black)};
 `;
@@ -164,10 +163,8 @@ export const ProgressItem = ({
   </div>
 );
 
-const Progress: React.ComponentType<{}> & { Item: typeof ProgressItem } = ({ children }) => (
+export const Progress: React.ComponentType<{}> & { Item: typeof ProgressItem } = ({ children }) => (
   <ProgressSection>{children}</ProgressSection>
 );
 
 Progress.Item = ProgressItem;
-
-export default Progress;

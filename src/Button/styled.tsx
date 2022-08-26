@@ -18,10 +18,10 @@
  */
 
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
-import FocusWrapper from 'src/FocusWrapper';
+import { styled } from '../ThemeProvider';
+import { FocusWrapper } from 'src/FocusWrapper';
 
-const StyledButton = styled<
+export const StyledButton = styled<
   typeof FocusWrapper,
   {
     size: 'sm' | 'md';
@@ -29,7 +29,7 @@ const StyledButton = styled<
     disabled: boolean;
   }
 >(FocusWrapper)`
-  ${({ theme }) => css(theme.typography.default)};
+  ${({ theme }) => css(theme.typography.default as any)};
   transition: all 0.25s;
   display: flex;
   align-items: center;
@@ -69,4 +69,3 @@ const StyledButton = styled<
     color: ${({ theme, variant }) => theme.button.textColors[variant].disabled};
   }
 `;
-export default StyledButton;

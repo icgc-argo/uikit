@@ -8,18 +8,20 @@
         "autoLabel": true,
         "labelFormat": "Uikit-[local]"
       }
-    ]
+    ],
+    "@babel/preset-typescript"
   ],
   "plugins": [
+    "@babel/plugin-transform-runtime",
     "@babel/plugin-proposal-optional-chaining",
     "@babel/plugin-proposal-object-rest-spread",
 
     [
       "module-resolver",
       {
-        "root": ["./dist"],
+        "root": ["."],
         "alias": {
-          "src": "./dist"
+          "src": "./src"
         }
       }
     ]

@@ -19,12 +19,12 @@
 
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import MultiSelect, { Option } from '.';
+import { MultiSelect, Option } from '.';
 import { action } from '@storybook/addon-actions';
 import { boolean, select } from '@storybook/addon-knobs';
 import { INPUT_SIZES } from '../common';
 
-const MultiSelectStories = storiesOf(`${__dirname}`, module)
+storiesOf(`form/MultiSelect`, module)
   .add('Basic', () => {
     const [value, setValue] = React.useState([]);
     return (
@@ -104,5 +104,3 @@ const MultiSelectStories = storiesOf(`${__dirname}`, module)
       </MultiSelect>
     );
   });
-
-export default MultiSelectStories;

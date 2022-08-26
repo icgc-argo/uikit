@@ -17,8 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
 
 /*
  * Please edit me!
@@ -28,9 +27,7 @@ const Hook: React.ComponentType<{
   /**
    * receives [state, setState] to keep with hooks semantic
    */
-  render: (
-    a: [any, React.Dispatch<any>]
-  ) => React.ReactNode | React.ReactNodeArray;
+  render: (a: [any, React.Dispatch<any>]) => React.ReactNode | React.ReactNodeArray;
   /**
    * gets passed to React.useEffect, return cleanup function if needed
    */

@@ -17,14 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { boolean, select, text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import css from '@emotion/css';
-import Progress from '.';
-import { ProgressItem, PROGRESS_STATUS } from '.';
-import { text, select, boolean } from '@storybook/addon-knobs';
+import { Progress, ProgressItem, PROGRESS_STATUS } from '.';
 
-const ProgressItemStories = storiesOf(`${__dirname}`, module)
+storiesOf(`Progress`, module)
   .add('Basic', () => {
     const state = select('state', PROGRESS_STATUS, PROGRESS_STATUS.SUCCESS);
     const title = text('text', 'Upload');
@@ -52,5 +50,3 @@ const ProgressItemStories = storiesOf(`${__dirname}`, module)
       </Progress>
     );
   });
-
-export default ProgressItemStories;

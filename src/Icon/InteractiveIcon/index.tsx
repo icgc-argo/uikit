@@ -17,13 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from "react";
-import { css } from "@emotion/core";
-
-import { ThemeColorNames } from "src/theme/types";
-import Icon from "src/Icon";
-import Tooltip, { TooltipProps } from "src/Tooltip";
-import { useTheme } from "src/ThemeProvider";
+import { css } from '@emotion/core';
+import React from 'react';
+import { Icon } from 'src/Icon';
+import { ThemeColorNames } from 'src/theme/types';
+import { useTheme } from 'src/ThemeProvider';
+import { Tooltip, TooltipProps } from 'src/Tooltip';
 
 // dims corresponding hex code for a 25% dim
 const dimColour = (hex: string) => `${hex}BF`;
@@ -34,7 +33,7 @@ type InteractiveIconProps = React.ComponentProps<typeof Icon> &
     hoverFill?: keyof ThemeColorNames | string;
   };
 
-const InteractiveIcon = ({
+export const InteractiveIcon = ({
   disabled,
   onClick,
   name,
@@ -50,22 +49,19 @@ const InteractiveIcon = ({
   const [hovered, setHovered] = React.useState(false);
   const theme = useTheme();
 
-  const fillColour =
-    (fill && theme.colors[fill]) || fill || theme.colors.accent2;
+  const fillColour = (fill && theme.colors[fill]) || fill || theme.colors.accent2;
   const hoverColour = hoverFill || dimColour(fillColour);
 
   return (
     <Tooltip hideOnClick={false} {...props} unmountHTMLWhenHide>
       <Icon
         css={css`
-          ${disabled ? "" : "cursor: pointer"};
+          ${disabled ? '' : 'cursor: pointer'};
         `}
         onMouseOver={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         onClick={(e) => (!disabled ? onClick(e) : false)}
-        fill={
-          disabled ? "grey_2" : hovered ? `${hoverColour}` : `${fillColour}`
-        }
+        fill={disabled ? 'grey_2' : hovered ? `${hoverColour}` : `${fillColour}`}
         name={name}
         className={className}
         title={title}

@@ -17,15 +17,14 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
-
-import { StyledInputWrapper, INPUT_STATES, INPUT_SIZES } from 'src/form/common';
-import Button from 'src/Button';
-import Typography from 'src/Typography';
-import Tag, { TAG_VARIANTS } from 'src/Tag';
-import Icon from 'src/Icon';
+import { styled } from '../ThemeProvider';
+import React from 'react';
+import { Button } from 'src/Button';
+import { INPUT_SIZES, INPUT_STATES, StyledInputWrapper } from 'src/form/common';
+import { Icon } from 'src/Icon';
+import { Tag, TAG_VARIANTS } from 'src/Tag';
+import { Typography } from 'src/Typography';
 
 const TagWrapper = styled('div')`
   margin-right: 5px;
@@ -41,7 +40,7 @@ const copyToClipboard = async (data: string) => {
   await navigator.clipboard.writeText(data);
 };
 
-const ClipboardCopyField = ({
+export const ClipboardCopyField = ({
   value,
   buttonText = 'copy',
   disabled = false,
@@ -149,5 +148,3 @@ const ClipboardCopyField = ({
     </div>
   );
 };
-
-export default ClipboardCopyField;

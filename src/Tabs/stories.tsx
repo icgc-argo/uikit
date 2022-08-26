@@ -19,8 +19,8 @@
 
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import Tabs, { Tab } from '.';
-import Typography from '../Typography';
+import { Tabs, Tab } from '.';
+import { Typography } from '../Typography';
 import { action } from '@storybook/addon-actions';
 
 function TabContainer(props) {
@@ -57,6 +57,4 @@ const SimpleTabs = React.forwardRef(() => {
   );
 });
 
-const TabsStories = storiesOf(`${__dirname}`, module).add('Basic', () => <SimpleTabs />);
-
-export default TabsStories;
+storiesOf(`Tabs`, module).add('Basic', () => <SimpleTabs />);

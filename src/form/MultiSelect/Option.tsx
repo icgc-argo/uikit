@@ -19,11 +19,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
+import { styled } from '../../ThemeProvider';
 import css from '@emotion/css';
 
 const Li = styled('li')`
-  ${({ theme }) => css(theme.typography.data)};
+  ${({ theme }) => css(theme.typography.data as any)};
   list-style: none;
   padding-left: 7px;
   font-family: ${({ theme }) => theme.typography.paragraph.fontFamily};
@@ -33,12 +33,10 @@ const Li = styled('li')`
   }
 `;
 
-function Option({ ...other }) {
+export function Option({ ...other }) {
   return <Li {...other} />;
 }
 
 Option.propTypes = {
   value: PropTypes.any,
 };
-
-export default Option;

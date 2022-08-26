@@ -17,19 +17,16 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "@emotion/styled";
-import css from "@emotion/css";
-import clsx from "clsx";
-import useTheme from "../utils/useTheme";
+import css from '@emotion/css';
+import { styled } from '../ThemeProvider';
+import clsx from 'clsx';
+import React from 'react';
+import useTheme from '../utils/useTheme';
 
 const TabsContext = React.createContext({ onChange: null, value: null });
 
-export const Button = styled<"button", { as?: keyof HTMLElementTagNameMap }>(
-  "button"
-)`
-  ${({ theme }) => css(theme.typography.label)};
+export const TabButton = styled<'button', { as?: keyof HTMLElementTagNameMap }>('button')`
+  ${({ theme }) => css(theme.typography.label as any)};
   color: ${({ theme }) => theme.colors.grey};
   display: flex;
   border: 0;
@@ -56,14 +53,14 @@ export const Tab: React.ComponentType<
     value?: string;
     empty?: boolean;
     className?: string;
-  } & React.ComponentProps<typeof Button>
+  } & React.ComponentProps<typeof TabButton>
 > = ({ label, value, empty, children, className, ...otherProps }) => {
   const theme = useTheme();
 
   const { onChange, value: currentValue } = React.useContext(TabsContext);
 
   return empty ? (
-    <Button
+    <TabButton
       className={className}
       as="div"
       css={css`
@@ -76,23 +73,23 @@ export const Tab: React.ComponentType<
       {...otherProps}
     >
       {children}
-    </Button>
+    </TabButton>
   ) : (
-    <Button
+    <TabButton
       className={clsx({ active: currentValue === value }, className)}
       onClick={(e) => onChange(e, value)}
       {...otherProps}
     >
       {label}
-    </Button>
+    </TabButton>
   );
 };
 
-const Container = styled("div")`
+const Container = styled('div')`
   display: flex;
 `;
 
-const Tabs: React.ComponentType<{
+export const Tabs: React.ComponentType<{
   value: any;
   onChange?: (...any) => void;
   children: React.ReactElement[];
@@ -115,5 +112,3 @@ const Tabs: React.ComponentType<{
     </TabsContext.Provider>
   );
 };
-
-export default Tabs;

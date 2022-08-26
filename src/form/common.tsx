@@ -17,14 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import styled from '@emotion/styled';
-import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import { Row, Col } from 'react-grid-system';
-import Typography from '../Typography';
-import React from 'react';
-
 import { INPUT_STATES as INPUT_THEME_STATES } from '../theme/defaultTheme/input';
+import { styled } from '../ThemeProvider';
 
 export type InputSize = 'sm' | 'lg';
 
@@ -111,7 +106,7 @@ export const RadioCheckboxWrapper = styled<'div', RadioCheckboxWrapperProps>('di
   padding: 4px 6px 4px 8px;
 
   label {
-    ${({ theme }) => css(theme.typography.paragraph)};
+    ${({ theme }) => css(theme.typography.paragraph as any)};
     line-height: normal;
     position: relative;
     cursor: pointer;

@@ -17,12 +17,11 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
 import differenceBy from 'lodash/differenceBy';
-
+import PropTypes from 'prop-types';
+import React from 'react';
 import { styled } from '../..';
-import Toast from '../Toast';
+import { Toast } from '../Toast';
 
 const usePrevious = (value) => {
   const ref = React.useRef();
@@ -62,7 +61,10 @@ const AnimatedContainer = styled<'div', { unMounting?: boolean }>('div')`
   animation: ${({ unMounting }) => (unMounting ? 'exit' : 'enter')} ${ANIMATION_DURATION / 1000}s
     ease-in-out;
 `;
-const ToastStack = ({ toastConfigs = [], onInteraction = ({ id, toastIndex, payload }) => {} }) => {
+export const ToastStack = ({
+  toastConfigs = [],
+  onInteraction = ({ id, toastIndex, payload }) => {},
+}) => {
   // holds on to a local copy of toastConfigs for timing with animation
   const convertToLocalStack = (toastConfigs) =>
     toastConfigs.map((i) => ({ ...i, unMounting: false }));
@@ -132,5 +134,3 @@ ToastStack.propTypes = {
   ),
   onInteraction: PropTypes.func,
 };
-
-export default ToastStack;

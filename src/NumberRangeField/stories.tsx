@@ -19,7 +19,7 @@
 
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import NumberRangeField from '.';
+import { NumberRangeField } from '.';
 import { boolean } from '@storybook/addon-knobs';
 
 export const createKnobs = () => {
@@ -30,7 +30,7 @@ export const createKnobs = () => {
   };
 };
 
-const NumberRangeFieldStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`NumberRangeField`, module).add('Basic', () => {
   const props = createKnobs();
   const [minimumInput, setMinimumInput] = React.useState('');
   const [maximumInput, setMaximumInput] = React.useState('');
@@ -45,5 +45,3 @@ const NumberRangeFieldStories = storiesOf(`${__dirname}`, module).add('Basic', (
     />
   );
 });
-
-export default NumberRangeFieldStories;

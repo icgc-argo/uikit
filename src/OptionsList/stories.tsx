@@ -19,9 +19,9 @@
 
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import OptionsList, { FilterOption } from '.';
+import { OptionsList, OptionsListFilterOption as FilterOption } from '.';
 
-const OptionsListStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`OptionsList`, module).add('Basic', () => {
   const exampleOptions: Array<FilterOption> = [
     { key: 'Helion', doc_count: 587 },
     { key: 'SCV', doc_count: 525 },
@@ -68,5 +68,3 @@ const OptionsListStories = storiesOf(`${__dirname}`, module).add('Basic', () => 
     </div>
   );
 });
-
-export default OptionsListStories;

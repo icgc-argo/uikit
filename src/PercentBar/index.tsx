@@ -17,10 +17,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import useTheme from 'src/utils/useTheme';
 import { css, keyframes } from '@emotion/core';
+import useTheme from 'src/utils/useTheme';
 
-const PercentBar: React.ComponentType<{
+export const PercentBar: React.ComponentType<{
   num: number;
   den: number;
   length?: number;
@@ -74,5 +74,3 @@ const PercentBar: React.ComponentType<{
     </div>
   );
 };
-
-export default PercentBar;

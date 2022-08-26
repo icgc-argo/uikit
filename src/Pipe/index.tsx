@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import styled from '@emotion/styled';
+import { styled } from '../ThemeProvider';
 import defaultTheme from 'src/theme/defaultTheme';
 
 const PipeContainer = styled('div')`
@@ -61,4 +61,4 @@ const Pipe: React.ComponentType<{}> & { Item: typeof PipeItem } = ({ children })
 
 Pipe.Item = PipeItem;
 
-export default Pipe;
+export { Pipe };

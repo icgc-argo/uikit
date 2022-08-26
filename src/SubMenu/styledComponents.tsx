@@ -17,14 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import styled from '@emotion/styled';
 import css from '@emotion/css';
+import { styled } from '../ThemeProvider';
 import defaultTheme from 'src/theme/defaultTheme';
-import {
-  CreateStyledComponentExtrinsic,
-  CreateStyledComponentIntrinsic,
-} from '@emotion/styled/types';
 
 type StyleCalculationInput = {
   selected?: boolean;
@@ -70,11 +65,11 @@ const level1Style = ({ selected, theme }: StyleCalculationInput) => css`
   & > .FacetContentSlim .MenuItemContent {
     padding: 6px;
     border-bottom: 1px solid;
-        border-color: ${theme.colors.grey_2};
+    border-color: ${theme.colors.grey_2};
   }
   & a {
     text-decoration: underline;
-    font-weight:normal;
+    font-weight: normal;
   }
 `;
 
@@ -144,7 +139,7 @@ export const IconContainer = styled('span')`
 `;
 
 export const ContentContainer = styled('button')<{ as?: keyof JSX.IntrinsicElements }>`
-  ${({ theme }) => css(theme.typography.default)};
+  ${({ theme }) => css(theme.typography.default as any)};
   border: none;
   width: 100%;
   padding: 0px 2px 0px 0px;

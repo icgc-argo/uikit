@@ -17,16 +17,14 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { radios, select, boolean, number } from '@storybook/addon-knobs';
-
+import { boolean, number, select } from '@storybook/addon-knobs';
+import { storiesOf } from '@storybook/react';
+import React from 'react';
+import { Tooltip } from '.';
 import readme from './readme.md';
-import Tooltip from '.';
-import Icon from '../Icon';
 
-const TooltipStories = storiesOf(`${__dirname}`, module).add(
+storiesOf(`Tooltips`, module).add(
   'Basic',
   () => {
     const knobs = {
@@ -82,5 +80,3 @@ const TooltipStories = storiesOf(`${__dirname}`, module).add(
     },
   },
 );
-
-export default TooltipStories;

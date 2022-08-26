@@ -18,7 +18,7 @@
  */
 
 import React from 'react';
-import styled from '@emotion/styled';
+import { styled } from '../ThemeProvider';
 import css from '@emotion/css';
 import ReactTable from 'react-table';
 
@@ -98,7 +98,7 @@ export const StyledTable = styled<typeof ReactTable, StyledTableProps>(ReactTabl
   }
 
   &.ReactTable .rt-thead.-header .rt-tr .rt-th {
-    ${({ theme }) => css(theme.typography.data)};
+    ${({ theme }) => css(theme.typography.data as any)};
     min-height: 28px;
     line-height: 1.33;
     font-weight: bold;
@@ -110,7 +110,7 @@ export const StyledTable = styled<typeof ReactTable, StyledTableProps>(ReactTabl
   }
 
   &.ReactTable .rt-thead.-headerGroups {
-    ${({ theme }) => css(theme.typography.data)};
+    ${({ theme }) => css(theme.typography.data as any)};
     background: ${({ theme }) => theme.colors.grey_2};
     font-weight: 600;
     font-size: 13px;
@@ -118,7 +118,7 @@ export const StyledTable = styled<typeof ReactTable, StyledTableProps>(ReactTabl
   }
 
   &.ReactTable .rt-tbody .rt-td {
-    ${({ theme }) => css(theme.typography.data)}
+    ${({ theme }) => css(theme.typography.data as any)}
     min-height: 28px;
     line-height: 1.33;
     padding: 2px 8px;

@@ -18,12 +18,11 @@
  */
 
 import { css } from '@emotion/core';
-
-import Table from 'src/Table';
+import { Table } from 'src/Table';
 
 type MappedTableData = Array<{ key: string; val: any }>;
 
-export default ({ data }) => {
+export const SimpleTable = ({ data }) => {
   const tableData: MappedTableData = Object.keys(data).map((k) => ({ key: k, val: data[k] }));
 
   return (
