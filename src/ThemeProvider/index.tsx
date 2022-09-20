@@ -22,15 +22,13 @@ import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming';
 import { ThemeContext } from '@emotion/core';
 import { default as emotionStyled, CreateStyled } from '@emotion/styled';
 
-import PropTypes from 'prop-types';
-
 import defaultTheme from '../theme/defaultTheme';
 
 const themes = {
   default: defaultTheme,
 };
 
-const ThemeProvider: React.ComponentType<{ theme?: keyof typeof themes }> = ({
+const ThemeProvider: React.ComponentType<{ theme: keyof typeof themes }> = ({
   theme = 'default',
   children,
 }) => {
@@ -46,7 +44,6 @@ const ThemeProvider: React.ComponentType<{ theme?: keyof typeof themes }> = ({
 };
 
 export default ThemeProvider;
-export const useTheme = () => React.useContext(ThemeContext as React.Context<typeof defaultTheme>);
-export const styled: CreateStyled<typeof defaultTheme> = emotionStyled;
-
 export type Theme = typeof defaultTheme;
+export const useTheme = () => React.useContext(ThemeContext as React.Context<Theme>);
+export const styled: CreateStyled<Theme> = emotionStyled;

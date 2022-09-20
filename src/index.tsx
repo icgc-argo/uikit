@@ -18,17 +18,22 @@
  */
 
 import defaultTheme from './theme/defaultTheme';
-
 export type UikitTheme = typeof defaultTheme;
-export { default as ThemeProvider } from './ThemeProvider';
-export { default as styled } from '@emotion/styled';
+
 export { default as css } from '@emotion/css';
 export { default as isPropValid } from '@emotion/is-prop-valid';
+export { default as noDataSvg } from './assets/noData.svg';
+export { default as overtureLogo } from './assets/overture-logo.svg';
+export { default as ThemeProvider, styled } from './ThemeProvider';
+export { default as useTheme } from './utils/useTheme';
 
 // single point of export ensures lib export works correctly
 export * from './Affix';
 export * from './AppBar';
 export * from './Button';
+export * from './Button/constants';
+export * from './Button/GoogleLogin';
+export * from './Button/types';
 export * from './ClipboardCopyField';
 export * from './Container';
 export * from './ContentMenu';
@@ -37,10 +42,12 @@ export * from './DnaLoader';
 export * from './DropdownButton';
 export * from './DropdownPanel';
 export * from './Facet';
+export * from './Facet/NumberRangeFacet';
 export * from './FileSelectButton';
 export * from './FocusWrapper';
 export * from './Footer';
 export * from './form/Checkbox';
+export * from './form/common';
 export * from './form/FormCheckbox';
 export * from './form/FormControl';
 export * from './form/FormHelperText';
@@ -53,6 +60,8 @@ export * from './form/RadioCheckboxGroup';
 export * from './form/Select';
 export * from './form/Textarea';
 export * from './Icon';
+export * from './Icon/icons';
+export * from './Icon/InteractiveIcon';
 export * from './InstructionBox';
 export * from './Legend';
 export * from './Link';
@@ -73,11 +82,15 @@ export * from './Progress';
 export * from './SubMenu';
 export * from './SystemAlert';
 export * from './Table';
+export * from './Table/SimpleTable';
 export * from './Tabs';
 export * from './Tag';
+export * from './theme/types';
 export * from './TitleBar';
 export * from './TitleBorder';
 export * from './Tooltip';
 export * from './transitions/Fade';
 export * from './Typography';
+export * from './utils/Hook/useElementDimension';
+export * from './utils/useClickAway';
 export * from './VerticalTabs';
