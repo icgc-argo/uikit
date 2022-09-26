@@ -86,7 +86,7 @@ const level2Style = ({ selected, theme }: StyleCalculationInput) => css`
     padding-right: 18px;
     padding-top: 10px;
     padding-bottom: 10px;
-    & > ${ContentContainer} {
+    & > ContentContainer! {
       line-height: 20px;
     }
   }

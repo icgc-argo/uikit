@@ -190,7 +190,7 @@ const MenuItemComponent = React.forwardRef<
 
 const SubMenuComponent = styled('div')`
   background: ${({ theme }) => theme.colors.white};
-  & > ${MenuItemContainer} {
+  & > MenuItemContainer! {
     border-bottom: solid 1px ${({ theme }) => theme.colors.grey_2};
   }
 `;
