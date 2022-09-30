@@ -56,6 +56,7 @@ const level1Style = ({ selected, theme }: StyleCalculationInput) => css`
   ${defaultLabelStyle({ theme, selected })}
   background: ${theme.colors.white};
   animation: all 1s;
+  width: 100%;
   & > .MenuItemContent {
     padding: 12px;
   }
