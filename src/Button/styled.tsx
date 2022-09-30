@@ -19,7 +19,7 @@
 
 import { css } from '@emotion/core';
 import { styled } from '../ThemeProvider';
-import { FocusWrapper } from 'src/FocusWrapper';
+import { FocusWrapper } from '../FocusWrapper';
 
 export const StyledButton = styled<
   typeof FocusWrapper,

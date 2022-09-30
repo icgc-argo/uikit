@@ -20,8 +20,8 @@
 import css from '@emotion/css';
 import clsx from 'clsx';
 import React, { TextareaHTMLAttributes, useCallback, useContext, useEffect, useState } from 'react';
-import { useTheme } from 'src/ThemeProvider';
-import { Typography } from 'src/Typography';
+import { useTheme } from '../../ThemeProvider';
+import { Typography } from '../../Typography';
 import { FormControlContext } from '../FormControl/FormControlContext';
 import { CountLabels, TextareaProps } from './types';
 
@@ -64,10 +64,10 @@ export const Textarea = ({
     props.onFocus?.(event);
   };
 
-  const getCount = useCallback((newCount) => (isAscending ? newCount : countLimit - newCount), [
-    countLimit,
-    isAscending,
-  ]);
+  const getCount = useCallback(
+    (newCount) => (isAscending ? newCount : countLimit - newCount),
+    [countLimit, isAscending],
+  );
 
   const applyChanges = useCallback(
     (targetValue) => {

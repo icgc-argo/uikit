@@ -19,7 +19,7 @@
 
 import { css } from '@emotion/core';
 import React from 'react';
-import { NumberRangeField } from 'src/NumberRangeField';
+import { NumberRangeField } from '../../NumberRangeField';
 import { MenuItem } from '../../SubMenu';
 
 export const NumberRangeFacet = ({

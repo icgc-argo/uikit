@@ -19,7 +19,7 @@
 
 import { css } from '@emotion/core';
 import React, { useContext, useEffect, useState } from 'react';
-import { Tooltip } from 'src/Tooltip';
+import { Tooltip } from '../../Tooltip';
 import { Typography } from '../../Typography';
 import useTheme from '../../utils/useTheme';
 import { InputSize, INPUT_SIZES, StyledInputWrapper, StyledInputWrapperProps } from '../common';
@@ -71,8 +71,12 @@ export const Select: React.ComponentType<{
   const [selectedValue, setSelectedValue] = useState(value);
   const [isExpanded, setExpanded] = useState(false);
 
-  const { disabled: calcDisabled, error: calcError, handleBlur, handleFocus } =
-    useContext(FormControlContext) || {};
+  const {
+    disabled: calcDisabled,
+    error: calcError,
+    handleBlur,
+    handleFocus,
+  } = useContext(FormControlContext) || {};
 
   const onBlur = (event) => {
     handleBlur?.();

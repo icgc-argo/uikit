@@ -19,10 +19,10 @@
 
 import * as React from 'react';
 import { css, SerializedStyles } from '@emotion/core';
-import { Typography } from 'src/Typography';
-import { Button } from 'src/Button';
-import { useClickAway } from 'src/utils/useClickAway';
-import { useTheme } from 'src/ThemeProvider';
+import { Typography } from '../Typography';
+import { Button } from '../Button';
+import { useClickAway } from '../utils/useClickAway';
+import { useTheme } from '../ThemeProvider';
 
 export const DropdownButtonMenuItem: typeof Typography = (props) => {
   const theme = useTheme();

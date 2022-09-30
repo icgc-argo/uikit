@@ -20,7 +20,7 @@
 import { css } from '@emotion/core';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { UikitIconNames } from 'src/Icon/icons';
+import { UikitIconNames } from '../../Icon/icons';
 import { FocusWrapper } from '../../FocusWrapper';
 import { Icon } from '../../Icon';
 import { Typography, TypographyVariant } from '../../Typography';

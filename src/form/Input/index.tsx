@@ -19,7 +19,7 @@
 
 import css from '@emotion/css';
 import React, { useContext, useState } from 'react';
-import { Button } from 'src/Button';
+import { Button } from '../../Button';
 import { Icon } from '../../Icon';
 import { INPUT_SIZES, StyledInputWrapper, StyledInputWrapperProps } from '../common';
 import { FormControlContext } from '../FormControl/FormControlContext';
@@ -85,8 +85,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     }: InputProps,
     ref,
   ) => {
-    const { disabled: calcDisabled, focused, error: calcError, handleBlur, handleFocus } =
-      useContext(FormControlContext) || {};
+    const {
+      disabled: calcDisabled,
+      focused,
+      error: calcError,
+      handleBlur,
+      handleFocus,
+    } = useContext(FormControlContext) || {};
 
     const [activeState, setActive] = useState(focused ? 'focus' : 'default');
 

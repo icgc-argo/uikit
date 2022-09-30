@@ -21,7 +21,7 @@ import React from 'react';
 import { css } from '@emotion/core';
 import { styled } from '../ThemeProvider';
 
-import noDataSvg from 'src/assets/noData.svg';
+import noDataSvg from '../assets/noData.svg';
 import { Typography } from '../Typography';
 
 const Container = styled('div')`

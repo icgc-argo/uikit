@@ -18,10 +18,9 @@
  */
 
 import { css } from '@emotion/core';
-import { styled } from '../ThemeProvider';
+import { styled, useTheme } from '../ThemeProvider';
 import React from 'react';
 import { Col, Row, ScreenClassRender } from 'react-grid-system';
-import { useTheme } from 'src/ThemeProvider';
 
 export const InstructionBox = ({
   steps,

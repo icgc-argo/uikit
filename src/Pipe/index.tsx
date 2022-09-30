@@ -18,7 +18,7 @@
  */
 
 import { styled } from '../ThemeProvider';
-import defaultTheme from 'src/theme/defaultTheme';
+import defaultTheme from '../theme/defaultTheme';
 
 const PipeContainer = styled('div')`
   display: flex;

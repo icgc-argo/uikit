@@ -18,7 +18,7 @@
  */
 
 import { css, keyframes } from '@emotion/core';
-import useTheme from 'src/utils/useTheme';
+import useTheme from '../utils/useTheme';
 
 export const PercentBar: React.ComponentType<{
   num: number;

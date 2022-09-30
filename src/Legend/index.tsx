@@ -19,10 +19,10 @@
 
 import { css, SerializedStyles } from '@emotion/core';
 import React, { createRef, useState } from 'react';
-import { Button } from 'src/Button';
-import { DropdownButtonMenuItem } from 'src/DropdownButton';
-import { Icon } from 'src/Icon';
-import { useTheme } from 'src/ThemeProvider';
+import { Button } from '../Button';
+import { DropdownButtonMenuItem } from '../DropdownButton';
+import { Icon } from '../Icon';
+import { useTheme } from '../ThemeProvider';
 
 type LegendItemConfig<ValueType = string> = {
   value: ValueType;

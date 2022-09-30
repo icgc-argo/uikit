@@ -19,10 +19,10 @@
 
 import { css } from '@emotion/core';
 import React from 'react';
-import { Icon } from 'src/Icon';
-import { ThemeColorNames } from 'src/theme/types';
-import { useTheme } from 'src/ThemeProvider';
-import { Tooltip, TooltipProps } from 'src/Tooltip';
+import { Icon } from '../../Icon';
+import { ThemeColorNames } from '../../theme/types';
+import { useTheme } from '../../ThemeProvider';
+import { Tooltip, TooltipProps } from '../../Tooltip';
 
 // dims corresponding hex code for a 25% dim
 const dimColour = (hex: string) => `${hex}BF`;

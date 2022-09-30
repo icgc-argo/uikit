@@ -19,10 +19,10 @@
 
 import { css } from '@emotion/core';
 import React from 'react';
-import { Button } from 'src/Button';
-import { Input } from 'src/form/Input';
-import { useTheme } from 'src/ThemeProvider';
-import { Typography } from 'src/Typography';
+import { Button } from '../Button';
+import { Input } from '../form/Input';
+import { useTheme } from '../ThemeProvider';
+import { Typography } from '../Typography';
 import { FieldDescriptionLabel, FieldInputWrapper } from './common';
 
 export const NumberRangeField: React.ComponentType<{

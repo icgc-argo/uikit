@@ -19,7 +19,7 @@
 
 import css from '@emotion/css';
 import { styled } from '../ThemeProvider';
-import defaultTheme from 'src/theme/defaultTheme';
+import defaultTheme from '../theme/defaultTheme';
 
 type StyleCalculationInput = {
   selected?: boolean;

@@ -28,7 +28,7 @@ const themes = {
   default: defaultTheme,
 };
 
-const ThemeProvider: React.ComponentType<{ theme: keyof typeof themes }> = ({
+const ThemeProvider: React.ComponentType<{ theme?: keyof typeof themes }> = ({
   theme = 'default',
   children,
 }) => {
