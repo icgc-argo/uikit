@@ -73,6 +73,7 @@
     "@storybook/testing-library": "^0.0.13",
     "@svgr/webpack": "^6.3.1",
     "babel-loader": "^8.0.5",
+    "babel-plugin-module-resolver": "^4.1.0",
     "babel-preset-env": "^1.7.0",
     "husky": "^2.2.0",
     "plop": "^2.3.0",

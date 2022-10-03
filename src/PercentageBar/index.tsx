@@ -19,9 +19,9 @@
 
 import { css } from '@emotion/core';
 import React from 'react';
-import { Icon } from '../Icon';
-import { Typography } from '../Typography';
-import useTheme from '../utils/useTheme';
+import { Icon } from 'src/Icon';
+import { Typography } from 'src/Typography';
+import useTheme from 'src/utils/useTheme';
 
 const VAlignedText = (props) => (
   <Typography

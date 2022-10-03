@@ -18,13 +18,13 @@
  */
 
 import { css } from '@emotion/core';
-import { styled } from '../ThemeProvider';
+import { styled } from 'src/ThemeProvider';
 import React from 'react';
-import { Button } from '../Button';
-import { INPUT_SIZES, INPUT_STATES, StyledInputWrapper } from '../form/common';
-import { Icon } from '../Icon';
-import { Tag, TAG_VARIANTS } from '../Tag';
-import { Typography } from '../Typography';
+import { Button } from 'src/Button';
+import { INPUT_SIZES, INPUT_STATES, StyledInputWrapper } from 'src/form/common';
+import { Icon } from 'src/Icon';
+import { Tag, TAG_VARIANTS } from 'src/Tag';
+import { Typography } from 'src/Typography';
 
 const TagWrapper = styled('div')`
   margin-right: 5px;

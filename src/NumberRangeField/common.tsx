@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { styled } from '../ThemeProvider';
+import { styled } from 'src/ThemeProvider';
 
 export const FieldInputWrapper = styled('div')`
   width: 35%;

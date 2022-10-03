@@ -18,11 +18,11 @@
  */
 
 import css from '@emotion/css';
-import { styled } from '../ThemeProvider';
+import { styled } from 'src/ThemeProvider';
 import React from 'react';
-import { Input } from '../form/Input';
-import { Icon } from '../Icon';
-import useTheme from '../utils/useTheme';
+import { Input } from 'src/form/Input';
+import { Icon } from 'src/Icon';
+import useTheme from 'src/utils/useTheme';
 import { ContentContainer, IconContainer, MenuItemContainer } from './styledComponents';
 
 const MenuItemComponent = React.forwardRef<

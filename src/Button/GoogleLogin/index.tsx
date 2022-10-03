@@ -18,12 +18,12 @@
  */
 
 import css from '@emotion/css';
-import { styled } from '../../ThemeProvider';
+import { styled } from 'src/ThemeProvider';
 import React from 'react';
 import urlJoin from 'url-join';
-import { Icon } from '../../Icon';
-import useTheme from '../../utils/useTheme';
-import { Button } from '../index';
+import { Icon } from 'src/Icon';
+import useTheme from 'src/utils/useTheme';
+import { Button } from 'src/Button';
 
 /**
  * Social login for Google

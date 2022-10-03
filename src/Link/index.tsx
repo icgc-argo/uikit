@@ -19,7 +19,7 @@
 
 import React, { AnchorHTMLAttributes } from 'react';
 import { css } from '@emotion/core';
-import { styled } from '../ThemeProvider';
+import { styled } from 'src/ThemeProvider';
 
 type LinkVariant = 'INLINE' | 'BLOCK';
 export type HyperLinkProps = {

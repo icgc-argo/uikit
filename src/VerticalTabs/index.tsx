@@ -18,13 +18,13 @@
  */
 
 import { css } from '@emotion/core';
-import { styled, useTheme } from '../ThemeProvider';
+import { styled, useTheme } from 'src/ThemeProvider';
 import React, { HTMLAttributes, HtmlHTMLAttributes, MouseEventHandler, ReactNode } from 'react';
-import { FocusWrapper } from '../FocusWrapper';
-import { Tag } from '../Tag';
-import { Tooltip } from '../Tooltip';
-import { Typography } from '../Typography';
-import { useElementDimension } from '../utils/Hook/useElementDimension';
+import { FocusWrapper } from 'src/FocusWrapper';
+import { Tag } from 'src/Tag';
+import { Tooltip } from 'src/Tooltip';
+import { Typography } from 'src/Typography';
+import { useElementDimension } from 'src/utils/Hook/useElementDimension';
 
 type TabStyleType = {
   background: string;

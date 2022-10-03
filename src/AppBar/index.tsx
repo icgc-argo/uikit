@@ -20,10 +20,10 @@
 import { css } from '@emotion/core';
 import PropTypes from 'prop-types';
 import React from 'react';
-import logo from '../assets/logo_white.svg';
-import { Typography } from '../Typography';
-import { useClickAway } from '../utils/useClickAway';
-import useTheme from '../utils/useTheme';
+import logo from 'src/assets/logo_white.svg';
+import { Typography } from 'src/Typography';
+import { useClickAway } from 'src/utils/useClickAway';
+import useTheme from 'src/utils/useTheme';
 import { DropdownMenuItem } from './DropdownMenu';
 import {
   AppBarContainer,

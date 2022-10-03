@@ -19,5 +19,5 @@
 
 import { ThemeContext } from '@emotion/core';
 import { useContext } from 'react';
-import { useTheme } from '../ThemeProvider';
+import { useTheme } from 'src/ThemeProvider';
 export default useTheme;

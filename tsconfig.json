@@ -13,12 +13,15 @@
     "resolveJsonModule": false,
     "isolatedModules": false,
     "jsx": "preserve",
-    "baseUrl": "./",
+    "baseUrl": ".",
     "downlevelIteration": true,
     "outDir": "./dist",
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
-    "declaration": true
+    "declaration": true,
+    "paths": {
+      "src/*": ["./src/*"]
+    }
   },
   "exclude": [
     "node_modules",

@@ -19,7 +19,11 @@
 
 import omit from 'lodash/omit';
 import React from 'react';
-import { Notification, NOTIFICATION_INTERACTION, NOTIFICATION_VARIANTS } from '../Notification';
+import {
+  Notification,
+  NOTIFICATION_INTERACTION,
+  NOTIFICATION_VARIANTS,
+} from 'src/notifications/Notification';
 
 export function Toast({
   variant,

@@ -19,12 +19,12 @@
 
 import React from 'react';
 import { css } from '@emotion/core';
-import { styled } from '../ThemeProvider';
+import { styled } from 'src/ThemeProvider';
 import isPropValid from '@emotion/is-prop-valid';
 
 import color from 'color';
-import useTheme from '../utils/useTheme';
-import { DnaLoader } from '../DnaLoader';
+import useTheme from 'src/utils/useTheme';
+import { DnaLoader } from 'src/DnaLoader';
 
 const ContainerBackground = styled<'div', { loading?: boolean }>('div', {
   shouldForwardProp: (prop) => isPropValid(prop) && prop !== 'loading',

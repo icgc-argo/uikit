@@ -22,7 +22,7 @@ import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming';
 import { ThemeContext } from '@emotion/core';
 import { default as emotionStyled, CreateStyled } from '@emotion/styled';
 
-import defaultTheme from '../theme/defaultTheme';
+import defaultTheme from 'src/theme/defaultTheme';
 
 const themes = {
   default: defaultTheme,

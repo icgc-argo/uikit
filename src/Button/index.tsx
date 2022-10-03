@@ -19,8 +19,8 @@
 
 import { css } from '@emotion/core';
 import React from 'react';
-import { Icon } from '../Icon';
-import useTheme from '../utils/useTheme';
+import { Icon } from 'src/Icon';
+import useTheme from 'src/utils/useTheme';
 import { BUTTON_SIZES, BUTTON_VARIANTS } from './constants';
 import { StyledButton } from './styled';
 import { ButtonSize, ButtonVariant } from './types';

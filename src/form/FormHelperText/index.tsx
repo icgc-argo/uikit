@@ -18,8 +18,8 @@
  */
 
 import React from 'react';
-import { FormControlContext } from '../FormControl/FormControlContext';
-import { styled } from '../../ThemeProvider';
+import { FormControlContext } from 'src/form/FormControl/FormControlContext';
+import { styled } from 'src/ThemeProvider';
 import clsx from 'clsx';
 import css from '@emotion/css';
 import pick from 'lodash/pick';

@@ -17,8 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { styled } from '../ThemeProvider';
-import defaultTheme from '../theme/defaultTheme';
+import { styled } from 'src/ThemeProvider';
+import defaultTheme from 'src/theme/defaultTheme';
 
 export const TitleBorder = styled<
   'hr',

@@ -18,7 +18,7 @@
  */
 
 import css from '@emotion/css';
-import { styled } from '../ThemeProvider';
+import { styled } from 'src/ThemeProvider';
 
 type TagVariant =
   | 'DISABLED'

@@ -12,6 +12,16 @@
     "@babel/preset-typescript"
   ],
   "plugins": [
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "src": "./src"
+        },
+        "extensions": [".js", ".jsx", ".d.ts", ".ts", ".tsx"],
+        "root": ["."]
+      }
+    ],
     "@babel/plugin-transform-runtime",
     "@babel/plugin-proposal-optional-chaining",
     "@babel/plugin-proposal-object-rest-spread"

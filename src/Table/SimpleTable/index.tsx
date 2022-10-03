@@ -18,7 +18,7 @@
  */
 
 import { css } from '@emotion/core';
-import { Table } from '../../Table';
+import { Table } from 'src/Table';
 
 type MappedTableData = Array<{ key: string; val: any }>;
 

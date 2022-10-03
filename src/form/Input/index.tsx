@@ -19,10 +19,10 @@
 
 import css from '@emotion/css';
 import React, { useContext, useState } from 'react';
-import { Button } from '../../Button';
-import { Icon } from '../../Icon';
-import { INPUT_SIZES, StyledInputWrapper, StyledInputWrapperProps } from '../common';
-import { FormControlContext } from '../FormControl/FormControlContext';
+import { Button } from 'src/Button';
+import { Icon } from 'src/Icon';
+import { INPUT_SIZES, StyledInputWrapper, StyledInputWrapperProps } from 'src/form/common';
+import { FormControlContext } from 'src/form/FormControl/FormControlContext';
 import { IconWrapper, StyledInput } from './styledComponents';
 
 type InputPreset = 'default' | 'search';

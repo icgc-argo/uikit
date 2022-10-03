@@ -23,7 +23,7 @@ import {
   NOTIFICATION_INTERACTION,
   NOTIFICATION_SIZES,
   NOTIFICATION_VARIANTS,
-} from '../Notification';
+} from 'src/notifications/Notification';
 
 export const BANNER_VARIANTS = NOTIFICATION_VARIANTS;
 export const BANNER_SIZE = NOTIFICATION_SIZES;

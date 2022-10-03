@@ -18,10 +18,10 @@
  */
 
 import css from '@emotion/css';
-import { styled } from '../ThemeProvider';
+import { styled } from 'src/ThemeProvider';
 import clsx from 'clsx';
 import React from 'react';
-import useTheme from '../utils/useTheme';
+import useTheme from 'src/utils/useTheme';
 
 const TabsContext = React.createContext({ onChange: null, value: null });
 
@@ -63,15 +63,18 @@ export const Tab: React.ComponentType<
     <TabButton
       className={className}
       as="div"
-      css={css`
-        cursor: auto;
-        flex-grow: 1;
-        &:hover {
-          border-bottom-color: ${theme.colors.grey_2};
-        }
-      `}
+      // css={css`
+      //   background: magenta;
+      //   cursor: auto;
+      //   flex-grow: 1;
+      //   &:hover {
+      //     background: cyan;
+      //     border-bottom-color: ${theme.colors.grey_2};
+      //   }
+      // `}
       {...otherProps}
     >
+      HELLO
       {children}
     </TabButton>
   ) : (

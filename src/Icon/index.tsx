@@ -20,9 +20,9 @@
 import { css } from '@emotion/core';
 import get from 'lodash/get';
 import React, { SVGAttributes } from 'react';
-import defaultTheme from '../theme/defaultTheme';
-import { ThemeColorNames } from '../theme/types';
-import useTheme from '../utils/useTheme';
+import defaultTheme from 'src/theme/defaultTheme';
+import { ThemeColorNames } from 'src/theme/types';
+import useTheme from 'src/utils/useTheme';
 import { Icons as icons, UikitIconNames } from './icons';
 
 export type Outline = { color: keyof ThemeColorNames | string; width: number };

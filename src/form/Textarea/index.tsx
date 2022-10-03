@@ -20,9 +20,9 @@
 import css from '@emotion/css';
 import clsx from 'clsx';
 import React, { TextareaHTMLAttributes, useCallback, useContext, useEffect, useState } from 'react';
-import { useTheme } from '../../ThemeProvider';
-import { Typography } from '../../Typography';
-import { FormControlContext } from '../FormControl/FormControlContext';
+import { useTheme } from 'src/ThemeProvider';
+import { Typography } from 'src/Typography';
+import { FormControlContext } from 'src/form/FormControl/FormControlContext';
 import { CountLabels, TextareaProps } from './types';
 
 const LINE_JUMP_PLACEHOLDER = ' øö ';

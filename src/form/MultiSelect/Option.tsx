@@ -19,7 +19,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { styled } from '../../ThemeProvider';
+import { styled } from 'src/ThemeProvider';
 import css from '@emotion/css';
 
 const Li = styled('li')`

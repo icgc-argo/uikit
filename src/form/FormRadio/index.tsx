@@ -19,9 +19,9 @@
 
 import css from '@emotion/css';
 import React, { useContext } from 'react';
-import { RadioCheckboxWrapper } from '../common';
-import { Radio } from '../Radio';
-import { RadioCheckContext } from '../RadioCheckboxGroup/RadioCheckContext';
+import { RadioCheckboxWrapper } from 'src/form/common';
+import { Radio } from 'src/form/Radio';
+import { RadioCheckContext } from 'src/form/RadioCheckboxGroup/RadioCheckContext';
 
 /**
  * FormRadio to be used with RadioCheckboxGroup

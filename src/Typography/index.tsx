@@ -17,11 +17,11 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { styled } from '../ThemeProvider';
+import { styled } from 'src/ThemeProvider';
 import memoize from 'lodash/memoize';
 import * as React from 'react';
-import defaultTheme from '../theme/defaultTheme';
-import { useTheme } from '../ThemeProvider';
+import defaultTheme from 'src/theme/defaultTheme';
+import { useTheme } from 'src/ThemeProvider';
 
 const defaultTags = {
   hero: 'h1',

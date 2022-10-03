@@ -18,10 +18,10 @@
  */
 
 import css from '@emotion/css';
-import { styled } from '../ThemeProvider';
+import { styled } from 'src/ThemeProvider';
 import React from 'react';
-import { Icon } from '../Icon';
-import useTheme from '../utils/useTheme';
+import { Icon } from 'src/Icon';
+import useTheme from 'src/utils/useTheme';
 
 const Nav = styled('nav')`
   padding: 18px 29px 18px 0;

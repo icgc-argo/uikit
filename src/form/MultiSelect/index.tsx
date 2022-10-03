@@ -18,7 +18,7 @@
  */
 
 import css from '@emotion/css';
-import { styled } from '../../ThemeProvider';
+import { styled } from 'src/ThemeProvider';
 import clsx from 'clsx';
 import compact from 'lodash/compact';
 import find from 'lodash/find';
@@ -31,11 +31,11 @@ import toLower from 'lodash/toLower';
 import uniq from 'lodash/uniq';
 import without from 'lodash/without';
 import React, { InputHTMLAttributes, useEffect } from 'react';
-import { Icon } from '../../Icon';
-import { Tag } from '../../Tag';
-import useTheme from '../../utils/useTheme';
-import { InputSize, INPUT_SIZES, INPUT_STATES, StyledInputWrapper } from '../common';
-import { FormControlContext } from '../FormControl/FormControlContext';
+import { Icon } from 'src/Icon';
+import { Tag } from 'src/Tag';
+import useTheme from 'src/utils/useTheme';
+import { InputSize, INPUT_SIZES, INPUT_STATES, StyledInputWrapper } from 'src/form/common';
+import { FormControlContext } from 'src/form/FormControl/FormControlContext';
 import { Option } from './Option';
 
 const Container = styled<'div', { focus: boolean }>('div')`

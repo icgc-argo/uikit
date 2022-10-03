@@ -17,8 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { styled } from '../ThemeProvider';
-import { Container } from '../Container';
+import { styled } from 'src/ThemeProvider';
+import { Container } from 'src/Container';
 
 export const PageContainer = styled('div')`
   display: grid;

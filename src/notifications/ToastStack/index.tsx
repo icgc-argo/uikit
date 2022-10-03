@@ -20,8 +20,8 @@
 import differenceBy from 'lodash/differenceBy';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { styled } from '../..';
-import { Toast } from '../Toast';
+import { styled } from 'src/ThemeProvider';
+import { Toast } from 'src/notifications/Toast';
 
 const usePrevious = (value) => {
   const ref = React.useRef();

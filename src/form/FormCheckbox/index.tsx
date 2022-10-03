@@ -19,13 +19,13 @@
 
 import { css } from '@emotion/core';
 import React, { ReactNode, useContext, useRef, useState } from 'react';
-import { UikitTheme } from '../..';
-import { Icon } from '../../Icon';
-import { useTheme } from '../../ThemeProvider';
-import { Checkbox } from '../Checkbox';
-import { RadioCheckboxWrapper } from '../common';
-import { FormControlContext } from '../FormControl/FormControlContext';
-import { RadioCheckContext } from '../RadioCheckboxGroup/RadioCheckContext';
+import { Theme } from 'src/ThemeProvider';
+import { Icon } from 'src/Icon';
+import { useTheme } from 'src/ThemeProvider';
+import { Checkbox } from 'src/form/Checkbox';
+import { RadioCheckboxWrapper } from 'src/form/common';
+import { FormControlContext } from 'src/form/FormControl/FormControlContext';
+import { RadioCheckContext } from 'src/form/RadioCheckboxGroup/RadioCheckContext';
 
 export const FormCheckbox = ({
   checked,
@@ -44,7 +44,7 @@ export const FormCheckbox = ({
   value?: string;
 }) => {
   const [isFocused, setIsFocused] = useState(false);
-  const theme: UikitTheme = useTheme();
+  const theme: Theme = useTheme();
   const checkboxRef = useRef<HTMLInputElement>();
   const hiddenCheckboxRef = useRef<HTMLInputElement>();
   const { onChange = props.onChange, isChecked } = useContext(RadioCheckContext);
