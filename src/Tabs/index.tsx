@@ -63,15 +63,13 @@ export const Tab: React.ComponentType<
     <TabButton
       className={className}
       as="div"
-      // css={css`
-      //   background: magenta;
-      //   cursor: auto;
-      //   flex-grow: 1;
-      //   &:hover {
-      //     background: cyan;
-      //     border-bottom-color: ${theme.colors.grey_2};
-      //   }
-      // `}
+      css={css`
+        cursor: auto;
+        flex-grow: 1;
+        &:hover {
+          border-bottom-color: ${theme.colors.grey_2};
+        }
+      `}
       {...otherProps}
     >
       HELLO
