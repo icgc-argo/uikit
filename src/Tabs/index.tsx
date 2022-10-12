@@ -90,18 +90,13 @@ const Container = styled('div')`
   display: flex;
 `;
 
-export const Tabs: React.ComponentType<{
-  value: any;
-  onChange?: (...any) => void;
-  children: React.ReactElement[];
-  containerProps?: {};
-}> = ({ value, onChange, children: childrenProp, containerProps }) => {
-  const children = React.Children.map(childrenProp, (child) => {
-    return React.cloneElement(child, {
-      active: child.props.value == value,
-    });
-  });
-
+export const Tabs: React.ComponentType<
+  React.PropsWithChildren<{
+    value: any;
+    onChange?: (...any) => void;
+    containerProps?: {};
+  }>
+> = ({ value, onChange, children, containerProps }) => {
   const context = {
     value,
     onChange,
