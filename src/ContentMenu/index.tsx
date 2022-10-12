@@ -20,14 +20,14 @@
 import React from 'react';
 import { Typography } from 'src/Typography';
 import { styled } from 'src/ThemeProvider';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 
 const Cont = styled('div')`
   margin-top: 14px;
   border-left: 2px solid ${({ color, theme }) => (color ? color : theme.colors.secondary)};
 `;
 
-const Anchor = styled<'a', { disabled: boolean; active: boolean }>('a')`
+const Anchor = styled('a')<{ disabled: boolean; active: boolean }>`
   /** specificty for docusaurus, easier to edit here */
   > div {
     background-color: ${({ active, theme: { colors } }) =>

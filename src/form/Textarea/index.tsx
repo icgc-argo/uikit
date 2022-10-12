@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import css from '@emotion/css';
+import { css } from '@emotion/react';
 import clsx from 'clsx';
 import React, { TextareaHTMLAttributes, useCallback, useContext, useEffect, useState } from 'react';
 import { useTheme } from 'src/ThemeProvider';

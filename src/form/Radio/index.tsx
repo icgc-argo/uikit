@@ -30,7 +30,7 @@ type StyledRadioProps = {
   disabled?: boolean;
   checked?: boolean;
 };
-export const StyledRadio = styled<'div', StyledRadioProps>('div')`
+export const StyledRadio = styled('div')<StyledRadioProps>`
   position: relative;
   cursor: pointer;
   display: flex;

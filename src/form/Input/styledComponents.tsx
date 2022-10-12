@@ -18,10 +18,10 @@
  */
 
 import { styled } from 'src/ThemeProvider';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 export { StyledInputWrapper } from 'src/form/common';
 
-export const StyledInput = styled<'input', { inputSize: string }>('input')`
+export const StyledInput = styled('input')<{ inputSize: string }>`
   ${({ theme }) => css(theme.typography.default as any)};
   padding: ${({ theme, inputSize }) => theme.input.paddings[inputSize]};
   border: none;

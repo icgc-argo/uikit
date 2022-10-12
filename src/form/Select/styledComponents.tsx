@@ -29,7 +29,7 @@ export const POPUP_POSITIONS = { UP: 'UP' as PopupPosition, DOWN: 'DOWN' as Popu
 export const DropdownIcon = withProps(({ disabled, theme }) => ({
   name: 'chevron_down',
   fill: disabled ? theme.colors.grey_disabled : 'black',
-}))(styled<typeof Icon, { disabled?: boolean }>(Icon)`
+}))(styled(Icon)<{ disabled?: boolean }>`
   height: 100%;
   width: 10px;
   padding: 10px;

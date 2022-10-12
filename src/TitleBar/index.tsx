@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import css from '@emotion/css';
+import { css } from '@emotion/react';
 import { styled } from 'src/ThemeProvider';
 import React from 'react';
 import { Icon } from 'src/Icon';

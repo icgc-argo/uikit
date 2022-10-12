@@ -36,7 +36,7 @@ const ANIMATION_DURATION = 500;
 const StackContainer = styled('div')`
   max-width: 400px;
 `;
-const AnimatedContainer = styled<'div', { unMounting?: boolean }>('div')`
+const AnimatedContainer = styled('div')<{ unMounting?: boolean }>`
   margin-top: 10px;
   @keyframes enter {
     from {

@@ -18,7 +18,7 @@
  */
 
 import React, { AnchorHTMLAttributes } from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { styled } from 'src/ThemeProvider';
 
 type LinkVariant = 'INLINE' | 'BLOCK';
@@ -32,7 +32,7 @@ export type HyperLinkProps = {
   invert?: boolean;
 } & AnchorHTMLAttributes<HTMLAnchorElement>;
 
-const StyledLink = styled<'a', HyperLinkProps>('a')`
+const StyledLink = styled('a')<HyperLinkProps>`
   ${({ theme }) => css(theme.typography.default as any)}
   cursor: pointer;
   color: ${({ theme, invert }) => (invert ? theme.colors.white : theme.colors.accent2_dark)};

@@ -20,7 +20,7 @@
 import defaultTheme from './theme/defaultTheme';
 export type UikitTheme = typeof defaultTheme;
 
-export { default as css } from '@emotion/css';
+export { css } from '@emotion/react';
 export { default as isPropValid } from '@emotion/is-prop-valid';
 export { default as noDataSvg } from './assets/noData.svg';
 export { default as overtureLogo } from './assets/overture-logo.svg';

@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/core';
+import { Interpolation, Theme, css } from '@emotion/react';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { UikitIconNames } from 'src/Icon/icons';
@@ -33,6 +33,7 @@ import {
   NotificationBodyContainer,
   NotificationContainer,
 } from './styledComponents';
+import { CssInterpolation } from 'src/ThemeProvider';
 
 export type NotificationVariant = 'INFO' | 'SUCCESS' | 'WARNING' | 'ERROR';
 export type NotificationInteractionEvent = 'CLOSE' | 'ACTION' | 'DISMISS';
@@ -98,7 +99,9 @@ export const Notification = ({
   icon?: React.ReactNode;
   onInteraction?: ({ type, event }) => void;
   noShadow?: boolean;
-  contentProps?: React.ComponentProps<typeof NotificationBodyContainer>;
+  contentProps?: React.ComponentProps<typeof NotificationBodyContainer> & {
+    css?: CssInterpolation;
+  };
 }) => {
   const theme = useTheme();
   const dispatchEvent = (eventType) => (e) => onInteraction({ type: eventType, event: e });

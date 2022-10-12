@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { styled } from 'src/ThemeProvider';
 import debounce from 'lodash/debounce';
 import React, { RefObject, useEffect, useRef, useState } from 'react';

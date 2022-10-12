@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import css from '@emotion/css';
+import { css } from '@emotion/react';
 import { styled } from 'src/ThemeProvider';
 import clsx from 'clsx';
 import React from 'react';
@@ -25,7 +25,7 @@ import useTheme from 'src/utils/useTheme';
 
 const TabsContext = React.createContext({ onChange: null, value: null });
 
-export const TabButton = styled<'button', { as?: keyof HTMLElementTagNameMap }>('button')`
+export const TabButton = styled('button')<{ as?: keyof HTMLElementTagNameMap }>`
   ${({ theme }) => css(theme.typography.label as any)};
   color: ${({ theme }) => theme.colors.grey};
   display: flex;
@@ -90,18 +90,13 @@ const Container = styled('div')`
   display: flex;
 `;
 
-export const Tabs: React.ComponentType<{
-  value: any;
-  onChange?: (...any) => void;
-  children: React.ReactElement[];
-  containerProps?: {};
-}> = ({ value, onChange, children: childrenProp, containerProps }) => {
-  const children = React.Children.map(childrenProp, (child) => {
-    return React.cloneElement(child, {
-      active: child.props.value == value,
-    });
-  });
-
+export const Tabs: React.ComponentType<
+  React.PropsWithChildren<{
+    value: any;
+    onChange?: (...any) => void;
+    containerProps?: {};
+  }>
+> = ({ value, onChange, children, containerProps }) => {
   const context = {
     value,
     onChange,
