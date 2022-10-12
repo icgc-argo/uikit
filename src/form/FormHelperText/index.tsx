@@ -17,21 +17,16 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { css } from '@emotion/react';
+import clsx from 'clsx';
+import pick from 'lodash/pick';
 import React from 'react';
 import { FormControlContext } from 'src/form/FormControl/FormControlContext';
 import { styled } from 'src/ThemeProvider';
-import clsx from 'clsx';
-import css from '@emotion/css';
-import pick from 'lodash/pick';
 
 export const FormHelperText = React.forwardRef<
   any,
   {
-    /**
-     * The component used for the root node.
-     * Either a string to use a DOM element or a component.
-     */
-    component?: keyof HTMLElementTagNameMap;
     /**
      * The CSS class name of the wrapper element.
      */
@@ -44,15 +39,13 @@ export const FormHelperText = React.forwardRef<
     onErrorOnly?: boolean;
   }
 >(function FormHelperText(props, ref) {
-  const {
-    component: Component = 'p',
-    className: classNameProp,
-    children,
-    onErrorOnly = false,
-  } = props;
+  const { className: classNameProp, children, onErrorOnly = false } = props;
 
-  const StyledComponent = styled<any, any>(Component)`
-    ${({ theme }) => css(theme.typography.caption as any)};
+  const StyledComponent = styled('p')`
+    ${({ theme }) =>
+      css(
+        theme.typography.caption as any,
+      )}; // TODO: don't use this casting to any. please sort out the types.
     margin: 3px 7px;
     line-height: 14px;
 

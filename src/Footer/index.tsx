@@ -22,7 +22,7 @@ import PropTypes from 'prop-types';
 import { styled } from 'src/ThemeProvider';
 import { Icon } from 'src/Icon';
 import icgcLogo from 'src/assets/icgc_logo.svg';
-import css from '@emotion/css';
+import { css } from '@emotion/react';
 import { Row, Col } from 'react-grid-system';
 import { Link as A } from 'src/Link';
 

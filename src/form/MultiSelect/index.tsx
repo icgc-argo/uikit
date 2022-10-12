@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import css from '@emotion/css';
+import { css } from '@emotion/react';
 import { styled } from 'src/ThemeProvider';
 import clsx from 'clsx';
 import compact from 'lodash/compact';
@@ -38,7 +38,7 @@ import { InputSize, INPUT_SIZES, INPUT_STATES, StyledInputWrapper } from 'src/fo
 import { FormControlContext } from 'src/form/FormControl/FormControlContext';
 import { Option } from './Option';
 
-const Container = styled<'div', { focus: boolean }>('div')`
+const Container = styled('div')<{ focus: boolean }>`
   position: relative;
   transform: scale(1); /* this creates a stacking context so z-index is local */
   ${({ focus }) =>
@@ -48,7 +48,7 @@ const Container = styled<'div', { focus: boolean }>('div')`
     `}
 `;
 
-const OptionsWrapper = styled<'div', { focused: boolean }>('div')`
+const OptionsWrapper = styled('div')<{ focused: boolean }>`
   box-sizing: border-box;
   position: absolute;
   width: 100%;
@@ -99,7 +99,7 @@ const InputBox = styled(StyledInputWrapper)`
   padding: 2px;
 `;
 
-const Input = styled<'input', { autoComplete: string; single?: boolean }>('input')`
+const Input = styled('input')<{ autoComplete: string; single?: boolean }>`
   ${({ theme }) => css(theme.typography.default as any)};
   background-color: transparent;
   border: none;

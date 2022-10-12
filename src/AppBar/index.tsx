@@ -17,9 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import logo from 'src/assets/logo_white.svg';
 import { Typography } from 'src/Typography';
 import { useClickAway } from 'src/utils/useClickAway';
@@ -167,7 +167,7 @@ export type NavElement = {
   shouldRender?: boolean;
   onClick?: () => any;
   isDropdown?: boolean;
-  LinkComp: React.ComponentType;
+  LinkComp: React.ComponentType<PropsWithChildren>;
 };
 
 export const NavBarElement = ({

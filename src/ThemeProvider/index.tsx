@@ -17,10 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { Interpolation, ThemeContext, ThemeProvider as EmotionThemeProvider } from '@emotion/react';
+import { CreateStyled, default as emotionStyled } from '@emotion/styled';
 import * as React from 'react';
-import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming';
-import { ThemeContext } from '@emotion/core';
-import { default as emotionStyled, CreateStyled } from '@emotion/styled';
 
 import defaultTheme from 'src/theme/defaultTheme';
 
@@ -28,10 +27,9 @@ const themes = {
   default: defaultTheme,
 };
 
-const ThemeProvider: React.ComponentType<{ theme?: keyof typeof themes }> = ({
-  theme = 'default',
-  children,
-}) => {
+const ThemeProvider: React.ComponentType<
+  React.PropsWithChildren<{ theme?: keyof typeof themes }>
+> = ({ theme = 'default', children }) => {
   return (
     <EmotionThemeProvider theme={themes[theme]}>
       <link
@@ -44,6 +42,25 @@ const ThemeProvider: React.ComponentType<{ theme?: keyof typeof themes }> = ({
 };
 
 export default ThemeProvider;
+
+declare module '@emotion/react' {
+  export interface Theme {
+    colors: typeof defaultTheme.colors;
+    typography: typeof defaultTheme.typography;
+    shadows: typeof defaultTheme.shadows;
+    button: typeof defaultTheme.button;
+    appBar: typeof defaultTheme.appBar;
+    titleBar: typeof defaultTheme.titleBar;
+    input: typeof defaultTheme.input;
+    multiSelect: typeof defaultTheme.multiSelect;
+    radiocheckbox: typeof defaultTheme.radiocheckbox;
+    progress: typeof defaultTheme.progress;
+    checkbox: typeof defaultTheme.checkbox;
+  }
+}
+
+export type CssInterpolation = Interpolation<Theme>;
+
 export type Theme = typeof defaultTheme;
 export const useTheme = () => React.useContext(ThemeContext as React.Context<Theme>);
-export const styled: CreateStyled<Theme> = emotionStyled;
+export const styled: CreateStyled = emotionStyled;

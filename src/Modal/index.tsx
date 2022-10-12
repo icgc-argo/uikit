@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { styled } from 'src/ThemeProvider';
 import Color from 'color';
 import React from 'react';
@@ -111,24 +111,26 @@ const ModalOverlay = styled('div')`
 /**
  * Can use <Modal.overlay /> for the overlay
  */
-const ModalComponent: React.ComponentType<{
-  title?: React.ReactNode;
-  titleIconConfig?: {
-    name: UikitIconNames;
-    fill?: string;
-  };
-  buttonSize?: ButtonSize;
-  actionButtonText?: React.ReactNode;
-  actionButtonId?: string;
-  actionDisabled?: boolean;
-  actionVisible?: boolean;
-  cancelText?: React.ReactNode;
-  onActionClick?: React.ComponentProps<typeof Button>['onClick'];
-  onCancelClick?: React.ComponentProps<typeof Button>['onClick'];
-  onCloseClick?: React.ComponentProps<typeof FocusWrapper>['onClick'];
-  ContainerEl?: React.ReactType;
-  FooterEl?: React.FC;
-}> = ({
+const ModalComponent: React.ComponentType<
+  React.PropsWithChildren<{
+    title?: React.ReactNode;
+    titleIconConfig?: {
+      name: UikitIconNames;
+      fill?: string;
+    };
+    buttonSize?: ButtonSize;
+    actionButtonText?: React.ReactNode;
+    actionButtonId?: string;
+    actionDisabled?: boolean;
+    actionVisible?: boolean;
+    cancelText?: React.ReactNode;
+    onActionClick?: React.ComponentProps<typeof Button>['onClick'];
+    onCancelClick?: React.ComponentProps<typeof Button>['onClick'];
+    onCloseClick?: React.ComponentProps<typeof FocusWrapper>['onClick'];
+    ContainerEl?: React.ComponentType<React.PropsWithChildren>;
+    FooterEl?: React.FC;
+  }>
+> = ({
   title = 'Add Users',
   titleIconConfig = {
     name: null,

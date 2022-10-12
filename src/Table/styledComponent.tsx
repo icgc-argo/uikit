@@ -19,7 +19,7 @@
 
 import React from 'react';
 import { styled } from 'src/ThemeProvider';
-import css from '@emotion/css';
+import { css } from '@emotion/react';
 import ReactTable from 'react-table';
 
 import reactTableDefaultStyle from './reactTableDefaultStyle';
@@ -34,7 +34,7 @@ export type StyledTableProps = {
   cellAlignment?: 'top' | 'center' | 'bottom';
 };
 
-export const StyledTable = styled<typeof ReactTable, StyledTableProps>(ReactTable)`
+export const StyledTable = styled(ReactTable)<StyledTableProps>`
   ${reactTableDefaultStyle}
 
   &.ReactTable .-loading.-active .-loading-inner {

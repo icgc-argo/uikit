@@ -18,7 +18,7 @@
  */
 
 import React from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { styled } from 'src/ThemeProvider';
 
 import noDataSvg from 'src/assets/noData.svg';

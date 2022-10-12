@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import concat from 'lodash/concat';
 import orderBy from 'lodash/orderBy';
 import React from 'react';

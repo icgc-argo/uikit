@@ -18,7 +18,7 @@
  */
 
 // @flow
-import { css, Global } from '@emotion/core';
+import { css, Global } from '@emotion/react';
 import { styled } from 'src/ThemeProvider';
 import { merge } from 'lodash';
 import * as React from 'react';
@@ -31,7 +31,7 @@ export type TooltipProps = Omit<TippyProps, 'html'> & {
   html?: React.ReactElement<any> | React.ReactNode | string;
 };
 
-export const Tooltip: React.ComponentType<TooltipProps> = ({
+export const Tooltip: React.ComponentType<React.PropsWithChildren<TooltipProps>> = ({
   className,
   html,
   position = 'top',

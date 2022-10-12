@@ -17,13 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import css from '@emotion/css';
-import { styled } from 'src/ThemeProvider';
+import { CssInterpolation, styled } from 'src/ThemeProvider';
 import React from 'react';
 import { Input } from 'src/form/Input';
 import { Icon } from 'src/Icon';
 import useTheme from 'src/utils/useTheme';
 import { ContentContainer, IconContainer, MenuItemContainer } from './styledComponents';
+import { css, Interpolation, Theme } from '@emotion/react';
 
 const MenuItemComponent = React.forwardRef<
   HTMLDivElement,
@@ -56,7 +56,7 @@ const MenuItemComponent = React.forwardRef<
       querySetter: React.Dispatch<React.SetStateAction<string>>;
     };
     RightSideComp?: React.ReactNode;
-  } & React.ComponentProps<typeof MenuItemContainer>
+  } & React.ComponentProps<typeof MenuItemContainer> & { css?: CssInterpolation }
 >(
   (
     {

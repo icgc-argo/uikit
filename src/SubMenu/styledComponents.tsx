@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import css from '@emotion/css';
+import { css } from '@emotion/react';
 import { styled } from 'src/ThemeProvider';
 import defaultTheme from 'src/theme/defaultTheme';
 
@@ -118,7 +118,7 @@ const defaultStyle = (props: StyleCalculationInput) => css`
   }
 `;
 
-export const MenuItemContainer = styled<'div', { level?: 1 | 2 | 3; selected?: boolean }>('div')`
+export const MenuItemContainer = styled('div')<{ level?: 1 | 2 | 3; selected?: boolean }>`
   & a {
     text-decoration: none;
   }
