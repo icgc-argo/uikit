@@ -127,7 +127,7 @@ const ModalComponent: React.ComponentType<
     onActionClick?: React.ComponentProps<typeof Button>['onClick'];
     onCancelClick?: React.ComponentProps<typeof Button>['onClick'];
     onCloseClick?: React.ComponentProps<typeof FocusWrapper>['onClick'];
-    ContainerEl?: React.ComponentType<React.PropsWithChildren>;
+    ContainerEl?: React.ComponentType<React.PropsWithChildren<{}>>;
     FooterEl?: React.FC;
   }>
 > = ({

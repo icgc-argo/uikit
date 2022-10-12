@@ -167,7 +167,7 @@ export type NavElement = {
   shouldRender?: boolean;
   onClick?: () => any;
   isDropdown?: boolean;
-  LinkComp: React.ComponentType<PropsWithChildren>;
+  LinkComp: React.ComponentType<PropsWithChildren<{}>>;
 };
 
 export const NavBarElement = ({
