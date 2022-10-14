@@ -17,11 +17,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import styled from '@emotion/styled';
+import { styled } from 'src/ThemeProvider';
 import { withProps } from 'recompose';
 
-import Typography from '../Typography';
+import { Typography } from 'src/Typography';
 
 const MenuItemTypography: typeof Typography = withProps(() => ({
   variant: 'navigation',
@@ -32,14 +31,11 @@ export const MenuItemContent = styled(MenuItemTypography)`
   text-align: center;
   text-decoration: none;
 `;
-export const MenuItemContainer = styled<
-  'div',
-  {
-    active: boolean;
-  }
->('div', {
+export const MenuItemContainer = styled('div', {
   shouldForwardProp: (propName) => propName !== 'active',
-})`
+})<{
+  active: boolean;
+}>`
   position: relative;
   display: flex;
   justify-content: center;

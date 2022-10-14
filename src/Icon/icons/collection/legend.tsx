@@ -17,8 +17,15 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import '@storybook/addon-knobs/register';
-import '@storybook/addon-actions/register';
-import '@storybook/addon-links/register';
-import '@storybook/addon-a11y/register';
-import '@storybook/addon-viewport/register';
+import { css } from '@emotion/react';
+
+export default {
+  title: 'Legend',
+  viewBox: '0 0 12 12',
+  path: `M1.2.6a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4zm0 4a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4zm0 4a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4zm3.349-5.96c-.619 0-1.12-.403-1.12-.9s.501-.9 1.12-.9h6.16c.618 0 1.12.403 1.12.9s-.502.9-1.12.9h-6.16zm6.16 2.16c.619 0 1.12.403 1.12.9s-.5.9-1.12.9H4.55c-.618 0-1.12-.403-1.12-.9 0-.496.501-.9 1.12-.9h6.16zm0 4.08c.619 0 1.12.403 1.12.9 0 .496-.5.9-1.12.9H4.55c-.618 0-1.12-.403-1.12-.9s.501-.9 1.12-.9h6.16z`,
+  css: css`
+    width: 12px;
+    height: 12px;
+  `,
+  defaultFill: '#523785',
+};

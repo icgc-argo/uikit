@@ -19,15 +19,15 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
-import Icon from '../Icon';
-import icgcLogo from '../assets/icgc_logo.svg';
-import css from '@emotion/css';
+import { styled } from 'src/ThemeProvider';
+import { Icon } from 'src/Icon';
+import icgcLogo from 'src/assets/icgc_logo.svg';
+import { css } from '@emotion/react';
 import { Row, Col } from 'react-grid-system';
-import A from '../Link';
+import { Link as A } from 'src/Link';
 
 const Container = styled('footer')`
-  ${({ theme }) => css(theme.typography.paragraph)};
+  ${({ theme }) => css(theme.typography.paragraph as any)};
   font-size: 11px;
   min-height: 58px;
 
@@ -36,7 +36,7 @@ const Container = styled('footer')`
   }
 `;
 
-const Footer = ({
+export const Footer = ({
   version = '[version]',
   apiVersion = null,
   links = [],
@@ -120,5 +120,3 @@ Footer.propTypes = {
   apiVersion: PropTypes.string,
   links: PropTypes.array,
 };
-
-export default Footer;

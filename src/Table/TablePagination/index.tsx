@@ -17,19 +17,18 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import floor from 'lodash/floor';
+import { css } from '@emotion/react';
+import { styled } from 'src/ThemeProvider';
 import ceil from 'lodash/ceil';
+import floor from 'lodash/floor';
 import range from 'lodash/range';
-import css from '@emotion/css';
-import styled from '@emotion/styled';
-
-import Typography from '../../Typography';
-import useTheme from '../../utils/useTheme';
-import Select from '../../form/Select';
-import { POPUP_POSITIONS } from '../../form/Select/styledComponents';
-import Icon from '../../Icon';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Select } from 'src/form/Select';
+import { POPUP_POSITIONS } from 'src/form/Select/styledComponents';
+import { Icon } from 'src/Icon';
+import { Typography } from 'src/Typography';
+import useTheme from 'src/utils/useTheme';
 
 export const TableActionBar = (props) => {
   const { variant = 'label', color = 'grey', component = 'div' } = props;
@@ -82,7 +81,7 @@ const DoubleArrow: React.ComponentType<{ transform?: string }> = ({ transform })
 );
 
 const A = styled('a')`
-  ${({ theme }) => css(theme.typography.data)};
+  ${({ theme }) => theme.typography.data as any};
   background-color: #fff;
   border-radius: 50%;
   cursor: pointer;
@@ -123,7 +122,7 @@ function getPagesAround(p, num, pages) {
   return range(l, r);
 }
 
-function TablePagination(props) {
+export function TablePagination(props) {
   // page is zero indexed!
   const { pages, page, showPageSizeOptions, pageSizeOptions, pageSize, onPageSizeChange } = props;
 
@@ -238,5 +237,3 @@ TablePagination.propTypes = {
   onPageSizeChange: PropTypes.func,
   onPageChange: PropTypes.func,
 };
-
-export default TablePagination;

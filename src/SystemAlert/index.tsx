@@ -1,12 +1,11 @@
+import { css } from '@emotion/react';
 import React from 'react';
-import { css } from '@emotion/core';
-
-import { ThemeColorNames } from '../theme/types';
-import Typography from 'src/Typography';
-import Icon from 'src/Icon';
+import { Icon } from 'src/Icon';
 import { UikitIconNames } from 'src/Icon/icons';
+import { Link } from 'src/Link';
 import { useTheme } from 'src/ThemeProvider';
-import Link from 'src/Link';
+import { Typography } from 'src/Typography';
+import { ThemeColorNames } from 'src/theme/types';
 
 type AlertLevel = 'error' | 'warning' | 'info';
 
@@ -76,7 +75,7 @@ const parseMessage = (message: string, linkColor: string) => {
   });
 };
 
-const SystemAlert: React.ComponentType<AlertProps> = ({ alert, onClose }) => {
+export const SystemAlert: React.ComponentType<AlertProps> = ({ alert, onClose }) => {
   const theme = useTheme();
   const icon = ALERT_VARIANTS[alert.level].icon;
   const fill = ALERT_VARIANTS[alert.level].fill;
@@ -151,5 +150,3 @@ const SystemAlert: React.ComponentType<AlertProps> = ({ alert, onClose }) => {
     </div>
   );
 };
-
-export default SystemAlert;

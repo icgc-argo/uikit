@@ -17,14 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { css } from '@emotion/react';
 import React from 'react';
-import { MenuItem } from '../SubMenu';
+import { OptionsList, OptionsListFilterOption } from 'src/OptionsList';
+import { MenuItem } from 'src/SubMenu';
 
-import { css } from '@emotion/core';
-
-import OptionsList, { FilterOption } from 'src/OptionsList';
-
-const Facet = ({
+export const Facet = ({
   subMenuName,
   options,
   isExpanded,
@@ -35,7 +33,7 @@ const Facet = ({
   parseDisplayValue,
 }: {
   subMenuName: string;
-  options: Array<FilterOption>;
+  options: Array<OptionsListFilterOption>;
   isExpanded?: boolean;
   onClick?: (e: any) => void;
   countUnit?: string;
@@ -55,7 +53,10 @@ const Facet = ({
         chevronOnLeftSide={true}
         isFacetVariant={true}
         searchBar={true}
-        searchStateParams={{ query: searchQueryState, querySetter: setSearchQueryState }}
+        searchStateParams={{
+          query: searchQueryState,
+          querySetter: setSearchQueryState,
+        }}
         css={css`
           width: 100%;
         `}
@@ -72,5 +73,3 @@ const Facet = ({
     </>
   );
 };
-
-export default Facet;

@@ -18,17 +18,17 @@
  */
 
 import React from 'react';
-import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import { styled } from 'src/ThemeProvider';
 import isPropValid from '@emotion/is-prop-valid';
 
 import color from 'color';
-import useTheme from '../utils/useTheme';
-import DnaLoader from '../DnaLoader';
+import useTheme from 'src/utils/useTheme';
+import { DnaLoader } from 'src/DnaLoader';
 
-const ContainerBackground = styled<'div', { loading?: boolean }>('div', {
+const ContainerBackground = styled('div', {
   shouldForwardProp: (prop) => isPropValid(prop) && prop !== 'loading',
-})`
+})<{ loading?: boolean }>`
   border-radius: 8px;
   position: relative;
   overflow: ${(props) => (props.loading ? 'hidden' : 'visible')};
@@ -57,7 +57,7 @@ const LoadingOverlay = () => {
   );
 };
 
-const Container: React.ComponentType<
+export const Container: React.ComponentType<
   {
     loading?: boolean;
   } & Partial<React.ComponentProps<typeof ContainerBackground>>
@@ -67,5 +67,3 @@ const Container: React.ComponentType<
     {loading && <LoadingOverlay />}
   </ContainerBackground>
 );
-
-export default Container;

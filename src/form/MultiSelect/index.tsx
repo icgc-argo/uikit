@@ -17,30 +17,28 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { InputHTMLAttributes, useEffect } from 'react';
-import styled from '@emotion/styled';
-
-import isEmpty from 'lodash/isEmpty';
-import isEqual from 'lodash/isEqual';
-import toLower from 'lodash/toLower';
-import uniq from 'lodash/uniq';
-import initial from 'lodash/initial';
-import without from 'lodash/without';
-import includes from 'lodash/includes';
-import map from 'lodash/map';
+import { css } from '@emotion/react';
+import { styled } from 'src/ThemeProvider';
+import clsx from 'clsx';
 import compact from 'lodash/compact';
 import find from 'lodash/find';
+import includes from 'lodash/includes';
+import initial from 'lodash/initial';
+import isEmpty from 'lodash/isEmpty';
+import isEqual from 'lodash/isEqual';
+import map from 'lodash/map';
+import toLower from 'lodash/toLower';
+import uniq from 'lodash/uniq';
+import without from 'lodash/without';
+import React, { InputHTMLAttributes, useEffect } from 'react';
+import { Icon } from 'src/Icon';
+import { Tag } from 'src/Tag';
+import useTheme from 'src/utils/useTheme';
+import { InputSize, INPUT_SIZES, INPUT_STATES, StyledInputWrapper } from 'src/form/common';
+import { FormControlContext } from 'src/form/FormControl/FormControlContext';
+import { Option } from './Option';
 
-import Icon from '../../Icon';
-import Option from './Option';
-import css from '@emotion/css';
-import Tag from '../../Tag';
-import useTheme from '../../utils/useTheme';
-import clsx from 'clsx';
-import FormControlContext from '../FormControl/FormControlContext';
-import { StyledInputWrapper, INPUT_SIZES, INPUT_STATES, InputSize } from '../common';
-
-const Container = styled<'div', { focus: boolean }>('div')`
+const Container = styled('div')<{ focus: boolean }>`
   position: relative;
   transform: scale(1); /* this creates a stacking context so z-index is local */
   ${({ focus }) =>
@@ -50,7 +48,7 @@ const Container = styled<'div', { focus: boolean }>('div')`
     `}
 `;
 
-const OptionsWrapper = styled<'div', { focused: boolean }>('div')`
+const OptionsWrapper = styled('div')<{ focused: boolean }>`
   box-sizing: border-box;
   position: absolute;
   width: 100%;
@@ -101,8 +99,8 @@ const InputBox = styled(StyledInputWrapper)`
   padding: 2px;
 `;
 
-const Input = styled<'input', { autoComplete: string; single?: boolean }>('input')`
-  ${({ theme }) => css(theme.typography.default)};
+const Input = styled('input')<{ autoComplete: string; single?: boolean }>`
+  ${({ theme }) => css(theme.typography.default as any)};
   background-color: transparent;
   border: none;
   display: block;
@@ -115,7 +113,7 @@ const Input = styled<'input', { autoComplete: string; single?: boolean }>('input
 `;
 
 const PlaceHolder = styled('span')`
-  ${({ theme }) => css(theme.typography.data)};
+  ${({ theme }) => css(theme.typography.data as any)};
   color: ${({ theme }) => theme.multiSelect.placeHolderColor};
   position: absolute;
   pointer-events: none;
@@ -149,7 +147,7 @@ const SectionTitle = styled('li')`
   color: ${({ theme }) => theme.colors.grey};
 `;
 
-function Highlight({ string, searchText }) {
+export function Highlight({ string, searchText }) {
   if (isEmpty(searchText)) {
     return <>{string}</>;
   }
@@ -256,7 +254,7 @@ type MultiSelectProps = {
   value: any;
 };
 
-const MultiSelect = ({
+export const MultiSelect = ({
   'aria-label': ariaLabel = 'search',
   allowNew = false,
   children,
@@ -502,6 +500,4 @@ const MultiSelect = ({
   );
 };
 
-export default MultiSelect;
-
-export { Option };
+export { Option } from './Option';

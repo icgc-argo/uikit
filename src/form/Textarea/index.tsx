@@ -17,18 +17,17 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { useState, useContext, TextareaHTMLAttributes, useCallback, useEffect } from 'react';
-import css from '@emotion/css';
+import { css } from '@emotion/react';
 import clsx from 'clsx';
+import React, { TextareaHTMLAttributes, useCallback, useContext, useEffect, useState } from 'react';
 import { useTheme } from 'src/ThemeProvider';
-import Typography from 'src/Typography';
-
-import FormControlContext from '../FormControl/FormControlContext';
-import { CountLabels, CountPositions, TextareaProps } from './types';
+import { Typography } from 'src/Typography';
+import { FormControlContext } from 'src/form/FormControl/FormControlContext';
+import { CountLabels, TextareaProps } from './types';
 
 const LINE_JUMP_PLACEHOLDER = ' øö ';
 
-const Textarea = ({
+export const Textarea = ({
   className,
   countDirection = 'asc',
   countLimit = 0,
@@ -65,10 +64,10 @@ const Textarea = ({
     props.onFocus?.(event);
   };
 
-  const getCount = useCallback((newCount) => (isAscending ? newCount : countLimit - newCount), [
-    countLimit,
-    isAscending,
-  ]);
+  const getCount = useCallback(
+    (newCount) => (isAscending ? newCount : countLimit - newCount),
+    [countLimit, isAscending],
+  );
 
   const applyChanges = useCallback(
     (targetValue) => {
@@ -212,5 +211,3 @@ const Textarea = ({
 };
 
 Textarea.displayName = 'Textarea';
-
-export default Textarea;

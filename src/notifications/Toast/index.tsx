@@ -17,14 +17,15 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
 import omit from 'lodash/omit';
-import css from '@emotion/css';
+import React from 'react';
+import {
+  Notification,
+  NOTIFICATION_INTERACTION,
+  NOTIFICATION_VARIANTS,
+} from 'src/notifications/Notification';
 
-import Notification, { NOTIFICATION_VARIANTS, NOTIFICATION_INTERACTION } from '../Notification';
-
-function Toast({
+export function Toast({
   variant,
   title,
   content,
@@ -54,5 +55,3 @@ Toast.propTypes = omit(Notification.propTypes, [
   'dismissText',
   'noShadow',
 ]);
-
-export default Toast;

@@ -17,12 +17,11 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import * as React from 'react';
-import styled from '@emotion/styled';
+import { styled } from 'src/ThemeProvider';
 import memoize from 'lodash/memoize';
-
-import defaultTheme from '../theme/defaultTheme';
-import { useTheme } from '../ThemeProvider';
+import * as React from 'react';
+import defaultTheme from 'src/theme/defaultTheme';
+import { useTheme } from 'src/ThemeProvider';
 
 const defaultTags = {
   hero: 'h1',
@@ -51,14 +50,14 @@ const createDomComponent = memoize(
 );
 
 const createStyledDomComponent = memoize(
-  (Component) => styled<'div', { bold?: boolean; color?: string }>(Component)`
+  (Component) => styled(Component)<{ bold?: boolean; color?: string }>`
     font-weight: ${({ bold }) => (bold ? `bold` : `normal`)};
     color: ${({ theme, color }) => (color ? theme.colors[color] || color : 'inherit')};
   `,
 );
 
 export type TypographyVariant = keyof typeof defaultTheme.typography;
-const Typography: React.ComponentType<
+export const Typography: React.ComponentType<
   {
     /**
      * a typography as defined in theme.typography
@@ -86,5 +85,3 @@ const Typography: React.ComponentType<
   const StyledText = createStyledDomComponent(Component);
   return <StyledText {...rest} bold={bold} color={color} />;
 };
-
-export default Typography;

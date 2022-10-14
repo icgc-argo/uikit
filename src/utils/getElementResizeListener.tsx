@@ -20,7 +20,7 @@
 import elementResizeDetectorMaker from 'element-resize-detector';
 import memoize from 'lodash/memoize';
 
-export default memoize(
+export const getElementResizeListener = memoize(
   elementResizeDetectorMaker as () => {
     listenTo: <T extends HTMLElement>(el: T, cb: (el?: T) => void) => void;
     removeListener: <T extends HTMLElement>(el: T, cb: (el?: T) => void) => void;

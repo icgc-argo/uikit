@@ -18,7 +18,6 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 
 /*
  * Please edit me!
@@ -44,6 +43,9 @@ const Hook: React.ComponentType<{
   watch = (state: any) => [],
 }) => {
   const [state, setState] = React.useState(initialState);
+
+  // @ts-ignore
+  // only used in storybook for "utility component for building stories and creating quick state hooks."
   React.useEffect(effect, watch(state));
   return render([state, setState]);
 };

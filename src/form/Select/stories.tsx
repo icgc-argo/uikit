@@ -17,12 +17,11 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { text, boolean, radios } from '@storybook/addon-knobs';
-
-import Select from '.';
+import { boolean, radios, text } from '@storybook/addon-knobs';
+import { storiesOf } from '@storybook/react';
+import React from 'react';
+import { Select } from '.';
 
 const createKnobs = () => {
   const error = boolean('error', false);
@@ -49,7 +48,7 @@ const createKnobs = () => {
   };
 };
 
-const InputStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`form/Select`, module).add('Basic', () => {
   const knobs = createKnobs();
   const [value, setValue] = React.useState('');
   const [valueTwo, setValueTwo] = React.useState('');
@@ -91,5 +90,3 @@ const InputStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
     </div>
   );
 });
-
-export default InputStories;

@@ -19,8 +19,8 @@
 
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import Tabs, { Tab } from '.';
-import Typography from '../Typography';
+import { Tabs, Tab } from '.';
+import { Typography } from '../Typography';
 import { action } from '@storybook/addon-actions';
 
 function TabContainer(props) {
@@ -50,13 +50,23 @@ const SimpleTabs = React.forwardRef(() => {
           <button>Child of empty tab</button>
         </Tab>
       </Tabs>
-      {value === 0 && <TabContainer>Item One</TabContainer>}
-      {value === 1 && <TabContainer>Item Two</TabContainer>}
-      {value === 2 && <TabContainer>Item Three</TabContainer>}
+      {value === 0 && (
+        <Typography component="div" style={{ padding: 8 * 3 }}>
+          Item One
+        </Typography>
+      )}
+      {value === 1 && (
+        <Typography component="div" style={{ padding: 8 * 3 }}>
+          Item Two
+        </Typography>
+      )}
+      {value === 2 && (
+        <Typography component="div" style={{ padding: 8 * 3 }}>
+          Item Three
+        </Typography>
+      )}
     </div>
   );
 });
 
-const TabsStories = storiesOf(`${__dirname}`, module).add('Basic', () => <SimpleTabs />);
-
-export default TabsStories;
+storiesOf(`Tabs`, module).add('Basic', () => <SimpleTabs />);

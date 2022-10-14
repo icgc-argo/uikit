@@ -17,13 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { css } from '@emotion/react';
 import React from 'react';
-import { css } from '@emotion/core';
-
+import { Icon } from 'src/Icon';
 import { ThemeColorNames } from 'src/theme/types';
-import Icon from 'src/Icon';
-import Tooltip, { TooltipProps } from 'src/Tooltip';
 import { useTheme } from 'src/ThemeProvider';
+import { Tooltip, TooltipProps } from 'src/Tooltip';
 
 // dims corresponding hex code for a 25% dim
 const dimColour = (hex: string) => `${hex}BF`;
@@ -33,7 +32,8 @@ type InteractiveIconProps = React.ComponentProps<typeof Icon> &
     disabled?: boolean;
     hoverFill?: keyof ThemeColorNames | string;
   };
-const InteractiveIcon = ({
+
+export const InteractiveIcon = ({
   disabled,
   onClick,
   name,
@@ -45,7 +45,7 @@ const InteractiveIcon = ({
   hoverFill,
   outline,
   ...props
-}: InteractiveIconProps) => {
+}: any) => {
   const [hovered, setHovered] = React.useState(false);
   const theme = useTheme();
 
@@ -72,6 +72,7 @@ const InteractiveIcon = ({
     </Tooltip>
   );
 };
-InteractiveIcon.propTypes = Icon.propTypes;
+
+//InteractiveIcon.propTypes = Icon.propTypes;
 
 export default InteractiveIcon;

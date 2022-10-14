@@ -17,13 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/core';
-
-import Table from 'src/Table';
+import { css } from '@emotion/react';
+import { Table } from 'src/Table';
 
 type MappedTableData = Array<{ key: string; val: any }>;
 
-export default ({ data }) => {
+export const SimpleTable = ({ data }) => {
   const tableData: MappedTableData = Object.keys(data).map((k) => ({ key: k, val: data[k] }));
 
   return (

@@ -17,19 +17,16 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/core';
-import styled from '@emotion/styled';
-import FocusWrapper from 'src/FocusWrapper';
+import { css } from '@emotion/react';
+import { styled } from 'src/ThemeProvider';
+import { FocusWrapper } from 'src/FocusWrapper';
 
-const StyledButton = styled<
-  typeof FocusWrapper,
-  {
-    size: 'sm' | 'md';
-    variant: 'primary' | 'secondary' | 'text';
-    disabled: boolean;
-  }
->(FocusWrapper)`
-  ${({ theme }) => css(theme.typography.default)};
+export const StyledButton = styled(FocusWrapper)<{
+  size: 'sm' | 'md';
+  variant: 'primary' | 'secondary' | 'text';
+  disabled: boolean;
+}>`
+  ${({ theme }) => css(theme.typography.default as any)};
   transition: all 0.25s;
   display: flex;
   align-items: center;
@@ -69,4 +66,3 @@ const StyledButton = styled<
     color: ${({ theme, variant }) => theme.button.textColors[variant].disabled};
   }
 `;
-export default StyledButton;

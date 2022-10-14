@@ -17,11 +17,11 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { css } from '@emotion/react';
 import React from 'react';
-import css from '@emotion/css';
-import ContentPlaceholder from 'src/ContentPlaceholder';
+import { ContentPlaceholder } from 'src/ContentPlaceholder';
 
-export default function ContentPlaceholderComponent(props) {
+export function NoDataComponent(props) {
   return (
     <div
       css={css`

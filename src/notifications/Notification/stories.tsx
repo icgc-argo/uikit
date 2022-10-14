@@ -19,16 +19,16 @@
 
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import Notification, {
+import {
+  Notification,
   NOTIFICATION_VARIANTS,
-  NOTIFICATION_INTERACTION_EVENTS,
   NOTIFICATION_INTERACTION,
   NOTIFICATION_SIZES,
 } from '.';
 import { action } from '@storybook/addon-actions';
 import { select, text, boolean } from '@storybook/addon-knobs';
 
-const NotificationStories = storiesOf(`${__dirname}`, module).add('Basic', () => {
+storiesOf(`Notification`, module).add('Basic', () => {
   const variant = select(
     'variant',
     [undefined, ...Object.values(NOTIFICATION_VARIANTS)],
@@ -76,5 +76,3 @@ const NotificationStories = storiesOf(`${__dirname}`, module).add('Basic', () =>
     </>
   );
 });
-
-export default NotificationStories;

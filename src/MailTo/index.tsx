@@ -18,18 +18,16 @@
  */
 
 import React from 'react';
-import Typography from '../Typography';
-import { styled } from '..';
+import { styled } from 'src/ThemeProvider';
+import { Typography } from 'src/Typography';
 
 const Mail = styled('a')`
   color: ${({ theme }) => theme.colors.black};
   text-decoration: none;
 `;
 
-const MailTo = ({ children, link }) => (
+export const MailTo = ({ children, link }) => (
   <Typography variant="data">
     <Mail href={`mailto:${link}`}>{children}</Mail>
   </Typography>
 );
-
-export default MailTo;

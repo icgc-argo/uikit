@@ -17,14 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { css } from '@emotion/react';
+import { styled } from 'src/ThemeProvider';
 import React from 'react';
-import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
-import Button from '../index';
-import Icon from '../../Icon';
-import css from '@emotion/css';
-import useTheme from '../../utils/useTheme';
 import urlJoin from 'url-join';
+import { Icon } from 'src/Icon';
+import useTheme from 'src/utils/useTheme';
+import { Button } from 'src/Button';
 
 /**
  * Social login for Google
@@ -35,7 +34,7 @@ const StyledLink = styled('a')`
   display: inline-block;
 `;
 
-const GoogleLogin: React.ComponentType<{
+export const GoogleLogin: React.ComponentType<{
   id?: string;
   link: string;
   className?: string;
@@ -67,5 +66,3 @@ const GoogleLogin: React.ComponentType<{
     </StyledLink>
   );
 };
-
-export default GoogleLogin;

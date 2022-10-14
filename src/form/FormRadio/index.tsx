@@ -17,17 +17,16 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { css } from '@emotion/react';
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
-import { RadioCheckboxWrapper, StyledGroup } from '../common';
-import Radio from '../Radio';
-import css from '@emotion/css';
-import RadioCheckContext from '../RadioCheckboxGroup/RadioCheckContext';
+import { RadioCheckboxWrapper } from 'src/form/common';
+import { Radio } from 'src/form/Radio';
+import { RadioCheckContext } from 'src/form/RadioCheckboxGroup/RadioCheckContext';
 
 /**
  * FormRadio to be used with RadioCheckboxGroup
  */
-const FormRadio: React.ComponentType<{
+export const FormRadio: React.ComponentType<{
   id?: string;
   name?: string;
   value?: any;
@@ -62,5 +61,3 @@ const FormRadio: React.ComponentType<{
     </RadioCheckboxWrapper>
   );
 };
-
-export default FormRadio;

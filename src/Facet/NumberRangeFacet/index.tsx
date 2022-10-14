@@ -17,13 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { css } from '@emotion/react';
 import React from 'react';
-import { MenuItem } from '../../SubMenu';
+import { NumberRangeField } from 'src/NumberRangeField';
+import { MenuItem } from 'src/SubMenu';
 
-import { css } from '@emotion/core';
-import NumberRangeField from 'src/NumberRangeField';
-
-const NumberRangeFacet = ({
+export const NumberRangeFacet = ({
   subMenuName,
   isExpanded,
   onClick,
@@ -109,5 +108,3 @@ const NumberRangeFacet = ({
     </MenuItem>
   );
 };
-
-export default NumberRangeFacet;

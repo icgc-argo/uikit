@@ -17,14 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
-import styled from '@emotion/styled';
-import css from '@emotion/css';
+import { css } from '@emotion/react';
+import { styled } from 'src/ThemeProvider';
 import defaultTheme from 'src/theme/defaultTheme';
-import {
-  CreateStyledComponentExtrinsic,
-  CreateStyledComponentIntrinsic,
-} from '@emotion/styled/types';
 
 type StyleCalculationInput = {
   selected?: boolean;
@@ -61,6 +56,7 @@ const level1Style = ({ selected, theme }: StyleCalculationInput) => css`
   ${defaultLabelStyle({ theme, selected })}
   background: ${theme.colors.white};
   animation: all 1s;
+  width: 100%;
   & > .MenuItemContent {
     padding: 12px;
   }
@@ -70,11 +66,11 @@ const level1Style = ({ selected, theme }: StyleCalculationInput) => css`
   & > .FacetContentSlim .MenuItemContent {
     padding: 6px;
     border-bottom: 1px solid;
-        border-color: ${theme.colors.grey_2};
+    border-color: ${theme.colors.grey_2};
   }
   & a {
     text-decoration: underline;
-    font-weight:normal;
+    font-weight: normal;
   }
 `;
 
@@ -91,7 +87,7 @@ const level2Style = ({ selected, theme }: StyleCalculationInput) => css`
     padding-right: 18px;
     padding-top: 10px;
     padding-bottom: 10px;
-    & > ${ContentContainer} {
+    & > ContentContainer! {
       line-height: 20px;
     }
   }
@@ -122,7 +118,7 @@ const defaultStyle = (props: StyleCalculationInput) => css`
   }
 `;
 
-export const MenuItemContainer = styled<'div', { level?: 1 | 2 | 3; selected?: boolean }>('div')`
+export const MenuItemContainer = styled('div')<{ level?: 1 | 2 | 3; selected?: boolean }>`
   & a {
     text-decoration: none;
   }
@@ -144,7 +140,7 @@ export const IconContainer = styled('span')`
 `;
 
 export const ContentContainer = styled('button')<{ as?: keyof JSX.IntrinsicElements }>`
-  ${({ theme }) => css(theme.typography.default)};
+  ${({ theme }) => css(theme.typography.default as any)};
   border: none;
   width: 100%;
   padding: 0px 2px 0px 0px;

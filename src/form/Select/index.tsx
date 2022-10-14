@@ -17,22 +17,26 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React, { useState, useEffect, useContext } from 'react';
-import { css } from '@emotion/core';
-
-import { StyledInputWrapper, INPUT_SIZES, InputSize, StyledInputWrapperProps } from '../common';
-import Typography from '../../Typography';
+import { css } from '@emotion/react';
+import React, { useContext, useEffect, useState } from 'react';
+import { Tooltip } from 'src/Tooltip';
+import { Typography } from 'src/Typography';
+import useTheme from 'src/utils/useTheme';
+import {
+  InputSize,
+  INPUT_SIZES,
+  StyledInputWrapper,
+  StyledInputWrapperProps,
+} from 'src/form/common';
+import { FormControlContext } from 'src/form/FormControl/FormControlContext';
 import {
   DropdownIcon,
-  OptionsList,
-  Option,
   HiddenSelect,
-  POPUP_POSITIONS,
+  Option,
+  OptionsList,
   PopupPosition,
+  POPUP_POSITIONS,
 } from './styledComponents';
-import useTheme from '../../utils/useTheme';
-import Tooltip from 'src/Tooltip';
-import FormControlContext from '../FormControl/FormControlContext';
 
 type OptionsType = {
   content: any;
@@ -40,7 +44,7 @@ type OptionsType = {
   value: any;
 };
 
-const Select: React.ComponentType<{
+export const Select: React.ComponentType<{
   ['aria-label']: string;
   options?: OptionsType[];
   size?: InputSize;
@@ -72,8 +76,12 @@ const Select: React.ComponentType<{
   const [selectedValue, setSelectedValue] = useState(value);
   const [isExpanded, setExpanded] = useState(false);
 
-  const { disabled: calcDisabled, error: calcError, handleBlur, handleFocus } =
-    useContext(FormControlContext) || {};
+  const {
+    disabled: calcDisabled,
+    error: calcError,
+    handleBlur,
+    handleFocus,
+  } = useContext(FormControlContext) || {};
 
   const onBlur = (event) => {
     handleBlur?.();
@@ -237,5 +245,3 @@ const Select: React.ComponentType<{
     </div>
   );
 };
-
-export default Select;

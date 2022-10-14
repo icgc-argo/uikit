@@ -17,18 +17,17 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { css } from '@emotion/react';
 import React, { ReactNode, useContext, useRef, useState } from 'react';
-import { css } from '@emotion/core';
+import { Theme } from 'src/ThemeProvider';
+import { Icon } from 'src/Icon';
+import { useTheme } from 'src/ThemeProvider';
+import { Checkbox } from 'src/form/Checkbox';
+import { RadioCheckboxWrapper } from 'src/form/common';
+import { FormControlContext } from 'src/form/FormControl/FormControlContext';
+import { RadioCheckContext } from 'src/form/RadioCheckboxGroup/RadioCheckContext';
 
-import { UikitTheme } from '../..';
-import Icon from '../../Icon';
-import { useTheme } from '../../ThemeProvider';
-import Checkbox from '../Checkbox';
-import { RadioCheckboxWrapper } from '../common';
-import FormControlContext from '../FormControl/FormControlContext';
-import RadioCheckContext from '../RadioCheckboxGroup/RadioCheckContext';
-
-const FormCheckbox = ({
+export const FormCheckbox = ({
   checked,
   children,
   value,
@@ -45,7 +44,7 @@ const FormCheckbox = ({
   value?: string;
 }) => {
   const [isFocused, setIsFocused] = useState(false);
-  const theme: UikitTheme = useTheme();
+  const theme: Theme = useTheme();
   const checkboxRef = useRef<HTMLInputElement>();
   const hiddenCheckboxRef = useRef<HTMLInputElement>();
   const { onChange = props.onChange, isChecked } = useContext(RadioCheckContext);
@@ -127,5 +126,3 @@ const FormCheckbox = ({
     </RadioCheckboxWrapper>
   );
 };
-
-export default FormCheckbox;

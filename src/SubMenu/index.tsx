@@ -17,13 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { CssInterpolation, styled } from 'src/ThemeProvider';
 import React from 'react';
-import styled from '@emotion/styled';
-import css from '@emotion/css';
-import Icon from '../Icon';
-import Input from '../form/Input';
-import useTheme from '../utils/useTheme';
-import { MenuItemContainer, IconContainer, ContentContainer } from './styledComponents';
+import { Input } from 'src/form/Input';
+import { Icon } from 'src/Icon';
+import useTheme from 'src/utils/useTheme';
+import { ContentContainer, IconContainer, MenuItemContainer } from './styledComponents';
+import { css, Interpolation, Theme } from '@emotion/react';
 
 const MenuItemComponent = React.forwardRef<
   HTMLDivElement,
@@ -56,7 +56,7 @@ const MenuItemComponent = React.forwardRef<
       querySetter: React.Dispatch<React.SetStateAction<string>>;
     };
     RightSideComp?: React.ReactNode;
-  } & React.ComponentProps<typeof MenuItemContainer>
+  } & React.ComponentProps<typeof MenuItemContainer> & { css?: CssInterpolation }
 >(
   (
     {
@@ -190,7 +190,7 @@ const MenuItemComponent = React.forwardRef<
 
 const SubMenuComponent = styled('div')`
   background: ${({ theme }) => theme.colors.white};
-  & > ${MenuItemContainer} {
+  & > MenuItemContainer! {
     border-bottom: solid 1px ${({ theme }) => theme.colors.grey_2};
   }
 `;
@@ -204,5 +204,3 @@ export const SubMenu: typeof SubMenuComponent & {
   output.Item = MenuItem;
   return output;
 })();
-
-export default SubMenu;

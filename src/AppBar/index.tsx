@@ -17,14 +17,14 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import PropTypes from 'prop-types';
-import React from 'react';
-import logo from '../assets/logo_white.svg';
-import Typography from '../Typography';
-import useTheme from '../utils/useTheme';
-import useClickAway from '../utils/useClickAway';
-
+import React, { PropsWithChildren } from 'react';
+import logo from 'src/assets/logo_white.svg';
+import { Typography } from 'src/Typography';
+import { useClickAway } from 'src/utils/useClickAway';
+import useTheme from 'src/utils/useTheme';
+import { DropdownMenuItem } from './DropdownMenu';
 import {
   AppBarContainer,
   LogoContainer,
@@ -35,7 +35,6 @@ import {
   SectionDisplay,
   UserBadgeContainer,
 } from './styledComponents';
-import { DropdownMenuItem } from './DropdownMenu';
 
 export const UserBadge = ({
   firstName = '',
@@ -113,7 +112,7 @@ export const Section = (props) => <SectionDisplay {...props} />;
 
 export const MenuGroup = (props) => <MenuGroupDisplay {...props} />;
 
-export const MenuItem = React.forwardRef<
+export const AppBarMenuItem = React.forwardRef<
   HTMLDivElement,
   {
     active?: boolean;
@@ -153,11 +152,9 @@ export const MenuItem = React.forwardRef<
   },
 );
 
-const AppBar = AppBarContainer;
+export const AppBar = AppBarContainer;
 
 AppBar.propTypes = {};
-
-export default AppBar;
 
 export { DropdownMenu, DropdownMenuItem } from './DropdownMenu';
 
@@ -170,7 +167,7 @@ export type NavElement = {
   shouldRender?: boolean;
   onClick?: () => any;
   isDropdown?: boolean;
-  LinkComp: React.ComponentType;
+  LinkComp: React.ComponentType<PropsWithChildren<{}>>;
 };
 
 export const NavBarElement = ({
@@ -188,9 +185,9 @@ export const NavBarElement = ({
       {name}
     </DropdownMenuItem>
   ) : (
-    <MenuItem ref={React.createRef()} active={active}>
+    <AppBarMenuItem ref={React.createRef()} active={active}>
       <Typography variant={'default'}>{name}</Typography>
-    </MenuItem>
+    </AppBarMenuItem>
   );
 
   return shouldRender ? (

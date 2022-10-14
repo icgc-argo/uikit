@@ -20,7 +20,7 @@
 import React from 'react';
 import { Transition } from 'react-transition-group';
 
-export default function Fade({ in: inProp, duration = 400, children }) {
+export function Fade({ in: inProp, duration = 400, children }) {
   const defaultStyle = {
     transition: `opacity ${duration}ms ease-in-out`,
     opacity: 0,

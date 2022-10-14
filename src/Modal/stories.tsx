@@ -17,17 +17,16 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { action } from '@storybook/addon-actions';
+import { boolean, select, text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import { action } from '@storybook/addon-actions';
-import { text, boolean, select } from '@storybook/addon-knobs';
+import { BUTTON_SIZES } from '../Button/constants';
+import { Icons } from '../Icon/icons';
+import { Modal } from '.';
+import { BUILT_IN_ICON_COLORS, ICON_NAMES } from '../Icon';
 
-import Modal from '.';
-import { ICON_NAMES, BUILT_IN_ICON_COLORS } from '../Icon';
-import Icons from 'src/Icon/icons';
-import { BUTTON_SIZES } from 'src/Button/constants';
-
-const ModalStories = storiesOf(`${__dirname}`, module)
+storiesOf(`Modal`, module)
   .add('Basic', () => {
     const createKnobs = () => {
       const title = text('title', 'Hipster');
@@ -148,5 +147,3 @@ const ModalStories = storiesOf(`${__dirname}`, module)
       </Modal>
     </Modal.Overlay>
   ));
-
-export default ModalStories;

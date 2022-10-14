@@ -17,11 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/core';
-import styled from '@emotion/styled';
-
-import { NOTIFICATION_VARIANTS, NotificationVariant } from '.';
-import FocusWrapper from '../../FocusWrapper';
+import { styled } from 'src/ThemeProvider';
+import { FocusWrapper } from 'src/FocusWrapper';
+import { NotificationVariant, NOTIFICATION_VARIANTS } from './index';
 
 const getBackgroundColor = ({ theme, variant }: { theme?: any; variant: NotificationVariant }) =>
   ({
@@ -30,7 +28,13 @@ const getBackgroundColor = ({ theme, variant }: { theme?: any; variant: Notifica
     [NOTIFICATION_VARIANTS.WARNING]: theme.colors.warning_4,
     [NOTIFICATION_VARIANTS.ERROR]: theme.colors.error_4,
   }[variant]);
-export const getBorderColor = ({ theme, variant }: { theme?: any; variant: NotificationVariant }) =>
+export const getBorderColor = ({
+  theme,
+  variant,
+}: {
+  theme?: any;
+  variant?: NotificationVariant;
+}) =>
   ({
     [NOTIFICATION_VARIANTS.INFO]: theme.colors.secondary_2,
     [NOTIFICATION_VARIANTS.SUCCESS]: theme.colors.success_2,
@@ -58,16 +62,14 @@ export const IconContainer = styled('div')`
   line-height: 0px;
 `;
 
-export const ActionButtonsContainer = styled<'div', { variant?: NotificationVariant }>('div')`
+export const ActionButtonsContainer = styled('div')<{ variant?: NotificationVariant }>`
   min-width: 80px;
   border-left: solid 1px ${getBorderColor};
   display: flex;
   flex-direction: column;
 `;
 
-export const ActionButton = styled<typeof FocusWrapper, { variant?: NotificationVariant }>(
-  FocusWrapper,
-)`
+export const ActionButton = styled(FocusWrapper)<{ variant?: NotificationVariant }>`
   display: flex;
   justify-content: center;
   align-items: center;

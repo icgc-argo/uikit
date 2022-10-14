@@ -17,17 +17,16 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
+import { number, select } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
+import React from 'react';
+import { TitleBorder } from '.';
 import defaultTheme from '../theme/defaultTheme';
-import { select, number } from '@storybook/addon-knobs';
-
-import TitleBorder from '.';
-import Typography from '../Typography';
+import { Typography } from '../Typography';
 
 const themeColors = Object.keys(defaultTheme.colors) as Array<keyof typeof defaultTheme.colors>;
 
-const TitleBorderStories = storiesOf(`${__dirname}`, module)
+storiesOf(`TitleBorder`, module)
   .add('Full width', () => {
     const knobs = {
       color: select('color', themeColors, 'primary', null),
@@ -51,5 +50,3 @@ const TitleBorderStories = storiesOf(`${__dirname}`, module)
       </>
     );
   });
-
-export default TitleBorderStories;

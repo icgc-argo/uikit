@@ -17,12 +17,11 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { css } from '@emotion/react';
 import React from 'react';
-import { css } from '@emotion/core';
+import { FormControlContext } from './FormControlContext';
 
-import FormControlContext from './FormControlContext';
-
-const FormControl = React.forwardRef<
+export const FormControl = React.forwardRef<
   HTMLElement,
   {
     className?: string;
@@ -87,5 +86,3 @@ const FormControl = React.forwardRef<
 });
 
 FormControl.displayName = 'FormControl';
-
-export default FormControl;

@@ -17,12 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { ClassNames } from '@emotion/react';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import Container from '.';
-import { ClassNames } from '@emotion/core';
+import { Container } from '.';
 
-const ContainerStories = storiesOf(`${__dirname}`, module)
+storiesOf(`Container`, module)
   .add(
     'Basic',
     () => (
@@ -41,7 +41,6 @@ const ContainerStories = storiesOf(`${__dirname}`, module)
       info: {},
     },
   )
-
   .add(
     'Loading',
     () => (
@@ -61,5 +60,3 @@ const ContainerStories = storiesOf(`${__dirname}`, module)
       info: {},
     },
   );
-
-export default ContainerStories;

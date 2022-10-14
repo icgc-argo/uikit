@@ -17,16 +17,15 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { css } from '@emotion/react';
 import React from 'react';
-import { css } from '@emotion/core';
+import { Icon } from 'src/Icon';
+import useTheme from 'src/utils/useTheme';
+import { BUTTON_SIZES, BUTTON_VARIANTS } from './constants';
+import { StyledButton } from './styled';
+import { ButtonSize, ButtonVariant } from './types';
 
-import Icon from '../Icon';
-import useTheme from '../utils/useTheme';
-import { BUTTON_VARIANTS, BUTTON_SIZES } from './constants';
-import StyledButton from './styled';
-import { ButtonVariant, ButtonSize } from './types';
-
-const Button = React.forwardRef<
+export const Button = React.forwardRef<
   HTMLButtonElement,
   {
     /**
@@ -45,6 +44,9 @@ const Button = React.forwardRef<
     onBlur?: (
       e: React.SyntheticEvent<HTMLButtonElement>,
     ) => any | ((e: React.SyntheticEvent<HTMLButtonElement>) => Promise<any>);
+    onKeyPress?: React.KeyboardEventHandler<HTMLButtonElement>;
+    onMouseEnter?: () => any;
+    onMouseLeave?: () => any;
     /**
      * Use with async onClick handlers to set loading indicator
      */
@@ -77,6 +79,7 @@ const Button = React.forwardRef<
       isLoading: controlledLoadingState,
       Loader,
       type,
+      ...rest
     },
     ref = React.createRef(),
   ) => {
@@ -108,6 +111,7 @@ const Button = React.forwardRef<
         className={className}
         id={id}
         type={type}
+        {...rest}
       >
         <div
           css={css`
@@ -136,5 +140,3 @@ const DefaultLoader = ({ variant, theme }) => (
     fill={theme.button.textColors[variant].default}
   />
 );
-
-export default Button;

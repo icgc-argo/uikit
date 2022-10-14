@@ -20,23 +20,23 @@
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import * as React from 'react';
+import { TableProps } from 'react-table';
 import selectTable, {
-  SelectInputComponentProps,
   SelectAllInputComponentProps,
+  SelectInputComponentProps,
   SelectTableAdditionalProps,
 } from 'react-table/lib/hoc/selectTable';
-import DnaLoader from '../DnaLoader';
-import Checkbox from '../form/Checkbox';
+import { DnaLoader } from 'src/DnaLoader';
+import { Checkbox } from 'src/form/Checkbox';
+import { useElementDimension } from 'src/utils/Hook/useElementDimension';
+import { NoDataComponent as DefaultNoDataComponent } from './NoDataComponent';
 import { StyledTable, StyledTableProps } from './styledComponent';
-import TablePagination from './TablePagination';
-import DefaultNoDataComponent from './NoDataComponent';
-import { TableProps } from 'react-table';
-import useElementDimension from '../utils/Hook/useElementDimension';
+import { TablePagination } from './TablePagination';
 
-export { default as TablePagination, TableActionBar } from './TablePagination';
+export { TableActionBar, TablePagination } from './TablePagination';
 
 export type TableVariant = 'DEFAULT' | 'STATIC';
-type TableDataBase = {
+export type TableDataBase = {
   [k: string]: any;
 };
 
@@ -84,7 +84,7 @@ export type TableColumnConfig<Data extends TableDataBase> = TableProps<Data>['co
   Cell?: TableProps<Data>['columns'][0]['Cell'] | ((c: { original: Data }) => React.ReactNode);
   style?: React.CSSProperties;
 };
-function Table<Data extends TableDataBase>({
+export function Table<Data extends TableDataBase>({
   variant = 'DEFAULT',
   withRowBorder = variant === 'STATIC',
   withOutsideBorder,
@@ -171,7 +171,6 @@ function Table<Data extends TableDataBase>({
     />
   );
 }
-export default Table;
 
 /**
  * SelectTable provides the row selection capability with the
@@ -181,7 +180,12 @@ const SelectTableCheckbox: React.ComponentType<
   SelectInputComponentProps & SelectAllInputComponentProps
 > = ({ checked, onClick, id }) => (
   // @ts-ignore aria-label not supported by ts
-  <Checkbox value={id} checked={checked} onChange={() => onClick(id)} aria-label="table-select" />
+  <Checkbox
+    value={id}
+    checked={checked}
+    onChange={() => onClick(id, null, null)}
+    aria-label="table-select"
+  />
 );
 
 const TableWithSelect = selectTable(Table);

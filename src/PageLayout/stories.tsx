@@ -19,22 +19,19 @@
 
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import css from '@emotion/css';
-
-import AppBar, { MenuItem } from '../AppBar';
-import Typography from '../Typography';
-import Table from '../Table';
 import {
-  PageContainer,
-  Panel,
-  PageBody,
-  PageContent,
-  ContentHeader,
   ContentBody,
   ContentBox,
+  ContentHeader,
+  PageBody,
+  PageContainer,
+  PageContent,
+  Panel,
 } from '.';
+import { AppBar } from '../AppBar';
+import { Typography } from '../Typography';
 
-const PageLayoutStories = storiesOf(`${__dirname}`, module).add('Basic', () => (
+storiesOf(`PageLayout`, module).add('Basic', () => (
   <PageContainer>
     <AppBar>
       <Typography color="white">AppBar</Typography>
@@ -58,5 +55,3 @@ const PageLayoutStories = storiesOf(`${__dirname}`, module).add('Basic', () => (
     </PageBody>
   </PageContainer>
 ));
-
-export default PageLayoutStories;

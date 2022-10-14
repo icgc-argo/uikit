@@ -17,23 +17,23 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
+import { Interpolation, Theme, css } from '@emotion/react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
-
-import Typography, { TypographyVariant } from '../../Typography';
-import Icon from '../../Icon';
-import FocusWrapper from '../../FocusWrapper';
-import useTheme from '../../utils/useTheme';
-import {
-  NotificationBodyContainer,
-  IconContainer,
-  NotificationContainer,
-  ActionButtonsContainer,
-  ActionButton,
-  getBorderColor,
-} from './styledComponents';
+import React from 'react';
 import { UikitIconNames } from 'src/Icon/icons';
+import { FocusWrapper } from 'src/FocusWrapper';
+import { Icon } from 'src/Icon';
+import { Typography, TypographyVariant } from 'src/Typography';
+import useTheme from 'src/utils/useTheme';
+import {
+  ActionButton,
+  ActionButtonsContainer,
+  getBorderColor,
+  IconContainer,
+  NotificationBodyContainer,
+  NotificationContainer,
+} from './styledComponents';
+import { CssInterpolation } from 'src/ThemeProvider';
 
 export type NotificationVariant = 'INFO' | 'SUCCESS' | 'WARNING' | 'ERROR';
 export type NotificationInteractionEvent = 'CLOSE' | 'ACTION' | 'DISMISS';
@@ -69,7 +69,7 @@ const DefaultIcon = ({ variant, size }) => {
   return <Icon name={name} fill={fill} width={width} height={height} />;
 };
 
-const Notification = ({
+export const Notification = ({
   variant = NOTIFICATION_VARIANTS.INFO,
   size = NOTIFICATION_SIZES.MD,
   interactionType = getDefaultInteractionType(variant),
@@ -99,7 +99,9 @@ const Notification = ({
   icon?: React.ReactNode;
   onInteraction?: ({ type, event }) => void;
   noShadow?: boolean;
-  contentProps?: React.ComponentProps<typeof NotificationBodyContainer>;
+  contentProps?: React.ComponentProps<typeof NotificationBodyContainer> & {
+    css?: CssInterpolation;
+  };
 }) => {
   const theme = useTheme();
   const dispatchEvent = (eventType) => (e) => onInteraction({ type: eventType, event: e });
@@ -231,5 +233,3 @@ Notification.propTypes = {
   size: PropTypes.oneOf([NOTIFICATION_SIZES.MD, NOTIFICATION_SIZES.SM]),
   noShadow: PropTypes.bool,
 };
-
-export default Notification;

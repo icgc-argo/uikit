@@ -18,14 +18,14 @@
  */
 
 import React from 'react';
-import styled from '@emotion/styled';
-import css from '@emotion/css';
+import { styled } from 'src/ThemeProvider';
+import { css } from '@emotion/react';
 import ReactTable from 'react-table';
 
 import reactTableDefaultStyle from './reactTableDefaultStyle';
-import ascending from '../assets/table/ascending.svg';
-import descending from '../assets/table/descending.svg';
-import unsorted from '../assets/table/unsorted.svg';
+import ascending from 'src/assets/table/ascending.svg';
+import descending from 'src/assets/table/descending.svg';
+import unsorted from 'src/assets/table/unsorted.svg';
 
 export type StyledTableProps = {
   withRowBorder?: boolean;
@@ -34,7 +34,7 @@ export type StyledTableProps = {
   cellAlignment?: 'top' | 'center' | 'bottom';
 };
 
-export const StyledTable = styled<typeof ReactTable, StyledTableProps>(ReactTable)`
+export const StyledTable = styled(ReactTable)<StyledTableProps>`
   ${reactTableDefaultStyle}
 
   &.ReactTable .-loading.-active .-loading-inner {
@@ -98,7 +98,7 @@ export const StyledTable = styled<typeof ReactTable, StyledTableProps>(ReactTabl
   }
 
   &.ReactTable .rt-thead.-header .rt-tr .rt-th {
-    ${({ theme }) => css(theme.typography.data)};
+    ${({ theme }) => css(theme.typography.data as any)};
     min-height: 28px;
     line-height: 1.33;
     font-weight: bold;
@@ -110,7 +110,7 @@ export const StyledTable = styled<typeof ReactTable, StyledTableProps>(ReactTabl
   }
 
   &.ReactTable .rt-thead.-headerGroups {
-    ${({ theme }) => css(theme.typography.data)};
+    ${({ theme }) => css(theme.typography.data as any)};
     background: ${({ theme }) => theme.colors.grey_2};
     font-weight: 600;
     font-size: 13px;
@@ -118,7 +118,7 @@ export const StyledTable = styled<typeof ReactTable, StyledTableProps>(ReactTabl
   }
 
   &.ReactTable .rt-tbody .rt-td {
-    ${({ theme }) => css(theme.typography.data)}
+    ${({ theme }) => css(theme.typography.data as any)}
     min-height: 28px;
     line-height: 1.33;
     padding: 2px 8px;

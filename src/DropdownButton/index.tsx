@@ -18,14 +18,13 @@
  */
 
 import * as React from 'react';
-import { css, SerializedStyles } from '@emotion/core';
-
-import Typography from 'src/Typography';
-import Button from 'src/Button';
-import useClickAway from 'src/utils/useClickAway';
+import { css, SerializedStyles } from '@emotion/react';
+import { Typography } from 'src/Typography';
+import { Button } from 'src/Button';
+import { useClickAway } from 'src/utils/useClickAway';
 import { useTheme } from 'src/ThemeProvider';
 
-const MenuItem: typeof Typography = (props) => {
+export const DropdownButtonMenuItem: typeof Typography = (props) => {
   const theme = useTheme();
   return (
     <Typography
@@ -47,38 +46,62 @@ type DropdownButtonItemConfig<ValueType = string> = {
   display: React.ReactNode;
   css?: SerializedStyles;
 };
-export type DownloadButtonProps<ValueType> = {
+
+export interface DownloadButtonProps<ValueType>
+  extends Omit<React.ComponentProps<typeof Button>, 'onClick'> {
   onItemClick: (item: DropdownButtonItemConfig<ValueType>) => void;
+  onClick?: (
+    e: React.SyntheticEvent<HTMLButtonElement, Event>,
+    { toggleMenuOpen }: { toggleMenuOpen: boolean },
+  ) => any;
+  onMouseEnter?: () => any;
+  onMouseLeave?: () => any;
   menuItems: Array<DropdownButtonItemConfig<ValueType>>;
-  menuShown?: boolean;
-};
-function DropdownButton<ValueType = string>({
+  controlledMenuShowState?: boolean;
+  menuStyles?: string;
+  menuItemStyles?: string;
+  value?: ValueType;
+  showLoaderWithChildren?: boolean;
+}
+
+export function DropdownButton<ValueType = string>({
   children,
   onItemClick,
   menuItems,
-  menuShown: controlledMenuShowState,
+  controlledMenuShowState,
   onClick,
+  onKeyPress,
+  menuStyles,
+  menuItemStyles,
   ...rest
-}: DownloadButtonProps<ValueType> & React.ComponentProps<typeof Button>) {
-  const [menuShown, setMenuShown] = React.useState(false);
-  const theme = useTheme();
+}: DownloadButtonProps<ValueType>) {
+  const [menuOpen, setMenuOpen] = React.useState(
+    typeof controlledMenuShowState == 'boolean' ? controlledMenuShowState : false,
+  );
 
+  React.useEffect(() => {
+    if (controlledMenuShowState !== menuOpen) {
+      setMenuOpen(controlledMenuShowState);
+    }
+  }, [controlledMenuShowState && typeof controlledMenuShowState == 'boolean']);
+
+  const theme = useTheme();
   const menuRef = React.createRef<HTMLDivElement>();
   useClickAway({
     domElementRef: menuRef,
-    onClickAway: () => setMenuShown(false),
+    onClickAway: () => setMenuOpen(false),
     onElementClick: () => {
-      setMenuShown(false);
+      setMenuOpen(false);
     },
   });
 
   return (
     <Button
       onClick={(e) => {
-        setMenuShown(true);
         if (onClick) {
-          onClick(e);
+          onClick(e, { toggleMenuOpen: !menuOpen });
         }
+        setMenuOpen(!menuOpen);
       }}
       css={css`
         position: relative;
@@ -86,7 +109,7 @@ function DropdownButton<ValueType = string>({
       {...rest}
     >
       {children}
-      {(menuShown || controlledMenuShowState === true) && ( // explicit check because undefined is falsy
+      {menuOpen && ( // explicit check because undefined is falsy
         <div
           ref={menuRef}
           css={css`
@@ -103,17 +126,23 @@ function DropdownButton<ValueType = string>({
             text-transform: none;
             text-align: left;
             color: ${theme.colors.black};
+            ${menuStyles}
           `}
         >
           {menuItems.map((item) => (
-            <MenuItem key={String(item.value)} onClick={() => onItemClick(item)} {...item}>
+            <DropdownButtonMenuItem
+              key={String(item.value)}
+              onClick={() => (rest.isLoading ? null : onItemClick(item))}
+              css={css`
+                ${menuItemStyles}
+              `}
+              {...item}
+            >
               {item.display}
-            </MenuItem>
+            </DropdownButtonMenuItem>
           ))}
         </div>
       )}
     </Button>
   );
 }
-
-export default DropdownButton;

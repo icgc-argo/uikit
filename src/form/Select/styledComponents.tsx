@@ -18,11 +18,10 @@
  */
 
 import React from 'react';
-import styled from '@emotion/styled';
 import { withProps } from 'recompose';
-
-import Icon from '../../Icon';
-import Typography from '../../Typography';
+import { Icon } from 'src/Icon';
+import { Typography } from 'src/Typography';
+import { styled } from 'src/ThemeProvider';
 
 export type PopupPosition = 'UP' | 'DOWN';
 export const POPUP_POSITIONS = { UP: 'UP' as PopupPosition, DOWN: 'DOWN' as PopupPosition };
@@ -30,7 +29,7 @@ export const POPUP_POSITIONS = { UP: 'UP' as PopupPosition, DOWN: 'DOWN' as Popu
 export const DropdownIcon = withProps(({ disabled, theme }) => ({
   name: 'chevron_down',
   fill: disabled ? theme.colors.grey_disabled : 'black',
-}))(styled<typeof Icon, { disabled?: boolean }>(Icon)`
+}))(styled(Icon)<{ disabled?: boolean }>`
   height: 100%;
   width: 10px;
   padding: 10px;
