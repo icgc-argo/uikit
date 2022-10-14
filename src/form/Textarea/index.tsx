@@ -17,12 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import css from '@emotion/css';
+import { css } from '@emotion/react';
 import clsx from 'clsx';
 import React, { TextareaHTMLAttributes, useCallback, useContext, useEffect, useState } from 'react';
 import { useTheme } from 'src/ThemeProvider';
 import { Typography } from 'src/Typography';
-import { FormControlContext } from '../FormControl/FormControlContext';
+import { FormControlContext } from 'src/form/FormControl/FormControlContext';
 import { CountLabels, TextareaProps } from './types';
 
 const LINE_JUMP_PLACEHOLDER = ' øö ';
@@ -64,10 +64,10 @@ export const Textarea = ({
     props.onFocus?.(event);
   };
 
-  const getCount = useCallback((newCount) => (isAscending ? newCount : countLimit - newCount), [
-    countLimit,
-    isAscending,
-  ]);
+  const getCount = useCallback(
+    (newCount) => (isAscending ? newCount : countLimit - newCount),
+    [countLimit, isAscending],
+  );
 
   const applyChanges = useCallback(
     (targetValue) => {

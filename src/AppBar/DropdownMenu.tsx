@@ -18,9 +18,9 @@
  */
 
 import React, { LiHTMLAttributes } from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import clsx from 'clsx';
-import { styled } from '../ThemeProvider';
+import { styled } from 'src/ThemeProvider';
 
 const Ul = styled('ul')`
   ${({ theme }) => css(theme.typography.paragraph as any)};

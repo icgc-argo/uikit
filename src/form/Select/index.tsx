@@ -17,13 +17,18 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import React, { useContext, useEffect, useState } from 'react';
 import { Tooltip } from 'src/Tooltip';
-import { Typography } from '../../Typography';
-import useTheme from '../../utils/useTheme';
-import { InputSize, INPUT_SIZES, StyledInputWrapper, StyledInputWrapperProps } from '../common';
-import { FormControlContext } from '../FormControl/FormControlContext';
+import { Typography } from 'src/Typography';
+import useTheme from 'src/utils/useTheme';
+import {
+  InputSize,
+  INPUT_SIZES,
+  StyledInputWrapper,
+  StyledInputWrapperProps,
+} from 'src/form/common';
+import { FormControlContext } from 'src/form/FormControl/FormControlContext';
 import {
   DropdownIcon,
   HiddenSelect,
@@ -71,8 +76,12 @@ export const Select: React.ComponentType<{
   const [selectedValue, setSelectedValue] = useState(value);
   const [isExpanded, setExpanded] = useState(false);
 
-  const { disabled: calcDisabled, error: calcError, handleBlur, handleFocus } =
-    useContext(FormControlContext) || {};
+  const {
+    disabled: calcDisabled,
+    error: calcError,
+    handleBlur,
+    handleFocus,
+  } = useContext(FormControlContext) || {};
 
   const onBlur = (event) => {
     handleBlur?.();

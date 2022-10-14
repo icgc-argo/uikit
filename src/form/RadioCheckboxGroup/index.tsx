@@ -18,17 +18,19 @@
  */
 
 import React from 'react';
-import { Typography } from '../../Typography';
+import { Typography } from 'src/Typography';
 import { RadioCheckContext } from './RadioCheckContext';
 
-export const RadioCheckboxGroup: React.ComponentType<{
-  onChange?: (e: any) => void;
-  hasError?: boolean;
-  isChecked?: boolean | ((a: any) => boolean);
-  id?: string;
-  className?: string;
-  disabled?: boolean;
-}> = ({ id, className, onChange, children, hasError, isChecked, disabled }) => {
+export const RadioCheckboxGroup: React.ComponentType<
+  React.PropsWithChildren<{
+    onChange?: (e: any) => void;
+    hasError?: boolean;
+    isChecked?: boolean | ((a: any) => boolean);
+    id?: string;
+    className?: string;
+    disabled?: boolean;
+  }>
+> = ({ id, className, onChange, children, hasError, isChecked, disabled }) => {
   const ERROR_TEXT = 'Please fill out the required field.';
 
   const context = { isChecked, onChange, disabled };

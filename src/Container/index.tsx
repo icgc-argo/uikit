@@ -18,17 +18,17 @@
  */
 
 import React from 'react';
-import { css } from '@emotion/core';
-import { styled } from '../ThemeProvider';
+import { css } from '@emotion/react';
+import { styled } from 'src/ThemeProvider';
 import isPropValid from '@emotion/is-prop-valid';
 
 import color from 'color';
-import useTheme from '../utils/useTheme';
+import useTheme from 'src/utils/useTheme';
 import { DnaLoader } from 'src/DnaLoader';
 
-const ContainerBackground = styled<'div', { loading?: boolean }>('div', {
+const ContainerBackground = styled('div', {
   shouldForwardProp: (prop) => isPropValid(prop) && prop !== 'loading',
-})`
+})<{ loading?: boolean }>`
   border-radius: 8px;
   position: relative;
   overflow: ${(props) => (props.loading ? 'hidden' : 'visible')};

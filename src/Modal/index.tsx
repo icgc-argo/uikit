@@ -17,17 +17,17 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/core';
-import { styled } from '../ThemeProvider';
+import { css } from '@emotion/react';
+import { styled } from 'src/ThemeProvider';
 import Color from 'color';
 import React from 'react';
 import { BUTTON_SIZES, BUTTON_VARIANTS } from 'src/Button/constants';
 import { ButtonSize } from 'src/Button/types';
 import { UikitIconNames } from 'src/Icon/icons';
-import { Button } from '../Button';
-import { FocusWrapper } from '../FocusWrapper';
-import { Icon } from '../Icon';
-import { Typography } from '../Typography';
+import { Button } from 'src/Button';
+import { FocusWrapper } from 'src/FocusWrapper';
+import { Icon } from 'src/Icon';
+import { Typography } from 'src/Typography';
 
 const DefaultFooter = ({
   actionVisible,
@@ -111,24 +111,26 @@ const ModalOverlay = styled('div')`
 /**
  * Can use <Modal.overlay /> for the overlay
  */
-const ModalComponent: React.ComponentType<{
-  title?: React.ReactNode;
-  titleIconConfig?: {
-    name: UikitIconNames;
-    fill?: string;
-  };
-  buttonSize?: ButtonSize;
-  actionButtonText?: React.ReactNode;
-  actionButtonId?: string;
-  actionDisabled?: boolean;
-  actionVisible?: boolean;
-  cancelText?: React.ReactNode;
-  onActionClick?: React.ComponentProps<typeof Button>['onClick'];
-  onCancelClick?: React.ComponentProps<typeof Button>['onClick'];
-  onCloseClick?: React.ComponentProps<typeof FocusWrapper>['onClick'];
-  ContainerEl?: React.ReactType;
-  FooterEl?: React.FC;
-}> = ({
+const ModalComponent: React.ComponentType<
+  React.PropsWithChildren<{
+    title?: React.ReactNode;
+    titleIconConfig?: {
+      name: UikitIconNames;
+      fill?: string;
+    };
+    buttonSize?: ButtonSize;
+    actionButtonText?: React.ReactNode;
+    actionButtonId?: string;
+    actionDisabled?: boolean;
+    actionVisible?: boolean;
+    cancelText?: React.ReactNode;
+    onActionClick?: React.ComponentProps<typeof Button>['onClick'];
+    onCancelClick?: React.ComponentProps<typeof Button>['onClick'];
+    onCloseClick?: React.ComponentProps<typeof FocusWrapper>['onClick'];
+    ContainerEl?: React.ComponentType<React.PropsWithChildren<{}>>;
+    FooterEl?: React.FC;
+  }>
+> = ({
   title = 'Add Users',
   titleIconConfig = {
     name: null,

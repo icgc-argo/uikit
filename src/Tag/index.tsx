@@ -17,8 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import css from '@emotion/css';
-import { styled } from '../ThemeProvider';
+import { css } from '@emotion/react';
+import { styled } from 'src/ThemeProvider';
 
 type TagVariant =
   | 'DISABLED'
@@ -47,7 +47,7 @@ const blackTextVariants: Array<keyof typeof TAG_VARIANTS> = [
   TAG_VARIANTS.HIGHLIGHT,
 ];
 
-export const Tag = styled<'div', { variant?: keyof typeof TAG_VARIANTS }>('div')`
+export const Tag = styled('div')<{ variant?: keyof typeof TAG_VARIANTS }>`
   ${({ theme }) => css(theme.typography.paragraph as any)};
   box-sizing: border-box;
   display: inline-block;

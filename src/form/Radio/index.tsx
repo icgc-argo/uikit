@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { styled } from '../../ThemeProvider';
+import { styled } from 'src/ThemeProvider';
 import React from 'react';
 
 /*
@@ -30,7 +30,7 @@ type StyledRadioProps = {
   disabled?: boolean;
   checked?: boolean;
 };
-export const StyledRadio = styled<'div', StyledRadioProps>('div')`
+export const StyledRadio = styled('div')<StyledRadioProps>`
   position: relative;
   cursor: pointer;
   display: flex;

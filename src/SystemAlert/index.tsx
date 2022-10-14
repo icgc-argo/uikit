@@ -1,11 +1,11 @@
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import React from 'react';
 import { Icon } from 'src/Icon';
 import { UikitIconNames } from 'src/Icon/icons';
 import { Link } from 'src/Link';
 import { useTheme } from 'src/ThemeProvider';
 import { Typography } from 'src/Typography';
-import { ThemeColorNames } from '../theme/types';
+import { ThemeColorNames } from 'src/theme/types';
 
 type AlertLevel = 'error' | 'warning' | 'info';
 

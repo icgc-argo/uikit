@@ -33,7 +33,7 @@ import {
 } from '.';
 
 // to simulate nextjs link or any other framework that needs to wrap href
-const CustomLink = ({ children, ...props }) => <div {...props}>{children}</div>;
+const CustomLink = (props) => <div {...props}>{props.children}</div>;
 
 storiesOf('AppBar', module)
   .add('Basic', () => {

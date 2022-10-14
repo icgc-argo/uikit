@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { ClassNames } from '@emotion/core';
+import { ClassNames } from '@emotion/react';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { Container } from '.';

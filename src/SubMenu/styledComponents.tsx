@@ -17,8 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import css from '@emotion/css';
-import { styled } from '../ThemeProvider';
+import { css } from '@emotion/react';
+import { styled } from 'src/ThemeProvider';
 import defaultTheme from 'src/theme/defaultTheme';
 
 type StyleCalculationInput = {
@@ -56,6 +56,7 @@ const level1Style = ({ selected, theme }: StyleCalculationInput) => css`
   ${defaultLabelStyle({ theme, selected })}
   background: ${theme.colors.white};
   animation: all 1s;
+  width: 100%;
   & > .MenuItemContent {
     padding: 12px;
   }
@@ -86,7 +87,7 @@ const level2Style = ({ selected, theme }: StyleCalculationInput) => css`
     padding-right: 18px;
     padding-top: 10px;
     padding-bottom: 10px;
-    & > ${ContentContainer} {
+    & > ContentContainer! {
       line-height: 20px;
     }
   }
@@ -117,7 +118,7 @@ const defaultStyle = (props: StyleCalculationInput) => css`
   }
 `;
 
-export const MenuItemContainer = styled<'div', { level?: 1 | 2 | 3; selected?: boolean }>('div')`
+export const MenuItemContainer = styled('div')<{ level?: 1 | 2 | 3; selected?: boolean }>`
   & a {
     text-decoration: none;
   }

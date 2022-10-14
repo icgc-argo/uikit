@@ -17,14 +17,14 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import css from '@emotion/css';
-import { styled } from '../../ThemeProvider';
+import { css } from '@emotion/react';
+import { styled } from 'src/ThemeProvider';
 import clsx from 'clsx';
 import get from 'lodash/get';
 import pick from 'lodash/pick';
 import React from 'react';
-import { Icon } from '../../Icon';
-import { FormControlContext } from '../FormControl/FormControlContext';
+import { Icon } from 'src/Icon';
+import { FormControlContext } from 'src/form/FormControl/FormControlContext';
 
 export const InputLabel = React.forwardRef<
   HTMLLabelElement,

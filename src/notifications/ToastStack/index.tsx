@@ -20,8 +20,8 @@
 import differenceBy from 'lodash/differenceBy';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { styled } from '../..';
-import { Toast } from '../Toast';
+import { styled } from 'src/ThemeProvider';
+import { Toast } from 'src/notifications/Toast';
 
 const usePrevious = (value) => {
   const ref = React.useRef();
@@ -36,7 +36,7 @@ const ANIMATION_DURATION = 500;
 const StackContainer = styled('div')`
   max-width: 400px;
 `;
-const AnimatedContainer = styled<'div', { unMounting?: boolean }>('div')`
+const AnimatedContainer = styled('div')<{ unMounting?: boolean }>`
   margin-top: 10px;
   @keyframes enter {
     from {

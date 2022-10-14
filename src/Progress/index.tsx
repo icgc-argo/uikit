@@ -17,10 +17,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/core';
-import { styled } from '../ThemeProvider';
+import { css } from '@emotion/react';
+import { styled } from 'src/ThemeProvider';
 import React from 'react';
-import { Icon } from '../Icon';
+import { Icon } from 'src/Icon';
 
 export type ProgressStatus = 'success' | 'error' | 'pending' | 'disabled' | 'locked' | 'closed';
 
@@ -50,7 +50,7 @@ const Triangle = (props) => css`
   border-left-width: 7px;
 `;
 
-const ProgressMarker = styled<'div', { state: ProgressStatus }>('div')`
+const ProgressMarker = styled('div')<{ state: ProgressStatus }>`
   width: 100%;
   height: 14px;
   background-color: ${({ theme, state }) => theme.progress.color[state]};
@@ -97,7 +97,7 @@ const ProgressSection = styled('div')`
 `;
 
 /* Separator colors - based on state*/
-const Separator = styled<'div', { state: ProgressStatus }>('div')`
+const Separator = styled('div')<{ state: ProgressStatus }>`
   &:before {
     background-color: ${({ theme, state }) => theme.progress.color[state]};
     border-left-color: #fff;
@@ -163,8 +163,8 @@ export const ProgressItem = ({
   </div>
 );
 
-export const Progress: React.ComponentType<{}> & { Item: typeof ProgressItem } = ({ children }) => (
-  <ProgressSection>{children}</ProgressSection>
-);
+export const Progress: React.ComponentType<React.PropsWithChildren<{}>> & {
+  Item: typeof ProgressItem;
+} = ({ children }) => <ProgressSection>{children}</ProgressSection>;
 
 Progress.Item = ProgressItem;

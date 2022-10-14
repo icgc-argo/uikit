@@ -18,7 +18,7 @@
  */
 
 import * as React from 'react';
-import { css, SerializedStyles } from '@emotion/core';
+import { css, SerializedStyles } from '@emotion/react';
 import { Typography } from 'src/Typography';
 import { Button } from 'src/Button';
 import { useClickAway } from 'src/utils/useClickAway';
@@ -50,13 +50,18 @@ type DropdownButtonItemConfig<ValueType = string> = {
 export interface DownloadButtonProps<ValueType>
   extends Omit<React.ComponentProps<typeof Button>, 'onClick'> {
   onItemClick: (item: DropdownButtonItemConfig<ValueType>) => void;
-  onClick?: (e: React.SyntheticEvent<HTMLButtonElement, Event>, { toggleMenuOpen: boolean }) => any;
+  onClick?: (
+    e: React.SyntheticEvent<HTMLButtonElement, Event>,
+    { toggleMenuOpen }: { toggleMenuOpen: boolean },
+  ) => any;
   onMouseEnter?: () => any;
   onMouseLeave?: () => any;
   menuItems: Array<DropdownButtonItemConfig<ValueType>>;
   controlledMenuShowState?: boolean;
   menuStyles?: string;
   menuItemStyles?: string;
+  value?: ValueType;
+  showLoaderWithChildren?: boolean;
 }
 
 export function DropdownButton<ValueType = string>({

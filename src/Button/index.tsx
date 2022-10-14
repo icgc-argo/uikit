@@ -17,10 +17,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import React from 'react';
-import { Icon } from '../Icon';
-import useTheme from '../utils/useTheme';
+import { Icon } from 'src/Icon';
+import useTheme from 'src/utils/useTheme';
 import { BUTTON_SIZES, BUTTON_VARIANTS } from './constants';
 import { StyledButton } from './styled';
 import { ButtonSize, ButtonVariant } from './types';

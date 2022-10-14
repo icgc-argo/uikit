@@ -18,12 +18,12 @@
  */
 
 // @flow
-import { css, Global } from '@emotion/core';
-import { styled } from '../ThemeProvider';
+import { css, Global } from '@emotion/react';
+import { styled } from 'src/ThemeProvider';
 import { merge } from 'lodash';
 import * as React from 'react';
 import { Tooltip as ReactTippy, TooltipProps as TippyProps } from 'react-tippy';
-import useTheme from '../utils/useTheme';
+import useTheme from 'src/utils/useTheme';
 
 // exposing full react-tippy API based on https://github.com/tvkhoa/react-tippy
 // extending the html prop to support our previous implementation which also accepted strings
@@ -31,7 +31,7 @@ export type TooltipProps = Omit<TippyProps, 'html'> & {
   html?: React.ReactElement<any> | React.ReactNode | string;
 };
 
-export const Tooltip: React.ComponentType<TooltipProps> = ({
+export const Tooltip: React.ComponentType<React.PropsWithChildren<TooltipProps>> = ({
   className,
   html,
   position = 'top',

@@ -17,13 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import css from '@emotion/css';
-import { styled } from '../ThemeProvider';
+import { css } from '@emotion/react';
+import { styled } from 'src/ThemeProvider';
 import range from 'lodash/range';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-export const LoaderContainer = styled<'div', { dotsCount: number }>('div')`
+export const LoaderContainer = styled('div')<{ dotsCount: number }>`
   padding-top: 15px;
   padding-bottom: 15px;
   width: ${({ dotsCount }) => dotsCount * 10}px;

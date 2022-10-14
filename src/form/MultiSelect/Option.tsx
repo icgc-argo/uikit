@@ -19,8 +19,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { styled } from '../../ThemeProvider';
-import css from '@emotion/css';
+import { styled } from 'src/ThemeProvider';
+import { css } from '@emotion/react';
 
 const Li = styled('li')`
   ${({ theme }) => css(theme.typography.data as any)};

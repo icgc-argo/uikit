@@ -18,7 +18,7 @@
  */
 
 import React, { RefObject } from 'react';
-import { styled } from '../../ThemeProvider';
+import { styled } from 'src/ThemeProvider';
 
 /**
  * Checkbox styles
@@ -35,10 +35,12 @@ export const STYLEDCHECKBOX_SIZES: {
   MD: 'md',
 });
 
-export const StyledCheckbox = styled<
-  'div',
-  { disabled?: boolean; checked?: boolean; color?: string; size?: 'sm' | 'md' }
->('div')`
+export const StyledCheckbox = styled('div')<{
+  disabled?: boolean;
+  checked?: boolean;
+  color?: string;
+  size?: 'sm' | 'md';
+}>`
   position: relative;
   cursor: pointer;
   width: min-content;

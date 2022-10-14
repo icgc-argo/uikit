@@ -17,12 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import css from '@emotion/css';
+import { css } from '@emotion/react';
 import React, { useContext, useState } from 'react';
 import { Button } from 'src/Button';
-import { Icon } from '../../Icon';
-import { INPUT_SIZES, StyledInputWrapper, StyledInputWrapperProps } from '../common';
-import { FormControlContext } from '../FormControl/FormControlContext';
+import { Icon } from 'src/Icon';
+import { INPUT_SIZES, StyledInputWrapper, StyledInputWrapperProps } from 'src/form/common';
+import { FormControlContext } from 'src/form/FormControl/FormControlContext';
 import { IconWrapper, StyledInput } from './styledComponents';
 
 type InputPreset = 'default' | 'search';
@@ -85,8 +85,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     }: InputProps,
     ref,
   ) => {
-    const { disabled: calcDisabled, focused, error: calcError, handleBlur, handleFocus } =
-      useContext(FormControlContext) || {};
+    const {
+      disabled: calcDisabled,
+      focused,
+      error: calcError,
+      handleBlur,
+      handleFocus,
+    } = useContext(FormControlContext) || {};
 
     const [activeState, setActive] = useState(focused ? 'focus' : 'default');
 

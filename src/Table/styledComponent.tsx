@@ -18,14 +18,14 @@
  */
 
 import React from 'react';
-import { styled } from '../ThemeProvider';
-import css from '@emotion/css';
+import { styled } from 'src/ThemeProvider';
+import { css } from '@emotion/react';
 import ReactTable from 'react-table';
 
 import reactTableDefaultStyle from './reactTableDefaultStyle';
-import ascending from '../assets/table/ascending.svg';
-import descending from '../assets/table/descending.svg';
-import unsorted from '../assets/table/unsorted.svg';
+import ascending from 'src/assets/table/ascending.svg';
+import descending from 'src/assets/table/descending.svg';
+import unsorted from 'src/assets/table/unsorted.svg';
 
 export type StyledTableProps = {
   withRowBorder?: boolean;
@@ -34,7 +34,7 @@ export type StyledTableProps = {
   cellAlignment?: 'top' | 'center' | 'bottom';
 };
 
-export const StyledTable = styled<typeof ReactTable, StyledTableProps>(ReactTable)`
+export const StyledTable = styled(ReactTable)<StyledTableProps>`
   ${reactTableDefaultStyle}
 
   &.ReactTable .-loading.-active .-loading-inner {

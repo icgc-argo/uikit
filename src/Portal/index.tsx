@@ -21,7 +21,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // Portal that support server rendering
-export class Portal extends React.Component<{ selector: string }> {
+export class Portal extends React.Component<React.PropsWithChildren<{ selector: string }>> {
   element: HTMLElement;
   componentDidMount() {
     this.element = document.querySelector(this.props.selector);

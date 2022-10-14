@@ -17,13 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { styled } from '../ThemeProvider';
+import { styled } from 'src/ThemeProvider';
 import defaultTheme from 'src/theme/defaultTheme';
 
-export const TitleBorder = styled<
-  'hr',
-  { width?: string; color: keyof typeof defaultTheme.colors }
->('hr')`
+export const TitleBorder = styled('hr')<{
+  width?: string;
+  color: keyof typeof defaultTheme.colors;
+}>`
   border: 0;
   width: ${({ width }) => (width ? width : 'auto')};
   height: 3px;
