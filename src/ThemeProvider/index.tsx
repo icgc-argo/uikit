@@ -21,7 +21,7 @@ import { Interpolation, ThemeContext, ThemeProvider as EmotionThemeProvider } fr
 import { CreateStyled, default as emotionStyled } from '@emotion/styled';
 import * as React from 'react';
 
-import defaultTheme from 'src/theme/defaultTheme';
+import defaultTheme from '../theme/defaultTheme';
 
 const themes = {
   default: defaultTheme,

@@ -18,8 +18,8 @@
  */
 
 import React from 'react';
-import { styled } from 'src/ThemeProvider';
-import { Typography } from 'src/Typography';
+import { styled } from '../ThemeProvider';
+import { Typography } from '../Typography';
 
 const Mail = styled('a')`
   color: ${({ theme }) => theme.colors.black};

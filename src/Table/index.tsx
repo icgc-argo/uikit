@@ -26,9 +26,9 @@ import selectTable, {
   SelectInputComponentProps,
   SelectTableAdditionalProps,
 } from 'react-table/lib/hoc/selectTable';
-import { DnaLoader } from 'src/DnaLoader';
-import { Checkbox } from 'src/form/Checkbox';
-import { useElementDimension } from 'src/utils/Hook/useElementDimension';
+import { DnaLoader } from '../DnaLoader';
+import { Checkbox } from '../form/Checkbox';
+import { useElementDimension } from '../utils/Hook/useElementDimension';
 import { NoDataComponent as DefaultNoDataComponent } from './NoDataComponent';
 import { StyledTable, StyledTableProps } from './styledComponent';
 import { TablePagination } from './TablePagination';

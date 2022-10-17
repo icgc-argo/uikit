@@ -19,16 +19,16 @@
 
 import { css } from '@emotion/react';
 import React, { useContext, useEffect, useState } from 'react';
-import { Tooltip } from 'src/Tooltip';
-import { Typography } from 'src/Typography';
-import useTheme from 'src/utils/useTheme';
+import { Tooltip } from '../../Tooltip';
+import { Typography } from '../../Typography';
+import useTheme from '../../utils/useTheme';
 import {
   InputSize,
   INPUT_SIZES,
   StyledInputWrapper,
   StyledInputWrapperProps,
-} from 'src/form/common';
-import { FormControlContext } from 'src/form/FormControl/FormControlContext';
+} from '../../form/common';
+import { FormControlContext } from '../../form/FormControl/FormControlContext';
 import {
   DropdownIcon,
   HiddenSelect,

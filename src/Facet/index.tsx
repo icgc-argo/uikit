@@ -19,8 +19,8 @@
 
 import { css } from '@emotion/react';
 import React from 'react';
-import { OptionsList, OptionsListFilterOption } from 'src/OptionsList';
-import { MenuItem } from 'src/SubMenu';
+import { OptionsList, OptionsListFilterOption } from '../OptionsList';
+import { MenuItem } from '../SubMenu';
 
 export const Facet = ({
   subMenuName,

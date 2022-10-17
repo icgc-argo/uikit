@@ -18,16 +18,16 @@
  */
 
 import { css } from '@emotion/react';
-import { styled } from 'src/ThemeProvider';
+import { styled } from '../ThemeProvider';
 import debounce from 'lodash/debounce';
 import React, { RefObject, useEffect, useRef, useState } from 'react';
-import { Button } from 'src/Button';
-import { Input } from 'src/form/Input';
-import { Icon } from 'src/Icon';
-import { UikitIconNames } from 'src/Icon/icons';
-import { Tag } from 'src/Tag';
-import { Tooltip } from 'src/Tooltip';
-import useTheme from 'src/utils/useTheme';
+import { Button } from '../Button';
+import { Input } from '../form/Input';
+import { Icon } from '../Icon';
+import { UikitIconNames } from '../Icon/icons';
+import { Tag } from '../Tag';
+import { Tooltip } from '../Tooltip';
+import useTheme from '../utils/useTheme';
 
 const FILL_COLOUR = '#0774D3';
 

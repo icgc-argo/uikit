@@ -19,13 +19,13 @@
 
 import { css } from '@emotion/react';
 import React, { ReactNode, useContext, useRef, useState } from 'react';
-import { Theme } from 'src/ThemeProvider';
-import { Icon } from 'src/Icon';
-import { useTheme } from 'src/ThemeProvider';
-import { Checkbox } from 'src/form/Checkbox';
-import { RadioCheckboxWrapper } from 'src/form/common';
-import { FormControlContext } from 'src/form/FormControl/FormControlContext';
-import { RadioCheckContext } from 'src/form/RadioCheckboxGroup/RadioCheckContext';
+import { Theme } from '../../ThemeProvider';
+import { Icon } from '../../Icon';
+import { useTheme } from '../../ThemeProvider';
+import { Checkbox } from '../../form/Checkbox';
+import { RadioCheckboxWrapper } from '../../form/common';
+import { FormControlContext } from '../../form/FormControl/FormControlContext';
+import { RadioCheckContext } from '../../form/RadioCheckboxGroup/RadioCheckContext';
 
 export const FormCheckbox = ({
   checked,

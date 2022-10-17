@@ -17,5 +17,5 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { useTheme } from 'src/ThemeProvider';
+import { useTheme } from '../ThemeProvider';
 export default useTheme;

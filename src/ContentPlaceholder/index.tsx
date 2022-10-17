@@ -19,10 +19,10 @@
 
 import React from 'react';
 import { css } from '@emotion/react';
-import { styled } from 'src/ThemeProvider';
+import { styled } from '../ThemeProvider';
 
-import noDataSvg from 'src/assets/noData.svg';
-import { Typography } from 'src/Typography';
+import noDataSvg from '../assets/noData.svg';
+import { Typography } from '../Typography';
 
 const Container = styled('div')`
   display: flex;

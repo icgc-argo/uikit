@@ -20,7 +20,7 @@
 import React, { LiHTMLAttributes } from 'react';
 import { css } from '@emotion/react';
 import clsx from 'clsx';
-import { styled } from 'src/ThemeProvider';
+import { styled } from '../ThemeProvider';
 
 const Ul = styled('ul')`
   ${({ theme }) => css(theme.typography.paragraph as any)};

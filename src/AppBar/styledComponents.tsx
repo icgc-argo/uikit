@@ -17,10 +17,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { styled } from 'src/ThemeProvider';
+import { styled } from '../ThemeProvider';
 import { withProps } from 'recompose';
 
-import { Typography } from 'src/Typography';
+import { Typography } from '../Typography';
 
 const MenuItemTypography: typeof Typography = withProps(() => ({
   variant: 'navigation',

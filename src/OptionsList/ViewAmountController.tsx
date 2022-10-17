@@ -18,9 +18,9 @@
  */
 
 import { css } from '@emotion/react';
-import { Icon } from 'src/Icon';
-import { Link as HyperLink } from 'src/Link';
-import { useTheme } from 'src/ThemeProvider';
+import { Icon } from '../Icon';
+import { Link as HyperLink } from '../Link';
+import { useTheme } from '../ThemeProvider';
 
 export const ViewAmountController: React.ComponentType<{
   /** Function to handle what happens when the selectAll/DeselectAll button is clicked */

@@ -18,9 +18,9 @@
  */
 
 import { css } from '@emotion/react';
-import { styled } from 'src/ThemeProvider';
+import { styled } from '../ThemeProvider';
 import React from 'react';
-import { Icon } from 'src/Icon';
+import { Icon } from '../Icon';
 
 export type ProgressStatus = 'success' | 'error' | 'pending' | 'disabled' | 'locked' | 'closed';
 

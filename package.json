@@ -2,8 +2,8 @@
   "name": "@icgc-argo/uikit",
   "version": "2.0.0",
   "description": "ARGO UI component library",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/icgc-argo/uikit"
@@ -25,8 +25,8 @@
     "publish-uikit": "cd dist && npm publish --access public"
   },
   "peerDependencies": {
-    "react": "16.x.x || 17.x.x",
-    "react-dom": "16.x.x || 17.x.x"
+    "react": "17.x.x",
+    "react-dom": "17.x.x"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.7.2",
