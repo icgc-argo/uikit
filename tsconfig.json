@@ -14,15 +14,11 @@
     "isolatedModules": false,
     "jsx": "preserve",
     "jsxImportSource": "@emotion/react",
-    "baseUrl": ".",
     "downlevelIteration": true,
     "outDir": "./dist",
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "declaration": true,
-    "paths": {
-      "src/*": ["./src/*"]
-    },
     "types": ["@emotion/react/types/css-prop"]
   },
   "exclude": [

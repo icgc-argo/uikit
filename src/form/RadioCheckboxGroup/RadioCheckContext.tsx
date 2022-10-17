@@ -18,7 +18,7 @@
  */
 
 import React from 'react';
-import { Checkbox } from 'src/form/Checkbox';
+import { Checkbox } from '../../form/Checkbox';
 
 export const RadioCheckContext = React.createContext<{
   isChecked?: boolean | ((e: any) => boolean);

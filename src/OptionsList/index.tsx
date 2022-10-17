@@ -21,11 +21,11 @@ import { css } from '@emotion/react';
 import concat from 'lodash/concat';
 import orderBy from 'lodash/orderBy';
 import React from 'react';
-import { Checkbox } from 'src/form/Checkbox';
-import { Tag } from 'src/Tag';
-import { Tooltip } from 'src/Tooltip';
-import { Typography } from 'src/Typography';
-import useTheme from 'src/utils/useTheme';
+import { Checkbox } from '../form/Checkbox';
+import { Tag } from '../Tag';
+import { Tooltip } from '../Tooltip';
+import { Typography } from '../Typography';
+import useTheme from '../utils/useTheme';
 import { ViewAmountController } from './ViewAmountController';
 
 export type OptionsListFilterOption = {

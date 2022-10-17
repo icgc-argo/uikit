@@ -18,7 +18,7 @@
  */
 
 import { css } from '@emotion/react';
-import { styled } from 'src/ThemeProvider';
+import { styled } from '../ThemeProvider';
 
 type TagVariant =
   | 'DISABLED'

@@ -18,13 +18,13 @@
  */
 
 import { css } from '@emotion/react';
-import { styled } from 'src/ThemeProvider';
+import { styled } from '../../ThemeProvider';
 import clsx from 'clsx';
 import get from 'lodash/get';
 import pick from 'lodash/pick';
 import React from 'react';
-import { Icon } from 'src/Icon';
-import { FormControlContext } from 'src/form/FormControl/FormControlContext';
+import { Icon } from '../../Icon';
+import { FormControlContext } from '../../form/FormControl/FormControlContext';
 
 export const InputLabel = React.forwardRef<
   HTMLLabelElement,

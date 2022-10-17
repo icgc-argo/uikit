@@ -19,8 +19,8 @@
 
 import { css } from '@emotion/react';
 import React from 'react';
-import { NumberRangeField } from 'src/NumberRangeField';
-import { MenuItem } from 'src/SubMenu';
+import { NumberRangeField } from '../../NumberRangeField';
+import { MenuItem } from '../../SubMenu';
 
 export const NumberRangeFacet = ({
   subMenuName,

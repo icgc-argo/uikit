@@ -18,16 +18,16 @@
  */
 
 import { css } from '@emotion/react';
-import { styled } from 'src/ThemeProvider';
+import { styled } from '../ThemeProvider';
 import Color from 'color';
 import React from 'react';
-import { BUTTON_SIZES, BUTTON_VARIANTS } from 'src/Button/constants';
-import { ButtonSize } from 'src/Button/types';
-import { UikitIconNames } from 'src/Icon/icons';
-import { Button } from 'src/Button';
-import { FocusWrapper } from 'src/FocusWrapper';
-import { Icon } from 'src/Icon';
-import { Typography } from 'src/Typography';
+import { BUTTON_SIZES, BUTTON_VARIANTS } from '../Button/constants';
+import { ButtonSize } from '../Button/types';
+import { UikitIconNames } from '../Icon/icons';
+import { Button } from '../Button';
+import { FocusWrapper } from '../FocusWrapper';
+import { Icon } from '../Icon';
+import { Typography } from '../Typography';
 
 const DefaultFooter = ({
   actionVisible,

@@ -19,7 +19,7 @@
 
 import { css } from '@emotion/react';
 import React from 'react';
-import { ContentPlaceholder } from 'src/ContentPlaceholder';
+import { ContentPlaceholder } from '../ContentPlaceholder';
 
 export function NoDataComponent(props) {
   return (

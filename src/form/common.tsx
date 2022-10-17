@@ -18,8 +18,8 @@
  */
 
 import { css } from '@emotion/react';
-import { INPUT_STATES as INPUT_THEME_STATES } from 'src/theme/defaultTheme/input';
-import { styled } from 'src/ThemeProvider';
+import { INPUT_STATES as INPUT_THEME_STATES } from '../theme/defaultTheme/input';
+import { styled } from '../ThemeProvider';
 
 export type InputSize = 'sm' | 'lg';
 

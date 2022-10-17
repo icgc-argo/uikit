@@ -18,10 +18,10 @@
  */
 
 import { css } from '@emotion/react';
-import { styled } from 'src/ThemeProvider';
+import { styled } from '../ThemeProvider';
 import clsx from 'clsx';
 import React from 'react';
-import useTheme from 'src/utils/useTheme';
+import useTheme from '../utils/useTheme';
 
 const TabsContext = React.createContext({ onChange: null, value: null });
 

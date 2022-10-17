@@ -17,9 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { styled } from 'src/ThemeProvider';
+import { styled } from '../../ThemeProvider';
 import { css } from '@emotion/react';
-export { StyledInputWrapper } from 'src/form/common';
+export { StyledInputWrapper } from '../../form/common';
 
 export const StyledInput = styled('input')<{ inputSize: string }>`
   ${({ theme }) => css(theme.typography.default as any)};
