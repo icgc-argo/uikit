@@ -18,17 +18,17 @@
  */
 
 import { css } from '@emotion/react';
-import { styled } from 'src/ThemeProvider';
+import { styled } from '../../ThemeProvider';
 import ceil from 'lodash/ceil';
 import floor from 'lodash/floor';
 import range from 'lodash/range';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Select } from 'src/form/Select';
-import { POPUP_POSITIONS } from 'src/form/Select/styledComponents';
-import { Icon } from 'src/Icon';
-import { Typography } from 'src/Typography';
-import useTheme from 'src/utils/useTheme';
+import { Select } from '../../form/Select';
+import { POPUP_POSITIONS } from '../../form/Select/styledComponents';
+import { Icon } from '../../Icon';
+import { Typography } from '../../Typography';
+import useTheme from '../../utils/useTheme';
 
 export const TableActionBar = (props) => {
   const { variant = 'label', color = 'grey', component = 'div' } = props;

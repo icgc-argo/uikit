@@ -18,8 +18,8 @@
  */
 
 import React from 'react';
-import { Typography } from 'src/Typography';
-import { styled } from 'src/ThemeProvider';
+import { Typography } from '../Typography';
+import { styled } from '../ThemeProvider';
 import { css } from '@emotion/react';
 
 const Cont = styled('div')`

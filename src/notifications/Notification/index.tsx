@@ -20,11 +20,11 @@
 import { Interpolation, Theme, css } from '@emotion/react';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { UikitIconNames } from 'src/Icon/icons';
-import { FocusWrapper } from 'src/FocusWrapper';
-import { Icon } from 'src/Icon';
-import { Typography, TypographyVariant } from 'src/Typography';
-import useTheme from 'src/utils/useTheme';
+import { UikitIconNames } from '../../Icon/icons';
+import { FocusWrapper } from '../../FocusWrapper';
+import { Icon } from '../../Icon';
+import { Typography, TypographyVariant } from '../../Typography';
+import useTheme from '../../utils/useTheme';
 import {
   ActionButton,
   ActionButtonsContainer,
@@ -33,7 +33,7 @@ import {
   NotificationBodyContainer,
   NotificationContainer,
 } from './styledComponents';
-import { CssInterpolation } from 'src/ThemeProvider';
+import { CssInterpolation } from '../../ThemeProvider';
 
 export type NotificationVariant = 'INFO' | 'SUCCESS' | 'WARNING' | 'ERROR';
 export type NotificationInteractionEvent = 'CLOSE' | 'ACTION' | 'DISMISS';

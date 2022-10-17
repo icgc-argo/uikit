@@ -18,7 +18,7 @@
  */
 
 import React, { RefObject } from 'react';
-import { styled } from 'src/ThemeProvider';
+import { styled } from '../../ThemeProvider';
 
 /**
  * Checkbox styles

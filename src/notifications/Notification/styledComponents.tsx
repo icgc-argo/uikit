@@ -17,8 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { styled } from 'src/ThemeProvider';
-import { FocusWrapper } from 'src/FocusWrapper';
+import { styled } from '../../ThemeProvider';
+import { FocusWrapper } from '../../FocusWrapper';
 import { NotificationVariant, NOTIFICATION_VARIANTS } from './index';
 
 const getBackgroundColor = ({ theme, variant }: { theme?: any; variant: NotificationVariant }) =>

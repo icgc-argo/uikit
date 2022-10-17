@@ -18,8 +18,8 @@
  */
 
 import { css } from '@emotion/react';
-import { styled } from 'src/ThemeProvider';
-import defaultTheme from 'src/theme/defaultTheme';
+import { styled } from '../ThemeProvider';
+import defaultTheme from '../theme/defaultTheme';
 
 type StyleCalculationInput = {
   selected?: boolean;

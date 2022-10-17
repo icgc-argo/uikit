@@ -18,7 +18,7 @@
  */
 
 import { css } from '@emotion/react';
-import { Table } from 'src/Table';
+import { Table } from '../../Table';
 
 type MappedTableData = Array<{ key: string; val: any }>;
 

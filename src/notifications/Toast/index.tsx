@@ -23,7 +23,7 @@ import {
   Notification,
   NOTIFICATION_INTERACTION,
   NOTIFICATION_VARIANTS,
-} from 'src/notifications/Notification';
+} from '../../notifications/Notification';
 
 export function Toast({
   variant,

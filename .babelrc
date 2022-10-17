@@ -14,15 +14,6 @@
     ],
     "@babel/plugin-transform-runtime",
     "@babel/plugin-proposal-optional-chaining",
-    "@babel/plugin-proposal-object-rest-spread",
-    [
-      "module-resolver",
-      {
-        "root": ["./dist"],
-        "alias": {
-          "src": "./dist"
-        }
-      }
-    ]
+    "@babel/plugin-proposal-object-rest-spread"
   ]
 }

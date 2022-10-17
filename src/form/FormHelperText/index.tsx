@@ -21,8 +21,8 @@ import { css } from '@emotion/react';
 import clsx from 'clsx';
 import pick from 'lodash/pick';
 import React from 'react';
-import { FormControlContext } from 'src/form/FormControl/FormControlContext';
-import { styled } from 'src/ThemeProvider';
+import { FormControlContext } from '../../form/FormControl/FormControlContext';
+import { styled } from '../../ThemeProvider';
 
 export const FormHelperText = React.forwardRef<
   any,

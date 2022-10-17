@@ -18,7 +18,7 @@
  */
 
 import colors from './colors';
-import { ProgressStatus } from 'src/Progress';
+import { ProgressStatus } from '../../Progress';
 
 const color: { [key in ProgressStatus]: string } = {
   success: colors.success,

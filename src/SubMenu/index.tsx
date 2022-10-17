@@ -17,11 +17,11 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { CssInterpolation, styled } from 'src/ThemeProvider';
+import { CssInterpolation, styled } from '../ThemeProvider';
 import React from 'react';
-import { Input } from 'src/form/Input';
-import { Icon } from 'src/Icon';
-import useTheme from 'src/utils/useTheme';
+import { Input } from '../form/Input';
+import { Icon } from '../Icon';
+import useTheme from '../utils/useTheme';
 import { ContentContainer, IconContainer, MenuItemContainer } from './styledComponents';
 import { css, Interpolation, Theme } from '@emotion/react';
 
