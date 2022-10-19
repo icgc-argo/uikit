@@ -48,6 +48,7 @@ import star from './collection/star';
 import download from './collection/download';
 import upload from './collection/upload';
 import lock from './collection/lock';
+import lock_open from './collection/lock_open';
 import dash from './collection/dash';
 import file from './collection/file';
 import form from './collection/form';
@@ -114,6 +115,7 @@ export const Icons = {
   download,
   upload,
   lock,
+  lock_open,
   dash,
   file,
   form,
