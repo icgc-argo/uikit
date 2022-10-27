@@ -125,8 +125,8 @@ export const Textarea = ({
   };
 
   useEffect(() => {
-    value && applyChanges(value);
-  }, []);
+    (value !== internalValue) && applyChanges(value);
+  }, [value]);
 
   return (
     <div
