@@ -117,7 +117,7 @@ export const DropdownPanelList = styled('ul')`
 
 export const DropdownPanelListItemLabel = styled('label')`
   display: flex;
-  align-items: center;
+  align-items: start;
   padding: 2px 0;
 `;
 
@@ -429,6 +429,7 @@ export const ListFilter = ({
                       &:hover {
                         background: ${theme.colors.grey_3};
                       }
+                      max-width: 100%;
                     `}
                   >
                     <input
@@ -445,15 +446,22 @@ export const ListFilter = ({
                         cursor: pointer;
                       `}
                     />
-                    {option.value}
+                    <span
+                      css={css`
+                        margin-top: 2px;
+                        white-space: normal;
+                      `}
+                    >
+                      {option.value}
+                    </span>
                     {typeof option?.doc_count === 'number' && (
                       <Tag
                         variant={option.isChecked ? 'HIGHLIGHT' : 'NEUTRAL'}
                         css={css`
                           height: 18px;
                           font-size: 10px;
-                          align-self: center;
                           white-space: nowrap;
+                          margin-top: 2px;
                           margin-left: auto;
                           margin-right: 4px;
                         `}
