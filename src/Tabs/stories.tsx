@@ -50,21 +50,9 @@ const SimpleTabs = React.forwardRef(() => {
           <button>Child of empty tab</button>
         </Tab>
       </Tabs>
-      {value === 0 && (
-        <Typography component="div" style={{ padding: 8 * 3 }}>
-          Item One
-        </Typography>
-      )}
-      {value === 1 && (
-        <Typography component="div" style={{ padding: 8 * 3 }}>
-          Item Two
-        </Typography>
-      )}
-      {value === 2 && (
-        <Typography component="div" style={{ padding: 8 * 3 }}>
-          Item Three
-        </Typography>
-      )}
+      {value === 0 && <TabContainer>Item One</TabContainer>}
+      {value === 1 && <TabContainer>Item Two</TabContainer>}
+      {value === 2 && <TabContainer>Item Three</TabContainer>}
     </div>
   );
 });
