@@ -72,7 +72,6 @@ export const Tab: React.ComponentType<
       `}
       {...otherProps}
     >
-      HELLO
       {children}
     </TabButton>
   ) : (

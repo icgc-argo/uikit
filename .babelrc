@@ -9,7 +9,7 @@
       "@emotion",
       {
         "autoLabel": "dev-only",
-        "labelFormat": "[local]"
+        "labelFormat": "Uikit-[local]"
       }
     ],
     "@babel/plugin-transform-runtime",
