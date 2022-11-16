@@ -70,6 +70,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       preset = INPUT_PRESETS.DEFAULT,
       value = '',
       onChange,
+      onKeyDown,
       type,
       size: inputSize,
       dataSize,
@@ -146,6 +147,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             onBlur={onBlur}
             onChange={onChange}
             onFocus={onFocus}
+            onKeyDown={onKeyDown}
             inputSize={inputSize}
             size={dataSize}
             disabled={isDisabled}
