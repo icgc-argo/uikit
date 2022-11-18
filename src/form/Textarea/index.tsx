@@ -17,6 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/** @jsxImportSource @emotion/react */
+
 import { css } from '@emotion/react';
 import clsx from 'clsx';
 import React, { TextareaHTMLAttributes, useCallback, useContext, useEffect, useState } from 'react';
@@ -125,7 +127,7 @@ export const Textarea = ({
   };
 
   useEffect(() => {
-    (value !== internalValue) && applyChanges(value);
+    value !== internalValue && applyChanges(value);
   }, [value]);
 
   return (

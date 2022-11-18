@@ -17,6 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/** @jsxImportSource @emotion/react */
+
 import { CssInterpolation, styled } from '../ThemeProvider';
 import React from 'react';
 import { Input } from '../form/Input';

@@ -17,6 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/** @jsxImportSource @emotion/react */
+
 import { css, SerializedStyles } from '@emotion/react';
 import React, { createRef, useState } from 'react';
 import { Button } from '../Button';
