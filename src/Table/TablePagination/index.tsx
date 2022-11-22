@@ -150,6 +150,8 @@ export function TablePagination(props) {
           <div
             css={css`
               transform: scale(0.8);
+              //use z-index to make popup always appear on the top of other components
+              z-index: 10;
             `}
           >
             <Select
