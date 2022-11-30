@@ -17,6 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/** @jsxImportSource @emotion/react */
+
 import { css } from '@emotion/react';
 import { styled } from '../../ThemeProvider';
 import ceil from 'lodash/ceil';
@@ -150,6 +152,8 @@ export function TablePagination(props) {
           <div
             css={css`
               transform: scale(0.8);
+              //use z-index to make popup always appear on the top of other components
+              z-index: 10;
             `}
           >
             <Select
