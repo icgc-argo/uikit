@@ -17,6 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/** @jsxImportSource @emotion/react */
+
 import { css } from '@emotion/react';
 import { styled } from '../../ThemeProvider';
 import ceil from 'lodash/ceil';

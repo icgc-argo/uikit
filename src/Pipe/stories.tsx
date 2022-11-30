@@ -17,6 +17,8 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/** @jsxImportSource @emotion/react */
+
 import { css } from '@emotion/react';
 import { select, text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
@@ -28,9 +30,9 @@ const themeColors = Object.keys(defaultTheme.colors) as Array<keyof typeof defau
 
 storiesOf(`Pipe`, module).add('Basic', () => {
   const colourKnobs = [
-    select('Fill Colour: First', themeColors, 'accent1_dimmed', null),
-    select('Fill Colour: Second', themeColors, 'warning_dark', null),
-    select('Fill Colour: Third', themeColors, 'error', null),
+    select('Fill Colour: First', themeColors, 'accent1_dimmed', undefined),
+    select('Fill Colour: Second', themeColors, 'warning_dark', undefined),
+    select('Fill Colour: Third', themeColors, 'error', undefined),
   ];
   const childrenKnobs = [
     text('Text: First', '2'),

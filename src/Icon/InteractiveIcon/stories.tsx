@@ -17,10 +17,11 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/** @jsxImportSource @emotion/react */
+
 import { css } from '@emotion/react';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-import React from 'react';
 import defaultTheme from '../../theme/defaultTheme';
 import { InteractiveIcon } from './index';
 import { Icons as icons, UikitIconNames } from '../icons';
