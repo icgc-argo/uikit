@@ -26,6 +26,7 @@ export { default as noDataSvg } from './assets/noData.svg';
 export { default as overtureLogo } from './assets/overture-logo.svg';
 export { default as ThemeProvider, styled } from './ThemeProvider';
 export { default as useTheme } from './utils/useTheme';
+export { default as colors } from './theme/defaultTheme/colors';
 
 // single point of export ensures lib export works correctly
 export * from './Affix';
