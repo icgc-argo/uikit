@@ -20,12 +20,12 @@
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import * as React from 'react';
-import { TableProps } from 'react-table';
+import { TableProps } from 'react-table-v6';
 import selectTable, {
   SelectAllInputComponentProps,
   SelectInputComponentProps,
   SelectTableAdditionalProps,
-} from 'react-table/lib/hoc/selectTable';
+} from 'react-table-v6/lib/hoc/selectTable';
 import { DnaLoader } from '../DnaLoader';
 import { Checkbox } from '../form/Checkbox';
 import { useElementDimension } from '../utils/Hook/useElementDimension';

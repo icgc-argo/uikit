@@ -20,7 +20,7 @@
 import React from 'react';
 import { styled } from '../ThemeProvider';
 import { css } from '@emotion/react';
-import ReactTable from 'react-table';
+import ReactTable from 'react-table-v6';
 
 import reactTableDefaultStyle from './reactTableDefaultStyle';
 import ascending from '../assets/table/ascending.svg';
