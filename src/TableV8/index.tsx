@@ -11,8 +11,8 @@ export const TableV8 = ({
   isStriped: boolean;
 }) => {
   const table = useReactTable({
-    data: data || [],
-    columns: columns || [],
+    columns,
+    data,
     getCoreRowModel: getCoreRowModel(),
   });
 

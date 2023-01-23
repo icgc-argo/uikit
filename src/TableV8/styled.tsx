@@ -36,7 +36,7 @@ export const StyledTr = styled('div', {
   flex: 1 0 auto;
   display: inline-flex;
   background-color: ${({ theme }) => theme.colors.white};
-  &.-even {
-    background: ${({ isStriped, theme }) => (isStriped ? theme.colors.grey_4 : theme.colors.white)};
+  &.-even.-striped {
+    background: ${({ theme }) => theme.colors.grey_4};
   }
 `;
