@@ -1,5 +1,5 @@
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
-import { StyledTable, StyledTbody, StyledTr, StyledTrGroup } from './styled';
+import { StyledTable, StyledTbody, StyledTr, StyledTrGroup, StyledTd } from './styled';
 
 export const TableV8 = ({
   columns = [],
@@ -25,10 +25,11 @@ export const TableV8 = ({
             <StyledTr
               className={`rt-tr ${rowIndex % 2 ? '-even' : '-odd'} ${isStriped ? '-striped' : ''} `}
               role="row"
-              isStriped={isStriped}
             >
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+                <StyledTd key={cell.id} className="rt-td">
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </StyledTd>
               ))}
             </StyledTr>
           </StyledTrGroup>

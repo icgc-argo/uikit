@@ -30,13 +30,15 @@ export const StyledTrGroup = styled('div')`
   align-items: stretch;
 `;
 
-export const StyledTr = styled('div', {
-  shouldForwardProp: (prop) => isPropValid(prop) && prop !== 'isStriped',
-})<{ isStriped?: boolean }>`
+export const StyledTr = styled('div')`
   flex: 1 0 auto;
   display: inline-flex;
   background-color: ${({ theme }) => theme.colors.white};
   &.-even.-striped {
     background: ${({ theme }) => theme.colors.grey_4};
   }
+`;
+
+export const StyledTd = styled('div')`
+  background: purple;
 `;
