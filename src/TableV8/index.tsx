@@ -1,11 +1,14 @@
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import cx from 'classnames';
 import { StyledTable, StyledTbody, StyledTr, StyledTrGroup, StyledTd } from './styled';
 
 export const TableV8 = ({
+  className = '',
   columns = [],
   data = [],
   isStriped = false,
 }: {
+  className?: string;
   columns: any[];
   data: any[];
   isStriped: boolean;
@@ -17,7 +20,7 @@ export const TableV8 = ({
   });
 
   return (
-    <StyledTable className="rt-table" role="grid">
+    <StyledTable className={cx('rt-table', className)} role="grid">
       {/* TODO: thead */}
       <StyledTbody className="rt-tbody">
         {table.getRowModel().rows.map((row, rowIndex) => (
