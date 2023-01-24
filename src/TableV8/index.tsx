@@ -50,7 +50,7 @@ export const TableV8 = ({
             >
               {row.getVisibleCells().map((cell) => (
                 <StyledTd key={cell.id} className="rt-td">
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  {cell.renderValue()}
                 </StyledTd>
               ))}
             </StyledTr>
