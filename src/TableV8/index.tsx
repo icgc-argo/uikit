@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import { getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import cx from 'classnames';
 import { StyledTable, StyledTbody, StyledTr, StyledTrGroup, StyledTd } from './styled';
 
@@ -40,7 +40,6 @@ export const TableV8 = ({
 
   return (
     <StyledTable className={cx('rt-table', className)} role="grid">
-      {/* TODO: thead */}
       <StyledTbody className="rt-tbody">
         {table.getRowModel().rows.map((row, rowIndex) => (
           <StyledTrGroup key={row.id} className="rt-tr-group" role="rowgroup">
@@ -49,7 +48,7 @@ export const TableV8 = ({
               role="row"
             >
               {row.getVisibleCells().map((cell) => (
-                <StyledTd key={cell.id} className="rt-td">
+                <StyledTd key={cell.id} className="rt-td" role="cell">
                   {cell.renderValue()}
                 </StyledTd>
               ))}

@@ -19,9 +19,9 @@
 
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import { SimpleTableV8 } from './index';
+import { SimpleTable } from './index';
 
-storiesOf(`SimpleTableV8`, module).add('Basic', () => {
+storiesOf(`SimpleTable`, module).add('Basic', () => {
   const vegetableData = {
     Asparagus: 24,
     Tomatoes: 152,
@@ -29,5 +29,5 @@ storiesOf(`SimpleTableV8`, module).add('Basic', () => {
     Peppers: 5,
     'Green Beans': 75,
   };
-  return <SimpleTableV8 data={vegetableData} isStriped />;
+  return <SimpleTable data={vegetableData} />;
 });

@@ -35,14 +35,12 @@ const columns = [
 const mapSimpleTableData = (data: SimpleTableData): MappedTableData =>
   Object.keys(data).map((k) => ({ key: k, val: data[k] }));
 
-export const SimpleTableV8 = ({
+export const SimpleTable = ({
   className = '',
   data,
-  isStriped = false,
 }: {
   className?: string;
   data: SimpleTableData;
-  isStriped?: boolean;
 }) => {
   const tableData = mapSimpleTableData(data);
 

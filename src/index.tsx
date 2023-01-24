@@ -83,7 +83,6 @@ export * from './Progress';
 export * from './SubMenu';
 export * from './SystemAlert';
 export * from './Table';
-export * from './Table/SimpleTable';
 export * from './TableV8';
 export * from './TableV8/SimpleTable';
 export * from './Tabs';
