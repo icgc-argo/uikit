@@ -66,8 +66,19 @@ export const StyledTableRowGroup = styled(TableRowGroup)`
   align-items: stretch;
 `;
 
-const TableRow = (props: React.PropsWithChildren<{ className?: string }>) => (
-  <div role="row" {...props} className={clsx(TABLE_CLASSES.TR, props.className)} />
+const TableRow = (
+  props: React.PropsWithChildren<{ className?: string; isStriped?: boolean; index: number }>,
+) => (
+  <div
+    role="row"
+    {...props}
+    className={clsx(
+      TABLE_CLASSES.TR,
+      props.index % 2 ? '-even' : '-odd',
+      { '-striped': props.isStriped },
+      props.className,
+    )}
+  />
 );
 export const StyledTableRow = styled(TableRow)`
   flex: 1 0 auto;

@@ -51,9 +51,7 @@ export const TableV8 = <TData extends object>({
       <StyledTableBody>
         {table.getRowModel().rows.map((row, rowIndex) => (
           <StyledTableRowGroup key={row.id}>
-            <StyledTableRow
-              className={clsx(rowIndex % 2 ? '-even' : '-odd', { '-striped': isStriped })}
-            >
+            <StyledTableRow index={rowIndex} isStriped={isStriped}>
               {row.getVisibleCells().map((cell) => (
                 <StyledTableCell key={cell.id}>{cell.renderValue()}</StyledTableCell>
               ))}
