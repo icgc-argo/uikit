@@ -17,21 +17,23 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import { ColumnDef, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import cx from 'classnames';
 import { StyledTable, StyledTbody, StyledTr, StyledTrGroup, StyledTd } from './styled';
 
-export const TableV8 = ({
-  className = '',
-  columns = [],
-  data = [],
-  isStriped = false,
-}: {
+interface ReactTableProps<TData> {
   className?: string;
-  columns: any[];
-  data: any[];
-  isStriped: boolean;
-}) => {
+  columns: ColumnDef<TData>[];
+  data: TData[];
+  isStriped?: boolean;
+}
+
+export const TableV8 = <TData extends object>({
+  className,
+  columns,
+  data,
+  isStriped = false,
+}: ReactTableProps<TData>) => {
   const table = useReactTable({
     columns,
     data,
