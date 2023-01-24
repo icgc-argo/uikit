@@ -1,5 +1,4 @@
 import { styled } from '../ThemeProvider';
-import isPropValid from '@emotion/is-prop-valid';
 
 export const StyledTable = styled('div')`
   border: ${({ theme }) => `solid 1px ${theme.colors.grey_2}`};
