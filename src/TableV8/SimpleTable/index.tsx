@@ -21,8 +21,19 @@ import { css } from '@emotion/react';
 import { TableV8 } from '../';
 
 type SimpleTableData = { [key: string]: any };
-type MappedTableDatum = { key: string; val: any };
-type MappedTableData = Array<MappedTableDatum>;
+type MappedTableData = Array<{ key: string; val: any }>;
+
+const columns = [
+  {
+    accessorKey: 'key',
+  },
+  {
+    accessorKey: 'val',
+  },
+];
+
+const mapSimpleTableData = (data: SimpleTableData): MappedTableData =>
+  Object.keys(data).map((k) => ({ key: k, val: data[k] }));
 
 export const SimpleTableV8 = ({
   className = '',
@@ -33,16 +44,7 @@ export const SimpleTableV8 = ({
   data: SimpleTableData;
   isStriped?: boolean;
 }) => {
-  const tableData: MappedTableData = Object.keys(data).map((k) => ({ key: k, val: data[k] }));
-
-  const columns = [
-    {
-      accessorKey: 'key',
-    },
-    {
-      accessorKey: 'val',
-    },
-  ];
+  const tableData = mapSimpleTableData(data);
 
   return (
     <TableV8
@@ -51,11 +53,10 @@ export const SimpleTableV8 = ({
       data={tableData}
       isStriped
       css={css`
-        width: 100%;
-        font-size: 72px;
         .rt-td {
-          color: white;
+          flex: 100 0 auto;
           whitespace: unset;
+          width: 100px;
         }
       `}
     />

@@ -29,5 +29,5 @@ storiesOf(`SimpleTableV8`, module).add('Basic', () => {
     Peppers: 5,
     'Green Beans': 75,
   };
-  return <SimpleTableV8 data={vegetableData} />;
+  return <SimpleTableV8 data={vegetableData} isStriped />;
 });

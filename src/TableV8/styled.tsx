@@ -39,5 +39,27 @@ export const StyledTr = styled('div')`
 `;
 
 export const StyledTd = styled('div')`
-  background: purple;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex: 1 0 0px;
+  padding: 7px 5px;
+  overflow: hidden;
+  transition: width 0.3s ease 0s, min-width, padding, opacity;
+  .rt-tbody & {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    min-height: 28px;
+    line-height: 1.33;
+    padding: 2px 8px;
+    border-right: ${({ theme }) => `solid 1px ${theme.colors.grey_2}`};
+    display: flex;
+    align-items: center;
+    &:last-of-type {
+      border-right: 0px;
+    }
+  }
 `;
