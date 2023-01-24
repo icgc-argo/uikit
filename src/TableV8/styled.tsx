@@ -9,6 +9,7 @@ export const StyledTable = styled('div')`
   width: 100%;
   border-collapse: collapse;
   overflow: auto;
+  border: 1px solid magenta;
   * {
     box-sizing: border-box;
   }

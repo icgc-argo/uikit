@@ -55,7 +55,7 @@ export const SimpleTableV8 = ({
       css={css`
         .rt-td {
           flex: 100 0 auto;
-          whitespace: unset;
+          white-space: unset;
           width: 100px;
         }
       `}
