@@ -19,7 +19,13 @@
 
 import { ColumnDef, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import clsx from 'clsx';
-import { StyledTable, StyledTbody, StyledTr, StyledTrGroup, StyledTd } from './styled';
+import {
+  StyledTable,
+  StyledTableBody,
+  StyledTableCell,
+  StyledTableRow,
+  StyledTableRowGroup,
+} from './styled';
 
 interface ReactTableProps<TData> {
   className?: string;
@@ -41,23 +47,20 @@ export const TableV8 = <TData extends object>({
   });
 
   return (
-    <StyledTable className={clsx('rt-table', className)} role="grid">
-      <StyledTbody className="rt-tbody">
+    <StyledTable className={className}>
+      <StyledTableBody>
         {table.getRowModel().rows.map((row, rowIndex) => (
-          <StyledTrGroup key={row.id} className="rt-tr-group" role="rowgroup">
-            <StyledTr
-              className={clsx('rt-tr', rowIndex % 2 ? '-even' : '-odd', { '-striped': isStriped })}
-              role="row"
+          <StyledTableRowGroup key={row.id}>
+            <StyledTableRow
+              className={clsx(rowIndex % 2 ? '-even' : '-odd', { '-striped': isStriped })}
             >
               {row.getVisibleCells().map((cell) => (
-                <StyledTd key={cell.id} className="rt-td" role="cell">
-                  {cell.renderValue()}
-                </StyledTd>
+                <StyledTableCell key={cell.id}>{cell.renderValue()}</StyledTableCell>
               ))}
-            </StyledTr>
-          </StyledTrGroup>
+            </StyledTableRow>
+          </StyledTableRowGroup>
         ))}
-      </StyledTbody>
+      </StyledTableBody>
     </StyledTable>
   );
 };

@@ -17,9 +17,21 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import clsx from 'clsx';
 import { styled } from '../ThemeProvider';
 
-export const StyledTable = styled('div')`
+export const TABLE_CLASSES = {
+  TABLE: 'rt-table',
+  TBODY: 'rt-tbody',
+  TD: 'rt-td',
+  TR_GROUP: 'rt-tr-group',
+  TR: 'rt-tr',
+};
+
+const Table = (props: React.PropsWithChildren<{ className?: string }>) => (
+  <div role="table" {...props} className={clsx(TABLE_CLASSES.TABLE, props.className)} />
+);
+export const StyledTable = styled(Table)`
   border: ${({ theme }) => `solid 1px ${theme.colors.grey_2}`};
   flex: auto 1;
   display: flex;
@@ -33,7 +45,10 @@ export const StyledTable = styled('div')`
   }
 `;
 
-export const StyledTbody = styled('div')`
+const TableBody = (props: React.PropsWithChildren<{ className?: string }>) => (
+  <div role="tbody" {...props} className={clsx(TABLE_CLASSES.TBODY, props.className)} />
+);
+export const StyledTableBody = styled(TableBody)`
   min-width: 200px;
   flex: 99999 1 auto;
   display: flex;
@@ -41,14 +56,20 @@ export const StyledTbody = styled('div')`
   overflow: auto;
 `;
 
-export const StyledTrGroup = styled('div')`
+const TableRowGroup = (props: React.PropsWithChildren<{ className?: string }>) => (
+  <div role="rowgroup" {...props} className={clsx(TABLE_CLASSES.TR_GROUP, props.className)} />
+);
+export const StyledTableRowGroup = styled(TableRowGroup)`
   flex: 1 0 auto;
   display: flex;
   flex-direction: column;
   align-items: stretch;
 `;
 
-export const StyledTr = styled('div')`
+const TableRow = (props: React.PropsWithChildren<{ className?: string }>) => (
+  <div role="row" {...props} className={clsx(TABLE_CLASSES.TR, props.className)} />
+);
+export const StyledTableRow = styled(TableRow)`
   flex: 1 0 auto;
   display: inline-flex;
   background-color: ${({ theme }) => theme.colors.white};
@@ -57,14 +78,17 @@ export const StyledTr = styled('div')`
   }
 `;
 
-export const StyledTd = styled('div')`
+const TableCell = (props: React.PropsWithChildren<{ className?: string }>) => (
+  <div role="cell" {...props} className={clsx(TABLE_CLASSES.TD, props.className)} />
+);
+export const StyledTableCell = styled(TableCell)`
   white-space: nowrap;
   text-overflow: ellipsis;
   flex: 1 0 0px;
   padding: 7px 5px;
   overflow: hidden;
   transition: width 0.3s ease 0s, min-width, padding, opacity;
-  .rt-tbody & {
+  .${TABLE_CLASSES.TBODY} & {
     font-family: 'Work Sans', sans-serif;
     font-size: 12px;
     font-weight: normal;
