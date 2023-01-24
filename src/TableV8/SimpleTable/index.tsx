@@ -22,6 +22,10 @@ import { TableV8 } from '../';
 
 type SimpleTableData = { [key: string]: any };
 type MappedTableData = Array<{ key: string; val: any }>;
+type SimpleTableProps = {
+  className?: string;
+  data: SimpleTableData;
+};
 
 const columns = [
   {
@@ -35,13 +39,7 @@ const columns = [
 const mapSimpleTableData = (data: SimpleTableData): MappedTableData =>
   Object.keys(data).map((k) => ({ key: k, val: data[k] }));
 
-export const SimpleTable = ({
-  className = '',
-  data,
-}: {
-  className?: string;
-  data: SimpleTableData;
-}) => {
+export const SimpleTable = ({ className = '', data }: SimpleTableProps) => {
   const tableData = mapSimpleTableData(data);
 
   return (
