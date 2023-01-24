@@ -18,7 +18,7 @@
  */
 
 import { ColumnDef, getCoreRowModel, useReactTable } from '@tanstack/react-table';
-import cx from 'classnames';
+import clsx from 'clsx';
 import { StyledTable, StyledTbody, StyledTr, StyledTrGroup, StyledTd } from './styled';
 
 interface ReactTableProps<TData> {
@@ -41,12 +41,12 @@ export const TableV8 = <TData extends object>({
   });
 
   return (
-    <StyledTable className={cx('rt-table', className)} role="grid">
+    <StyledTable className={clsx('rt-table', className)} role="grid">
       <StyledTbody className="rt-tbody">
         {table.getRowModel().rows.map((row, rowIndex) => (
           <StyledTrGroup key={row.id} className="rt-tr-group" role="rowgroup">
             <StyledTr
-              className={`rt-tr ${rowIndex % 2 ? '-even' : '-odd'} ${isStriped ? '-striped' : ''} `}
+              className={clsx('rt-tr', rowIndex % 2 ? '-even' : '-odd', { '-striped': isStriped })}
               role="row"
             >
               {row.getVisibleCells().map((cell) => (
