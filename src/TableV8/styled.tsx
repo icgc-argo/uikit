@@ -29,7 +29,7 @@ export const TABLE_CLASSES = {
 };
 
 const Table = (props: React.PropsWithChildren<{ className?: string }>) => (
-  <div role="table" {...props} className={clsx(TABLE_CLASSES.TABLE, props.className)} />
+  <table {...props} className={clsx(TABLE_CLASSES.TABLE, props.className)} />
 );
 export const StyledTable = styled(Table)`
   border: ${({ theme }) => `solid 1px ${theme.colors.grey_2}`};
@@ -46,7 +46,7 @@ export const StyledTable = styled(Table)`
 `;
 
 const TableBody = (props: React.PropsWithChildren<{ className?: string }>) => (
-  <div role="tbody" {...props} className={clsx(TABLE_CLASSES.TBODY, props.className)} />
+  <tbody {...props} className={clsx(TABLE_CLASSES.TBODY, props.className)} />
 );
 export const StyledTableBody = styled(TableBody)`
   min-width: 200px;
@@ -56,6 +56,7 @@ export const StyledTableBody = styled(TableBody)`
   overflow: auto;
 `;
 
+// TODO do we need this?
 const TableRowGroup = (props: React.PropsWithChildren<{ className?: string }>) => (
   <div role="rowgroup" {...props} className={clsx(TABLE_CLASSES.TR_GROUP, props.className)} />
 );
@@ -69,8 +70,7 @@ export const StyledTableRowGroup = styled(TableRowGroup)`
 const TableRow = (
   props: React.PropsWithChildren<{ className?: string; isStriped?: boolean; index: number }>,
 ) => (
-  <div
-    role="row"
+  <tr
     {...props}
     className={clsx(
       TABLE_CLASSES.TR,
@@ -90,7 +90,7 @@ export const StyledTableRow = styled(TableRow)`
 `;
 
 const TableCell = (props: React.PropsWithChildren<{ className?: string }>) => (
-  <div role="cell" {...props} className={clsx(TABLE_CLASSES.TD, props.className)} />
+  <td {...props} className={clsx(TABLE_CLASSES.TD, props.className)} />
 );
 export const StyledTableCell = styled(TableCell)`
   white-space: nowrap;
