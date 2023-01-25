@@ -18,13 +18,7 @@
  */
 
 import { ColumnDef, getCoreRowModel, useReactTable } from '@tanstack/react-table';
-import {
-  StyledTable,
-  StyledTableBody,
-  StyledTableCell,
-  StyledTableRow,
-  StyledTableRowGroup,
-} from './styled';
+import { StyledTable, StyledTableBody, StyledTableCell, StyledTableRow } from './styled';
 
 interface ReactTableProps<TData> {
   className?: string;
@@ -49,13 +43,11 @@ export const TableV8 = <TData extends object>({
     <StyledTable className={className}>
       <StyledTableBody>
         {table.getRowModel().rows.map((row, rowIndex) => (
-          <StyledTableRowGroup key={row.id}>
-            <StyledTableRow index={rowIndex} isStriped={isStriped}>
-              {row.getVisibleCells().map((cell) => (
-                <StyledTableCell key={cell.id}>{cell.renderValue()}</StyledTableCell>
-              ))}
-            </StyledTableRow>
-          </StyledTableRowGroup>
+          <StyledTableRow key={row.id} index={rowIndex} isStriped={isStriped}>
+            {row.getVisibleCells().map((cell) => (
+              <StyledTableCell key={cell.id}>{cell.renderValue()}</StyledTableCell>
+            ))}
+          </StyledTableRow>
         ))}
       </StyledTableBody>
     </StyledTable>

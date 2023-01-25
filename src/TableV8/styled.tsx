@@ -56,17 +56,6 @@ export const StyledTableBody = styled(TableBody)`
   overflow: auto;
 `;
 
-// TODO do we need this?
-const TableRowGroup = (props: React.PropsWithChildren<{ className?: string }>) => (
-  <div role="rowgroup" {...props} className={clsx(TABLE_CLASSES.TR_GROUP, props.className)} />
-);
-export const StyledTableRowGroup = styled(TableRowGroup)`
-  flex: 1 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-`;
-
 const TableRow = (
   props: React.PropsWithChildren<{ className?: string; isStriped?: boolean; index: number }>,
 ) => (
