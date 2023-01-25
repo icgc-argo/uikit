@@ -1,6 +1,6 @@
 {
   "name": "@icgc-argo/uikit",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "ARGO UI component library",
   "main": "index.js",
   "types": "index.d.ts",
