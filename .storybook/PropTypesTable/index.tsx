@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import ReactTable from 'react-table';
+import ReactTable from 'react-table-v6';
 import React from 'react';
 import ReactTableContainer from './ReactTableContainer';
 
