@@ -18,7 +18,15 @@
  */
 
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
-import { StyledTable, StyledTableBody, StyledTableCell, StyledTableRow } from './styled';
+import {
+  StyledResizableHeader,
+  StyledTable,
+  StyledTableBody,
+  StyledTableCell,
+  StyledTableHead,
+  StyledTableHeader,
+  StyledTableRow,
+} from './styled';
 
 interface ReactTableProps<TData> {
   className?: string;
@@ -45,19 +53,21 @@ export const TableV8 = <TData extends object>({
   return (
     <StyledTable className={className}>
       {hasHeaders && (
-        <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
+        <StyledTableHead>
+          {table.getHeaderGroups().map((headerGroup, headerIndex) => (
+            <StyledTableRow key={headerGroup.id} index={headerIndex} isStriped={isStriped}>
               {headerGroup.headers.map((header) => (
-                <th key={header.id}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(header.column.columnDef.header, header.getContext())}
-                </th>
+                <StyledTableHeader key={header.id}>
+                  <StyledResizableHeader>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(header.column.columnDef.header, header.getContext())}
+                  </StyledResizableHeader>
+                </StyledTableHeader>
               ))}
-            </tr>
+            </StyledTableRow>
           ))}
-        </thead>
+        </StyledTableHead>
       )}
 
       <StyledTableBody>
