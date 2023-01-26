@@ -48,6 +48,7 @@ export const SimpleTable = ({ className = '', data }: SimpleTableProps) => {
       columns={columns}
       data={tableData}
       isStriped
+      hasHeaders={false}
       css={css`
         .rt-td {
           flex: 100 0 auto;

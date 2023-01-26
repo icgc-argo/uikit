@@ -24,6 +24,7 @@ interface ReactTableProps<TData> {
   className?: string;
   columns: ColumnDef<TData>[];
   data: TData[];
+  hasHeaders?: boolean;
   isStriped?: boolean;
 }
 
@@ -31,29 +32,34 @@ export const TableV8 = <TData extends object>({
   className,
   columns,
   data,
+  hasHeaders = true,
   isStriped = false,
 }: ReactTableProps<TData>) => {
   const table = useReactTable({
     columns,
     data,
     getCoreRowModel: getCoreRowModel(),
+    debugAll: true,
   });
 
   return (
     <StyledTable className={className}>
-      <thead>
-        {table.getHeaderGroups().map((headerGroup) => (
-          <tr key={headerGroup.id}>
-            {headerGroup.headers.map((header) => (
-              <th key={header.id}>
-                {header.isPlaceholder
-                  ? null
-                  : flexRender(header.column.columnDef.header, header.getContext())}
-              </th>
-            ))}
-          </tr>
-        ))}
-      </thead>
+      {hasHeaders && (
+        <thead>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <th key={header.id}>
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(header.column.columnDef.header, header.getContext())}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+      )}
+
       <StyledTableBody>
         {table.getRowModel().rows.map((row, rowIndex) => (
           <StyledTableRow key={row.id} index={rowIndex} isStriped={isStriped}>
