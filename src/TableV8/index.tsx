@@ -17,7 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { ColumnDef, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { StyledTable, StyledTableBody, StyledTableCell, StyledTableRow } from './styled';
 
 interface ReactTableProps<TData> {
@@ -41,6 +41,19 @@ export const TableV8 = <TData extends object>({
 
   return (
     <StyledTable className={className}>
+      <thead>
+        {table.getHeaderGroups().map((headerGroup) => (
+          <tr key={headerGroup.id}>
+            {headerGroup.headers.map((header) => (
+              <th key={header.id}>
+                {header.isPlaceholder
+                  ? null
+                  : flexRender(header.column.columnDef.header, header.getContext())}
+              </th>
+            ))}
+          </tr>
+        ))}
+      </thead>
       <StyledTableBody>
         {table.getRowModel().rows.map((row, rowIndex) => (
           <StyledTableRow key={row.id} index={rowIndex} isStriped={isStriped}>
