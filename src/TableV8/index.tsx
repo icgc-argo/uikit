@@ -32,16 +32,18 @@ interface ReactTableProps<TData> {
   className?: string;
   columns: ColumnDef<TData>[];
   data: TData[];
-  hasHeaders?: boolean;
-  isStriped?: boolean;
+  withStripes?: boolean;
+  withHeaders?: boolean;
+  withOutsideBorder?: boolean;
 }
 
 export const TableV8 = <TData extends object>({
   className,
   columns,
   data,
-  hasHeaders = true,
-  isStriped = false,
+  withStripes = false,
+  withHeaders = true,
+  withOutsideBorder = false,
 }: ReactTableProps<TData>) => {
   const table = useReactTable({
     columns,
@@ -51,11 +53,11 @@ export const TableV8 = <TData extends object>({
   });
 
   return (
-    <StyledTable className={className}>
-      {hasHeaders && (
+    <StyledTable className={className} withOutsideBorder={withOutsideBorder}>
+      {withHeaders && (
         <StyledTableHead>
           {table.getHeaderGroups().map((headerGroup, headerIndex) => (
-            <StyledTableRow key={headerGroup.id} index={headerIndex} isStriped={isStriped}>
+            <StyledTableRow key={headerGroup.id} index={headerIndex} withStripes={withStripes}>
               {headerGroup.headers.map((header) => (
                 <StyledTableHeader key={header.id}>
                   <StyledResizableHeader>
@@ -72,7 +74,7 @@ export const TableV8 = <TData extends object>({
 
       <StyledTableBody>
         {table.getRowModel().rows.map((row, rowIndex) => (
-          <StyledTableRow key={row.id} index={rowIndex} isStriped={isStriped}>
+          <StyledTableRow key={row.id} index={rowIndex} withStripes={withStripes}>
             {row.getVisibleCells().map((cell) => (
               <StyledTableCell key={cell.id}>{cell.renderValue()}</StyledTableCell>
             ))}

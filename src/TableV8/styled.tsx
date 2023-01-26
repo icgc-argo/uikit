@@ -18,6 +18,7 @@
  */
 
 import clsx from 'clsx';
+import isPropValid from '@emotion/is-prop-valid';
 import { styled } from '../ThemeProvider';
 
 export const TABLE_CLASSES = {
@@ -31,11 +32,15 @@ export const TABLE_CLASSES = {
   RESIZABLE_HEADER: 'rt-resizable-header-content',
 };
 
-const Table = (props: React.PropsWithChildren<{ className?: string }>) => (
-  <table {...props} className={clsx(TABLE_CLASSES.TABLE, props.className)} />
-);
-export const StyledTable = styled(Table)`
+const Table = (
+  props: React.PropsWithChildren<{ className?: string; withOutsideBorder?: boolean }>,
+) => <table {...props} className={clsx(TABLE_CLASSES.TABLE, props.className)} />;
+export const StyledTable = styled(Table, {
+  shouldForwardProp: (prop) => isPropValid(prop) && prop !== 'withOutsideBorder',
+})`
   border: ${({ theme }) => `solid 1px ${theme.colors.grey_2}`};
+  border-right-width: ${({ withOutsideBorder }) => (withOutsideBorder ? '1px' : '0')};
+  border-left-width: ${({ withOutsideBorder }) => (withOutsideBorder ? '1px' : '0')};
   flex: auto 1;
   display: flex;
   flex-direction: column;
@@ -111,14 +116,14 @@ export const StyledTableBody = styled(TableBody)`
 `;
 
 const TableRow = (
-  props: React.PropsWithChildren<{ className?: string; isStriped?: boolean; index: number }>,
+  props: React.PropsWithChildren<{ className?: string; withStripes?: boolean; index: number }>,
 ) => (
   <tr
     {...props}
     className={clsx(
       TABLE_CLASSES.TR,
       props.index % 2 ? '-even' : '-odd',
-      { '-striped': props.isStriped },
+      { '-striped': props.withStripes },
       props.className,
     )}
   />
