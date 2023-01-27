@@ -22,21 +22,34 @@ import isPropValid from '@emotion/is-prop-valid';
 import { styled } from '../ThemeProvider';
 
 export const TABLE_CLASSES = {
+  CONTAINER: 'rt-container',
+  RESIZABLE_HEADER: 'rt-resizable-header-content',
   TABLE: 'rt-table',
   TBODY: 'rt-tbody',
   TD: 'rt-td',
+  TH: 'rt-th',
+  THEAD: 'rt-thead -header',
   TR_GROUP: 'rt-tr-group',
   TR: 'rt-tr',
-  THEAD: 'rt-thead -header',
-  TH: 'rt-th',
-  RESIZABLE_HEADER: 'rt-resizable-header-content',
 };
 
+const Container = (props: React.PropsWithChildren<{ className?: string }>) => (
+  <div {...props} className={clsx(TABLE_CLASSES.CONTAINER, props.className)} />
+);
+export const StyledContainer = styled(Container)`
+  overflow-x: auto;
+  width: 100%;
+`;
+
 const Table = (
-  props: React.PropsWithChildren<{ className?: string; withOutsideBorder?: boolean }>,
+  props: React.PropsWithChildren<{
+    className?: string;
+    width?: number;
+    withOutsideBorder?: boolean;
+  }>,
 ) => <table {...props} className={clsx(TABLE_CLASSES.TABLE, props.className)} />;
 export const StyledTable = styled(Table, {
-  shouldForwardProp: (prop) => isPropValid(prop) && prop !== 'withOutsideBorder',
+  shouldForwardProp: (prop) => isPropValid(prop) && !['withOutsideBorder', 'width'].includes(prop),
 })`
   border: ${({ theme }) => `solid 1px ${theme.colors.grey_2}`};
   border-right-width: ${({ withOutsideBorder }) => (withOutsideBorder ? '1px' : '0')};
@@ -45,12 +58,12 @@ export const StyledTable = styled(Table, {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  width: 100%;
   border-collapse: collapse;
   overflow: auto;
   * {
     box-sizing: border-box;
   }
+  width: ${({ width }) => (!!width ? `${width}px` : 'auto')};
 `;
 
 const TableHead = (props: React.PropsWithChildren<{ className?: string }>) => (
