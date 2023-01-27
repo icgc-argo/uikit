@@ -19,7 +19,7 @@
 
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import {
-  StyledContainer,
+  StyledTableContainer,
   StyledResizableHeader,
   StyledTable,
   StyledTableBody,
@@ -54,22 +54,31 @@ export const TableV8 = <TData extends object>({
   });
 
   return (
-    <StyledContainer>
+    <StyledTableContainer>
       <StyledTable
         className={className}
-        withOutsideBorder={withOutsideBorder}
         width={table.getCenterTotalSize()}
+        withOutsideBorder={withOutsideBorder}
       >
         {withHeaders && (
           <StyledTableHead>
             {table.getHeaderGroups().map((headerGroup, headerIndex) => (
               <StyledTableRow key={headerGroup.id} index={headerIndex} withStripes={withStripes}>
                 {headerGroup.headers.map((header) => (
-                  <StyledTableHeader key={header.id}>
+                  <StyledTableHeader
+                    key={header.id}
+                    colSpan={header.colSpan}
+                    width={header.getSize()}
+                  >
                     <StyledResizableHeader>
                       {header.isPlaceholder
                         ? null
                         : flexRender(header.column.columnDef.header, header.getContext())}
+                      <div
+                        onMouseDown={header.getResizeHandler()}
+                        onTouchStart={header.getResizeHandler()}
+                        className={`resizer ${header.column.getIsResizing() ? 'isResizing' : ''}`}
+                      />
                     </StyledResizableHeader>
                   </StyledTableHeader>
                 ))}
@@ -88,6 +97,6 @@ export const TableV8 = <TData extends object>({
           ))}
         </StyledTableBody>
       </StyledTable>
-    </StyledContainer>
+    </StyledTableContainer>
   );
 };

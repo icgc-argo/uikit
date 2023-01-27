@@ -22,7 +22,7 @@ import isPropValid from '@emotion/is-prop-valid';
 import { styled } from '../ThemeProvider';
 
 export const TABLE_CLASSES = {
-  CONTAINER: 'rt-container',
+  TABLE_CONTAINER: 'rt-table-container',
   RESIZABLE_HEADER: 'rt-resizable-header-content',
   TABLE: 'rt-table',
   TBODY: 'rt-tbody',
@@ -33,10 +33,10 @@ export const TABLE_CLASSES = {
   TR: 'rt-tr',
 };
 
-const Container = (props: React.PropsWithChildren<{ className?: string }>) => (
-  <div {...props} className={clsx(TABLE_CLASSES.CONTAINER, props.className)} />
+const TableContainer = (props: React.PropsWithChildren<{ className?: string }>) => (
+  <div {...props} className={clsx(TABLE_CLASSES.TABLE_CONTAINER, props.className)} />
 );
-export const StyledContainer = styled(Container)`
+export const StyledTableContainer = styled(TableContainer)`
   overflow-x: auto;
   width: 100%;
 `;
@@ -81,10 +81,12 @@ export const StyledTableHead = styled(TableHead)`
   }
 `;
 
-const TableHeader = (props: React.PropsWithChildren<{ className?: string }>) => (
-  <th {...props} className={clsx(TABLE_CLASSES.TH, props.className)} />
-);
-export const StyledTableHeader = styled(TableHeader)`
+const TableHeader = (
+  props: React.PropsWithChildren<{ className?: string; width?: number; colSpan?: number }>,
+) => <th {...props} className={clsx(TABLE_CLASSES.TH, props.className)} />;
+export const StyledTableHeader = styled(TableHeader, {
+  shouldForwardProp: (prop) => isPropValid(prop) && !['width'].includes(prop),
+})`
   &:not(:last-of-type) {
     border-right: ${({ theme }) => `solid 1px ${theme.colors.grey_2}`};
   }
@@ -105,7 +107,7 @@ export const StyledTableHeader = styled(TableHeader)`
   min-height: 28px;
   padding: 2px 8px;
   text-align: left;
-  width: 100px;
+  width: ${({ width }) => (!!width ? `${width}px` : '100px')};
 `;
 
 const ResizableHeader = (props: React.PropsWithChildren<{ className?: string }>) => (
