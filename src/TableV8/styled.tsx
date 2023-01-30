@@ -20,10 +20,12 @@
 import clsx from 'clsx';
 import isPropValid from '@emotion/is-prop-valid';
 import { styled } from '../ThemeProvider';
+import React from 'react';
 
 export const TABLE_CLASSES = {
-  TABLE_CONTAINER: 'rt-table-container',
   RESIZABLE_HEADER: 'rt-resizable-header-content',
+  RESIZER: 'rt-resizer',
+  TABLE_CONTAINER: 'rt-table-container',
   TABLE: 'rt-table',
   TBODY: 'rt-tbody',
   TD: 'rt-td',
@@ -54,12 +56,7 @@ export const StyledTable = styled(Table, {
   border: ${({ theme }) => `solid 1px ${theme.colors.grey_2}`};
   border-right-width: ${({ withOutsideBorder }) => (withOutsideBorder ? '1px' : '0')};
   border-left-width: ${({ withOutsideBorder }) => (withOutsideBorder ? '1px' : '0')};
-  flex: auto 1;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
   border-collapse: collapse;
-  overflow: auto;
   * {
     box-sizing: border-box;
   }
@@ -72,9 +69,6 @@ const TableHead = (props: React.PropsWithChildren<{ className?: string }>) => (
 export const StyledTableHead = styled(TableHead)`
   min-width: 600px;
   border-bottom: ${({ theme }) => `solid 1px ${theme.colors.grey_2}`};
-  flex: 1 0 auto;
-  display: flex;
-  flex-direction: column;
   user-select: none;
   .${TABLE_CLASSES.TR} {
     text-align: center;
@@ -107,6 +101,7 @@ export const StyledTableHeader = styled(TableHeader, {
   min-height: 28px;
   padding: 2px 8px;
   text-align: left;
+  position: relative;
   width: ${({ width }) => (!!width ? `${width}px` : '100px')};
 `;
 
@@ -179,4 +174,23 @@ export const StyledTableCell = styled(TableCell)`
       border-right: 0px;
     }
   }
+`;
+
+const Resizer = (
+  props: React.PropsWithChildren<{
+    className?: string;
+    onMouseDown: (event: React.MouseEvent<HTMLDivElement>) => void;
+    onTouchStart: (event: React.TouchEvent<HTMLDivElement>) => void;
+  }>,
+) => <div {...props} className={clsx(TABLE_CLASSES.RESIZER, props.className)} />;
+export const StyledResizer = styled(Resizer)`
+  display: inline-block;
+  position: absolute;
+  width: 12px;
+  top: 0;
+  bottom: 0;
+  right: -6px;
+  cursor: col-resize;
+  z-index: 10;
+  border: 1px solid magenta;
 `;
