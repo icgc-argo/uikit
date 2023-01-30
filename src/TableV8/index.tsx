@@ -147,33 +147,6 @@ export const TableV8 = <TData extends object>({
           .td {
             height: 30px;
           }
-
-          .resizer {
-            position: absolute;
-            right: 0;
-            top: 0;
-            height: 100%;
-            width: 5px;
-            background: pink;
-            cursor: col-resize;
-            user-select: none;
-            touch-action: none;
-          }
-
-          .resizer.isResizing {
-            background: blue;
-            opacity: 1;
-          }
-
-          @media (hover: hover) {
-            .resizer {
-              opacity: 0;
-            }
-
-            *:hover > .resizer {
-              opacity: 1;
-            }
-          }
         `}
       >
         <StyledTableContainer>
@@ -190,12 +163,11 @@ export const TableV8 = <TData extends object>({
                       {header.isPlaceholder
                         ? null
                         : flexRender(header.column.columnDef.header, header.getContext())}
-                      <div
+                      <StyledResizer
                         onMouseDown={header.getResizeHandler()}
                         onTouchStart={header.getResizeHandler()}
-                        style={{ cursor: 'pointer' }}
-                        className={`resizer ${header.column.getIsResizing() ? 'isResizing' : ''}`}
-                      ></div>
+                        className={header.column.getIsResizing() ? 'isResizing' : ''}
+                      />
                     </th>
                   ))}
                 </tr>
