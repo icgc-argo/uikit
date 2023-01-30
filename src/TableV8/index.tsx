@@ -56,6 +56,8 @@ export const TableV8 = <TData extends object>({
     debugAll: true,
   });
 
+  console.log(table.getCenterTotalSize());
+
   return (
     <div>
       <StyledTableContainer>
@@ -95,98 +97,15 @@ export const TableV8 = <TData extends object>({
             {table.getRowModel().rows.map((row, rowIndex) => (
               <StyledTableRow key={row.id} index={rowIndex} withStripes={withStripes}>
                 {row.getVisibleCells().map((cell) => (
-                  <StyledTableCell key={cell.id}>{cell.renderValue()}</StyledTableCell>
+                  <StyledTableCell key={cell.id} width={cell.column.getSize()}>
+                    {cell.renderValue()}
+                  </StyledTableCell>
                 ))}
               </StyledTableRow>
             ))}
           </StyledTableBody>
         </StyledTable>
       </StyledTableContainer>
-
-      {/* testing out resizable table */}
-
-      <div
-        css={css`
-          * {
-            box-sizing: border-box;
-          }
-
-          html {
-            font-family: sans-serif;
-            font-size: 14px;
-          }
-
-          .tr {
-            display: flex;
-          }
-
-          tr,
-          .tr {
-            width: fit-content;
-            height: 30px;
-          }
-
-          th,
-          .th,
-          td,
-          .td {
-            box-shadow: inset 0 0 0 1px lightgray;
-            padding: 0.25rem;
-          }
-
-          th,
-          .th {
-            padding: 2px 4px;
-            position: relative;
-            font-weight: bold;
-            text-align: center;
-            height: 30px;
-          }
-
-          td,
-          .td {
-            height: 30px;
-          }
-        `}
-      >
-        <StyledTableContainer>
-          <StyledTable width={table.getCenterTotalSize()}>
-            <StyledTableHead>
-              {table.getHeaderGroups().map((headerGroup) => (
-                <tr key={headerGroup.id}>
-                  {headerGroup.headers.map((header) => (
-                    <th
-                      key={header.id}
-                      colSpan={header.colSpan}
-                      style={{ width: header.getSize() }}
-                    >
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(header.column.columnDef.header, header.getContext())}
-                      <StyledResizer
-                        onMouseDown={header.getResizeHandler()}
-                        onTouchStart={header.getResizeHandler()}
-                        className={header.column.getIsResizing() ? 'isResizing' : ''}
-                      />
-                    </th>
-                  ))}
-                </tr>
-              ))}
-            </StyledTableHead>
-            <tbody>
-              {table.getRowModel().rows.map((row) => (
-                <tr key={row.id}>
-                  {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id} style={{ width: cell.column.getSize() }}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </StyledTable>
-        </StyledTableContainer>
-      </div>
     </div>
   );
 };

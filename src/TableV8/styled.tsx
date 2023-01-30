@@ -88,7 +88,7 @@ export const StyledTableHeader = styled(TableHeader, {
   background: ${({ theme }) => theme.colors.white};
   border-left: none;
   display: flex;
-  flex: 100 0 auto;
+  flex: ${({ width }) => `${width} 0 auto`};
   font-family: Work Sans, sans-serif;
   font-size: 12px;
   font-stretch: normal;
@@ -102,7 +102,7 @@ export const StyledTableHeader = styled(TableHeader, {
   padding: 2px 8px;
   text-align: left;
   position: relative;
-  width: ${({ width }) => (!!width ? `${width}px` : '100px')};
+  width: ${({ width }) => `${width}px`};
 `;
 
 const ResizableHeader = (props: React.PropsWithChildren<{ className?: string }>) => (
@@ -147,16 +147,17 @@ export const StyledTableRow = styled(TableRow)`
   }
 `;
 
-const TableCell = (props: React.PropsWithChildren<{ className?: string }>) => (
+const TableCell = (props: React.PropsWithChildren<{ className?: string; width?: number }>) => (
   <td {...props} className={clsx(TABLE_CLASSES.TD, props.className)} />
 );
 export const StyledTableCell = styled(TableCell)`
   white-space: nowrap;
   text-overflow: ellipsis;
-  flex: 1 0 0px;
+  flex: ${({ width }) => `${width} 0 auto`};
   padding: 7px 5px;
   overflow: hidden;
-  transition: width 0.3s ease 0s, min-width, padding, opacity;
+  // transition: width 0.3s ease 0s, min-width, padding, opacity;
+  width: ${({ width }) => `${width}px`};
   .${TABLE_CLASSES.TBODY} & {
     font-family: 'Work Sans', sans-serif;
     font-size: 12px;
