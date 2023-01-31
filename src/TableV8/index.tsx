@@ -108,7 +108,18 @@ export const TableV8 = <TData extends object>({
       </StyledTableContainer>
       <br />
       <br />
-      <div>
+      <div
+        css={css`
+          display: block;
+          overflow: auto;
+          .resizer {
+            display: inline-block;
+            background: magenta;
+            width: 20px;
+            height: 20px;
+          }
+        `}
+      >
         <table>
           {withHeaders && (
             <thead>
@@ -123,7 +134,7 @@ export const TableV8 = <TData extends object>({
                         <div
                           onMouseDown={header.getResizeHandler()}
                           onTouchStart={header.getResizeHandler()}
-                          className={header.column.getIsResizing() ? 'isResizing' : ''}
+                          className={`resizer ${header.column.getIsResizing() ? 'isResizing' : ''}`}
                         />
                       </div>
                     </th>
