@@ -106,6 +106,44 @@ export const TableV8 = <TData extends object>({
           </StyledTableBody>
         </StyledTable>
       </StyledTableContainer>
+      <br />
+      <br />
+      <div>
+        <table>
+          {withHeaders && (
+            <thead>
+              {table.getHeaderGroups().map((headerGroup, headerIndex) => (
+                <tr key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => (
+                    <th key={header.id} colSpan={header.colSpan}>
+                      <div>
+                        {header.isPlaceholder
+                          ? null
+                          : flexRender(header.column.columnDef.header, header.getContext())}
+                        <div
+                          onMouseDown={header.getResizeHandler()}
+                          onTouchStart={header.getResizeHandler()}
+                          className={header.column.getIsResizing() ? 'isResizing' : ''}
+                        />
+                      </div>
+                    </th>
+                  ))}
+                </tr>
+              ))}
+            </thead>
+          )}
+
+          <tbody>
+            {table.getRowModel().rows.map((row, rowIndex) => (
+              <tr key={row.id}>
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id}>{cell.renderValue()}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
