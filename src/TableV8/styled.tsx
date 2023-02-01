@@ -66,7 +66,7 @@ export const StyledTable = styled(Table, {
   th,
   td {
     display: flex;
-    flex: 100 0 auto;
+    flex: 100 1 auto;
     width: 100px;
     padding: 2px 8px;
     font-family: Work Sans, sans-serif;
