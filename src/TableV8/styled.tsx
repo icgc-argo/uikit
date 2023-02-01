@@ -44,6 +44,8 @@ const TableContainer = (props: React.PropsWithChildren<{ className?: string }>) 
 );
 export const StyledTableContainer = styled(TableContainer)`
   width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
 `;
 
 const Table = (
@@ -81,9 +83,7 @@ export const StyledTable = styled(Table, {
 const TableHead = (props: React.PropsWithChildren<{ className?: string }>) => (
   <thead {...props} className={clsx(TABLE_CLASSES.THEAD, props.className)} />
 );
-export const StyledTableHead = styled(TableHead)`
-  border-bottom: solid 1px ${COLORS.BORDER};
-`;
+export const StyledTableHead = styled(TableHead)``;
 
 const TableHeader = (props: React.PropsWithChildren<{ className?: string; colSpan?: number }>) => (
   <th {...props} className={clsx(TABLE_CLASSES.TH, props.className)} />
