@@ -17,10 +17,11 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import React from 'react';
 import clsx from 'clsx';
 import isPropValid from '@emotion/is-prop-valid';
 import { styled } from '../ThemeProvider';
-import React from 'react';
+import colors from '../theme/defaultTheme/colors';
 
 export const TABLE_CLASSES = {
   TABLE_CONTAINER: 'rt-table-container',
@@ -33,10 +34,17 @@ export const TABLE_CLASSES = {
   TR: 'rt-tr',
 };
 
+const COLORS = {
+  BACKGROUND: colors.grey_4,
+  BORDER: colors.grey_2,
+};
+
 const TableContainer = (props: React.PropsWithChildren<{ className?: string }>) => (
   <div {...props} className={clsx(TABLE_CLASSES.TABLE_CONTAINER, props.className)} />
 );
-export const StyledTableContainer = styled(TableContainer)``;
+export const StyledTableContainer = styled(TableContainer)`
+  width: 100%;
+`;
 
 const Table = (
   props: React.PropsWithChildren<{
@@ -46,23 +54,44 @@ const Table = (
 ) => <table {...props} className={clsx(TABLE_CLASSES.TABLE, props.className)} />;
 export const StyledTable = styled(Table, {
   shouldForwardProp: (prop) => isPropValid(prop) && !['withOutsideBorder'].includes(prop),
-})``;
+})`
+  border: solid 1px ${COLORS.BORDER};
+  border-right-width: ${({ withOutsideBorder }) => `${withOutsideBorder ? '1' : '0'}px`};
+  border-left-width: ${({ withOutsideBorder }) => `${withOutsideBorder ? '1' : '0'}px`};
+  border-collapse: collapse;
+  width: 100%;
+  border-spacing: 0;
+  th,
+  td {
+    display: flex;
+    flex: 100 0 auto;
+    width: 100px;
+    padding: 2px 8px;
+    font-family: Work Sans, sans-serif;
+    font-size: 12px;
+    line-height: 1.33;
+    min-height: 24px;
+    align-items: center;
+    &:not(:last-of-type) {
+      border-right: 1px solid ${COLORS.BORDER};
+    }
+  }
+`;
 
 const TableHead = (props: React.PropsWithChildren<{ className?: string }>) => (
   <thead {...props} className={clsx(TABLE_CLASSES.THEAD, props.className)} />
 );
 export const StyledTableHead = styled(TableHead)`
-  border-bottom: ${({ theme }) => `solid 1px ${theme.colors.grey_2}`};
-  user-select: none;
-  .${TABLE_CLASSES.TR} {
-    text-align: center;
-  }
+  border-bottom: solid 1px ${COLORS.BORDER};
 `;
 
 const TableHeader = (props: React.PropsWithChildren<{ className?: string; colSpan?: number }>) => (
   <th {...props} className={clsx(TABLE_CLASSES.TH, props.className)} />
 );
-export const StyledTableHeader = styled(TableHeader)``;
+export const StyledTableHeader = styled(TableHeader)`
+  text-align: left;
+  border-bottom: 1px solid ${COLORS.BORDER};
+`;
 
 const TableBody = (props: React.PropsWithChildren<{ className?: string }>) => (
   <tbody {...props} className={clsx(TABLE_CLASSES.TBODY, props.className)} />
@@ -82,9 +111,17 @@ const TableRow = (
     )}
   />
 );
-export const StyledTableRow = styled(TableRow)``;
+export const StyledTableRow = styled(TableRow)`
+  display: flex;
+  &.-even.-striped {
+    background: ${COLORS.BACKGROUND};
+  }
+`;
 
 const TableCell = (props: React.PropsWithChildren<{ className?: string }>) => (
   <td {...props} className={clsx(TABLE_CLASSES.TD, props.className)} />
 );
-export const StyledTableCell = styled(TableCell)``;
+export const StyledTableCell = styled(TableCell)`
+  white-space: break-spaces;
+  word-break: break-word;
+`;
