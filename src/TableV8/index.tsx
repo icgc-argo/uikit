@@ -17,18 +17,15 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/react';
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import {
   StyledTableContainer,
-  StyledResizableHeader,
+  StyledTableHeader,
   StyledTable,
   StyledTableBody,
   StyledTableCell,
   StyledTableHead,
-  StyledTableHeader,
   StyledTableRow,
-  StyledResizer,
 } from './styled';
 
 interface ReactTableProps<TData> {
@@ -52,109 +49,38 @@ export const TableV8 = <TData extends object>({
     columns,
     data,
     getCoreRowModel: getCoreRowModel(),
-    columnResizeMode: 'onChange',
     debugAll: true,
   });
 
-  console.log(table.getCenterTotalSize());
-
   return (
-    <div>
-      <StyledTableContainer>
-        <StyledTable
-          className={className}
-          width={table.getCenterTotalSize()}
-          withOutsideBorder={withOutsideBorder}
-        >
-          {withHeaders && (
-            <StyledTableHead>
-              {table.getHeaderGroups().map((headerGroup, headerIndex) => (
-                <StyledTableRow key={headerGroup.id} index={headerIndex} withStripes={withStripes}>
-                  {headerGroup.headers.map((header) => (
-                    <StyledTableHeader
-                      key={header.id}
-                      colSpan={header.colSpan}
-                      width={header.getSize()}
-                    >
-                      <StyledResizableHeader>
-                        {header.isPlaceholder
-                          ? null
-                          : flexRender(header.column.columnDef.header, header.getContext())}
-                        <StyledResizer
-                          onMouseDown={header.getResizeHandler()}
-                          onTouchStart={header.getResizeHandler()}
-                          className={header.column.getIsResizing() ? 'isResizing' : ''}
-                        />
-                      </StyledResizableHeader>
-                    </StyledTableHeader>
-                  ))}
-                </StyledTableRow>
-              ))}
-            </StyledTableHead>
-          )}
-
-          <StyledTableBody>
-            {table.getRowModel().rows.map((row, rowIndex) => (
-              <StyledTableRow key={row.id} index={rowIndex} withStripes={withStripes}>
-                {row.getVisibleCells().map((cell) => (
-                  <StyledTableCell key={cell.id} width={cell.column.getSize()}>
-                    {cell.renderValue()}
-                  </StyledTableCell>
+    <StyledTableContainer>
+      <StyledTable className={className} withOutsideBorder={withOutsideBorder}>
+        {withHeaders && (
+          <StyledTableHead>
+            {table.getHeaderGroups().map((headerGroup, headerIndex) => (
+              <StyledTableRow key={headerGroup.id} index={headerIndex} withStripes={withStripes}>
+                {headerGroup.headers.map((header) => (
+                  <StyledTableHeader key={header.id} colSpan={header.colSpan}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(header.column.columnDef.header, header.getContext())}
+                  </StyledTableHeader>
                 ))}
               </StyledTableRow>
             ))}
-          </StyledTableBody>
-        </StyledTable>
-      </StyledTableContainer>
-      <br />
-      <br />
-      <div
-        css={css`
-          display: block;
-          overflow: auto;
-          .resizer {
-            display: inline-block;
-            background: magenta;
-            width: 20px;
-            height: 20px;
-          }
-        `}
-      >
-        <table>
-          {withHeaders && (
-            <thead>
-              {table.getHeaderGroups().map((headerGroup, headerIndex) => (
-                <tr key={headerGroup.id}>
-                  {headerGroup.headers.map((header) => (
-                    <th key={header.id} colSpan={header.colSpan}>
-                      <div>
-                        {header.isPlaceholder
-                          ? null
-                          : flexRender(header.column.columnDef.header, header.getContext())}
-                        <div
-                          onMouseDown={header.getResizeHandler()}
-                          onTouchStart={header.getResizeHandler()}
-                          className={`resizer ${header.column.getIsResizing() ? 'isResizing' : ''}`}
-                        />
-                      </div>
-                    </th>
-                  ))}
-                </tr>
-              ))}
-            </thead>
-          )}
+          </StyledTableHead>
+        )}
 
-          <tbody>
-            {table.getRowModel().rows.map((row, rowIndex) => (
-              <tr key={row.id}>
-                {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id}>{cell.renderValue()}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+        <StyledTableBody>
+          {table.getRowModel().rows.map((row, rowIndex) => (
+            <StyledTableRow key={row.id} index={rowIndex} withStripes={withStripes}>
+              {row.getVisibleCells().map((cell) => (
+                <StyledTableCell key={cell.id}>{cell.renderValue()}</StyledTableCell>
+              ))}
+            </StyledTableRow>
+          ))}
+        </StyledTableBody>
+      </StyledTable>
+    </StyledTableContainer>
   );
 };
