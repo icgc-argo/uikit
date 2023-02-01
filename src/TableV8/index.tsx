@@ -17,7 +17,6 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/react';
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import {
   StyledTableContainer,
@@ -27,6 +26,7 @@ import {
   StyledTableCell,
   StyledTableHead,
   StyledTableRow,
+  StyledResizableTableHeaderContent,
 } from './styled';
 
 interface ReactTableProps<TData> {
@@ -43,7 +43,7 @@ export const TableV8 = <TData extends object>({
   columns,
   data,
   withStripes = false,
-  withHeaders = true,
+  withHeaders = false,
   withOutsideBorder = false,
 }: ReactTableProps<TData>) => {
   const table = useReactTable({
@@ -62,17 +62,11 @@ export const TableV8 = <TData extends object>({
               <StyledTableRow key={headerGroup.id} index={headerIndex} withStripes={withStripes}>
                 {headerGroup.headers.map((header) => (
                   <StyledTableHeader key={header.id} colSpan={header.colSpan}>
-                    <div
-                      css={css`
-                        white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                      `}
-                    >
+                    <StyledResizableTableHeaderContent>
                       {header.isPlaceholder
                         ? null
                         : flexRender(header.column.columnDef.header, header.getContext())}
-                    </div>
+                    </StyledResizableTableHeaderContent>
                   </StyledTableHeader>
                 ))}
               </StyledTableRow>

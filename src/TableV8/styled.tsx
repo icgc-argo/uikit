@@ -32,6 +32,7 @@ export const TABLE_CLASSES = {
   THEAD: 'rt-thead -header',
   TR_GROUP: 'rt-tr-group',
   TR: 'rt-tr',
+  RESIZABLE_HEADER_CONTENT: 'rt-resizable-header-content',
 };
 
 const COLORS = {
@@ -91,6 +92,15 @@ const TableHeader = (props: React.PropsWithChildren<{ className?: string; colSpa
 export const StyledTableHeader = styled(TableHeader)`
   text-align: left;
   border-bottom: 1px solid ${COLORS.BORDER};
+`;
+
+const ResizableTableHeaderContent = (props: React.PropsWithChildren<{ className?: string }>) => (
+  <div {...props} className={clsx(TABLE_CLASSES.RESIZABLE_HEADER_CONTENT, props.className)} />
+);
+export const StyledResizableTableHeaderContent = styled(ResizableTableHeaderContent)`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const TableBody = (props: React.PropsWithChildren<{ className?: string }>) => (
