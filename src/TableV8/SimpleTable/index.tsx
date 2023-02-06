@@ -49,7 +49,7 @@ export const SimpleTable = ({ className = '', data }: SimpleTableProps) => {
       data={tableData}
       withHeaders={false}
       withStripes
-      withOutsideBorder
+      withSideBorders
       css={css`
         .rt-td {
           flex: 100 0 auto;

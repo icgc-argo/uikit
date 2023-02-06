@@ -33,29 +33,30 @@ interface ReactTableProps<TData> {
   className?: string;
   columns: ColumnDef<TData>[];
   data: TData[];
-  withStripes?: boolean;
   withHeaders?: boolean;
-  withOutsideBorder?: boolean;
+  withSideBorders?: boolean;
+  withRowHighlight?: boolean;
+  withStripes?: boolean;
 }
 
 export const TableV8 = <TData extends object>({
   className,
   columns,
   data,
-  withStripes = false,
   withHeaders = false,
-  withOutsideBorder = false,
+  withSideBorders = false,
+  withRowHighlight = false,
+  withStripes = false,
 }: ReactTableProps<TData>) => {
   const table = useReactTable({
     columns,
     data,
     getCoreRowModel: getCoreRowModel(),
-    debugAll: true,
   });
 
   return (
     <StyledTableContainer>
-      <StyledTable className={className} withOutsideBorder={withOutsideBorder}>
+      <StyledTable className={className} withSideBorders={withSideBorders}>
         {withHeaders && (
           <StyledTableHead>
             {table.getHeaderGroups().map((headerGroup, headerIndex) => (
@@ -76,9 +77,16 @@ export const TableV8 = <TData extends object>({
 
         <StyledTableBody>
           {table.getRowModel().rows.map((row, rowIndex) => (
-            <StyledTableRow key={row.id} index={rowIndex} withStripes={withStripes}>
+            <StyledTableRow
+              key={row.id}
+              index={rowIndex}
+              withStripes={withStripes}
+              withRowHighlight={withRowHighlight}
+            >
               {row.getVisibleCells().map((cell) => (
-                <StyledTableCell key={cell.id}>{cell.renderValue()}</StyledTableCell>
+                <StyledTableCell key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </StyledTableCell>
               ))}
             </StyledTableRow>
           ))}

@@ -38,6 +38,7 @@ export const TABLE_CLASSES = {
 const COLORS = {
   BACKGROUND: colors.grey_4,
   BORDER: colors.grey_2,
+  ROW_HIGHLIGHT_BACKGROUND: colors.grey_3,
 };
 
 const TableContainer = (props: React.PropsWithChildren<{ className?: string }>) => (
@@ -52,15 +53,15 @@ export const StyledTableContainer = styled(TableContainer)`
 const Table = (
   props: React.PropsWithChildren<{
     className?: string;
-    withOutsideBorder?: boolean;
+    withSideBorders?: boolean;
   }>,
 ) => <table {...props} className={clsx(TABLE_CLASSES.TABLE, props.className)} />;
 export const StyledTable = styled(Table, {
-  shouldForwardProp: (prop) => isPropValid(prop) && !['withOutsideBorder'].includes(prop),
+  shouldForwardProp: (prop) => isPropValid(prop) && !['withSideBorders'].includes(prop),
 })`
   border: solid 1px ${COLORS.BORDER};
-  border-right-width: ${({ withOutsideBorder }) => `${withOutsideBorder ? '1' : '0'}px`};
-  border-left-width: ${({ withOutsideBorder }) => `${withOutsideBorder ? '1' : '0'}px`};
+  border-right-width: ${({ withSideBorders }) => `${withSideBorders ? '1' : '0'}px`};
+  border-left-width: ${({ withSideBorders }) => `${withSideBorders ? '1' : '0'}px`};
   border-collapse: collapse;
   width: 100%;
   border-spacing: 0;
@@ -109,7 +110,12 @@ const TableBody = (props: React.PropsWithChildren<{ className?: string }>) => (
 export const StyledTableBody = styled(TableBody)``;
 
 const TableRow = (
-  props: React.PropsWithChildren<{ className?: string; withStripes?: boolean; index: number }>,
+  props: React.PropsWithChildren<{
+    className?: string;
+    index: number;
+    withRowHighlight?: boolean;
+    withStripes?: boolean;
+  }>,
 ) => (
   <tr
     {...props}
@@ -126,6 +132,13 @@ export const StyledTableRow = styled(TableRow)`
   &.-even.-striped {
     background: ${COLORS.BACKGROUND};
   }
+  ${(props) =>
+    props.withRowHighlight &&
+    `
+    &:hover {
+      background: ${COLORS.ROW_HIGHLIGHT_BACKGROUND}
+    }
+  `};
 `;
 
 const TableCell = (props: React.PropsWithChildren<{ className?: string }>) => (
