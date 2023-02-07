@@ -113,32 +113,22 @@ const TableRow = (
   props: React.PropsWithChildren<{
     className?: string;
     index: number;
+    withRowBorder?: boolean;
     withRowHighlight?: boolean;
     withStripes?: boolean;
   }>,
-) => (
-  <tr
-    {...props}
-    className={clsx(
-      TABLE_CLASSES.TR,
-      props.index % 2 ? '-even' : '-odd',
-      { '-striped': props.withStripes },
-      props.className,
-    )}
-  />
-);
-export const StyledTableRow = styled(TableRow)`
+) => <tr {...props} className={clsx(TABLE_CLASSES.TR, props.className)} />;
+export const StyledTableRow = styled(TableRow, {
+  shouldForwardProp: (prop) =>
+    isPropValid(prop) &&
+    !['index', 'withRowBorder', 'withRowHighlight', 'withStripes'].includes(prop),
+})`
   display: flex;
-  &.-even.-striped {
-    background: ${COLORS.BACKGROUND};
+  background: ${(props) => props.index % 2 === 0 && props.withStripes && COLORS.BACKGROUND};
+  border-bottom: ${(props) => `1px solid ${props.withRowBorder ? COLORS.BORDER : 'none'}`};
+  &:hover {
+    background: ${(props) => props.withRowHighlight && COLORS.ROW_HIGHLIGHT_BACKGROUND};
   }
-  ${(props) =>
-    props.withRowHighlight &&
-    `
-    &:hover {
-      background: ${COLORS.ROW_HIGHLIGHT_BACKGROUND}
-    }
-  `};
 `;
 
 const TableCell = (props: React.PropsWithChildren<{ className?: string }>) => (

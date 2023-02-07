@@ -34,8 +34,9 @@ interface ReactTableProps<TData> {
   columns: ColumnDef<TData>[];
   data: TData[];
   withHeaders?: boolean;
-  withSideBorders?: boolean;
+  withRowBorder?: boolean;
   withRowHighlight?: boolean;
+  withSideBorders?: boolean;
   withStripes?: boolean;
 }
 
@@ -47,6 +48,7 @@ export const TableV8 = <TData extends object>({
   withSideBorders = false,
   withRowHighlight = false,
   withStripes = false,
+  withRowBorder = false,
 }: ReactTableProps<TData>) => {
   const table = useReactTable({
     columns,
@@ -78,10 +80,11 @@ export const TableV8 = <TData extends object>({
         <StyledTableBody>
           {table.getRowModel().rows.map((row, rowIndex) => (
             <StyledTableRow
-              key={row.id}
               index={rowIndex}
-              withStripes={withStripes}
+              key={row.id}
+              withRowBorder={withRowBorder}
               withRowHighlight={withRowHighlight}
+              withStripes={withStripes}
             >
               {row.getVisibleCells().map((cell) => (
                 <StyledTableCell key={cell.id}>
