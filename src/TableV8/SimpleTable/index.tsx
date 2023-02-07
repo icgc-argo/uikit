@@ -33,6 +33,7 @@ const columns = [
   },
   {
     accessorKey: 'val',
+    cell: (info) => info.renderValue(),
   },
 ];
 
