@@ -124,10 +124,12 @@ export const StyledTableRow = styled(TableRow, {
     !['index', 'withRowBorder', 'withRowHighlight', 'withStripes'].includes(prop),
 })`
   display: flex;
-  background: ${(props) => props.index % 2 === 0 && props.withStripes && COLORS.BACKGROUND};
-  border-bottom: ${(props) => `1px solid ${props.withRowBorder ? COLORS.BORDER : 'none'}`};
+  background: ${(props) =>
+    props.index % 2 === 0 && props.withStripes ? COLORS.BACKGROUND : 'none'};
+  border-bottom: ${(props) => `1px solid ${props.withRowBorder ? COLORS.BORDER : 'transparent'}`};
   &:hover {
-    background: ${(props) => props.withRowHighlight && COLORS.ROW_HIGHLIGHT_BACKGROUND};
+    background: ${(props) =>
+      props.withRowHighlight ? COLORS.ROW_HIGHLIGHT_BACKGROUND : 'initial'};
   }
 `;
 
