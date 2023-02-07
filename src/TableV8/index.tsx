@@ -40,7 +40,7 @@ interface ReactTableProps<TData> {
 }
 
 export const TableV8 = <TData extends object>({
-  className,
+  className = '',
   columns,
   data,
   withHeaders = false,
@@ -55,8 +55,8 @@ export const TableV8 = <TData extends object>({
   });
 
   return (
-    <StyledTableContainer>
-      <StyledTable className={className} withSideBorders={withSideBorders}>
+    <StyledTableContainer className={className}>
+      <StyledTable withSideBorders={withSideBorders}>
         {withHeaders && (
           <StyledTableHead>
             {table.getHeaderGroups().map((headerGroup, headerIndex) => (
