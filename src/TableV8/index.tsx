@@ -42,8 +42,8 @@ interface ReactTableProps<TData> {
 
 export const TableV8 = <TData extends object>({
   className = '',
-  columns,
-  data,
+  columns = [],
+  data = [],
   withHeaders = false,
   withSideBorders = false,
   withRowHighlight = false,

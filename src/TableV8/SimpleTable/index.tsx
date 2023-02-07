@@ -48,7 +48,6 @@ export const SimpleTable = ({ className = '', data }: SimpleTableProps) => {
       className={className}
       columns={columns}
       data={tableData}
-      withHeaders={false}
       withStripes
       withSideBorders
       css={css`
