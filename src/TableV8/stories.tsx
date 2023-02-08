@@ -28,10 +28,10 @@ storiesOf(`TableV8`, module).add(
   () => {
     const knobs = {
       withHeaders: boolean('withHeaders', true),
-      withSideBorders: boolean('withSideBorders', false),
-      withRowHighlight: boolean('withRowHighlight', false),
-      withStripes: boolean('withStripes', false),
       withRowBorder: boolean('withRowBorder', false),
+      withRowHighlight: boolean('withRowHighlight', false),
+      withSideBorders: boolean('withSideBorders', false),
+      withStripes: boolean('withStripes', false),
     };
     return (
       <TableV8
@@ -50,15 +50,15 @@ storiesOf(`TableV8`, module).add(
         ]}
         columns={[
           {
-            header: 'ID',
+            header: () => 'ID',
             accessorKey: 'id',
           },
           {
-            header: 'Property 2',
+            header: () => 'Property 2',
             accessorKey: 'prop2',
           },
           {
-            header: 'Property 3',
+            header: () => 'Property 3',
             accessorKey: 'prop3',
           },
         ]}

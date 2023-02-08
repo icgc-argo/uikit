@@ -17,7 +17,6 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import React from 'react';
 import clsx from 'clsx';
 import isPropValid from '@emotion/is-prop-valid';
 import { styled } from '../ThemeProvider';
@@ -60,13 +59,12 @@ export const StyledTable = styled(Table, {
   shouldForwardProp: (prop) => isPropValid(prop) && !['withSideBorders'].includes(prop),
 })`
   border: solid 1px ${COLORS.BORDER};
-  border-right-width: ${({ withSideBorders }) => `${withSideBorders ? '1' : '0'}px`};
-  border-left-width: ${({ withSideBorders }) => `${withSideBorders ? '1' : '0'}px`};
+  border-right-width: ${(props) => `${props.withSideBorders ? '1' : '0'}px`};
+  border-left-width: ${(props) => `${props.withSideBorders ? '1' : '0'}px`};
   border-collapse: collapse;
   width: 100%;
   border-spacing: 0;
-  th,
-  td {
+  .${TABLE_CLASSES.TH}, .${TABLE_CLASSES.TD} {
     display: flex;
     flex: 100 1 auto;
     width: 100px;
