@@ -25,27 +25,25 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import {
-  StyledTableContainer,
-  StyledTableHeader,
+  StyledLoader,
+  StyledResizer,
   StyledTable,
   StyledTableBody,
   StyledTableCell,
+  StyledTableContainer,
   StyledTableHead,
+  StyledTableHeader,
   StyledTableRow,
-  StyledResizer,
 } from './styled';
-
-declare module '@tanstack/table-core' {
-  interface ColumnMeta<TData extends RowData, TValue> {
-    width: number;
-  }
-}
 
 interface ReactTableProps<TData> {
   className?: string;
   columns: ColumnDef<TData>[];
   data: TData[];
+  LoaderComponent?: typeof StyledLoader;
+  loading?: boolean;
   withHeaders?: boolean;
+  withLoader?: boolean;
   withResize?: boolean;
   withRowBorder?: boolean;
   withRowHighlight?: boolean;
@@ -57,7 +55,10 @@ export const TableV8 = <TData extends object>({
   className = '',
   columns = [],
   data = [],
+  LoaderComponent = StyledLoader,
+  loading = false,
   withHeaders = false,
+  withLoader = false,
   withResize = false,
   withRowBorder = false,
   withRowHighlight = false,
@@ -111,18 +112,16 @@ export const TableV8 = <TData extends object>({
               withRowHighlight={withRowHighlight}
               withStripes={withStripes}
             >
-              {row.getVisibleCells().map((cell) => {
-                console.log({ cell });
-                return (
-                  <StyledTableCell key={cell.id} width={cell.column.getSize()}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </StyledTableCell>
-                );
-              })}
+              {row.getVisibleCells().map((cell) => (
+                <StyledTableCell key={cell.id} width={cell.column.getSize()}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </StyledTableCell>
+              ))}
             </StyledTableRow>
           ))}
         </StyledTableBody>
       </StyledTable>
+      {withLoader && <LoaderComponent loading={loading} />}
     </StyledTableContainer>
   );
 };

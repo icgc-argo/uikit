@@ -21,8 +21,10 @@ import clsx from 'clsx';
 import isPropValid from '@emotion/is-prop-valid';
 import { styled } from '../ThemeProvider';
 import colors from '../theme/defaultTheme/colors';
+import { DnaLoader } from '../DnaLoader';
 
 export const TABLE_CLASSES = {
+  LOADING_COMPONENT: 'rt-loading',
   RESIZABLE_HEADER_CONTENT: 'rt-resizable-header-content',
   RESIZER: 'rt-resizer',
   TABLE_CONTAINER: 'rt-table-container',
@@ -48,6 +50,7 @@ export const StyledTableContainer = styled(TableContainer)`
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
+  position: relative;
 `;
 
 const Table = (
@@ -154,4 +157,33 @@ export const StyledResizer = styled(Resizer)`
   background: transparent;
   user-select: none; // send event to <Resizer />
   touch-action: none; // send event to <Resizer />
+`;
+
+const Loader = (props: React.PropsWithChildren<{ className?: string; loading?: boolean }>) => (
+  <div {...props} className={clsx(TABLE_CLASSES.TABLE_CONTAINER, props.className)}>
+    <DnaLoader />
+  </div>
+);
+export const StyledLoader = styled(Loader, {
+  shouldForwardProp: (prop) => isPropValid(prop) && !['loading'].includes(prop),
+})`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  opacity: 0;
+  ${(props) =>
+    props.loading &&
+    `
+      opacity: 1;
+      z-index: 2;
+      pointer-events: all;
+    `}
 `;
