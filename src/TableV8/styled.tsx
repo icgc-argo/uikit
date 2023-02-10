@@ -23,6 +23,8 @@ import { styled } from '../ThemeProvider';
 import colors from '../theme/defaultTheme/colors';
 
 export const TABLE_CLASSES = {
+  RESIZABLE_HEADER_CONTENT: 'rt-resizable-header-content',
+  RESIZER: 'rt-resizer',
   TABLE_CONTAINER: 'rt-table-container',
   TABLE: 'rt-table',
   TBODY: 'rt-tbody',
@@ -31,7 +33,6 @@ export const TABLE_CLASSES = {
   THEAD: 'rt-thead -header',
   TR_GROUP: 'rt-tr-group',
   TR: 'rt-tr',
-  RESIZABLE_HEADER_CONTENT: 'rt-resizable-header-content',
 };
 
 const COLORS = {
@@ -63,11 +64,7 @@ export const StyledTable = styled(Table, {
   border-left-width: ${(props) => `${props.withSideBorders ? '1' : '0'}px`};
   border-collapse: collapse;
   width: 100%;
-  border-spacing: 0;
   .${TABLE_CLASSES.TH}, .${TABLE_CLASSES.TD} {
-    display: flex;
-    flex: 100 1 auto;
-    width: 100px;
     padding: 2px 8px;
     font-family: Work Sans, sans-serif;
     font-size: 12px;
@@ -85,22 +82,35 @@ const TableHead = (props: React.PropsWithChildren<{ className?: string }>) => (
 );
 export const StyledTableHead = styled(TableHead)``;
 
-const TableHeader = (props: React.PropsWithChildren<{ className?: string; colSpan?: number }>) => (
-  <th {...props} className={clsx(TABLE_CLASSES.TH, props.className)} />
-);
-export const StyledTableHeader = styled(TableHeader)`
-  text-align: left;
+const TableHeader = (
+  props: React.PropsWithChildren<{ className?: string; colSpan?: number; width?: number }>,
+) => <th {...props} className={clsx(TABLE_CLASSES.TH, props.className)} />;
+export const StyledTableHeader = styled(TableHeader, {
+  shouldForwardProp: (prop) => isPropValid(prop) && !['width'].includes(prop),
+})`
   border-bottom: 1px solid ${COLORS.BORDER};
+  position: relative;
+  width: ${(props) => `${props.width || 1}px`};
+  &:last-of-type {
+    overflow: hidden; // stop resizer from adding horizontal scrollbar
+  }
 `;
 
-const ResizableTableHeaderContent = (props: React.PropsWithChildren<{ className?: string }>) => (
-  <div {...props} className={clsx(TABLE_CLASSES.RESIZABLE_HEADER_CONTENT, props.className)} />
-);
-export const StyledResizableTableHeaderContent = styled(ResizableTableHeaderContent)`
-  white-space: nowrap;
+const ResizableTableHeaderContent = (
+  props: React.PropsWithChildren<{ className?: string; width?: number }>,
+) => <div {...props} className={clsx(TABLE_CLASSES.RESIZABLE_HEADER_CONTENT, props.className)} />;
+export const StyledResizableTableHeaderContent = styled(ResizableTableHeaderContent, {
+  shouldForwardProp: (prop) => isPropValid(prop) && !['width'].includes(prop),
+})`
   overflow: hidden;
   text-overflow: ellipsis;
-`;
+  display: inline-block;
+  white-space: nowrap;
+  min-width: 60px;
+  width: ${(props) => `${props.width || 1}px`};
+}`;
+// resizable header content has to have an exact pixel width in order for the ellipsis to work.
+// it needs a min width or it will go down to 20px wide.
 
 const TableBody = (props: React.PropsWithChildren<{ className?: string }>) => (
   <tbody {...props} className={clsx(TABLE_CLASSES.TBODY, props.className)} />
@@ -121,20 +131,43 @@ export const StyledTableRow = styled(TableRow, {
     isPropValid(prop) &&
     !['index', 'withRowBorder', 'withRowHighlight', 'withStripes'].includes(prop),
 })`
-  display: flex;
   background: ${(props) =>
-    props.index % 2 === 0 && props.withStripes ? COLORS.BACKGROUND : 'none'};
-  border-bottom: ${(props) => `1px solid ${props.withRowBorder ? COLORS.BORDER : 'transparent'}`};
-  &:hover {
-    background: ${(props) =>
-      props.withRowHighlight ? COLORS.ROW_HIGHLIGHT_BACKGROUND : 'initial'};
-  }
+    props.index % 2 && props.withStripes ? COLORS.BACKGROUND : 'transparent'};
+  border-bottom: ${(props) => (props.withRowBorder ? `1px solid ${COLORS.BORDER}` : '0 none')};
+  ${(props) =>
+    props.withRowHighlight &&
+    `
+    &:hover {
+      background: ${COLORS.ROW_HIGHLIGHT_BACKGROUND}
+    }
+  `}
 `;
 
-const TableCell = (props: React.PropsWithChildren<{ className?: string }>) => (
+const TableCell = (props: React.PropsWithChildren<{ className?: string; width?: number }>) => (
   <td {...props} className={clsx(TABLE_CLASSES.TD, props.className)} />
 );
-export const StyledTableCell = styled(TableCell)`
-  white-space: break-spaces;
-  word-break: break-word;
+export const StyledTableCell = styled(TableCell, {
+  shouldForwardProp: (prop) => isPropValid(prop) && !['width'].includes(prop),
+})`
+  width: ${(props) => `${props.width || 1}px`};
+`;
+
+const Resizer = (
+  props: React.PropsWithChildren<{
+    className?: string;
+    onMouseDown: (e: unknown) => void;
+    onTouchStart: (e: unknown) => void;
+  }>,
+) => <button {...props} className={clsx(TABLE_CLASSES.RESIZER, props.className)} type="button" />;
+export const StyledResizer = styled(Resizer)`
+  border: 0 none;
+  position: absolute;
+  right: -6px;
+  top: 0;
+  height: 100%;
+  width: 13px;
+  cursor: col-resize;
+  background: transparent;
+  user-select: none; // send event to <Resizer />
+  touch-action: none; // send event to <Resizer />
 `;
