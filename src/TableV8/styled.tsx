@@ -69,8 +69,8 @@ export const StyledTable = styled(Table, {
     font-family: Work Sans, sans-serif;
     font-size: 12px;
     line-height: 1.33;
-    min-height: 24px;
-    align-items: center;
+    height: 24px;
+    text-align: left;
     &:not(:last-of-type) {
       border-right: 1px solid ${COLORS.BORDER};
     }
@@ -92,25 +92,9 @@ export const StyledTableHeader = styled(TableHeader, {
   position: relative;
   width: ${(props) => `${props.width || 1}px`};
   &:last-of-type {
-    overflow: hidden; // stop resizer from adding horizontal scrollbar
+    overflow-x: hidden; // stop resizer from adding horizontal scrollbar
   }
 `;
-
-const ResizableTableHeaderContent = (
-  props: React.PropsWithChildren<{ className?: string; width?: number }>,
-) => <div {...props} className={clsx(TABLE_CLASSES.RESIZABLE_HEADER_CONTENT, props.className)} />;
-export const StyledResizableTableHeaderContent = styled(ResizableTableHeaderContent, {
-  shouldForwardProp: (prop) => isPropValid(prop) && !['width'].includes(prop),
-})`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: inline-block;
-  white-space: nowrap;
-  min-width: 60px;
-  width: ${(props) => `${props.width || 1}px`};
-}`;
-// resizable header content has to have an exact pixel width in order for the ellipsis to work.
-// it needs a min width or it will go down to 20px wide.
 
 const TableBody = (props: React.PropsWithChildren<{ className?: string }>) => (
   <tbody {...props} className={clsx(TABLE_CLASSES.TBODY, props.className)} />

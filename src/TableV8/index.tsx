@@ -17,7 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import {
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  RowData,
+  useReactTable,
+} from '@tanstack/react-table';
 import {
   StyledTableContainer,
   StyledTableHeader,
@@ -26,9 +32,14 @@ import {
   StyledTableCell,
   StyledTableHead,
   StyledTableRow,
-  StyledResizableTableHeaderContent,
   StyledResizer,
 } from './styled';
+
+declare module '@tanstack/table-core' {
+  interface ColumnMeta<TData extends RowData, TValue> {
+    width: number;
+  }
+}
 
 interface ReactTableProps<TData> {
   className?: string;
@@ -74,18 +85,16 @@ export const TableV8 = <TData extends object>({
                     colSpan={header.colSpan}
                     width={header.getSize()}
                   >
-                    <StyledResizableTableHeaderContent width={header.getSize()}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(header.column.columnDef.header, header.getContext())}
-                      {header.column.getCanResize() && (
-                        <StyledResizer
-                          onMouseDown={header.getResizeHandler()}
-                          onTouchStart={header.getResizeHandler()}
-                          className={`resizer ${header.column.getIsResizing() ? 'isResizing' : ''}`}
-                        />
-                      )}
-                    </StyledResizableTableHeaderContent>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(header.column.columnDef.header, header.getContext())}
+                    {header.column.getCanResize() && (
+                      <StyledResizer
+                        onMouseDown={header.getResizeHandler()}
+                        onTouchStart={header.getResizeHandler()}
+                        className={`resizer ${header.column.getIsResizing() ? 'isResizing' : ''}`}
+                      />
+                    )}
                   </StyledTableHeader>
                 ))}
               </StyledTableRow>
@@ -102,11 +111,14 @@ export const TableV8 = <TData extends object>({
               withRowHighlight={withRowHighlight}
               withStripes={withStripes}
             >
-              {row.getVisibleCells().map((cell) => (
-                <StyledTableCell key={cell.id} width={cell.column.getSize()}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </StyledTableCell>
-              ))}
+              {row.getVisibleCells().map((cell) => {
+                console.log({ cell });
+                return (
+                  <StyledTableCell key={cell.id} width={cell.column.getSize()}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </StyledTableCell>
+                );
+              })}
             </StyledTableRow>
           ))}
         </StyledTableBody>
