@@ -17,21 +17,38 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { ColumnDef, getCoreRowModel, useReactTable } from '@tanstack/react-table';
-import { StyledTable, StyledTableBody, StyledTableCell, StyledTableRow } from './styled';
+import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import {
+  StyledTableContainer,
+  StyledTableHeader,
+  StyledTable,
+  StyledTableBody,
+  StyledTableCell,
+  StyledTableHead,
+  StyledTableRow,
+  StyledResizableTableHeaderContent,
+} from './styled';
 
 interface ReactTableProps<TData> {
   className?: string;
   columns: ColumnDef<TData>[];
   data: TData[];
-  isStriped?: boolean;
+  withHeaders?: boolean;
+  withRowBorder?: boolean;
+  withRowHighlight?: boolean;
+  withSideBorders?: boolean;
+  withStripes?: boolean;
 }
 
 export const TableV8 = <TData extends object>({
-  className,
-  columns,
-  data,
-  isStriped = false,
+  className = '',
+  columns = [],
+  data = [],
+  withHeaders = false,
+  withSideBorders = false,
+  withRowHighlight = false,
+  withStripes = false,
+  withRowBorder = false,
 }: ReactTableProps<TData>) => {
   const table = useReactTable({
     columns,
@@ -40,16 +57,44 @@ export const TableV8 = <TData extends object>({
   });
 
   return (
-    <StyledTable className={className}>
-      <StyledTableBody>
-        {table.getRowModel().rows.map((row, rowIndex) => (
-          <StyledTableRow key={row.id} index={rowIndex} isStriped={isStriped}>
-            {row.getVisibleCells().map((cell) => (
-              <StyledTableCell key={cell.id}>{cell.renderValue()}</StyledTableCell>
+    <StyledTableContainer className={className}>
+      <StyledTable withSideBorders={withSideBorders}>
+        {withHeaders && (
+          <StyledTableHead>
+            {table.getHeaderGroups().map((headerGroup, headerIndex) => (
+              <StyledTableRow key={headerGroup.id} index={headerIndex} withStripes={withStripes}>
+                {headerGroup.headers.map((header) => (
+                  <StyledTableHeader key={header.id} colSpan={header.colSpan}>
+                    <StyledResizableTableHeaderContent>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(header.column.columnDef.header, header.getContext())}
+                    </StyledResizableTableHeaderContent>
+                  </StyledTableHeader>
+                ))}
+              </StyledTableRow>
             ))}
-          </StyledTableRow>
-        ))}
-      </StyledTableBody>
-    </StyledTable>
+          </StyledTableHead>
+        )}
+
+        <StyledTableBody>
+          {table.getRowModel().rows.map((row, rowIndex) => (
+            <StyledTableRow
+              index={rowIndex}
+              key={row.id}
+              withRowBorder={withRowBorder}
+              withRowHighlight={withRowHighlight}
+              withStripes={withStripes}
+            >
+              {row.getVisibleCells().map((cell) => (
+                <StyledTableCell key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </StyledTableCell>
+              ))}
+            </StyledTableRow>
+          ))}
+        </StyledTableBody>
+      </StyledTable>
+    </StyledTableContainer>
   );
 };
