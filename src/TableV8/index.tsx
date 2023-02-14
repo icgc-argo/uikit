@@ -17,13 +17,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import {
-  ColumnDef,
-  flexRender,
-  getCoreRowModel,
-  RowData,
-  useReactTable,
-} from '@tanstack/react-table';
+import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import {
   StyledLoader,
   StyledResizer,
@@ -40,10 +34,9 @@ interface ReactTableProps<TData> {
   className?: string;
   columns: ColumnDef<TData>[];
   data: TData[];
-  LoaderComponent?: typeof StyledLoader;
-  loading?: boolean;
+  LoaderComponent?: any;
+  loading?: boolean | null;
   withHeaders?: boolean;
-  withLoader?: boolean;
   withResize?: boolean;
   withRowBorder?: boolean;
   withRowHighlight?: boolean;
@@ -56,9 +49,8 @@ export const TableV8 = <TData extends object>({
   columns = [],
   data = [],
   LoaderComponent = StyledLoader,
-  loading = false,
+  loading = null,
   withHeaders = false,
-  withLoader = false,
   withResize = false,
   withRowBorder = false,
   withRowHighlight = false,
@@ -121,7 +113,7 @@ export const TableV8 = <TData extends object>({
           ))}
         </StyledTableBody>
       </StyledTable>
-      {withLoader && <LoaderComponent loading={loading} />}
+      {loading !== null && <LoaderComponent loading={loading} />}
     </StyledTableContainer>
   );
 };
