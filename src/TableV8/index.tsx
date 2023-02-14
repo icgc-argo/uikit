@@ -17,10 +17,19 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import {
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  getSortedRowModel,
+  SortingState,
+  useReactTable,
+} from '@tanstack/react-table';
+import { useState } from 'react';
 import {
   StyledLoader,
   StyledResizer,
+  StyledSortButton,
   StyledTable,
   StyledTableBody,
   StyledTableCell,
@@ -28,6 +37,7 @@ import {
   StyledTableHead,
   StyledTableHeader,
   StyledTableRow,
+  TABLE_CLASSES,
 } from './styled';
 
 interface ReactTableProps<TData> {
@@ -36,11 +46,13 @@ interface ReactTableProps<TData> {
   data: TData[];
   LoaderComponent?: any;
   loading?: boolean | null;
+  manualSorting?: boolean;
   withHeaders?: boolean;
   withResize?: boolean;
   withRowBorder?: boolean;
   withRowHighlight?: boolean;
   withSideBorders?: boolean;
+  withSorting?: boolean;
   withStripes?: boolean;
 }
 
@@ -50,19 +62,30 @@ export const TableV8 = <TData extends object>({
   data = [],
   LoaderComponent = StyledLoader,
   loading = null,
+  manualSorting = false,
   withHeaders = false,
   withResize = false,
   withRowBorder = false,
   withRowHighlight = false,
   withSideBorders = false,
+  withSorting = true,
   withStripes = false,
 }: ReactTableProps<TData>) => {
+  const [sortingState, setSortingState] = useState<SortingState>([]);
+
   const table = useReactTable({
+    columnResizeMode: 'onChange',
     columns,
     data,
     enableColumnResizing: withResize,
-    columnResizeMode: 'onChange',
+    enableSorting: withSorting,
     getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    manualSorting,
+    onSortingChange: setSortingState,
+    state: {
+      sorting: sortingState,
+    },
   });
 
   return (
@@ -72,24 +95,35 @@ export const TableV8 = <TData extends object>({
           <StyledTableHead>
             {table.getHeaderGroups().map((headerGroup, headerIndex) => (
               <StyledTableRow key={headerGroup.id} index={headerIndex} withStripes={withStripes}>
-                {headerGroup.headers.map((header) => (
-                  <StyledTableHeader
-                    key={header.id}
-                    colSpan={header.colSpan}
-                    width={header.getSize()}
-                  >
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(header.column.columnDef.header, header.getContext())}
-                    {header.column.getCanResize() && (
-                      <StyledResizer
-                        onMouseDown={header.getResizeHandler()}
-                        onTouchStart={header.getResizeHandler()}
-                        className={`resizer ${header.column.getIsResizing() ? 'isResizing' : ''}`}
-                      />
-                    )}
-                  </StyledTableHeader>
-                ))}
+                {headerGroup.headers.map((header) => {
+                  const headerText = header.isPlaceholder
+                    ? null
+                    : flexRender(header.column.columnDef.header, header.getContext());
+                  return (
+                    <StyledTableHeader
+                      key={header.id}
+                      colSpan={header.colSpan}
+                      width={header.getSize()}
+                      sorted={header.column.getIsSorted()}
+                      canSort={header.column.getCanSort()}
+                    >
+                      {header.column.getCanSort() ? (
+                        <StyledSortButton onClick={header.column.getToggleSortingHandler()}>
+                          {headerText}
+                        </StyledSortButton>
+                      ) : (
+                        headerText
+                      )}
+                      {header.column.getCanResize() && (
+                        <StyledResizer
+                          onMouseDown={header.getResizeHandler()}
+                          onTouchStart={header.getResizeHandler()}
+                          className={`resizer ${header.column.getIsResizing() ? 'isResizing' : ''}`}
+                        />
+                      )}
+                    </StyledTableHeader>
+                  );
+                })}
               </StyledTableRow>
             ))}
           </StyledTableHead>

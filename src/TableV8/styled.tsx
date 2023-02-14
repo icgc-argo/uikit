@@ -27,6 +27,7 @@ export const TABLE_CLASSES = {
   LOADING_COMPONENT: 'rt-loading',
   RESIZABLE_HEADER_CONTENT: 'rt-resizable-header-content',
   RESIZER: 'rt-resizer',
+  SORT_BUTTON: 'rt-sort-button',
   TABLE_CONTAINER: 'rt-table-container',
   TABLE: 'rt-table',
   TBODY: 'rt-tbody',
@@ -60,7 +61,7 @@ const Table = (
   }>,
 ) => <table {...props} className={clsx(TABLE_CLASSES.TABLE, props.className)} />;
 export const StyledTable = styled(Table, {
-  shouldForwardProp: (prop) => isPropValid(prop) && !['withSideBorders'].includes(prop),
+  shouldForwardProp: (prop) => isPropValid(prop),
 })`
   border: solid 1px ${COLORS.BORDER};
   border-right-width: ${(props) => `${props.withSideBorders ? '1' : '0'}px`};
@@ -68,15 +69,20 @@ export const StyledTable = styled(Table, {
   border-collapse: collapse;
   width: 100%;
   .${TABLE_CLASSES.TH}, .${TABLE_CLASSES.TD} {
+    &:not(:last-of-type) {
+      border-right: 1px solid ${COLORS.BORDER};
+    }
+  }
+  .${TABLE_CLASSES.TH}, .${TABLE_CLASSES.TD}, .${TABLE_CLASSES.SORT_BUTTON} {
     padding: 2px 8px;
     font-family: Work Sans, sans-serif;
     font-size: 12px;
     line-height: 1.33;
     height: 24px;
     text-align: left;
-    &:not(:last-of-type) {
-      border-right: 1px solid ${COLORS.BORDER};
-    }
+  }
+  .${TABLE_CLASSES.TH}, .${TABLE_CLASSES.SORT_BUTTON} {
+    font-weight: bold;
   }
 `;
 
@@ -86,7 +92,13 @@ const TableHead = (props: React.PropsWithChildren<{ className?: string }>) => (
 export const StyledTableHead = styled(TableHead)``;
 
 const TableHeader = (
-  props: React.PropsWithChildren<{ className?: string; colSpan?: number; width?: number }>,
+  props: React.PropsWithChildren<{
+    canSort?: boolean;
+    className?: string;
+    colSpan?: number;
+    sorted?: 'asc' | 'desc' | false;
+    width?: number;
+  }>,
 ) => <th {...props} className={clsx(TABLE_CLASSES.TH, props.className)} />;
 export const StyledTableHeader = styled(TableHeader, {
   shouldForwardProp: (prop) => isPropValid(prop) && !['width'].includes(prop),
@@ -97,6 +109,18 @@ export const StyledTableHeader = styled(TableHeader, {
   &:last-of-type {
     overflow-x: hidden; // stop resizer from adding horizontal scrollbar
   }
+  transition: box-shadow 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  ${(props) =>
+    props.sorted &&
+    `
+      box-shadow: inset 0 ${props.sorted === 'asc' ? '' : '-'}3px 0 0 rgb(7 116 211);
+  `}
+  ${(props) =>
+    props.canSort &&
+    `
+      padding: 0 !important;
+     
+  `}
 `;
 
 const TableBody = (props: React.PropsWithChildren<{ className?: string }>) => (
@@ -114,9 +138,7 @@ const TableRow = (
   }>,
 ) => <tr {...props} className={clsx(TABLE_CLASSES.TR, props.className)} />;
 export const StyledTableRow = styled(TableRow, {
-  shouldForwardProp: (prop) =>
-    isPropValid(prop) &&
-    !['index', 'withRowBorder', 'withRowHighlight', 'withStripes'].includes(prop),
+  shouldForwardProp: (prop) => isPropValid(prop),
 })`
   background: ${(props) =>
     props.index % 2 && props.withStripes ? COLORS.BACKGROUND : 'transparent'};
@@ -165,7 +187,7 @@ const Loader = (props: React.PropsWithChildren<{ className?: string; loading?: b
   </div>
 );
 export const StyledLoader = styled(Loader, {
-  shouldForwardProp: (prop) => isPropValid(prop) && !['loading'].includes(prop),
+  shouldForwardProp: (prop) => isPropValid(prop),
 })`
   display: flex;
   align-items: center;
@@ -186,4 +208,17 @@ export const StyledLoader = styled(Loader, {
       z-index: 2;
       pointer-events: all;
     `}
+`;
+
+const SortButton = (
+  props: React.PropsWithChildren<{ className?: string; onClick: (e: unknown) => void }>,
+) => <button {...props} className={clsx(TABLE_CLASSES.SORT_BUTTON, props.className)} />;
+export const StyledSortButton = styled(SortButton, {
+  shouldForwardProp: (prop) => isPropValid(prop),
+})`
+  background: none;
+  border: 0 none;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 `;
