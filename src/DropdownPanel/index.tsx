@@ -497,6 +497,7 @@ export const DropdownPanel = ({
   handleClickOutside,
   children,
   active,
+  className = '',
 }: {
   customTrigger?: any;
   inputLabel?: string;
@@ -512,6 +513,7 @@ export const DropdownPanel = ({
   handleClickOutside?: (event?: any) => void;
   children?: any;
   active?: boolean;
+  className?: string;
 }) => {
   const [_open, _setOpen] =
     typeof open === 'boolean' && setOpen ? [open, setOpen] : useState(false);
@@ -624,6 +626,7 @@ export const DropdownPanel = ({
         <ForwardedDropdownWrapper
           onClick={(e: React.MouseEvent<HTMLElement>) => e.stopPropagation()}
           ref={_panelRef}
+          className={className}
         >
           {children}
         </ForwardedDropdownWrapper>
