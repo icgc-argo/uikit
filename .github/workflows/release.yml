@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.4.1
         with:
-          node-version: "lts/gallium"
+          node-version: 'lts/gallium'
 
       - name: Checkout code
         uses: actions/checkout@v2
@@ -32,10 +32,11 @@ jobs:
       #  run: npm run test
 
       - name: NPM Publish
+        run: cd dist
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
-          access: "public"
+          access: 'public'
 
       - name: Git tag
         run: |
