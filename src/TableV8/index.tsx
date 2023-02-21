@@ -27,18 +27,31 @@ import {
 } from '@tanstack/react-table';
 import { useState } from 'react';
 import {
-  StyledLoader,
-  StyledResizer,
-  StyledSortButton,
-  StyledTable,
-  StyledTableBody,
-  StyledTableCell,
-  StyledTableContainer,
-  StyledTableHead,
-  StyledTableHeader,
-  StyledTableRow,
-  TABLE_CLASSES,
+  Loader,
+  Resizer,
+  SortButton,
+  TableStyled,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableCellWrapper,
 } from './styled';
+
+// ==================================================
+// IMPORTANT
+// ==================================================
+// react table v8 is headless and we made our own UI.
+// see the readme in this folder for usage tips.
+
+declare module '@tanstack/table-core' {
+  interface ColumnMeta<TData extends unknown, TValue> {
+    customCell?: boolean;
+    customHeader?: boolean;
+  }
+}
 
 interface ReactTableProps<TData> {
   className?: string;
@@ -60,7 +73,7 @@ export const TableV8 = <TData extends object>({
   className = '',
   columns = [],
   data = [],
-  LoaderComponent = StyledLoader,
+  LoaderComponent = Loader,
   loading = null,
   manualSorting = false,
   withHeaders = false,
@@ -89,18 +102,18 @@ export const TableV8 = <TData extends object>({
   });
 
   return (
-    <StyledTableContainer className={className}>
-      <StyledTable withSideBorders={withSideBorders}>
+    <TableContainer className={className}>
+      <TableStyled withSideBorders={withSideBorders}>
         {withHeaders && (
-          <StyledTableHead>
+          <TableHead>
             {table.getHeaderGroups().map((headerGroup, headerIndex) => (
-              <StyledTableRow key={headerGroup.id} index={headerIndex} withStripes={withStripes}>
+              <TableRow key={headerGroup.id} index={headerIndex} withStripes={withStripes}>
                 {headerGroup.headers.map((header) => {
                   const headerText = header.isPlaceholder
                     ? null
                     : flexRender(header.column.columnDef.header, header.getContext());
                   return (
-                    <StyledTableHeader
+                    <TableHeader
                       key={header.id}
                       colSpan={header.colSpan}
                       width={header.getSize()}
@@ -108,46 +121,55 @@ export const TableV8 = <TData extends object>({
                       canSort={header.column.getCanSort()}
                     >
                       {header.column.getCanSort() ? (
-                        <StyledSortButton onClick={header.column.getToggleSortingHandler()}>
+                        <SortButton onClick={header.column.getToggleSortingHandler()}>
                           {headerText}
-                        </StyledSortButton>
+                        </SortButton>
                       ) : (
                         headerText
                       )}
                       {header.column.getCanResize() && (
-                        <StyledResizer
+                        <Resizer
                           onMouseDown={header.getResizeHandler()}
                           onTouchStart={header.getResizeHandler()}
                           className={`resizer ${header.column.getIsResizing() ? 'isResizing' : ''}`}
                         />
                       )}
-                    </StyledTableHeader>
+                    </TableHeader>
                   );
                 })}
-              </StyledTableRow>
+              </TableRow>
             ))}
-          </StyledTableHead>
+          </TableHead>
         )}
 
-        <StyledTableBody>
+        <TableBody>
           {table.getRowModel().rows.map((row, rowIndex) => (
-            <StyledTableRow
+            <TableRow
               index={rowIndex}
               key={row.id}
               withRowBorder={withRowBorder}
               withRowHighlight={withRowHighlight}
               withStripes={withStripes}
             >
-              {row.getVisibleCells().map((cell) => (
-                <StyledTableCell key={cell.id} width={cell.column.getSize()}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </StyledTableCell>
-              ))}
-            </StyledTableRow>
+              {row.getVisibleCells().map((cell) => {
+                const isCustom = cell.column.columnDef.meta?.customCell;
+                return (
+                  <TableCell key={cell.id} width={cell.column.getSize()}>
+                    {isCustom ? (
+                      flexRender(cell.column.columnDef.cell, cell.getContext())
+                    ) : (
+                      <TableCellWrapper>
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      </TableCellWrapper>
+                    )}
+                  </TableCell>
+                );
+              })}
+            </TableRow>
           ))}
-        </StyledTableBody>
-      </StyledTable>
+        </TableBody>
+      </TableStyled>
       {loading !== null && <LoaderComponent loading={loading} />}
-    </StyledTableContainer>
+    </TableContainer>
   );
 };

@@ -22,6 +22,7 @@ import isPropValid from '@emotion/is-prop-valid';
 import { styled } from '../ThemeProvider';
 import colors from '../theme/defaultTheme/colors';
 import { DnaLoader } from '../DnaLoader';
+import { css, SerializedStyles } from '@emotion/react';
 
 export const TABLE_CLASSES = {
   LOADING_COMPONENT: 'rt-loading',
@@ -31,7 +32,9 @@ export const TABLE_CLASSES = {
   TABLE_CONTAINER: 'rt-table-container',
   TABLE: 'rt-table',
   TBODY: 'rt-tbody',
+  TD_WRAPPER: 'rt-td-wrapper',
   TD: 'rt-td',
+  TH_WRAPPER: 'rt-th-wrapper',
   TH: 'rt-th',
   THEAD: 'rt-thead -header',
   TR_GROUP: 'rt-tr-group',
@@ -39,28 +42,29 @@ export const TABLE_CLASSES = {
 };
 
 const COLORS = {
-  BACKGROUND: colors.grey_4,
+  BACKGROUND_ALT: colors.grey_4,
   BORDER: colors.grey_2,
-  ROW_HIGHLIGHT_BACKGROUND: colors.grey_3,
+  BACKGROUND_HIGHLIGHT: colors.grey_3,
 };
 
-const TableContainer = (props: React.PropsWithChildren<{ className?: string }>) => (
+const TableContainerComp = (props: React.PropsWithChildren<{ className?: string }>) => (
   <div {...props} className={clsx(TABLE_CLASSES.TABLE_CONTAINER, props.className)} />
 );
-export const StyledTableContainer = styled(TableContainer)`
+export const TableContainer = styled(TableContainerComp)`
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
   position: relative;
 `;
 
-const Table = (
+const TableComp = (
   props: React.PropsWithChildren<{
     className?: string;
     withSideBorders?: boolean;
   }>,
 ) => <table {...props} className={clsx(TABLE_CLASSES.TABLE, props.className)} />;
-export const StyledTable = styled(Table, {
+export const TableStyled = styled(TableComp, {
+  // naming conflict with <Table />
   shouldForwardProp: (prop) => isPropValid(prop),
 })`
   border: solid 1px ${COLORS.BORDER};
@@ -73,7 +77,7 @@ export const StyledTable = styled(Table, {
       border-right: 1px solid ${COLORS.BORDER};
     }
   }
-  .${TABLE_CLASSES.TH}, .${TABLE_CLASSES.TD}, .${TABLE_CLASSES.SORT_BUTTON} {
+  .${TABLE_CLASSES.TH_WRAPPER}, .${TABLE_CLASSES.TD_WRAPPER}, .${TABLE_CLASSES.SORT_BUTTON} {
     padding: 2px 8px;
     font-family: Work Sans, sans-serif;
     font-size: 12px;
@@ -81,17 +85,19 @@ export const StyledTable = styled(Table, {
     height: 24px;
     text-align: left;
   }
-  .${TABLE_CLASSES.TH}, .${TABLE_CLASSES.SORT_BUTTON} {
+  .${TABLE_CLASSES.TH_WRAPPER}, .${TABLE_CLASSES.SORT_BUTTON} {
     font-weight: bold;
   }
 `;
 
-const TableHead = (props: React.PropsWithChildren<{ className?: string }>) => (
+const TableHeadComp = (props: React.PropsWithChildren<{ className?: string }>) => (
   <thead {...props} className={clsx(TABLE_CLASSES.THEAD, props.className)} />
 );
-export const StyledTableHead = styled(TableHead)``;
+export const TableHead = styled(TableHeadComp)``;
 
-const TableHeader = (
+// the TH element should only for table structure.
+// use TableHeaderWrapper for additional styling within the TH.
+const TableHeaderComp = (
   props: React.PropsWithChildren<{
     canSort?: boolean;
     className?: string;
@@ -100,7 +106,7 @@ const TableHeader = (
     width?: number;
   }>,
 ) => <th {...props} className={clsx(TABLE_CLASSES.TH, props.className)} />;
-export const StyledTableHeader = styled(TableHeader, {
+export const TableHeader = styled(TableHeaderComp, {
   shouldForwardProp: (prop) => isPropValid(prop) && !['width'].includes(prop),
 })`
   border-bottom: 1px solid ${COLORS.BORDER};
@@ -118,17 +124,28 @@ export const StyledTableHeader = styled(TableHeader, {
   ${(props) =>
     props.canSort &&
     `
-      padding: 0 !important;
+      padding: 0 !important; // padding messes up box-shadow
      
   `}
 `;
 
-const TableBody = (props: React.PropsWithChildren<{ className?: string }>) => (
+// import this to add custom styles to a table header
+// const TableHeaderWrapper = (props: React.PropsWithChildren<{ className?: string }>) => (
+//   <thead {...props} className={clsx(TABLE_CLASSES.TH_WRAPPER, props.className)} />
+// );
+// export const TableHeaderWrapper = styled(TableHeaderWrapperComp)``;
+
+const StyledTableHeaderWrap = styled('div')``;
+export const TableHeaderWrap = (props: React.PropsWithChildren<{ className?: string }>) => (
+  <StyledTableHeaderWrap {...props} className={clsx(TABLE_CLASSES.TH_WRAPPER, props.className)} />
+);
+
+const TableBodyComp = (props: React.PropsWithChildren<{ className?: string }>) => (
   <tbody {...props} className={clsx(TABLE_CLASSES.TBODY, props.className)} />
 );
-export const StyledTableBody = styled(TableBody)``;
+export const TableBody = styled(TableBodyComp)``;
 
-const TableRow = (
+const TableRowComp = (
   props: React.PropsWithChildren<{
     className?: string;
     index: number;
@@ -137,38 +154,48 @@ const TableRow = (
     withStripes?: boolean;
   }>,
 ) => <tr {...props} className={clsx(TABLE_CLASSES.TR, props.className)} />;
-export const StyledTableRow = styled(TableRow, {
+export const TableRow = styled(TableRowComp, {
   shouldForwardProp: (prop) => isPropValid(prop),
 })`
   background: ${(props) =>
-    props.index % 2 && props.withStripes ? COLORS.BACKGROUND : 'transparent'};
+    props.index % 2 && props.withStripes ? COLORS.BACKGROUND_ALT : 'transparent'};
   border-bottom: ${(props) => (props.withRowBorder ? `1px solid ${COLORS.BORDER}` : '0 none')};
   ${(props) =>
     props.withRowHighlight &&
     `
     &:hover {
-      background: ${COLORS.ROW_HIGHLIGHT_BACKGROUND}
+      background: ${COLORS.BACKGROUND_HIGHLIGHT}
     }
   `}
 `;
 
-const TableCell = (props: React.PropsWithChildren<{ className?: string; width?: number }>) => (
+// the TD element should only for table structure.
+// use TableCellWrapper for additional styling within the TD.
+const TableCellComp = (props: React.PropsWithChildren<{ className?: string; width?: number }>) => (
   <td {...props} className={clsx(TABLE_CLASSES.TD, props.className)} />
 );
-export const StyledTableCell = styled(TableCell, {
+export const TableCell = styled(TableCellComp, {
   shouldForwardProp: (prop) => isPropValid(prop) && !['width'].includes(prop),
 })`
   width: ${(props) => `${props.width || 1}px`};
 `;
 
-const Resizer = (
+// import this to add custom styles to a table cell
+const TableCellWrapperComp = (props: React.PropsWithChildren<{ className?: string }>) => (
+  <div {...props} className={clsx(TABLE_CLASSES.TD_WRAPPER, props.className)} />
+);
+export const TableCellWrapper = styled(TableCellWrapperComp, {
+  shouldForwardProp: (prop) => isPropValid(prop),
+})``;
+
+const ResizerComp = (
   props: React.PropsWithChildren<{
     className?: string;
     onMouseDown: (e: unknown) => void;
     onTouchStart: (e: unknown) => void;
   }>,
 ) => <button {...props} className={clsx(TABLE_CLASSES.RESIZER, props.className)} type="button" />;
-export const StyledResizer = styled(Resizer)`
+export const Resizer = styled(ResizerComp)`
   border: 0 none;
   position: absolute;
   right: -6px;
@@ -177,16 +204,16 @@ export const StyledResizer = styled(Resizer)`
   width: 13px;
   cursor: col-resize;
   background: transparent;
-  user-select: none; // send event to <Resizer />
-  touch-action: none; // send event to <Resizer />
+  user-select: none; // send event to <ResizerComp />
+  touch-action: none; // send event to <ResizerComp />
 `;
 
-const Loader = (props: React.PropsWithChildren<{ className?: string; loading?: boolean }>) => (
+const LoaderComp = (props: React.PropsWithChildren<{ className?: string; loading?: boolean }>) => (
   <div {...props} className={clsx(TABLE_CLASSES.TABLE_CONTAINER, props.className)}>
     <DnaLoader />
   </div>
 );
-export const StyledLoader = styled(Loader, {
+export const Loader = styled(LoaderComp, {
   shouldForwardProp: (prop) => isPropValid(prop),
 })`
   display: flex;
@@ -210,10 +237,10 @@ export const StyledLoader = styled(Loader, {
     `}
 `;
 
-const SortButton = (
+const SortButtonComp = (
   props: React.PropsWithChildren<{ className?: string; onClick: (e: unknown) => void }>,
 ) => <button {...props} className={clsx(TABLE_CLASSES.SORT_BUTTON, props.className)} />;
-export const StyledSortButton = styled(SortButton, {
+export const SortButton = styled(SortButtonComp, {
   shouldForwardProp: (prop) => isPropValid(prop),
 })`
   background: none;

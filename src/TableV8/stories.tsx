@@ -17,11 +17,44 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { css } from '@emotion/react';
 import { boolean } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { TableV8 } from '.';
 import readme from './readme.md';
+
+const tableColumns = [
+  {
+    header: 'Custom',
+    accessorKey: 'id',
+    meta: {
+      customCell: true,
+      customHeader: true,
+    },
+  },
+  {
+    header: 'Property 2',
+    accessorKey: 'prop2',
+  },
+  {
+    header: 'Property 3',
+    accessorKey: 'prop3',
+  },
+];
+
+const tableData = [
+  { id: 1, prop2: 5, prop3: 'some text 1' },
+  {
+    id: 2,
+    prop2: 4,
+    prop3:
+      'a large section of text that will probably be big enough to demonstrate the vertical alignment of cells',
+  },
+  { id: 3, prop2: 3, prop3: 'some text 3' },
+  { id: 4, prop2: 2, prop3: 'some text 4' },
+  { id: 5, prop2: 1, prop3: 'some text 5' },
+];
 
 storiesOf(`TableV8`, module).add(
   'Basic',
@@ -33,37 +66,7 @@ storiesOf(`TableV8`, module).add(
       withSideBorders: boolean('withSideBorders', false),
       withStripes: boolean('withStripes', false),
     };
-    return (
-      <TableV8
-        {...knobs}
-        data={[
-          { id: 1, prop2: 5, prop3: 'some text 1' },
-          {
-            id: 2,
-            prop2: 4,
-            prop3:
-              'a large section of text that will probably be big enough to demonstrate the vertical alignment of cells',
-          },
-          { id: 3, prop2: 3, prop3: 'some text 3' },
-          { id: 4, prop2: 2, prop3: 'some text 4' },
-          { id: 5, prop2: 1, prop3: 'some text 5' },
-        ]}
-        columns={[
-          {
-            header: () => 'ID',
-            accessorKey: 'id',
-          },
-          {
-            header: () => 'Property 2',
-            accessorKey: 'prop2',
-          },
-          {
-            header: () => 'Property 3',
-            accessorKey: 'prop3',
-          },
-        ]}
-      />
-    );
+    return <TableV8 {...knobs} data={tableData} columns={tableColumns} />;
   },
   { info: { text: readme } },
 );
