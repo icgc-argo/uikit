@@ -38,6 +38,7 @@ export const TABLE_CLASSES = {
   THEAD: 'rt-thead -header',
   TR_GROUP: 'rt-tr-group',
   TR: 'rt-tr',
+  RESIZABLE_HEADER_CONTENT: 'rt-resizable-header-content',
 };
 
 const COLORS = {
