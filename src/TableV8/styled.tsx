@@ -83,7 +83,7 @@ export const TableStyled = styled(TableComp, {
     font-family: Work Sans, sans-serif;
     font-size: 12px;
     line-height: 1.33;
-    height: 28px;
+    min-height: 28px;
     text-align: left;
     display: flex;
     align-items: center;
