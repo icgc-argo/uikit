@@ -41,7 +41,7 @@ export const TABLE_CLASSES = {
 };
 
 const COLORS = {
-  BACKGROUND_ALT: colors.grey_4,
+  BACKGROUND_SECONDARY: colors.grey_4,
   BORDER: colors.grey_2,
   BACKGROUND_HIGHLIGHT: colors.grey_3,
 };
@@ -106,7 +106,7 @@ const TableHeaderComp = (
     canSort?: boolean;
     className?: string;
     colSpan?: number;
-    sorted?: 'asc' | 'desc' | false;
+    sorted: 'asc' | 'desc' | false;
     width?: number;
   }>,
 ) => <th {...props} className={clsx(TABLE_CLASSES.TH, props.className)} />;
@@ -157,7 +157,7 @@ export const TableRow = styled(TableRowComp, {
   shouldForwardProp: (prop) => isPropValid(prop),
 })`
   background: ${(props) =>
-    props.index % 2 && props.withStripes ? COLORS.BACKGROUND_ALT : 'transparent'};
+    props.index % 2 && props.withStripes ? COLORS.BACKGROUND_SECONDARY : 'transparent'};
   border-bottom: ${(props) => (props.withRowBorder ? `1px solid ${COLORS.BORDER}` : '0 none')};
   ${(props) =>
     props.withRowHighlight &&
@@ -209,7 +209,7 @@ export const Resizer = styled(ResizerComp)`
 `;
 
 const LoaderComp = (props: React.PropsWithChildren<{ className?: string; loading?: boolean }>) => (
-  <div {...props} className={clsx(TABLE_CLASSES.TABLE_CONTAINER, props.className)}>
+  <div {...props} className={clsx(TABLE_CLASSES.LOADING_COMPONENT, props.className)}>
     <DnaLoader />
   </div>
 );

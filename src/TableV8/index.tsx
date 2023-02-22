@@ -73,7 +73,7 @@ export const TableV8 = <TData extends object>({
   columns = [],
   data = [],
   LoaderComponent = Loader,
-  loading = null,
+  loading = false,
   manualSorting = false,
   withHeaders = false,
   withResize = false,
@@ -169,7 +169,7 @@ export const TableV8 = <TData extends object>({
           ))}
         </TableBody>
       </TableStyled>
-      {loading !== null && <LoaderComponent loading={loading} />}
+      <LoaderComponent loading={loading} />
     </TableContainer>
   );
 };
