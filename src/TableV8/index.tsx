@@ -38,13 +38,14 @@ import {
   TableHeader,
   TableRow,
   TableCellWrapper,
+  TableHeaderWrapper,
 } from './styled';
 
 // ==================================================
 // IMPORTANT
 // ==================================================
 // react table v8 is headless and we made our own UI.
-// see the readme in this folder for usage tips.
+// see the readme & stories for help.
 
 declare module '@tanstack/table-core' {
   interface ColumnMeta<TData extends unknown, TValue> {
@@ -109,9 +110,11 @@ export const TableV8 = <TData extends object>({
             {table.getHeaderGroups().map((headerGroup, headerIndex) => (
               <TableRow key={headerGroup.id} index={headerIndex} withStripes={withStripes}>
                 {headerGroup.headers.map((header) => {
+                  const isCustom = header.column.columnDef.meta?.customHeader;
                   const headerText = header.isPlaceholder
                     ? null
                     : flexRender(header.column.columnDef.header, header.getContext());
+
                   return (
                     <TableHeader
                       key={header.id}
@@ -120,13 +123,16 @@ export const TableV8 = <TData extends object>({
                       sorted={header.column.getIsSorted()}
                       canSort={header.column.getCanSort()}
                     >
-                      {header.column.getCanSort() ? (
-                        <SortButton onClick={header.column.getToggleSortingHandler()}>
-                          {headerText}
-                        </SortButton>
-                      ) : (
-                        headerText
-                      )}
+                      <SortButton
+                        canSort={header.column.getCanSort()}
+                        onClick={header.column.getToggleSortingHandler()}
+                      >
+                        {isCustom ? (
+                          headerText
+                        ) : (
+                          <TableHeaderWrapper>{headerText}</TableHeaderWrapper>
+                        )}
+                      </SortButton>
                       {header.column.getCanResize() && (
                         <Resizer
                           onMouseDown={header.getResizeHandler()}
@@ -153,15 +159,10 @@ export const TableV8 = <TData extends object>({
             >
               {row.getVisibleCells().map((cell) => {
                 const isCustom = cell.column.columnDef.meta?.customCell;
+                const cellContents = flexRender(cell.column.columnDef.cell, cell.getContext());
                 return (
                   <TableCell key={cell.id} width={cell.column.getSize()}>
-                    {isCustom ? (
-                      flexRender(cell.column.columnDef.cell, cell.getContext())
-                    ) : (
-                      <TableCellWrapper>
-                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                      </TableCellWrapper>
-                    )}
+                    {isCustom ? cellContents : <TableCellWrapper>{cellContents}</TableCellWrapper>}
                   </TableCell>
                 );
               })}

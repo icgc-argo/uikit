@@ -17,43 +17,68 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/react';
 import { boolean } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { TableV8 } from '.';
+import { Button } from '../Button';
 import readme from './readme.md';
+import { TableCellWrapper, TableHeaderWrapper } from './styled';
 
 const tableColumns = [
   {
-    header: 'Custom',
-    accessorKey: 'id',
+    accessorKey: 'fruit',
+    cell: ({ cell, row }) => {
+      return (
+        <TableCellWrapper
+        // add custom styles based on the content & metadata of the cell
+        // css={css`
+        //   background: ${row.index % 2 ? 'red' : 'blue'};
+        // `}
+        >
+          {cell.getValue()}
+        </TableCellWrapper>
+      );
+    },
+    header: () => {
+      return (
+        <TableHeaderWrapper
+        // add custom styles
+        // css={css`
+        //   background: green;
+        // `}
+        >
+          Cells & header with custom CSS
+        </TableHeaderWrapper>
+      );
+    },
     meta: {
       customCell: true,
       customHeader: true,
     },
   },
   {
-    header: 'Property 2',
-    accessorKey: 'prop2',
+    header: 'Cells with buttons',
+    accessorKey: 'vegetables',
+    cell: ({ cell }) => <Button>{cell.getValue()}</Button>,
+    enableSorting: false,
   },
   {
-    header: 'Property 3',
-    accessorKey: 'prop3',
+    header: 'Basic cells',
+    accessorKey: 'protein',
   },
 ];
 
 const tableData = [
-  { id: 1, prop2: 5, prop3: 'some text 1' },
+  { fruit: 'strawberries', vegetables: 'carrots', protein: 'lamb' },
   {
-    id: 2,
-    prop2: 4,
-    prop3:
-      'a large section of text that will probably be big enough to demonstrate the vertical alignment of cells',
+    fruit: 'apples',
+    vegetables: 'celery',
+    protein: 'a variety of meats and cheeses, as well as vegetarian options',
   },
-  { id: 3, prop2: 3, prop3: 'some text 3' },
-  { id: 4, prop2: 2, prop3: 'some text 4' },
-  { id: 5, prop2: 1, prop3: 'some text 5' },
+  { fruit: 'bananas', vegetables: 'lettuce', protein: 'chicken' },
+  { fruit: 'oranges', vegetables: 'beets', protein: 'tofu' },
+  { fruit: 'mangoes', vegetables: 'onions', protein: 'eggs' },
 ];
 
 storiesOf(`TableV8`, module).add(
