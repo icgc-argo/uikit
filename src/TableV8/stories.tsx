@@ -58,7 +58,7 @@ const tableColumns = [
     },
   },
   {
-    header: 'Cells with buttons',
+    header: 'Cells with buttons. Sorting disabled on header',
     accessorKey: 'vegetables',
     cell: ({ cell }) => <Button>{cell.getValue()}</Button>,
     enableSorting: false,
@@ -85,10 +85,13 @@ storiesOf(`TableV8`, module).add(
   'Basic',
   () => {
     const knobs = {
+      loading: boolean('loading', false),
       withHeaders: boolean('withHeaders', true),
+      withResize: boolean('withResize', false),
       withRowBorder: boolean('withRowBorder', false),
       withRowHighlight: boolean('withRowHighlight', false),
       withSideBorders: boolean('withSideBorders', false),
+      withSorting: boolean('withSorting', false),
       withStripes: boolean('withStripes', false),
     };
     return <TableV8 {...knobs} data={tableData} columns={tableColumns} />;
