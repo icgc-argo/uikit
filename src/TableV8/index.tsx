@@ -110,7 +110,7 @@ export const TableV8 = <TData extends object>({
                 {headerGroup.headers.map((header) => {
                   const canSort = withSorting && header.column.getCanSort();
                   const isCustom = header.column.columnDef.meta?.customHeader;
-                  const headerText = header.isPlaceholder
+                  const headerContents = header.isPlaceholder
                     ? null
                     : flexRender(header.column.columnDef.header, header.getContext());
 
@@ -127,9 +127,9 @@ export const TableV8 = <TData extends object>({
                         onClick={header.column.getToggleSortingHandler()}
                       >
                         {isCustom ? (
-                          headerText
+                          headerContents
                         ) : (
-                          <TableHeaderWrapper>{headerText}</TableHeaderWrapper>
+                          <TableHeaderWrapper>{headerContents}</TableHeaderWrapper>
                         )}
                       </SortButton>
                       {header.column.getCanResize() && (
