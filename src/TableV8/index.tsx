@@ -82,7 +82,7 @@ export const TableV8 = <TData extends object>({
   withRowBorder = false,
   withRowHighlight = false,
   withSideBorders = false,
-  withSorting = true,
+  withSorting = false,
   withStripes = false,
 }: ReactTableProps<TData>) => {
   const [sortingState, setSortingState] = useState<SortingState>([]);
@@ -110,6 +110,7 @@ export const TableV8 = <TData extends object>({
             {table.getHeaderGroups().map((headerGroup, headerIndex) => (
               <TableRow key={headerGroup.id} index={headerIndex} withStripes={withStripes}>
                 {headerGroup.headers.map((header) => {
+                  const canSort = withSorting && header.column.getCanSort();
                   const isCustom = header.column.columnDef.meta?.customHeader;
                   const headerText = header.isPlaceholder
                     ? null
@@ -121,10 +122,10 @@ export const TableV8 = <TData extends object>({
                       colSpan={header.colSpan}
                       width={header.getSize()}
                       sorted={header.column.getIsSorted()}
-                      canSort={header.column.getCanSort()}
+                      canSort={canSort}
                     >
                       <SortButton
-                        canSort={header.column.getCanSort()}
+                        canSort={canSort}
                         onClick={header.column.getToggleSortingHandler()}
                       >
                         {isCustom ? (

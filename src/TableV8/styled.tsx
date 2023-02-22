@@ -54,6 +54,7 @@ export const TableContainer = styled(TableContainerComp)`
   max-width: 100%;
   overflow-x: auto;
   position: relative;
+  box-sizing: border-box;
 `;
 
 const TableComp = (
@@ -82,10 +83,11 @@ export const TableStyled = styled(TableComp, {
     font-family: Work Sans, sans-serif;
     font-size: 12px;
     line-height: 1.33;
-    height: 24px;
+    height: 28px;
     text-align: left;
     display: flex;
     align-items: center;
+    box-sizing: border-box;
   }
   .${TABLE_CLASSES.TH_WRAPPER}, .${TABLE_CLASSES.SORT_BUTTON} {
     font-weight: bold;
