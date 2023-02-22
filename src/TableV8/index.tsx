@@ -41,9 +41,7 @@ import {
   TableHeaderWrapper,
 } from './styled';
 
-// ==================================================
 // IMPORTANT
-// ==================================================
 // react table v8 is headless and we made our own UI.
 // see the readme & stories for help.
 
