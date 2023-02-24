@@ -41,9 +41,10 @@ export const TABLE_CLASSES = {
 };
 
 const COLORS = {
-  BACKGROUND_SECONDARY: colors.grey_4,
-  BORDER: colors.grey_2,
   BACKGROUND_HIGHLIGHT: colors.grey_3,
+  BACKGROUND_SECONDARY: colors.grey_4,
+  BACKGROUND: colors.white,
+  BORDER: colors.grey_2,
 };
 
 const TableContainerComp = (props: React.PropsWithChildren<{ className?: string }>) => (
@@ -55,6 +56,7 @@ export const TableContainer = styled(TableContainerComp)`
   overflow-x: auto;
   position: relative;
   box-sizing: border-box;
+  background: ${COLORS.BACKGROUND};
 `;
 
 const TableComp = (
@@ -157,7 +159,7 @@ export const TableRow = styled(TableRowComp, {
   shouldForwardProp: (prop) => isPropValid(prop),
 })`
   background: ${(props) =>
-    props.index % 2 && props.withStripes ? COLORS.BACKGROUND_SECONDARY : 'transparent'};
+    props.index % 2 && props.withStripes ? COLORS.BACKGROUND_SECONDARY : COLORS.BACKGROUND};
   border-bottom: ${(props) => (props.withRowBorder ? `1px solid ${COLORS.BORDER}` : '0 none')};
   ${(props) =>
     props.withRowHighlight &&

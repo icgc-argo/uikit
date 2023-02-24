@@ -58,7 +58,7 @@ const tableColumns = [
     },
   },
   {
-    header: 'Cells with buttons. Sorting disabled on header',
+    header: 'Cells with buttons. Sorting disabled',
     accessorKey: 'vegetables',
     cell: ({ cell }) => <Button>{cell.getValue()}</Button>,
     enableSorting: false,
