@@ -17,26 +17,54 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import {
-  StyledTableContainer,
-  StyledTableHeader,
-  StyledTable,
-  StyledTableBody,
-  StyledTableCell,
-  StyledTableHead,
-  StyledTableRow,
-  StyledResizableTableHeaderContent,
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  getSortedRowModel,
+  SortingState,
+  useReactTable,
+} from '@tanstack/react-table';
+import { useState } from 'react';
+import {
+  Loader,
+  Resizer,
+  SortButton,
+  TableStyled,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableCellWrapper,
+  TableHeaderWrapper,
 } from './styled';
+
+// IMPORTANT
+// react table v8 is headless and we made our own UI.
+// see the readme & stories for help.
+
+declare module '@tanstack/table-core' {
+  interface ColumnMeta<TData extends unknown, TValue> {
+    customCell?: boolean;
+    customHeader?: boolean;
+  }
+}
 
 interface ReactTableProps<TData> {
   className?: string;
   columns: ColumnDef<TData>[];
   data: TData[];
+  LoaderComponent?: any;
+  loading?: boolean;
+  manualSorting?: boolean;
   withHeaders?: boolean;
+  withResize?: boolean;
   withRowBorder?: boolean;
   withRowHighlight?: boolean;
   withSideBorders?: boolean;
+  withSorting?: boolean;
   withStripes?: boolean;
 }
 
@@ -44,57 +72,104 @@ export const TableV8 = <TData extends object>({
   className = '',
   columns = [],
   data = [],
+  LoaderComponent = Loader,
+  loading = false,
+  manualSorting = false,
   withHeaders = false,
-  withSideBorders = false,
-  withRowHighlight = false,
-  withStripes = false,
+  withResize = false,
   withRowBorder = false,
+  withRowHighlight = false,
+  withSideBorders = false,
+  withSorting = false,
+  withStripes = false,
 }: ReactTableProps<TData>) => {
+  const [sortingState, setSortingState] = useState<SortingState>([]);
+
   const table = useReactTable({
+    columnResizeMode: 'onChange',
     columns,
     data,
+    enableColumnResizing: withResize,
+    enableSorting: withSorting,
     getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    manualSorting,
+    onSortingChange: setSortingState,
+    state: {
+      sorting: sortingState,
+    },
   });
 
   return (
-    <StyledTableContainer className={className}>
-      <StyledTable withSideBorders={withSideBorders}>
+    <TableContainer className={className}>
+      <TableStyled withSideBorders={withSideBorders}>
         {withHeaders && (
-          <StyledTableHead>
+          <TableHead>
             {table.getHeaderGroups().map((headerGroup, headerIndex) => (
-              <StyledTableRow key={headerGroup.id} index={headerIndex} withStripes={withStripes}>
-                {headerGroup.headers.map((header) => (
-                  <StyledTableHeader key={header.id} colSpan={header.colSpan}>
-                    <StyledResizableTableHeaderContent>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(header.column.columnDef.header, header.getContext())}
-                    </StyledResizableTableHeaderContent>
-                  </StyledTableHeader>
-                ))}
-              </StyledTableRow>
+              <TableRow key={headerGroup.id} index={headerIndex} withStripes={withStripes}>
+                {headerGroup.headers.map((header) => {
+                  const canSort = withSorting && header.column.getCanSort();
+                  const isCustom = header.column.columnDef.meta?.customHeader;
+                  const headerContents = header.isPlaceholder
+                    ? null
+                    : flexRender(header.column.columnDef.header, header.getContext());
+
+                  return (
+                    <TableHeader
+                      key={header.id}
+                      colSpan={header.colSpan}
+                      width={header.getSize()}
+                      sorted={header.column.getIsSorted()}
+                      canSort={canSort}
+                    >
+                      <SortButton
+                        canSort={canSort}
+                        onClick={header.column.getToggleSortingHandler()}
+                      >
+                        {isCustom ? (
+                          headerContents
+                        ) : (
+                          <TableHeaderWrapper>{headerContents}</TableHeaderWrapper>
+                        )}
+                      </SortButton>
+                      {header.column.getCanResize() && (
+                        <Resizer
+                          onMouseDown={header.getResizeHandler()}
+                          onTouchStart={header.getResizeHandler()}
+                          className={`resizer ${header.column.getIsResizing() ? 'isResizing' : ''}`}
+                        />
+                      )}
+                    </TableHeader>
+                  );
+                })}
+              </TableRow>
             ))}
-          </StyledTableHead>
+          </TableHead>
         )}
 
-        <StyledTableBody>
+        <TableBody>
           {table.getRowModel().rows.map((row, rowIndex) => (
-            <StyledTableRow
+            <TableRow
               index={rowIndex}
               key={row.id}
               withRowBorder={withRowBorder}
               withRowHighlight={withRowHighlight}
               withStripes={withStripes}
             >
-              {row.getVisibleCells().map((cell) => (
-                <StyledTableCell key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </StyledTableCell>
-              ))}
-            </StyledTableRow>
+              {row.getVisibleCells().map((cell) => {
+                const isCustom = cell.column.columnDef.meta?.customCell;
+                const cellContents = flexRender(cell.column.columnDef.cell, cell.getContext());
+                return (
+                  <TableCell key={cell.id} width={cell.column.getSize()}>
+                    {isCustom ? cellContents : <TableCellWrapper>{cellContents}</TableCellWrapper>}
+                  </TableCell>
+                );
+              })}
+            </TableRow>
           ))}
-        </StyledTableBody>
-      </StyledTable>
-    </StyledTableContainer>
+        </TableBody>
+      </TableStyled>
+      <LoaderComponent loading={loading} />
+    </TableContainer>
   );
 };

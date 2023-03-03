@@ -21,7 +21,7 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { SimpleTable } from './index';
 
-storiesOf(`SimpleTable`, module).add('Basic', () => {
+storiesOf(`SimpleTableV8`, module).add('Basic', () => {
   const vegetableData = {
     Asparagus: 24,
     Tomatoes: 152,

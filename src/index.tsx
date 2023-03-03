@@ -85,6 +85,7 @@ export * from './SystemAlert';
 export * from './Table';
 export * from './TableV8';
 export * from './TableV8/SimpleTable';
+export * from './TableV8/styled';
 export * from './Tabs';
 export * from './Tag';
 export * from './theme/types';
