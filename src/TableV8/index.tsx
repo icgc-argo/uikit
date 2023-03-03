@@ -57,7 +57,7 @@ interface ReactTableProps<TData> {
   columns: ColumnDef<TData>[];
   data: TData[];
   LoaderComponent?: any;
-  loading?: boolean | null;
+  loading?: boolean;
   manualSorting?: boolean;
   withHeaders?: boolean;
   withResize?: boolean;
