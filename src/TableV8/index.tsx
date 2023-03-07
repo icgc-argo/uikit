@@ -24,6 +24,7 @@ import {
   getSortedRowModel,
   SortingState,
   useReactTable,
+  OnChangeFn,
 } from '@tanstack/react-table';
 import { useState } from 'react';
 import {
@@ -66,6 +67,8 @@ interface ReactTableProps<TData> {
   withSideBorders?: boolean;
   withSorting?: boolean;
   withStripes?: boolean;
+  state?: { sorting?: SortingState };
+  onSortingChange?: OnChangeFn<SortingState>;
 }
 
 export const TableV8 = <TData extends object>({
@@ -82,9 +85,9 @@ export const TableV8 = <TData extends object>({
   withSideBorders = false,
   withSorting = false,
   withStripes = false,
+  state = {},
+  onSortingChange,
 }: ReactTableProps<TData>) => {
-  const [sortingState, setSortingState] = useState<SortingState>([]);
-
   const table = useReactTable({
     columnResizeMode: 'onChange',
     columns,
@@ -94,9 +97,9 @@ export const TableV8 = <TData extends object>({
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     manualSorting,
-    onSortingChange: setSortingState,
+    ...(manualSorting ? { onSortingChange } : {}),
     state: {
-      sorting: sortingState,
+      ...(manualSorting ? { sorting: state.sorting || [] } : {}),
     },
   });
 
