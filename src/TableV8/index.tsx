@@ -104,7 +104,7 @@ export const TableV8 = <TData extends object>({
   });
 
   return (
-    <TableContainer className={className}>
+    <TableContainer className={className} withFilters={true}>
       <TableStyled withSideBorders={withSideBorders}>
         {withHeaders && (
           <TableHead>

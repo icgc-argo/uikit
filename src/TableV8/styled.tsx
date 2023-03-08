@@ -47,16 +47,24 @@ const COLORS = {
   BORDER: colors.grey_2,
 };
 
-const TableContainerComp = (props: React.PropsWithChildren<{ className?: string }>) => (
-  <div {...props} className={clsx(TABLE_CLASSES.TABLE_CONTAINER, props.className)} />
-);
-export const TableContainer = styled(TableContainerComp)`
+const TableContainerComp = (
+  props: React.PropsWithChildren<{ className?: string; withFilters?: boolean }>,
+) => <div {...props} className={clsx(TABLE_CLASSES.TABLE_CONTAINER, props.className)} />;
+export const TableContainer = styled(TableContainerComp, {
+  // naming conflict with <Table />
+  shouldForwardProp: (prop) => isPropValid(prop),
+})`
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
   position: relative;
   box-sizing: border-box;
   background: ${COLORS.BACKGROUND};
+  ${(props) =>
+    props.withFilters &&
+    `
+      min-height: 300px;
+  `}
 `;
 
 const TableComp = (
