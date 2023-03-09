@@ -1,10 +1,11 @@
 import { css } from '@emotion/react';
-import { PropsWithChildren, Ref, useRef, useState } from 'react';
+import { PropsWithChildren, Ref, useMemo, useRef, useState } from 'react';
 import { Row } from 'react-grid-system';
-import { DropdownPanel, TextInputFilter } from '../../DropdownPanel';
+import { DropdownPanel, FilterOption, ListFilter, TextInputFilter } from '../../DropdownPanel';
+import { Icon } from '../../Icon';
 import { useTheme } from '../../ThemeProvider';
 
-export const FilterableHeader = ({
+const FilterableHeader = ({
   header,
   open,
   setOpen,
@@ -141,5 +142,93 @@ export const TextFilterHeader = ({
         initialValue={filterValue[0] || ''}
       />
     </FilterableHeader>
+  );
+};
+
+export const ListFilterHeader = ({
+  header,
+  panelLegend,
+  filterOptions = [],
+  filterCounts,
+  activeFilters = [],
+  onFilter = () => {},
+}: {
+  header: string;
+  panelLegend?: string;
+  filterOptions?: Array<FilterOption>;
+  filterCounts?: Record<string, number>;
+  activeFilters?: Array<string>;
+  onFilter?: (filters?: Array<FilterOption>) => void;
+}) => {
+  const [open, setOpen] = useState(false);
+  const options = useMemo(
+    () =>
+      filterOptions.map((option) => ({
+        ...option,
+        isChecked: activeFilters?.indexOf(option.key) > -1 ? true : false,
+        doc_count: filterCounts?.[option.key],
+      })),
+    [filterOptions, activeFilters],
+  );
+  const buttonRef = useRef<HTMLInputElement>(null);
+  const panelRef = useRef<HTMLElement>(null);
+
+  // Close dropdown panel when tabbing out of it
+  const handleBlur = (e: FocusEvent) => {
+    const nextTarget = e.relatedTarget as Node;
+
+    if (open && !panelRef?.current?.contains(nextTarget)) {
+      setOpen(false);
+    }
+  };
+
+  return (
+    <FilterableHeader
+      header={header}
+      open={open}
+      setOpen={setOpen}
+      buttonRef={buttonRef}
+      panelRef={panelRef}
+      handleBlur={handleBlur}
+      panelLegend={panelLegend}
+      active={activeFilters.length > 0}
+    >
+      <ListFilter
+        filterOptions={options}
+        onConfirmClick={onFilter}
+        panelLegend={panelLegend || header}
+        open={open}
+        setOpen={setOpen}
+        handleBlur={handleBlur}
+      />
+    </FilterableHeader>
+  );
+};
+
+export const PercentageCell = ({
+  original,
+  fieldName,
+}: {
+  original: any;
+  fieldName: 'submittedCoreDataPercent' | 'submittedExtendedDataPercent';
+}) => {
+  // original[fieldName] value is expected to be a fraction in decimal form
+  const percentageVal = Math.round(original[fieldName] * 100);
+  const cellContent =
+    percentageVal === 100 ? (
+      <Icon name="checkmark" fill="accent1_dimmed" width="12px" height="12px" />
+    ) : percentageVal === 0 ? (
+      ''
+    ) : (
+      `${percentageVal}%`
+    );
+  return (
+    <div
+      css={css`
+        padding-left: 4px;
+      `}
+    >
+      {cellContent}
+    </div>
   );
 };

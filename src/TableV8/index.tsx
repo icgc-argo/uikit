@@ -61,11 +61,11 @@ interface ReactTableProps<TData> {
   loading?: boolean;
   manualSorting?: boolean;
   withHeaders?: boolean;
-  withResize?: boolean;
+  enableColumnResizing?: boolean;
   withRowBorder?: boolean;
   withRowHighlight?: boolean;
   withSideBorders?: boolean;
-  withSorting?: boolean;
+  enableSorting?: boolean;
   withStripes?: boolean;
   state?: { sorting?: SortingState };
   onSortingChange?: OnChangeFn<SortingState>;
@@ -79,11 +79,11 @@ export const TableV8 = <TData extends object>({
   loading = false,
   manualSorting = false,
   withHeaders = false,
-  withResize = false,
+  enableColumnResizing = false,
   withRowBorder = false,
   withRowHighlight = false,
   withSideBorders = false,
-  withSorting = false,
+  enableSorting = false,
   withStripes = false,
   state = {},
   onSortingChange,
@@ -92,8 +92,8 @@ export const TableV8 = <TData extends object>({
     columnResizeMode: 'onChange',
     columns,
     data,
-    enableColumnResizing: withResize,
-    enableSorting: withSorting,
+    enableColumnResizing,
+    enableSorting,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     manualSorting,
@@ -111,7 +111,7 @@ export const TableV8 = <TData extends object>({
             {table.getHeaderGroups().map((headerGroup, headerIndex) => (
               <TableRow key={headerGroup.id} index={headerIndex} withStripes={withStripes}>
                 {headerGroup.headers.map((header) => {
-                  const canSort = withSorting && header.column.getCanSort();
+                  const canSort = enableSorting && header.column.getCanSort();
                   const isCustom = header.column.columnDef.meta?.customHeader;
                   const headerContents = header.isPlaceholder
                     ? null

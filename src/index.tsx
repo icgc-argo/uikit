@@ -87,6 +87,8 @@ export * from './TableV8';
 export * from './TableV8/SimpleTable';
 export * from './TableV8/TableFilters';
 export * from './TableV8/styled';
+export * from './TableV8/hooks';
+export * from './TableV8/types';
 export * from './Tabs';
 export * from './Tag';
 export * from './theme/types';

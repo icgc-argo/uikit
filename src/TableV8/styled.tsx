@@ -80,7 +80,8 @@ export const TableStyled = styled(TableComp, {
   border: solid 1px ${COLORS.BORDER};
   border-right-width: ${(props) => `${props.withSideBorders ? '1' : '0'}px`};
   border-left-width: ${(props) => `${props.withSideBorders ? '1' : '0'}px`};
-  border-collapse: collapse;
+  border-spacing: 0;
+  border-collapse: separate;
   width: 100%;
   .${TABLE_CLASSES.TH}, .${TABLE_CLASSES.TD} {
     padding: 0;
@@ -98,16 +99,23 @@ export const TableStyled = styled(TableComp, {
     display: flex;
     align-items: center;
     box-sizing: border-box;
+    height: 100%;
+    width: 100%;
   }
   .${TABLE_CLASSES.TH_WRAPPER}, .${TABLE_CLASSES.SORT_BUTTON} {
     font-weight: bold;
+    display: flex;
   }
 `;
 
 const TableHeadComp = (props: React.PropsWithChildren<{ className?: string }>) => (
   <thead {...props} className={clsx(TABLE_CLASSES.THEAD, props.className)} />
 );
-export const TableHead = styled(TableHeadComp)``;
+export const TableHead = styled(TableHeadComp)`
+  .${TABLE_CLASSES.TR} {
+    background: ${COLORS.BACKGROUND} !important;
+  }
+`;
 
 // the TH element should only for table structure.
 // use TableHeaderWrapper for additional styling within the TH.
@@ -139,7 +147,6 @@ export const TableHeader = styled(TableHeaderComp, {
     props.canSort &&
     `
       padding: 0 !important; // padding messes up box-shadow
-     
   `}
 `;
 
@@ -166,6 +173,7 @@ const TableRowComp = (
 export const TableRow = styled(TableRowComp, {
   shouldForwardProp: (prop) => isPropValid(prop),
 })`
+  height: 1px; // needed for cell wrapper to fill height
   background: ${(props) =>
     props.index % 2 && props.withStripes ? COLORS.BACKGROUND_SECONDARY : COLORS.BACKGROUND};
   border-bottom: ${(props) => (props.withRowBorder ? `1px solid ${COLORS.BORDER}` : '0 none')};
@@ -187,6 +195,7 @@ export const TableCell = styled(TableCellComp, {
   shouldForwardProp: (prop) => isPropValid(prop) && !['width'].includes(prop),
 })`
   width: ${(props) => `${props.width || 1}px`};
+  height: inherit; // needed for cell wrapper to fill height
 `;
 
 // import this to add custom styles to a table cell
@@ -261,6 +270,9 @@ export const SortButton = styled(SortButtonComp, {
   border: 0 none;
   width: 100%;
   height: 100%;
+  .${TABLE_CLASSES.TH_WRAPPER} {
+    font-size: 13px;
+  }
   ${(props) =>
     props.canSort &&
     `
