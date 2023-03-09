@@ -48,7 +48,7 @@ const COLORS = {
 };
 
 const TableContainerComp = (
-  props: React.PropsWithChildren<{ className?: string; withFilters?: boolean }>,
+  props: React.PropsWithChildren<{ className?: string; withFilters?: boolean; withTabs?: boolean }>,
 ) => <div {...props} className={clsx(TABLE_CLASSES.TABLE_CONTAINER, props.className)} />;
 export const TableContainer = styled(TableContainerComp, {
   // naming conflict with <Table />
@@ -65,6 +65,7 @@ export const TableContainer = styled(TableContainerComp, {
     `
       min-height: 300px;
   `}
+  ${(props) => props.withTabs && `padding-top: 30px;`}
 `;
 
 const TableComp = (

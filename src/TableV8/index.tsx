@@ -26,7 +26,6 @@ import {
   useReactTable,
   OnChangeFn,
 } from '@tanstack/react-table';
-import { useState } from 'react';
 import {
   Loader,
   Resizer,
@@ -41,6 +40,7 @@ import {
   TableCellWrapper,
   TableHeaderWrapper,
 } from './styled';
+import { TableTabs, TableTabsHandler, TableTabsInput } from './TableTabs';
 
 // IMPORTANT
 // react table v8 is headless and we made our own UI.
@@ -48,6 +48,11 @@ import {
 
 declare module '@tanstack/table-core' {
   interface ColumnMeta<TData extends unknown, TValue> {
+    columnTabs?: {
+      activeTab: string;
+      handleTabs: TableTabsHandler;
+      tabs: TableTabsInput;
+    };
     customCell?: boolean;
     customHeader?: boolean;
   }
@@ -57,36 +62,40 @@ interface ReactTableProps<TData> {
   className?: string;
   columns: ColumnDef<TData>[];
   data: TData[];
+  enableColumnResizing?: boolean;
+  enableSorting?: boolean;
   LoaderComponent?: any;
   loading?: boolean;
   manualSorting?: boolean;
+  onSortingChange?: OnChangeFn<SortingState>;
+  state?: { sorting?: SortingState };
+  withFilters?: boolean;
   withHeaders?: boolean;
-  enableColumnResizing?: boolean;
   withRowBorder?: boolean;
   withRowHighlight?: boolean;
   withSideBorders?: boolean;
-  enableSorting?: boolean;
   withStripes?: boolean;
-  state?: { sorting?: SortingState };
-  onSortingChange?: OnChangeFn<SortingState>;
+  withTabs?: boolean;
 }
 
 export const TableV8 = <TData extends object>({
   className = '',
   columns = [],
   data = [],
+  enableColumnResizing = false,
+  enableSorting = false,
   LoaderComponent = Loader,
   loading = false,
   manualSorting = false,
+  onSortingChange,
+  state = {},
+  withFilters = false,
   withHeaders = false,
-  enableColumnResizing = false,
   withRowBorder = false,
   withRowHighlight = false,
   withSideBorders = false,
-  enableSorting = false,
   withStripes = false,
-  state = {},
-  onSortingChange,
+  withTabs = false,
 }: ReactTableProps<TData>) => {
   const table = useReactTable({
     columnResizeMode: 'onChange',
@@ -104,7 +113,7 @@ export const TableV8 = <TData extends object>({
   });
 
   return (
-    <TableContainer className={className} withFilters={true}>
+    <TableContainer className={className} withFilters={withFilters} withTabs={withTabs}>
       <TableStyled withSideBorders={withSideBorders}>
         {withHeaders && (
           <TableHead>
@@ -117,6 +126,12 @@ export const TableV8 = <TData extends object>({
                     ? null
                     : flexRender(header.column.columnDef.header, header.getContext());
 
+                  const {
+                    activeTab = '',
+                    handleTabs = () => {},
+                    tabs = [],
+                  } = header.column.columnDef.meta?.columnTabs || {};
+
                   return (
                     <TableHeader
                       key={header.id}
@@ -125,6 +140,9 @@ export const TableV8 = <TData extends object>({
                       sorted={header.column.getIsSorted()}
                       canSort={canSort}
                     >
+                      {!!tabs.length && (
+                        <TableTabs activeTab={activeTab} handleTabs={handleTabs} tabs={tabs} />
+                      )}
                       <SortButton
                         canSort={canSort}
                         onClick={header.column.getToggleSortingHandler()}
