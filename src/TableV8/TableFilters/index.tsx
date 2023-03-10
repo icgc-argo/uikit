@@ -2,30 +2,29 @@ import { css } from '@emotion/react';
 import { PropsWithChildren, Ref, useMemo, useRef, useState } from 'react';
 import { Row } from 'react-grid-system';
 import { DropdownPanel, FilterOption, ListFilter, TextInputFilter } from '../../DropdownPanel';
-import { Icon } from '../../Icon';
 import { useTheme } from '../../ThemeProvider';
 
 const FilterableHeader = ({
+  active,
+  buttonRef,
+  children,
+  focusFirst,
+  handleBlur,
   header,
   open,
-  setOpen,
-  focusFirst,
-  buttonRef,
-  panelRef,
-  handleBlur,
-  active,
-  children,
   panelLegend,
+  panelRef,
+  setOpen,
 }: PropsWithChildren<{
+  active?: boolean;
+  buttonRef?: Ref<HTMLInputElement>;
+  focusFirst?: () => void;
+  handleBlur?: (event?: any) => void;
   header: string;
   open: boolean;
-  setOpen?: (open?: boolean | any) => void;
-  focusFirst?: () => void;
-  buttonRef?: Ref<HTMLInputElement>;
-  panelRef?: Ref<HTMLElement>;
-  handleBlur?: (event?: any) => void;
-  active?: boolean;
   panelLegend?: string;
+  panelRef?: Ref<HTMLElement>;
+  setOpen?: (open?: boolean | any) => void;
 }>) => {
   const theme = useTheme();
   return (
@@ -48,16 +47,16 @@ const FilterableHeader = ({
         {header}
       </div>
       <DropdownPanel
+        active={active}
+        buttonRef={buttonRef}
+        focusFirst={focusFirst}
+        handleBlur={handleBlur}
         inputLabel={`Filter by ${header}`}
+        open={open}
+        panelRef={panelRef}
+        setOpen={setOpen}
         triggerIcon="filter"
         triggerTooltip={`Filter by ${header}`}
-        open={open}
-        setOpen={setOpen}
-        focusFirst={focusFirst}
-        buttonRef={buttonRef}
-        panelRef={panelRef}
-        handleBlur={handleBlur}
-        active={active}
         // occasionally, some dropdown panels need to be wider, or longer.
         // this customization was added instead of making the panel elastic
         // to prevent panels from running off the side of the page
@@ -88,15 +87,15 @@ const FilterableHeader = ({
 };
 
 export const TextFilterHeader = ({
-  header,
-  panelLegend,
   filterValue = [],
+  header,
   onFilter = () => {},
+  panelLegend,
 }: {
-  header: string;
-  panelLegend?: string;
   filterValue?: string[];
+  header: string;
   onFilter?: (text?: string) => void;
+  panelLegend?: string;
 }) => {
   const [open, setOpen] = useState(false);
   const buttonRef = useRef<HTMLInputElement>(null);
@@ -146,19 +145,19 @@ export const TextFilterHeader = ({
 };
 
 export const ListFilterHeader = ({
-  header,
-  panelLegend,
-  filterOptions = [],
-  filterCounts,
   activeFilters = [],
+  filterCounts,
+  filterOptions = [],
+  header,
   onFilter = () => {},
+  panelLegend,
 }: {
-  header: string;
-  panelLegend?: string;
-  filterOptions?: Array<FilterOption>;
-  filterCounts?: Record<string, number>;
   activeFilters?: Array<string>;
+  filterCounts?: Record<string, number>;
+  filterOptions?: Array<FilterOption>;
+  header: string;
   onFilter?: (filters?: Array<FilterOption>) => void;
+  panelLegend?: string;
 }) => {
   const [open, setOpen] = useState(false);
   const options = useMemo(
@@ -184,51 +183,23 @@ export const ListFilterHeader = ({
 
   return (
     <FilterableHeader
+      active={activeFilters.length > 0}
+      buttonRef={buttonRef}
+      handleBlur={handleBlur}
       header={header}
       open={open}
-      setOpen={setOpen}
-      buttonRef={buttonRef}
-      panelRef={panelRef}
-      handleBlur={handleBlur}
       panelLegend={panelLegend}
-      active={activeFilters.length > 0}
+      panelRef={panelRef}
+      setOpen={setOpen}
     >
       <ListFilter
         filterOptions={options}
-        onConfirmClick={onFilter}
-        panelLegend={panelLegend || header}
-        open={open}
-        setOpen={setOpen}
         handleBlur={handleBlur}
+        onConfirmClick={onFilter}
+        open={open}
+        panelLegend={panelLegend || header}
+        setOpen={setOpen}
       />
     </FilterableHeader>
-  );
-};
-
-export const PercentageCell = ({
-  original,
-  fieldName,
-}: {
-  original: any;
-  fieldName: 'submittedCoreDataPercent' | 'submittedExtendedDataPercent';
-}) => {
-  // original[fieldName] value is expected to be a fraction in decimal form
-  const percentageVal = Math.round(original[fieldName] * 100);
-  const cellContent =
-    percentageVal === 100 ? (
-      <Icon name="checkmark" fill="accent1_dimmed" width="12px" height="12px" />
-    ) : percentageVal === 0 ? (
-      ''
-    ) : (
-      `${percentageVal}%`
-    );
-  return (
-    <div
-      css={css`
-        padding-left: 4px;
-      `}
-    >
-      {cellContent}
-    </div>
   );
 };

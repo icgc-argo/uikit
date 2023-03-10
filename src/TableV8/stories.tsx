@@ -17,15 +17,37 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { useTheme } from '@emotion/react';
 import { boolean } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { TableV8 } from '.';
 import { Button } from '../Button';
+import { ThemeColorNames } from '../theme/types';
 import readme from './readme.md';
 import { TableCellWrapper, TableHeaderWrapper } from './styled';
+import { useTableTabs } from './TableTabs';
 
-const tableColumns = [
+enum TabNames {
+  FRUIT = 'Fruit',
+  VEGETABLES = 'Vegetables',
+}
+
+const TAB_COLORS: { [k: string]: keyof ThemeColorNames } = {
+  [TabNames.FRUIT]: 'accent1_3',
+  [TabNames.VEGETABLES]: 'accent2_3',
+};
+
+const tabsTableData = [
+  {
+    citrus: 'orange',
+    berries: 'strawberry',
+    leafy: 'lettuce',
+    root: 'potato',
+  },
+];
+
+const basicTableColumns = [
   {
     accessorKey: 'fruit',
     cell: ({ cell, row }) => {
@@ -69,7 +91,7 @@ const tableColumns = [
   },
 ];
 
-const tableData = [
+const basicTableData = [
   { fruit: 'strawberries', vegetables: 'carrots', protein: 'lamb' },
   {
     fruit: 'apples',
@@ -81,20 +103,90 @@ const tableData = [
   { fruit: 'mangoes', vegetables: 'onions', protein: 'eggs' },
 ];
 
-storiesOf(`TableV8`, module).add(
-  'Basic',
-  () => {
-    const knobs = {
-      loading: boolean('loading', false),
-      withHeaders: boolean('withHeaders', true),
-      withResize: boolean('withResize', false),
-      withRowBorder: boolean('withRowBorder', false),
-      withRowHighlight: boolean('withRowHighlight', false),
-      withSideBorders: boolean('withSideBorders', false),
-      withSorting: boolean('withSorting', false),
-      withStripes: boolean('withStripes', false),
-    };
-    return <TableV8 {...knobs} data={tableData} columns={tableColumns} />;
-  },
-  { info: { text: readme } },
-);
+storiesOf(`TableV8`, module)
+  .add(
+    'Basic, with client-side sorting',
+    () => {
+      const knobs = {
+        enableColumnResizing: boolean('enableColumnResizing', false),
+        enableSorting: boolean('enableSorting', true),
+        loading: boolean('loading', false),
+        withHeaders: boolean('withHeaders', true),
+        withRowBorder: boolean('withRowBorder', false),
+        withRowHighlight: boolean('withRowHighlight', false),
+        withSideBorders: boolean('withSideBorders', false),
+        withStripes: boolean('withStripes', false),
+      };
+      return <TableV8 {...knobs} data={basicTableData} columns={basicTableColumns} />;
+    },
+    { info: { text: readme } },
+  )
+  .add(
+    'Column tabs',
+    () => {
+      const knobs = {
+        enableColumnResizing: boolean('enableColumnResizing', false),
+        enableSorting: boolean('enableSorting', false),
+        loading: boolean('loading', false),
+        withHeaders: boolean('withHeaders', true),
+        withRowBorder: boolean('withRowBorder', false),
+        withRowHighlight: boolean('withRowHighlight', false),
+        withSideBorders: boolean('withSideBorders', false),
+        withStripes: boolean('withStripes', false),
+      };
+      const theme = useTheme();
+      const { activeTableTab, handleActiveTableTab } = useTableTabs(TabNames.FRUIT);
+      const tableColumns = [
+        {
+          header: () => (
+            <TableHeaderWrapper
+            // css doesn't work in storybook
+            // css={css`
+            //   background: ${theme.colors[TAB_COLORS[activeTableTab]]};
+            // `}
+            >
+              {activeTableTab}
+            </TableHeaderWrapper>
+          ),
+          id: 'food',
+          columns: [
+            ...(activeTableTab === TabNames.FRUIT
+              ? [
+                  { header: 'Citrus', accessorKey: 'citrus' },
+                  { header: 'Berries', accessorKey: 'berries' },
+                ]
+              : []),
+            ...(activeTableTab === TabNames.VEGETABLES
+              ? [
+                  { header: 'Leafy', accessorKey: 'leafy' },
+                  { header: 'Root', accessorKey: 'root' },
+                ]
+              : []),
+          ],
+          meta: {
+            columnTabs: {
+              activeTab: activeTableTab,
+              handleTabs: handleActiveTableTab,
+              tabs: [
+                {
+                  label: TabNames.FRUIT,
+                  value: TabNames.FRUIT,
+                  color: theme.colors[TAB_COLORS.Fruit],
+                },
+                {
+                  label: TabNames.VEGETABLES,
+                  value: TabNames.VEGETABLES,
+                  color: theme.colors[TAB_COLORS.Vegetables],
+                },
+              ],
+            },
+            customHeader: true,
+          },
+        },
+      ];
+      return (
+        <TableV8 {...knobs} data={tabsTableData} columns={tableColumns} withHeaders withTabs />
+      );
+    },
+    { info: { text: readme } },
+  );
