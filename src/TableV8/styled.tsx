@@ -146,6 +146,12 @@ export const TableHeader = styled(TableHeaderComp, {
     `
       padding: 0 !important; // padding messes up box-shadow
   `}
+  &:last-of-type .${TABLE_CLASSES.RESIZER} {
+    // stop horizontal scrolling
+    width: 6px;
+    padding: 0;
+    right: 0;
+  }
 `;
 
 // import this to add custom styles to a table header

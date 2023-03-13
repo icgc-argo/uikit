@@ -73,7 +73,7 @@ export const TableTabs = ({
     containerProps={{
       css: css`
         position: absolute;
-        top: -30px;
+        top: -31px;
         left: -1px;
       `,
     }}
