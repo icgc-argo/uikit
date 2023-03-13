@@ -40,8 +40,8 @@ const FilterableHeader = ({
         css={css`
           white-space: normal;
           max-width: calc(100% - 14px);
-          overflow: hidden;
           z-index: 10;
+          font-size: 12px;
         `}
       >
         {header}
