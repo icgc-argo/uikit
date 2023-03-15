@@ -172,7 +172,7 @@ export const TableV8 = <TData extends object>({
           ))}
         </TableBody>
       </TableStyled>
-      <LoaderComponent loading={loading} />
+      <LoaderComponent $loading={loading} />
     </TableContainer>
   );
 };
