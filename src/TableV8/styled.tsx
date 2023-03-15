@@ -210,7 +210,7 @@ export const Resizer = styled(ResizerComp)`
   z-index: 10;
 `;
 
-const LoaderComp = (props: React.PropsWithChildren<{ className?: string; loading?: boolean }>) => (
+const LoaderComp = (props: React.PropsWithChildren<{ className?: string; $loading?: boolean }>) => (
   <div {...props} className={clsx(TABLE_CLASSES.LOADING_COMPONENT, props.className)}>
     <DnaLoader />
   </div>
@@ -230,8 +230,8 @@ export const Loader = styled(LoaderComp, {
   transition: all 0.3s ease;
   pointer-events: none;
   opacity: 0;
-  ${(props) =>
-    props.loading &&
+  ${({ $loading }) =>
+    $loading &&
     `
       opacity: 1;
       z-index: 2;
