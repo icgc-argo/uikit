@@ -52,10 +52,8 @@ declare module '@tanstack/table-core' {
   }
 }
 
-interface ReactTableProps<TData> {
+export type ReactTableCustomProps = {
   className?: string;
-  columns: ColumnDef<TData>[];
-  data: TData[];
   LoaderComponent?: any;
   loading?: boolean;
   manualSorting?: boolean;
@@ -66,6 +64,11 @@ interface ReactTableProps<TData> {
   withSideBorders?: boolean;
   withSorting?: boolean;
   withStripes?: boolean;
+};
+
+interface ReactTableProps<TData> extends ReactTableCustomProps {
+  columns?: ColumnDef<TData>[];
+  data?: TData[];
 }
 
 export const TableV8 = <TData extends object>({
