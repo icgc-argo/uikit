@@ -32,8 +32,7 @@ jobs:
       #  run: npm run test
 
       - name: NPM Publish
-        run: cd dist
-        uses: JS-DevTools/npm-publish@v1
+        uses: JS-DevTools/npm-publish@v1.4.3
         with:
           token: ${{ secrets.NPM_TOKEN }}
           access: 'public'
