@@ -27,15 +27,9 @@ jobs:
       - name: Build
         run: npm run build
 
-      # No tests yet
-      #- name: Unit tests
-      #  run: npm run test
-
-      - name: NPM Publish
-        uses: JS-DevTools/npm-publish@v1.4.3
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          access: 'public'
+      - run: npm run publish-uikit
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Git tag
         run: |
