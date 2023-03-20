@@ -21,49 +21,80 @@ import { boolean } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { TableV8 } from '.';
+import { Button } from '../Button';
 import readme from './readme.md';
+import { TableCellWrapper, TableHeaderWrapper } from './styled';
+
+const tableColumns = [
+  {
+    accessorKey: 'fruit',
+    cell: ({ cell, row }) => {
+      return (
+        <TableCellWrapper
+        // add custom styles based on the content & metadata of the cell
+        // css={css`
+        //   background: ${row.index % 2 ? 'red' : 'blue'};
+        // `}
+        >
+          {cell.getValue()}
+        </TableCellWrapper>
+      );
+    },
+    header: () => {
+      return (
+        <TableHeaderWrapper
+        // add custom styles
+        // css={css`
+        //   background: green;
+        // `}
+        >
+          Cells & header with custom CSS
+        </TableHeaderWrapper>
+      );
+    },
+    meta: {
+      customCell: true,
+      customHeader: true,
+    },
+  },
+  {
+    header: 'Cells with buttons. Sorting disabled',
+    accessorKey: 'vegetables',
+    cell: ({ cell }) => <Button>{cell.getValue()}</Button>,
+    enableSorting: false,
+  },
+  {
+    header: 'Basic cells',
+    accessorKey: 'protein',
+  },
+];
+
+const tableData = [
+  { fruit: 'strawberries', vegetables: 'carrots', protein: 'lamb' },
+  {
+    fruit: 'apples',
+    vegetables: 'celery',
+    protein: 'a variety of meats and cheeses, as well as vegetarian options',
+  },
+  { fruit: 'bananas', vegetables: 'lettuce', protein: 'chicken' },
+  { fruit: 'oranges', vegetables: 'beets', protein: 'tofu' },
+  { fruit: 'mangoes', vegetables: 'onions', protein: 'eggs' },
+];
 
 storiesOf(`TableV8`, module).add(
   'Basic',
   () => {
     const knobs = {
+      loading: boolean('loading', false),
       withHeaders: boolean('withHeaders', true),
+      withResize: boolean('withResize', false),
       withRowBorder: boolean('withRowBorder', false),
       withRowHighlight: boolean('withRowHighlight', false),
       withSideBorders: boolean('withSideBorders', false),
+      withSorting: boolean('withSorting', false),
       withStripes: boolean('withStripes', false),
     };
-    return (
-      <TableV8
-        {...knobs}
-        data={[
-          { id: 1, prop2: 5, prop3: 'some text 1' },
-          {
-            id: 2,
-            prop2: 4,
-            prop3:
-              'a large section of text that will probably be big enough to demonstrate the vertical alignment of cells',
-          },
-          { id: 3, prop2: 3, prop3: 'some text 3' },
-          { id: 4, prop2: 2, prop3: 'some text 4' },
-          { id: 5, prop2: 1, prop3: 'some text 5' },
-        ]}
-        columns={[
-          {
-            header: () => 'ID',
-            accessorKey: 'id',
-          },
-          {
-            header: () => 'Property 2',
-            accessorKey: 'prop2',
-          },
-          {
-            header: () => 'Property 3',
-            accessorKey: 'prop3',
-          },
-        ]}
-      />
-    );
+    return <TableV8 {...knobs} data={tableData} columns={tableColumns} />;
   },
   { info: { text: readme } },
 );

@@ -147,6 +147,7 @@ export const Notification = ({
             css={css`
               margin: 0px;
             `}
+            as="div"
           >
             {content}
           </Typography>
