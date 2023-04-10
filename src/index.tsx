@@ -27,7 +27,7 @@ export { default as overtureLogo } from './assets/overture-logo.svg';
 export { default as ThemeProvider, styled } from './ThemeProvider';
 export { default as useTheme } from './utils/useTheme';
 export { default as colors } from './theme/defaultTheme/colors';
-export { ColumnDef, createColumnHelper } from '@tanstack/react-table';
+export { ColumnDef, createColumnHelper, CellContext } from '@tanstack/react-table';
 
 // single point of export ensures lib export works correctly
 export * from './Affix';
