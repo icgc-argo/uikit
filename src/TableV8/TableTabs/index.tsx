@@ -81,7 +81,7 @@ export const TableTabs = ({
     value={activeTab}
   >
     {tabs.map((tab) => (
-      <StyledTab color={tab.color} label={tab.label} value={tab.value} />
+      <StyledTab key={tab.value} color={tab.color} label={tab.label} value={tab.value} />
     ))}
   </Tabs>
 );
