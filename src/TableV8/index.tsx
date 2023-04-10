@@ -59,10 +59,8 @@ declare module '@tanstack/table-core' {
   }
 }
 
-interface ReactTableProps<TData> {
+export type ReactTableCustomProps = {
   className?: string;
-  columns: ColumnDef<TData>[];
-  data: TData[];
   enableColumnResizing?: boolean;
   enableSorting?: boolean;
   LoaderComponent?: any;
@@ -78,6 +76,11 @@ interface ReactTableProps<TData> {
   withSideBorders?: boolean;
   withStripes?: boolean;
   withTabs?: boolean;
+};
+
+interface ReactTableProps<TData> extends ReactTableCustomProps {
+  columns?: ColumnDef<TData>[];
+  data?: TData[];
 }
 
 export const TableV8 = <TData extends object>({
@@ -194,7 +197,7 @@ export const TableV8 = <TData extends object>({
         </TableBody>
       </TableStyled>
       <TablePagination onPageSizeChange={() => {}} showPageSizeOptions={showPageSizeOptions} />
-      <LoaderComponent loading={loading} />
+      <LoaderComponent $loading={loading} />
     </TableContainer>
   );
 };
