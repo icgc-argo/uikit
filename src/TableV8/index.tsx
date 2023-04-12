@@ -25,7 +25,6 @@ import {
   SortingState,
   useReactTable,
   OnChangeFn,
-  PaginationState,
 } from '@tanstack/react-table';
 import {
   Loader,
@@ -41,8 +40,9 @@ import {
   TableCellWrapper,
   TableHeaderWrapper,
 } from './styled';
-import { TablePagination } from './TablePagination';
+import { TablePaginationV8 } from './TablePagination';
 import { TableTabs, TableTabsHandler, TableTabsInput } from './TableTabs';
+import { TablePageSizeChangeArguments } from './types';
 
 // IMPORTANT
 // react table v8 is headless and we made our own UI.
@@ -68,10 +68,11 @@ export type ReactTableCustomProps = {
   loading?: boolean;
   manualSorting?: boolean;
   onPageChange?: (page: number) => void;
-  onPageSizeChange?: (pageSize: string) => void;
+  onPageSizeChange?: ({ pageSize, totalRows }: TablePageSizeChangeArguments) => void;
   onSortingChange?: OnChangeFn<SortingState>;
+  paginationState?: { page: number; pageSize: number; pages: number };
   showPageSizeOptions?: boolean;
-  state?: { sorting?: SortingState; pagination?: PaginationState };
+  sortingState?: SortingState;
   withFilters?: boolean;
   withHeaders?: boolean;
   withRowBorder?: boolean;
@@ -79,7 +80,6 @@ export type ReactTableCustomProps = {
   withSideBorders?: boolean;
   withStripes?: boolean;
   withTabs?: boolean;
-  pagingState?: { page: number; pageSize: number; pages: number };
 };
 
 interface ReactTableProps<TData> extends ReactTableCustomProps {
@@ -99,9 +99,9 @@ export const TableV8 = <TData extends object>({
   onPageChange,
   onPageSizeChange,
   onSortingChange,
-  pagingState,
+  paginationState,
   showPageSizeOptions = false,
-  state,
+  sortingState,
   withFilters = false,
   withHeaders = false,
   withRowBorder = false,
@@ -121,7 +121,7 @@ export const TableV8 = <TData extends object>({
     manualSorting,
     ...(manualSorting && onSortingChange ? { onSortingChange } : {}),
     state: {
-      ...(manualSorting && state.sorting ? { sorting: state.sorting } : {}),
+      ...(manualSorting && sortingState ? { sorting: sortingState } : {}),
     },
   });
 
@@ -203,11 +203,12 @@ export const TableV8 = <TData extends object>({
           ))}
         </TableBody>
       </TableStyled>
-      <TablePagination
+      <TablePaginationV8
         onPageChange={onPageChange}
         onPageSizeChange={onPageSizeChange}
-        pagingState={pagingState}
+        paginationState={paginationState}
         showPageSizeOptions={showPageSizeOptions}
+        totalRows={data.length}
       />
       <LoaderComponent $loading={loading} />
     </TableContainer>

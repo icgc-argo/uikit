@@ -22,7 +22,12 @@ import { Select } from '../../form/Select';
 import { POPUP_POSITIONS } from '../../form/Select/styledComponents';
 import { Arrow, DoubleArrow, PageButton, PageControl, TableActionBar } from './styled';
 import { ceil, floor, range } from 'lodash';
-import { TablePaginationRule } from '../types';
+import {
+  NextTablePaginationRule,
+  TablePageSizeChangeArguments,
+  TablePaginationRule,
+} from '../types';
+import { useState } from 'react';
 
 // given 1 5 5 or 2 5 5, return [0,1,2,3,4]
 function getPagesAround(p: number, num: number, pages: number) {
@@ -38,18 +43,40 @@ function getPagesAround(p: number, num: number, pages: number) {
   return range(l, r);
 }
 
-export const TablePagination = ({
+export const usePagination = (initialPagination: TablePaginationRule) => {
+  const [paginationState, setPaginationState] = useState<TablePaginationRule>(initialPagination);
+
+  const handlePaginationState = (nextPagingState: NextTablePaginationRule) => {
+    setPaginationState({ ...paginationState, ...nextPagingState });
+  };
+  const onPageChange = async (newPageNum: number) => {
+    handlePaginationState({ page: newPageNum }); // newPageNum is zero indexed
+  };
+  const onPageSizeChange = async ({ pageSize, totalRows }: TablePageSizeChangeArguments) => {
+    handlePaginationState({
+      page: 0,
+      pages: Math.ceil(totalRows / pageSize),
+      pageSize: pageSize,
+    });
+  };
+
+  return { paginationState, handlePaginationState, onPageChange, onPageSizeChange };
+};
+
+export const TablePaginationV8 = ({
   onPageChange,
   onPageSizeChange,
   pageSizeOptions = [5, 10, 20, 25, 50, 100],
-  pagingState,
+  paginationState,
   showPageSizeOptions = true,
+  totalRows,
 }: {
   onPageChange: (page: number) => void;
-  onPageSizeChange?: (pageSize: string) => void; // the page size value in the UI is a string
+  onPageSizeChange?: ({ pageSize, totalRows }: TablePageSizeChangeArguments) => void; // the page size value in the UI is a string
   pageSizeOptions?: number[];
-  pagingState?: TablePaginationRule;
+  paginationState?: TablePaginationRule;
   showPageSizeOptions?: boolean;
+  totalRows?: number;
 }) => {
   const theme = useTheme();
   return (
@@ -66,9 +93,16 @@ export const TablePagination = ({
               }
             `}
             aria-label="Select page size"
-            options={pageSizeOptions.map((v: number) => ({ content: v.toString(), value: v }))}
-            onChange={onPageSizeChange}
-            value={`${pagingState.pageSize}`}
+            options={pageSizeOptions.map((v: number) => ({
+              content: v.toString(),
+              value: v.toString(),
+            }))}
+            onChange={(pageSizeValue: string) => {
+              // the type of values returned by onChange is always string,
+              // even if we provide a number in the options prop.
+              onPageSizeChange({ pageSize: parseInt(pageSizeValue), totalRows });
+            }}
+            value={`${paginationState.pageSize}`}
             popupPosition={POPUP_POSITIONS.UP}
           />
           rows
@@ -80,7 +114,7 @@ export const TablePagination = ({
         <div>
           <PageButton
             onClick={() => {
-              if (pagingState.page === 0) return;
+              if (paginationState.page === 0) return;
               onPageChange(0);
             }}
           >
@@ -88,21 +122,21 @@ export const TablePagination = ({
           </PageButton>
           <PageButton
             onClick={() => {
-              if (pagingState.page === 0) return;
-              onPageChange(pagingState.page - 1);
+              if (paginationState.page === 0) return;
+              onPageChange(paginationState.page - 1);
             }}
           >
             <Arrow transform="rotate(180)" />
           </PageButton>
-          {getPagesAround(pagingState.page, 5, pagingState.pages).map(
+          {getPagesAround(paginationState.page, 5, paginationState.pages).map(
             (p) =>
               p > -1 &&
-              p < pagingState.pages && (
+              p < paginationState.pages && (
                 <PageButton
                   key={p}
                   onClick={() => onPageChange(p)}
                   css={css`
-                    background-color: ${pagingState.page === p ? theme.colors.secondary_4 : ''};
+                    background-color: ${paginationState.page === p ? theme.colors.secondary_4 : ''};
                   `}
                 >
                   {p + 1}
@@ -111,16 +145,16 @@ export const TablePagination = ({
           )}
           <PageButton
             onClick={() => {
-              if (pagingState.page === pagingState.pages - 1) return;
-              onPageChange(pagingState.page + 1);
+              if (paginationState.page === paginationState.pages - 1) return;
+              onPageChange(paginationState.page + 1);
             }}
           >
             <Arrow />
           </PageButton>
           <PageButton
             onClick={() => {
-              if (pagingState.page === pagingState.pages - 1) return;
-              onPageChange(pagingState.pages - 1);
+              if (paginationState.page === paginationState.pages - 1) return;
+              onPageChange(paginationState.pages - 1);
             }}
           >
             <DoubleArrow />

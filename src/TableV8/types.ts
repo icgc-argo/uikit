@@ -55,3 +55,8 @@ export type NextTablePaginationRule = {
 };
 
 export type TableSortingRule = { id: string; desc: boolean };
+
+export type TablePageSizeChangeArguments = {
+  pageSize: number;
+  totalRows: number;
+};
