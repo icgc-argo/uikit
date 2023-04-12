@@ -17,22 +17,41 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { css } from '@emotion/react';
+import { css, useTheme } from '@emotion/react';
 import { Select } from '../../form/Select';
 import { POPUP_POSITIONS } from '../../form/Select/styledComponents';
-import { PageControl, TableActionBar } from './styled';
+import { Arrow, DoubleArrow, PageButton, PageControl, TableActionBar } from './styled';
+import { ceil, floor, range } from 'lodash';
+import { TablePaginationRule } from '../types';
+
+// given 1 5 5 or 2 5 5, return [0,1,2,3,4]
+function getPagesAround(p: number, num: number, pages: number) {
+  const l = p - floor(num / 2);
+  const r = p + ceil(num / 2);
+  if (r > pages) {
+    return range(pages - num, pages);
+  }
+
+  if (l < 0) {
+    return range(0, num);
+  }
+  return range(l, r);
+}
 
 export const TablePagination = ({
+  onPageChange,
   onPageSizeChange,
-  pageSize = 20,
   pageSizeOptions = [5, 10, 20, 25, 50, 100],
+  pagingState,
   showPageSizeOptions = true,
 }: {
-  onPageSizeChange: () => void;
-  pageSize?: number;
+  onPageChange: (page: number) => void;
+  onPageSizeChange?: (pageSize: string) => void; // the page size value in the UI is a string
   pageSizeOptions?: number[];
+  pagingState?: TablePaginationRule;
   showPageSizeOptions?: boolean;
 }) => {
+  const theme = useTheme();
   return (
     <TableActionBar>
       {showPageSizeOptions ? (
@@ -49,12 +68,65 @@ export const TablePagination = ({
             aria-label="Select page size"
             options={pageSizeOptions.map((v: number) => ({ content: v.toString(), value: v }))}
             onChange={onPageSizeChange}
-            value={`${pageSize}`}
+            value={`${pagingState.pageSize}`}
             popupPosition={POPUP_POSITIONS.UP}
           />
           rows
         </PageControl>
-      ) : null}
+      ) : (
+        <div />
+      )}
+      <PageControl>
+        <div>
+          <PageButton
+            onClick={() => {
+              if (pagingState.page === 0) return;
+              onPageChange(0);
+            }}
+          >
+            <DoubleArrow transform="rotate(180)" />
+          </PageButton>
+          <PageButton
+            onClick={() => {
+              if (pagingState.page === 0) return;
+              onPageChange(pagingState.page - 1);
+            }}
+          >
+            <Arrow transform="rotate(180)" />
+          </PageButton>
+          {getPagesAround(pagingState.page, 5, pagingState.pages).map(
+            (p) =>
+              p > -1 &&
+              p < pagingState.pages && (
+                <PageButton
+                  key={p}
+                  onClick={() => onPageChange(p)}
+                  css={css`
+                    background-color: ${pagingState.page === p ? theme.colors.secondary_4 : ''};
+                  `}
+                >
+                  {p + 1}
+                </PageButton>
+              ),
+          )}
+          <PageButton
+            onClick={() => {
+              if (pagingState.page === pagingState.pages - 1) return;
+              onPageChange(pagingState.page + 1);
+            }}
+          >
+            <Arrow />
+          </PageButton>
+          <PageButton
+            onClick={() => {
+              if (pagingState.page === pagingState.pages - 1) return;
+              onPageChange(pagingState.pages - 1);
+            }}
+          >
+            <DoubleArrow />
+          </PageButton>
+        </div>
+      </PageControl>
     </TableActionBar>
   );
 };

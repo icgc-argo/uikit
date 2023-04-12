@@ -25,6 +25,7 @@ import {
   SortingState,
   useReactTable,
   OnChangeFn,
+  PaginationState,
 } from '@tanstack/react-table';
 import {
   Loader,
@@ -66,9 +67,11 @@ export type ReactTableCustomProps = {
   LoaderComponent?: any;
   loading?: boolean;
   manualSorting?: boolean;
+  onPageChange?: (page: number) => void;
+  onPageSizeChange?: (pageSize: string) => void;
   onSortingChange?: OnChangeFn<SortingState>;
   showPageSizeOptions?: boolean;
-  state?: { sorting?: SortingState };
+  state?: { sorting?: SortingState; pagination?: PaginationState };
   withFilters?: boolean;
   withHeaders?: boolean;
   withRowBorder?: boolean;
@@ -76,6 +79,7 @@ export type ReactTableCustomProps = {
   withSideBorders?: boolean;
   withStripes?: boolean;
   withTabs?: boolean;
+  pagingState?: { page: number; pageSize: number; pages: number };
 };
 
 interface ReactTableProps<TData> extends ReactTableCustomProps {
@@ -92,9 +96,12 @@ export const TableV8 = <TData extends object>({
   LoaderComponent = Loader,
   loading = false,
   manualSorting = false,
+  onPageChange,
+  onPageSizeChange,
   onSortingChange,
+  pagingState,
   showPageSizeOptions = false,
-  state = {},
+  state,
   withFilters = false,
   withHeaders = false,
   withRowBorder = false,
@@ -112,9 +119,9 @@ export const TableV8 = <TData extends object>({
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     manualSorting,
-    ...(manualSorting ? { onSortingChange } : {}),
+    ...(manualSorting && onSortingChange ? { onSortingChange } : {}),
     state: {
-      ...(manualSorting ? { sorting: state.sorting || [] } : {}),
+      ...(manualSorting && state.sorting ? { sorting: state.sorting } : {}),
     },
   });
 
@@ -196,7 +203,12 @@ export const TableV8 = <TData extends object>({
           ))}
         </TableBody>
       </TableStyled>
-      <TablePagination onPageSizeChange={() => {}} showPageSizeOptions={showPageSizeOptions} />
+      <TablePagination
+        onPageChange={onPageChange}
+        onPageSizeChange={onPageSizeChange}
+        pagingState={pagingState}
+        showPageSizeOptions={showPageSizeOptions}
+      />
       <LoaderComponent $loading={loading} />
     </TableContainer>
   );

@@ -69,10 +69,12 @@ export const PageButton = styled('button')`
   cursor: pointer;
   display: inline-block;
   height: 24px;
-  line-height: 24px;
+  line-height: 18px;
   text-align: center;
   width: 24px;
   margin-right: 2px;
+  border: 0 none;
+  color: ${({ theme }) => theme.colors.grey};
   &:hover {
     background-color: ${({ theme }) => theme.colors.primary_4};
   }
