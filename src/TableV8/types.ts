@@ -17,25 +17,23 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-export type SortedChangeFunction = (
-  newSorted: TableSortingRule[],
-  column: any,
+import { OnChangeFn, SortingState } from '@tanstack/react-table';
+
+export type TableSortedChangeFunction = (
   additive: boolean,
+  column: any,
+  newSorted: TableSortingRule[],
 ) => void;
 
-export type PageChangeFunction = (page: number) => void;
-export type PageSizeChangeFunction = (newPageSize: number, newPage: number) => void;
-
-export type TableProps = {
-  page?: number;
-  pages?: number;
+export type TablePageChangeFunction = (page: number) => void;
+export type TablePageSizeChangeArguments = {
   pageSize: number;
-  sorted: TableSortingRule[];
-  onPageChange?: PageChangeFunction;
-  onPageSizeChange?: PageSizeChangeFunction;
-  onSortedChange?: SortedChangeFunction;
-  showPagination?: boolean;
+  totalRows: number;
 };
+export type TablePageSizeChangeFunction = ({
+  pageSize,
+  totalRows,
+}: TablePageSizeChangeArguments) => void;
 
 export type TableFilterRule = {
   field: string;
@@ -48,15 +46,28 @@ export type TablePaginationRule = {
   page: number;
 };
 
-export type NextTablePaginationRule = {
-  pages?: number;
-  pageSize?: number;
-  page?: number;
-};
+export type NextTablePaginationRule = Partial<TablePaginationRule>;
 
 export type TableSortingRule = { id: string; desc: boolean };
 
-export type TablePageSizeChangeArguments = {
-  pageSize: number;
-  totalRows: number;
+export type ReactTableCustomProps = {
+  className?: string;
+  enableColumnResizing?: boolean;
+  enableSorting?: boolean;
+  LoaderComponent?: any;
+  loading?: boolean;
+  manualSorting?: boolean;
+  onPageChange?: TablePageChangeFunction;
+  onPageSizeChange?: TablePageSizeChangeFunction;
+  onSortingChange?: OnChangeFn<SortingState>;
+  paginationState?: { page: number; pageSize: number; pages: number };
+  showPageSizeOptions?: boolean;
+  sortingState?: SortingState;
+  withFilters?: boolean;
+  withHeaders?: boolean;
+  withRowBorder?: boolean;
+  withRowHighlight?: boolean;
+  withSideBorders?: boolean;
+  withStripes?: boolean;
+  withTabs?: boolean;
 };

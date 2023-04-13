@@ -23,7 +23,7 @@ import { PropsWithChildren } from 'react';
 import { Icon } from '../../Icon';
 import { Typography } from '../../Typography';
 
-export const TableActionBar = (props: PropsWithChildren<{}>) => (
+export const TableActionBar = (props: PropsWithChildren<{ showPageSizeOptions: boolean }>) => (
   <Typography
     {...props}
     variant="label"
@@ -32,7 +32,7 @@ export const TableActionBar = (props: PropsWithChildren<{}>) => (
     css={css`
       min-height: 32px;
       display: flex;
-      justify-content: space-between;
+      justify-content: ${props.showPageSizeOptions ? 'end' : 'space-between'};
       align-items: center;
       padding: 8px 0 8px;
       & svg {

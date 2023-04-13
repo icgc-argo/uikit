@@ -22,9 +22,7 @@ import {
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
-  SortingState,
   useReactTable,
-  OnChangeFn,
 } from '@tanstack/react-table';
 import {
   Loader,
@@ -42,7 +40,7 @@ import {
 } from './styled';
 import { TablePaginationV8 } from './TablePagination';
 import { TableTabs, TableTabsHandler, TableTabsInput } from './TableTabs';
-import { TablePageSizeChangeArguments } from './types';
+import { ReactTableCustomProps } from './types';
 
 // IMPORTANT
 // react table v8 is headless and we made our own UI.
@@ -59,28 +57,6 @@ declare module '@tanstack/table-core' {
     customHeader?: boolean;
   }
 }
-
-export type ReactTableCustomProps = {
-  className?: string;
-  enableColumnResizing?: boolean;
-  enableSorting?: boolean;
-  LoaderComponent?: any;
-  loading?: boolean;
-  manualSorting?: boolean;
-  onPageChange?: (page: number) => void;
-  onPageSizeChange?: ({ pageSize, totalRows }: TablePageSizeChangeArguments) => void;
-  onSortingChange?: OnChangeFn<SortingState>;
-  paginationState?: { page: number; pageSize: number; pages: number };
-  showPageSizeOptions?: boolean;
-  sortingState?: SortingState;
-  withFilters?: boolean;
-  withHeaders?: boolean;
-  withRowBorder?: boolean;
-  withRowHighlight?: boolean;
-  withSideBorders?: boolean;
-  withStripes?: boolean;
-  withTabs?: boolean;
-};
 
 interface ReactTableProps<TData> extends ReactTableCustomProps {
   columns?: ColumnDef<TData>[];

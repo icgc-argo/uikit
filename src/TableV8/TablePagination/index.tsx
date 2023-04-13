@@ -80,7 +80,7 @@ export const TablePaginationV8 = ({
 }) => {
   const theme = useTheme();
   return (
-    <TableActionBar>
+    <TableActionBar showPageSizeOptions={showPageSizeOptions}>
       {showPageSizeOptions ? (
         <PageControl>
           Show
@@ -102,64 +102,60 @@ export const TablePaginationV8 = ({
               // even if we provide a number in the options prop.
               onPageSizeChange({ pageSize: parseInt(pageSizeValue), totalRows });
             }}
-            value={`${paginationState.pageSize}`}
+            value={paginationState.pageSize.toString()}
             popupPosition={POPUP_POSITIONS.UP}
           />
           rows
         </PageControl>
-      ) : (
-        <div />
-      )}
+      ) : null}
       <PageControl>
-        <div>
-          <PageButton
-            onClick={() => {
-              if (paginationState.page === 0) return;
-              onPageChange(0);
-            }}
-          >
-            <DoubleArrow transform="rotate(180)" />
-          </PageButton>
-          <PageButton
-            onClick={() => {
-              if (paginationState.page === 0) return;
-              onPageChange(paginationState.page - 1);
-            }}
-          >
-            <Arrow transform="rotate(180)" />
-          </PageButton>
-          {getPagesAround(paginationState.page, 5, paginationState.pages).map(
-            (p) =>
-              p > -1 &&
-              p < paginationState.pages && (
-                <PageButton
-                  key={p}
-                  onClick={() => onPageChange(p)}
-                  css={css`
-                    background-color: ${paginationState.page === p ? theme.colors.secondary_4 : ''};
-                  `}
-                >
-                  {p + 1}
-                </PageButton>
-              ),
-          )}
-          <PageButton
-            onClick={() => {
-              if (paginationState.page === paginationState.pages - 1) return;
-              onPageChange(paginationState.page + 1);
-            }}
-          >
-            <Arrow />
-          </PageButton>
-          <PageButton
-            onClick={() => {
-              if (paginationState.page === paginationState.pages - 1) return;
-              onPageChange(paginationState.pages - 1);
-            }}
-          >
-            <DoubleArrow />
-          </PageButton>
-        </div>
+        <PageButton
+          onClick={() => {
+            if (paginationState.page === 0) return;
+            onPageChange(0);
+          }}
+        >
+          <DoubleArrow transform="rotate(180)" />
+        </PageButton>
+        <PageButton
+          onClick={() => {
+            if (paginationState.page === 0) return;
+            onPageChange(paginationState.page - 1);
+          }}
+        >
+          <Arrow transform="rotate(180)" />
+        </PageButton>
+        {getPagesAround(paginationState.page, 5, paginationState.pages).map(
+          (p) =>
+            p > -1 &&
+            p < paginationState.pages && (
+              <PageButton
+                key={p}
+                onClick={() => onPageChange(p)}
+                css={css`
+                  background-color: ${paginationState.page === p ? theme.colors.secondary_4 : ''};
+                `}
+              >
+                {p + 1}
+              </PageButton>
+            ),
+        )}
+        <PageButton
+          onClick={() => {
+            if (paginationState.page === paginationState.pages - 1) return;
+            onPageChange(paginationState.page + 1);
+          }}
+        >
+          <Arrow />
+        </PageButton>
+        <PageButton
+          onClick={() => {
+            if (paginationState.page === paginationState.pages - 1) return;
+            onPageChange(paginationState.pages - 1);
+          }}
+        >
+          <DoubleArrow />
+        </PageButton>
       </PageControl>
     </TableActionBar>
   );
