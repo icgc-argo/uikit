@@ -75,7 +75,7 @@ export const TableV8 = <TData extends object>({
   onPageChange,
   onPageSizeChange,
   onSortingChange,
-  paginationState,
+  paginationState = null,
   showPageSizeOptions = false,
   sortingState,
   withFilters = false,
@@ -110,7 +110,7 @@ export const TableV8 = <TData extends object>({
               <TableRow key={headerGroup.id} index={headerIndex} withStripes={withStripes}>
                 {headerGroup.headers.map((header) => {
                   const canSort = enableSorting && header.column.getCanSort();
-                  const isCustom = header.column.columnDef.meta?.customHeader;
+                  const isCustomHeader = header.column.columnDef.meta?.customHeader;
                   const headerContents = header.isPlaceholder
                     ? null
                     : flexRender(header.column.columnDef.header, header.getContext());
@@ -136,7 +136,7 @@ export const TableV8 = <TData extends object>({
                         canSort={canSort}
                         onClick={header.column.getToggleSortingHandler()}
                       >
-                        {isCustom ? (
+                        {isCustomHeader ? (
                           headerContents
                         ) : (
                           <TableHeaderWrapper>{headerContents}</TableHeaderWrapper>
@@ -167,11 +167,15 @@ export const TableV8 = <TData extends object>({
               withStripes={withStripes}
             >
               {row.getVisibleCells().map((cell) => {
-                const isCustom = cell.column.columnDef.meta?.customCell;
+                const isCustomCell = cell.column.columnDef.meta?.customCell;
                 const cellContents = flexRender(cell.column.columnDef.cell, cell.getContext());
                 return (
                   <TableCell key={cell.id} width={cell.column.getSize()}>
-                    {isCustom ? cellContents : <TableCellWrapper>{cellContents}</TableCellWrapper>}
+                    {isCustomCell ? (
+                      cellContents
+                    ) : (
+                      <TableCellWrapper>{cellContents}</TableCellWrapper>
+                    )}
                   </TableCell>
                 );
               })}
@@ -179,13 +183,15 @@ export const TableV8 = <TData extends object>({
           ))}
         </TableBody>
       </TableStyled>
-      <TablePaginationV8
-        onPageChange={onPageChange}
-        onPageSizeChange={onPageSizeChange}
-        paginationState={paginationState}
-        showPageSizeOptions={showPageSizeOptions}
-        totalRows={data.length}
-      />
+      {paginationState && (
+        <TablePaginationV8
+          onPageChange={onPageChange}
+          onPageSizeChange={onPageSizeChange}
+          paginationState={paginationState}
+          showPageSizeOptions={showPageSizeOptions}
+          totalRows={data.length}
+        />
+      )}
       <LoaderComponent $loading={loading} />
     </TableContainer>
   );
