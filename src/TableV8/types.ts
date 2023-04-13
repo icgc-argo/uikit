@@ -56,7 +56,6 @@ export type ReactTableCustomProps = {
   enableSorting?: boolean;
   LoaderComponent?: any;
   loading?: boolean;
-  manualSorting?: boolean;
   onPageChange?: TablePageChangeFunction;
   onPageSizeChange?: TablePageSizeChangeFunction;
   onSortingChange?: OnChangeFn<SortingState>;
