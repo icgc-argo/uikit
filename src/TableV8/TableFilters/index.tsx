@@ -23,7 +23,7 @@ import { Row } from 'react-grid-system';
 import { DropdownPanel, FilterOption, ListFilter, TextInputFilter } from '../../DropdownPanel';
 import { useTheme } from '../../ThemeProvider';
 
-const FilterableHeader = ({
+const TableFilterableHeader = ({
   active,
   buttonRef,
   children,
@@ -105,7 +105,7 @@ const FilterableHeader = ({
   );
 };
 
-export const TextFilterHeader = ({
+export const TableTextFilterHeader = ({
   filterValue = [],
   header,
   onFilter = () => {},
@@ -138,7 +138,7 @@ export const TextFilterHeader = ({
   };
 
   return (
-    <FilterableHeader
+    <TableFilterableHeader
       header={header}
       open={open}
       setOpen={setOpen}
@@ -159,11 +159,11 @@ export const TextFilterHeader = ({
         handleBlur={handleBlur}
         initialValue={filterValue[0] || ''}
       />
-    </FilterableHeader>
+    </TableFilterableHeader>
   );
 };
 
-export const ListFilterHeader = ({
+export const TableListFilterHeader = ({
   activeFilters = [],
   filterCounts,
   filterOptions = [],
@@ -201,7 +201,7 @@ export const ListFilterHeader = ({
   };
 
   return (
-    <FilterableHeader
+    <TableFilterableHeader
       active={activeFilters.length > 0}
       buttonRef={buttonRef}
       handleBlur={handleBlur}
@@ -219,6 +219,6 @@ export const ListFilterHeader = ({
         panelLegend={panelLegend || header}
         setOpen={setOpen}
       />
-    </FilterableHeader>
+    </TableFilterableHeader>
   );
 };

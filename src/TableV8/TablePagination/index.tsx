@@ -43,7 +43,7 @@ function getPagesAround(p: number, num: number, pages: number) {
   return range(l, r);
 }
 
-export const usePagination = (initialPagination: TablePaginationRule) => {
+export const useTablePagination = (initialPagination: TablePaginationRule) => {
   const [paginationState, setPaginationState] = useState<TablePaginationRule>(initialPagination);
 
   const handlePaginationState = (nextPagingState: NextTablePaginationRule) => {
