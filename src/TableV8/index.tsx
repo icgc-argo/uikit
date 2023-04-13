@@ -37,6 +37,7 @@ import {
   TableRow,
   TableCellWrapper,
   TableHeaderWrapper,
+  TableContainerInner,
 } from './styled';
 import { TablePaginationV8 } from './TablePagination';
 import { TableTabs, TableTabsHandler, TableTabsInput } from './TableTabs';
@@ -101,87 +102,91 @@ export const TableV8 = <TData extends object>({
   });
 
   return (
-    <TableContainer className={className} withFilters={withFilters} withTabs={withTabs}>
-      <TableStyled withSideBorders={withSideBorders}>
-        {withHeaders && (
-          <TableHead>
-            {table.getHeaderGroups().map((headerGroup, headerIndex) => (
-              <TableRow key={headerGroup.id} index={headerIndex} withStripes={withStripes}>
-                {headerGroup.headers.map((header) => {
-                  const canSort = enableSorting && header.column.getCanSort();
-                  const isCustomHeader = header.column.columnDef.meta?.customHeader;
-                  const headerContents = header.isPlaceholder
-                    ? null
-                    : flexRender(header.column.columnDef.header, header.getContext());
+    <TableContainer className={className} withTabs={withTabs}>
+      <TableContainerInner withFilters={withFilters}>
+        <TableStyled withSideBorders={withSideBorders}>
+          {withHeaders && (
+            <TableHead>
+              {table.getHeaderGroups().map((headerGroup, headerIndex) => (
+                <TableRow key={headerGroup.id} index={headerIndex} withStripes={withStripes}>
+                  {headerGroup.headers.map((header) => {
+                    const canSort = enableSorting && header.column.getCanSort();
+                    const isCustomHeader = header.column.columnDef.meta?.customHeader;
+                    const headerContents = header.isPlaceholder
+                      ? null
+                      : flexRender(header.column.columnDef.header, header.getContext());
 
-                  const {
-                    activeTab = '',
-                    handleTabs = () => {},
-                    tabs = [],
-                  } = header.column.columnDef.meta?.columnTabs || {};
+                    const {
+                      activeTab = '',
+                      handleTabs = () => {},
+                      tabs = [],
+                    } = header.column.columnDef.meta?.columnTabs || {};
 
-                  return (
-                    <TableHeader
-                      key={header.id}
-                      colSpan={header.colSpan}
-                      width={header.getSize()}
-                      sorted={header.column.getIsSorted()}
-                      canSort={canSort}
-                    >
-                      {!!tabs.length && (
-                        <TableTabs activeTab={activeTab} handleTabs={handleTabs} tabs={tabs} />
-                      )}
-                      <SortButton
+                    return (
+                      <TableHeader
+                        key={header.id}
+                        colSpan={header.colSpan}
+                        width={header.getSize()}
+                        sorted={header.column.getIsSorted()}
                         canSort={canSort}
-                        onClick={header.column.getToggleSortingHandler()}
                       >
-                        {isCustomHeader ? (
-                          headerContents
-                        ) : (
-                          <TableHeaderWrapper>{headerContents}</TableHeaderWrapper>
+                        {!!tabs.length && (
+                          <TableTabs activeTab={activeTab} handleTabs={handleTabs} tabs={tabs} />
                         )}
-                      </SortButton>
-                      {header.column.getCanResize() && (
-                        <Resizer
-                          onMouseDown={header.getResizeHandler()}
-                          onTouchStart={header.getResizeHandler()}
-                          className={`resizer ${header.column.getIsResizing() ? 'isResizing' : ''}`}
-                        />
+                        <SortButton
+                          canSort={canSort}
+                          onClick={header.column.getToggleSortingHandler()}
+                        >
+                          {isCustomHeader ? (
+                            headerContents
+                          ) : (
+                            <TableHeaderWrapper>{headerContents}</TableHeaderWrapper>
+                          )}
+                        </SortButton>
+                        {header.column.getCanResize() && (
+                          <Resizer
+                            onMouseDown={header.getResizeHandler()}
+                            onTouchStart={header.getResizeHandler()}
+                            className={`resizer ${
+                              header.column.getIsResizing() ? 'isResizing' : ''
+                            }`}
+                          />
+                        )}
+                      </TableHeader>
+                    );
+                  })}
+                </TableRow>
+              ))}
+            </TableHead>
+          )}
+
+          <TableBody>
+            {table.getRowModel().rows.map((row, rowIndex) => (
+              <TableRow
+                index={rowIndex}
+                key={row.id}
+                withRowBorder={withRowBorder}
+                withRowHighlight={withRowHighlight}
+                withStripes={withStripes}
+              >
+                {row.getVisibleCells().map((cell) => {
+                  const isCustomCell = cell.column.columnDef.meta?.customCell;
+                  const cellContents = flexRender(cell.column.columnDef.cell, cell.getContext());
+                  return (
+                    <TableCell key={cell.id} width={cell.column.getSize()}>
+                      {isCustomCell ? (
+                        cellContents
+                      ) : (
+                        <TableCellWrapper>{cellContents}</TableCellWrapper>
                       )}
-                    </TableHeader>
+                    </TableCell>
                   );
                 })}
               </TableRow>
             ))}
-          </TableHead>
-        )}
-
-        <TableBody>
-          {table.getRowModel().rows.map((row, rowIndex) => (
-            <TableRow
-              index={rowIndex}
-              key={row.id}
-              withRowBorder={withRowBorder}
-              withRowHighlight={withRowHighlight}
-              withStripes={withStripes}
-            >
-              {row.getVisibleCells().map((cell) => {
-                const isCustomCell = cell.column.columnDef.meta?.customCell;
-                const cellContents = flexRender(cell.column.columnDef.cell, cell.getContext());
-                return (
-                  <TableCell key={cell.id} width={cell.column.getSize()}>
-                    {isCustomCell ? (
-                      cellContents
-                    ) : (
-                      <TableCellWrapper>{cellContents}</TableCellWrapper>
-                    )}
-                  </TableCell>
-                );
-              })}
-            </TableRow>
-          ))}
-        </TableBody>
-      </TableStyled>
+          </TableBody>
+        </TableStyled>
+      </TableContainerInner>
       {paginationState && (
         <TablePaginationV8
           onPageChange={onPageChange}

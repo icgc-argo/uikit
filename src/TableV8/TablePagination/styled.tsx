@@ -32,7 +32,7 @@ export const TableActionBar = (props: PropsWithChildren<{ showPageSizeOptions: b
     css={css`
       min-height: 32px;
       display: flex;
-      justify-content: ${props.showPageSizeOptions ? 'end' : 'space-between'};
+      justify-content: ${props.showPageSizeOptions ? 'space-between' : 'end'};
       align-items: center;
       padding: 8px 0 8px;
       & svg {

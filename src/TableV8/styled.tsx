@@ -29,6 +29,7 @@ export const TABLE_CLASSES = {
   RESIZER: 'rt-resizer',
   SORT_BUTTON: 'rt-sort-button',
   TABLE_CONTAINER: 'rt-table-container',
+  TABLE_CONTAINER_INNER: 'rt-table-container-inner',
   TABLE: 'rt-table',
   TBODY: 'rt-tbody',
   TD_WRAPPER: 'rt-td-wrapper',
@@ -48,24 +49,33 @@ const COLORS = {
 };
 
 const TableContainerComp = (
-  props: React.PropsWithChildren<{ className?: string; withFilters?: boolean; withTabs?: boolean }>,
+  props: React.PropsWithChildren<{ className?: string; withTabs?: boolean }>,
 ) => <div {...props} className={clsx(TABLE_CLASSES.TABLE_CONTAINER, props.className)} />;
 export const TableContainer = styled(TableContainerComp, {
   // naming conflict with <Table />
   shouldForwardProp: (prop) => isPropValid(prop),
 })`
   width: 100%;
-  max-width: 100%;
-  overflow-x: auto;
   position: relative;
   box-sizing: border-box;
   background: ${COLORS.BACKGROUND};
+  ${(props) => props.withTabs && `padding-top: 30px;`}
+`;
+
+const TableContainerInnerComp = (
+  props: React.PropsWithChildren<{ className?: string; withFilters?: boolean }>,
+) => <div {...props} className={clsx(TABLE_CLASSES.TABLE_CONTAINER_INNER, props.className)} />;
+export const TableContainerInner = styled(TableContainerInnerComp, {
+  shouldForwardProp: (prop) => isPropValid(prop),
+})`
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
   ${(props) =>
     props.withFilters &&
     `
       min-height: 300px;
   `}
-  ${(props) => props.withTabs && `padding-top: 30px;`}
 `;
 
 const TableComp = (
