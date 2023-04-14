@@ -48,9 +48,9 @@ const COLORS = {
   BORDER: colors.grey_2,
 };
 
-const TableContainerComp = (
-  props: React.PropsWithChildren<{ className?: string; withTabs?: boolean }>,
-) => <div {...props} className={clsx(TABLE_CLASSES.TABLE_CONTAINER, props.className)} />;
+const TableContainerComp = (props: React.PropsWithChildren<{ className?: string }>) => (
+  <div {...props} className={clsx(TABLE_CLASSES.TABLE_CONTAINER, props.className)} />
+);
 export const TableContainer = styled(TableContainerComp, {
   // naming conflict with <Table />
   shouldForwardProp: (prop) => isPropValid(prop),
@@ -59,11 +59,10 @@ export const TableContainer = styled(TableContainerComp, {
   position: relative;
   box-sizing: border-box;
   background: ${COLORS.BACKGROUND};
-  ${(props) => props.withTabs && `padding-top: 30px;`}
 `;
 
 const TableContainerInnerComp = (
-  props: React.PropsWithChildren<{ className?: string; withFilters?: boolean }>,
+  props: React.PropsWithChildren<{ className?: string; withFilters?: boolean; withTabs?: boolean }>,
 ) => <div {...props} className={clsx(TABLE_CLASSES.TABLE_CONTAINER_INNER, props.className)} />;
 export const TableContainerInner = styled(TableContainerInnerComp, {
   shouldForwardProp: (prop) => isPropValid(prop),
@@ -74,8 +73,9 @@ export const TableContainerInner = styled(TableContainerInnerComp, {
   ${(props) =>
     props.withFilters &&
     `
-      min-height: 300px;
+      min-height: 250px;
   `}
+  ${(props) => props.withTabs && `padding-top: 30px;`}
 `;
 
 const TableComp = (

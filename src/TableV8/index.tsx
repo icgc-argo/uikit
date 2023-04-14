@@ -65,6 +65,8 @@ interface ReactTableProps<TData> extends ReactTableCustomProps {
   data?: TData[];
 }
 
+export const DEFAULT_TABLE_PAGE_SIZE = 20;
+
 // if not using pagination, put all rows on one page.
 const singlePagePaginationState = {
   pagination: { pageIndex: 0, pageSize: Number.MAX_SAFE_INTEGER },
@@ -102,24 +104,22 @@ export const TableV8 = <TData extends object>({
     enableColumnResizing,
     enableSorting,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    initialState: { pagination: { pageSize: 20 } },
-    manualPagination,
-    manualSorting,
-    ...(onPaginationChange ? { onPaginationChange } : {}),
-    ...(onSortingChange ? { onSortingChange } : {}),
-    ...(pageCount !== undefined ? { pageCount } : {}),
+    initialState: { pagination: { pageSize: DEFAULT_TABLE_PAGE_SIZE } },
+    ...(manualPagination
+      ? { manualPagination, onPaginationChange, pageCount }
+      : { getPaginationRowModel: getPaginationRowModel() }),
+    ...(manualSorting ? { manualSorting, onSortingChange } : {}),
     state: {
-      ...(paginationState ? { pagination: paginationState } : {}),
-      ...(sortingState ? { sorting: sortingState } : {}),
+      ...(manualPagination ? { pagination: paginationState } : {}),
+      ...(manualSorting ? { sorting: sortingState } : {}),
       ...(withPagination ? {} : singlePagePaginationState),
     },
   });
 
   return (
-    <TableContainer className={className} withTabs={withTabs}>
-      <TableContainerInner withFilters={withFilters}>
+    <TableContainer className={className}>
+      <TableContainerInner withFilters={withFilters} withTabs={withTabs}>
         <TableStyled withSideBorders={withSideBorders}>
           {withHeaders && (
             <TableHead>
