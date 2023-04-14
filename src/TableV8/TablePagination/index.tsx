@@ -22,61 +22,43 @@ import { Select } from '../../form/Select';
 import { POPUP_POSITIONS } from '../../form/Select/styledComponents';
 import { Arrow, DoubleArrow, PageButton, PageControl, TableActionBar } from './styled';
 import { ceil, floor, range } from 'lodash';
-import {
-  NextTablePaginationRule,
-  TablePageSizeChangeArguments,
-  TablePaginationRule,
-} from '../types';
-import { useState } from 'react';
+import { Updater } from '@tanstack/react-table';
 
 // given 1 5 5 or 2 5 5, return [0,1,2,3,4]
-function getPagesAround(p: number, num: number, pages: number) {
-  const l = p - floor(num / 2);
-  const r = p + ceil(num / 2);
-  if (r > pages) {
-    return range(pages - num, pages);
-  }
-
-  if (l < 0) {
-    return range(0, num);
-  }
-  return range(l, r);
+function getPagesAround(pageIndex: number, rangeSize: number, pageCount: number) {
+  const prevPage = pageIndex - floor(rangeSize / 2);
+  const nextPage = pageIndex + ceil(rangeSize / 2);
+  return pageIndex === pageCount - 1 // currently on last page
+    ? range(pageCount - rangeSize, pageCount)
+    : pageIndex === 0 // currently on first page
+    ? range(0, rangeSize)
+    : range(prevPage, nextPage);
 }
 
-export const useTablePagination = (initialPagination: TablePaginationRule) => {
-  const [paginationState, setPaginationState] = useState<TablePaginationRule>(initialPagination);
-
-  const handlePaginationState = (nextPagingState: NextTablePaginationRule) => {
-    setPaginationState({ ...paginationState, ...nextPagingState });
-  };
-  const onPageChange = async (newPageNum: number) => {
-    handlePaginationState({ page: newPageNum }); // newPageNum is zero indexed
-  };
-  const onPageSizeChange = async ({ pageSize, totalRows }: TablePageSizeChangeArguments) => {
-    handlePaginationState({
-      page: 0,
-      pages: Math.ceil(totalRows / pageSize),
-      pageSize: pageSize,
-    });
-  };
-
-  return { paginationState, handlePaginationState, onPageChange, onPageSizeChange };
-};
-
 export const TablePaginationV8 = ({
-  onPageChange,
-  onPageSizeChange,
+  canNextPage,
+  canPreviousPage,
+  nextPage,
+  pageCount,
+  pageIndex,
+  pageSize,
   pageSizeOptions = [5, 10, 20, 25, 50, 100],
-  paginationState,
-  showPageSizeOptions = true,
-  totalRows,
+  previousPage,
+  setPageIndex,
+  setPageSize,
+  showPageSizeOptions,
 }: {
-  onPageChange: (page: number) => void;
-  onPageSizeChange?: ({ pageSize, totalRows }: TablePageSizeChangeArguments) => void; // the page size value in the UI is a string
+  canNextPage: boolean;
+  canPreviousPage: boolean;
+  nextPage: () => void;
+  pageCount: number;
+  pageIndex: number;
+  pageSize: number;
   pageSizeOptions?: number[];
-  paginationState?: TablePaginationRule;
+  previousPage: () => void;
+  setPageIndex: (updater: Updater<number>) => void;
+  setPageSize: (updater: Updater<number>) => void;
   showPageSizeOptions?: boolean;
-  totalRows?: number;
 }) => {
   const theme = useTheme();
   return (
@@ -85,6 +67,7 @@ export const TablePaginationV8 = ({
         <PageControl>
           Show
           <Select
+            aria-label="Select page size"
             css={css`
               z-index: 10;
               transform: scale(0.8);
@@ -92,68 +75,55 @@ export const TablePaginationV8 = ({
                 min-width: 70px;
               }
             `}
-            aria-label="Select page size"
-            options={pageSizeOptions.map((v: number) => ({
-              content: v.toString(),
-              value: v.toString(),
+            onChange={(pageSizeValue: string) => setPageSize(() => Number(pageSizeValue))}
+            options={pageSizeOptions.map((option: number) => ({
+              content: option.toString(),
+              value: option.toString(),
             }))}
-            onChange={(pageSizeValue: string) => {
-              // the type of values returned by onChange is always string,
-              // even if we provide a number in the options prop.
-              onPageSizeChange({ pageSize: parseInt(pageSizeValue), totalRows });
-            }}
-            value={paginationState.pageSize.toString()}
             popupPosition={POPUP_POSITIONS.UP}
+            value={pageSize.toString()}
           />
           rows
         </PageControl>
       ) : null}
       <PageControl>
-        <PageButton
-          onClick={() => {
-            if (paginationState.page === 0) return;
-            onPageChange(0);
-          }}
-        >
+        <PageButton onClick={() => setPageIndex(() => 0)}>
           <DoubleArrow transform="rotate(180)" />
         </PageButton>
         <PageButton
           onClick={() => {
-            if (paginationState.page === 0) return;
-            onPageChange(paginationState.page - 1);
+            if (canPreviousPage) {
+              previousPage();
+            }
           }}
         >
           <Arrow transform="rotate(180)" />
         </PageButton>
-        {getPagesAround(paginationState.page, 5, paginationState.pages).map(
-          (p) =>
-            p > -1 &&
-            p < paginationState.pages && (
+        {getPagesAround(pageIndex, 5, pageCount).map(
+          (pageItem) =>
+            pageItem > -1 &&
+            pageItem < pageCount && (
               <PageButton
-                key={p}
-                onClick={() => onPageChange(p)}
                 css={css`
-                  background-color: ${paginationState.page === p ? theme.colors.secondary_4 : ''};
+                  background-color: ${pageIndex === pageItem ? theme.colors.secondary_4 : ''};
                 `}
+                key={pageItem}
+                onClick={() => setPageIndex(() => pageItem)}
               >
-                {p + 1}
+                {pageItem + 1}
               </PageButton>
             ),
         )}
         <PageButton
           onClick={() => {
-            if (paginationState.page === paginationState.pages - 1) return;
-            onPageChange(paginationState.page + 1);
+            if (canNextPage) {
+              nextPage();
+            }
           }}
         >
           <Arrow />
         </PageButton>
-        <PageButton
-          onClick={() => {
-            if (paginationState.page === paginationState.pages - 1) return;
-            onPageChange(paginationState.pages - 1);
-          }}
-        >
+        <PageButton onClick={() => setPageIndex(() => pageCount - 1)}>
           <DoubleArrow />
         </PageButton>
       </PageControl>

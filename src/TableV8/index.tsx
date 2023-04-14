@@ -21,6 +21,7 @@ import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
+  getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
@@ -64,6 +65,11 @@ interface ReactTableProps<TData> extends ReactTableCustomProps {
   data?: TData[];
 }
 
+// if not using pagination, put all rows on one page.
+const singlePagePaginationState = {
+  pagination: { pageIndex: 0, pageSize: Number.MAX_SAFE_INTEGER },
+};
+
 export const TableV8 = <TData extends object>({
   className = '',
   columns = [],
@@ -72,14 +78,17 @@ export const TableV8 = <TData extends object>({
   enableSorting = false,
   LoaderComponent = Loader,
   loading = false,
-  onPageChange,
-  onPageSizeChange,
+  manualPagination = false,
+  manualSorting = false,
+  onPaginationChange,
   onSortingChange,
+  pageCount,
   paginationState = null,
   showPageSizeOptions = false,
   sortingState = null,
   withFilters = false,
   withHeaders = false,
+  withPagination = false,
   withRowBorder = false,
   withRowHighlight = false,
   withSideBorders = false,
@@ -91,13 +100,20 @@ export const TableV8 = <TData extends object>({
     columns,
     data,
     enableColumnResizing,
-    enableSorting: enableSorting || !!sortingState,
+    enableSorting,
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    manualSorting: !!sortingState,
+    initialState: { pagination: { pageSize: 20 } },
+    manualPagination,
+    manualSorting,
+    ...(onPaginationChange ? { onPaginationChange } : {}),
     ...(onSortingChange ? { onSortingChange } : {}),
+    ...(pageCount !== undefined ? { pageCount } : {}),
     state: {
+      ...(paginationState ? { pagination: paginationState } : {}),
       ...(sortingState ? { sorting: sortingState } : {}),
+      ...(withPagination ? {} : singlePagePaginationState),
     },
   });
 
@@ -187,13 +203,18 @@ export const TableV8 = <TData extends object>({
           </TableBody>
         </TableStyled>
       </TableContainerInner>
-      {paginationState && (
+      {withPagination && (
         <TablePaginationV8
-          onPageChange={onPageChange}
-          onPageSizeChange={onPageSizeChange}
-          paginationState={paginationState}
+          canNextPage={table.getCanNextPage()}
+          canPreviousPage={table.getCanPreviousPage()}
+          nextPage={table.nextPage}
+          pageCount={table.getPageCount()}
+          pageIndex={table.getState().pagination.pageIndex}
+          pageSize={table.getState().pagination.pageSize}
+          previousPage={table.previousPage}
+          setPageIndex={table.setPageIndex}
+          setPageSize={table.setPageSize}
           showPageSizeOptions={showPageSizeOptions}
-          totalRows={data.length}
         />
       )}
       <LoaderComponent $loading={loading} />
