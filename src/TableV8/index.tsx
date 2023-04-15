@@ -57,6 +57,7 @@ declare module '@tanstack/table-core' {
     };
     customCell?: boolean;
     customHeader?: boolean;
+    multiSortIds?: string[];
   }
 }
 
@@ -104,12 +105,13 @@ export const TableV8 = <TData extends object>({
     enableColumnResizing,
     enableSorting,
     getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
     initialState: { pagination: { pageSize: DEFAULT_TABLE_PAGE_SIZE } },
     ...(manualPagination
       ? { manualPagination, onPaginationChange, pageCount }
       : { getPaginationRowModel: getPaginationRowModel() }),
-    ...(manualSorting ? { manualSorting, onSortingChange } : {}),
+    ...(manualSorting
+      ? { manualSorting, onSortingChange }
+      : { getSortedRowModel: getSortedRowModel() }),
     state: {
       ...(manualPagination ? { pagination: paginationState } : {}),
       ...(manualSorting ? { sorting: sortingState } : {}),

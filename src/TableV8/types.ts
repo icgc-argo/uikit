@@ -22,7 +22,7 @@ import { OnChangeFn, PaginationState, SortingState } from '@tanstack/react-table
 export type TableSortedChangeFunction = (
   additive: boolean,
   column: any,
-  newSorted: TableSortingRule[],
+  newSorted: SortingState,
 ) => void;
 
 export type TablePageChangeFunction = (page: number) => void;
@@ -39,16 +39,6 @@ export type TableFilterRule = {
   field: string;
   values: string[];
 };
-
-export type TablePaginationRule = {
-  pages: number;
-  pageSize: number;
-  page: number;
-};
-
-export type NextTablePaginationRule = Partial<TablePaginationRule>;
-
-export type TableSortingRule = { id: string; desc: boolean };
 
 export type ReactTableCustomProps = {
   className?: string;

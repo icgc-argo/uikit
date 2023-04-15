@@ -30,9 +30,12 @@ export { default as colors } from './theme/defaultTheme/colors';
 export {
   CellContext,
   ColumnDef,
+  ColumnSort,
   createColumnHelper,
+  OnChangeFn,
   PaginationState,
   Row,
+  SortingFnOption,
   SortingState,
 } from '@tanstack/react-table';
 
