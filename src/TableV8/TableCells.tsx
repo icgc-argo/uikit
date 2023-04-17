@@ -23,7 +23,7 @@ import useTheme from '../utils/useTheme';
 import { ThemeColorNames } from '../theme/types';
 import { TableHeaderWrapper } from './styled';
 
-export const HeaderWithBackground = ({
+export const TableHeaderWithBackground = ({
   children,
   fill,
 }: PropsWithChildren<{ fill: keyof ThemeColorNames }>) => {
