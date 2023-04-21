@@ -78,15 +78,19 @@ export const TableV8 = <TData extends object>({
   columns = [],
   data = [],
   enableColumnResizing = false,
+  enableRowSelection = false,
   enableSorting = false,
   LoaderComponent = Loader,
   loading = false,
   manualPagination = false,
+  manualRowSelection,
   manualSorting = false,
   onPaginationChange,
+  onRowSelectionChange,
   onSortingChange,
   pageCount,
   paginationState = null,
+  rowSelectionState,
   showPageSizeOptions = false,
   sortingState = null,
   withFilters = false,
@@ -103,18 +107,23 @@ export const TableV8 = <TData extends object>({
     columns,
     data,
     enableColumnResizing,
+    enableRowSelection,
     enableSorting,
     getCoreRowModel: getCoreRowModel(),
     initialState: { pagination: { pageSize: DEFAULT_TABLE_PAGE_SIZE } },
-    ...(manualPagination
+    ...(withPagination && manualPagination
       ? { manualPagination, onPaginationChange, pageCount }
       : { getPaginationRowModel: getPaginationRowModel() }),
-    ...(manualSorting
+    ...(enableSorting && manualSorting
       ? { manualSorting, onSortingChange }
       : { getSortedRowModel: getSortedRowModel() }),
+    ...(enableRowSelection && manualRowSelection
+      ? { manualRowSelection, onRowSelectionChange }
+      : {}),
     state: {
-      ...(manualPagination ? { pagination: paginationState } : {}),
-      ...(manualSorting ? { sorting: sortingState } : {}),
+      ...(withPagination && manualPagination ? { pagination: paginationState } : {}),
+      ...(enableSorting && manualSorting ? { sorting: sortingState } : {}),
+      ...(enableRowSelection && manualRowSelection ? { rowSelection: rowSelectionState } : {}),
       ...(withPagination ? {} : singlePagePaginationState),
     },
   });
