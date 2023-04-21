@@ -83,14 +83,11 @@ export const TableV8 = <TData extends object>({
   LoaderComponent = Loader,
   loading = false,
   manualPagination = false,
-  manualRowSelection,
   manualSorting = false,
   onPaginationChange,
-  onRowSelectionChange,
   onSortingChange,
   pageCount,
   paginationState = null,
-  rowSelectionState,
   showPageSizeOptions = false,
   sortingState = null,
   withFilters = false,
@@ -102,7 +99,7 @@ export const TableV8 = <TData extends object>({
   withStripes = false,
   withTabs = false,
 }: ReactTableProps<TData>) => {
-  const table = useReactTable({
+  const tableMeta = useReactTable({
     columnResizeMode: 'onChange',
     columns,
     data,
@@ -117,13 +114,9 @@ export const TableV8 = <TData extends object>({
     ...(enableSorting && manualSorting
       ? { manualSorting, onSortingChange }
       : { getSortedRowModel: getSortedRowModel() }),
-    ...(enableRowSelection && manualRowSelection
-      ? { manualRowSelection, onRowSelectionChange }
-      : {}),
     state: {
       ...(withPagination && manualPagination ? { pagination: paginationState } : {}),
       ...(enableSorting && manualSorting ? { sorting: sortingState } : {}),
-      ...(enableRowSelection && manualRowSelection ? { rowSelection: rowSelectionState } : {}),
       ...(withPagination ? {} : singlePagePaginationState),
     },
   });
@@ -134,7 +127,7 @@ export const TableV8 = <TData extends object>({
         <TableStyled withSideBorders={withSideBorders}>
           {withHeaders && (
             <TableHead>
-              {table.getHeaderGroups().map((headerGroup, headerIndex) => (
+              {tableMeta.getHeaderGroups().map((headerGroup, headerIndex) => (
                 <TableRow key={headerGroup.id} index={headerIndex} withStripes={withStripes}>
                   {headerGroup.headers.map((header) => {
                     const canSort = enableSorting && header.column.getCanSort();
@@ -188,7 +181,7 @@ export const TableV8 = <TData extends object>({
           )}
 
           <TableBody>
-            {table.getRowModel().rows.map((row, rowIndex) => (
+            {tableMeta.getRowModel().rows.map((row, rowIndex) => (
               <TableRow
                 index={rowIndex}
                 key={row.id}
@@ -216,15 +209,15 @@ export const TableV8 = <TData extends object>({
       </TableContainerInner>
       {withPagination && (
         <TablePaginationV8
-          canNextPage={table.getCanNextPage()}
-          canPreviousPage={table.getCanPreviousPage()}
-          nextPage={table.nextPage}
-          pageCount={table.getPageCount()}
-          pageIndex={table.getState().pagination.pageIndex}
-          pageSize={table.getState().pagination.pageSize}
-          previousPage={table.previousPage}
-          setPageIndex={table.setPageIndex}
-          setPageSize={table.setPageSize}
+          canNextPage={tableMeta.getCanNextPage()}
+          canPreviousPage={tableMeta.getCanPreviousPage()}
+          nextPage={tableMeta.nextPage}
+          pageCount={tableMeta.getPageCount()}
+          pageIndex={tableMeta.getState().pagination.pageIndex}
+          pageSize={tableMeta.getState().pagination.pageSize}
+          previousPage={tableMeta.previousPage}
+          setPageIndex={tableMeta.setPageIndex}
+          setPageSize={tableMeta.setPageSize}
           showPageSizeOptions={showPageSizeOptions}
         />
       )}

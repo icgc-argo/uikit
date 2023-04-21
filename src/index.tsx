@@ -98,6 +98,7 @@ export * from './TableV8';
 export * from './TableV8/SimpleTable';
 export * from './TableV8/TableFilters';
 export * from './TableV8/TablePagination';
+export * from './TableV8/TableRowSelection';
 export * from './TableV8/TableTabs';
 export * from './TableV8/TableCells';
 export * from './TableV8/styled';
