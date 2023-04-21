@@ -27,7 +27,7 @@ export const TableRowSelectionCheckbox = ({
 }: {
   checked: boolean;
   id: string;
-  onChange: (id?: string) => void;
+  onChange: (id: string) => void;
 }) => (
   <Checkbox
     aria-label="table-row-select"
