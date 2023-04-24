@@ -44,6 +44,7 @@ export const TABLE_CLASSES = {
 const COLORS = {
   BACKGROUND_HIGHLIGHT: colors.grey_3,
   BACKGROUND_SECONDARY: colors.grey_4,
+  BACKGROUND_SELECTED: colors.secondary_4,
   BACKGROUND: colors.white,
   BORDER: colors.grey_2,
 };
@@ -213,12 +214,14 @@ export const TableCell = styled(TableCellComp, {
 `;
 
 // import this to add custom styles to a table cell
-const TableCellWrapperComp = (props: React.PropsWithChildren<{ className?: string }>) => (
-  <div {...props} className={clsx(TABLE_CLASSES.TD_WRAPPER, props.className)} />
-);
+const TableCellWrapperComp = (
+  props: React.PropsWithChildren<{ className?: string; selected?: boolean }>,
+) => <div {...props} className={clsx(TABLE_CLASSES.TD_WRAPPER, props.className)} />;
 export const TableCellWrapper = styled(TableCellWrapperComp, {
   shouldForwardProp: (prop) => isPropValid(prop),
-})``;
+})`
+  background: ${(props) => (props.selected ? COLORS.BACKGROUND_SELECTED : 'transparent')};
+`;
 
 const ResizerComp = (
   props: React.PropsWithChildren<{

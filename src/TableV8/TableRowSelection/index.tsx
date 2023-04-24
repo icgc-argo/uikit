@@ -17,8 +17,9 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { useState } from 'react';
+import { PropsWithChildren, useState } from 'react';
 import { Checkbox } from '../../form/Checkbox';
+import { TableCellWrapper } from '../styled';
 
 export const TableRowSelectionCheckbox = ({
   checked,
@@ -93,3 +94,10 @@ export function useTableRowSelection({
     unselectedRows,
   };
 }
+
+export const RowSelectionCell = ({
+  children,
+  isSelected,
+}: PropsWithChildren<{
+  isSelected: boolean;
+}>) => <TableCellWrapper selected={isSelected}>{children}</TableCellWrapper>;
