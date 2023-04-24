@@ -78,8 +78,8 @@ export const TableV8 = <TData extends object>({
   columns = [],
   data = [],
   enableColumnResizing = false,
-  enableRowSelection = false,
   enableSorting = false,
+  initialState = {},
   LoaderComponent = Loader,
   loading = false,
   manualPagination = false,
@@ -104,10 +104,9 @@ export const TableV8 = <TData extends object>({
     columns,
     data,
     enableColumnResizing,
-    enableRowSelection,
     enableSorting,
     getCoreRowModel: getCoreRowModel(),
-    initialState: { pagination: { pageSize: DEFAULT_TABLE_PAGE_SIZE } },
+    initialState: { pagination: { pageSize: DEFAULT_TABLE_PAGE_SIZE }, ...initialState },
     ...(withPagination && manualPagination
       ? { manualPagination, onPaginationChange, pageCount }
       : { getPaginationRowModel: getPaginationRowModel() }),

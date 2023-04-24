@@ -18,6 +18,7 @@
  */
 
 import {
+  InitialTableState,
   OnChangeFn,
   PaginationState,
   RowSelectionState,
@@ -48,7 +49,6 @@ export type TableFilterRule = {
 export type ReactTableCustomProps = {
   className?: string;
   enableColumnResizing?: boolean;
-  enableRowSelection?: boolean;
   enableSorting?: boolean;
   LoaderComponent?: any;
   loading?: boolean;
@@ -71,4 +71,5 @@ export type ReactTableCustomProps = {
   withSideBorders?: boolean;
   withStripes?: boolean;
   withTabs?: boolean;
+  initialState?: InitialTableState;
 };
