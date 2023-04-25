@@ -22,6 +22,7 @@ import isPropValid from '@emotion/is-prop-valid';
 import { styled } from '../ThemeProvider';
 import colors from '../theme/defaultTheme/colors';
 import { DnaLoader } from '../DnaLoader';
+import { css } from '@emotion/react';
 
 export const TABLE_CLASSES = {
   LOADING_COMPONENT: 'rt-loading',
@@ -48,6 +49,13 @@ const COLORS = {
   BACKGROUND: colors.white,
   BORDER: colors.grey_2,
 };
+
+const tableCellHeaderStyle = css`
+  padding: 0;
+  &:not(:last-of-type) {
+    border-right: 1px solid ${COLORS.BORDER};
+  }
+`;
 
 const TableContainerComp = (props: React.PropsWithChildren<{ className?: string }>) => (
   <div {...props} className={clsx(TABLE_CLASSES.TABLE_CONTAINER, props.className)} />
@@ -95,12 +103,6 @@ export const TableStyled = styled(TableComp, {
   border-spacing: 0;
   border-collapse: separate;
   width: 100%;
-  .${TABLE_CLASSES.TH}, .${TABLE_CLASSES.TD} {
-    padding: 0;
-    &:not(:last-of-type) {
-      border-right: 1px solid ${COLORS.BORDER};
-    }
-  }
   .${TABLE_CLASSES.TH_WRAPPER}, .${TABLE_CLASSES.TD_WRAPPER} {
     padding: 2px 8px;
     font-family: Work Sans, sans-serif;
@@ -143,6 +145,7 @@ const TableHeaderComp = (
 export const TableHeader = styled(TableHeaderComp, {
   shouldForwardProp: (prop) => isPropValid(prop) && !['width'].includes(prop),
 })`
+  ${tableCellHeaderStyle}
   border-bottom: 1px solid ${COLORS.BORDER};
   position: relative;
   width: ${(props) => `${props.width || 1}px`};
@@ -209,6 +212,7 @@ const TableCellComp = (props: React.PropsWithChildren<{ className?: string; widt
 export const TableCell = styled(TableCellComp, {
   shouldForwardProp: (prop) => isPropValid(prop) && !['width'].includes(prop),
 })`
+  ${tableCellHeaderStyle}
   width: ${(props) => `${props.width || 1}px`};
   height: inherit; // needed for cell wrapper to fill height
 `;
