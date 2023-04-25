@@ -57,6 +57,20 @@ const tableCellHeaderStyle = css`
   }
 `;
 
+const tableCellHeaderWrapperStyle = css`
+  padding: 2px 8px;
+  font-family: Work Sans, sans-serif;
+  font-size: 12px;
+  line-height: 1.33;
+  min-height: 28px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+`;
+
 const TableContainerComp = (props: React.PropsWithChildren<{ className?: string }>) => (
   <div {...props} className={clsx(TABLE_CLASSES.TABLE_CONTAINER, props.className)} />
 );
@@ -103,19 +117,6 @@ export const TableStyled = styled(TableComp, {
   border-spacing: 0;
   border-collapse: separate;
   width: 100%;
-  .${TABLE_CLASSES.TH_WRAPPER}, .${TABLE_CLASSES.TD_WRAPPER} {
-    padding: 2px 8px;
-    font-family: Work Sans, sans-serif;
-    font-size: 12px;
-    line-height: 1.33;
-    min-height: 28px;
-    text-align: left;
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    height: 100%;
-    width: 100%;
-  }
   .${TABLE_CLASSES.TH_WRAPPER}, .${TABLE_CLASSES.SORT_BUTTON} {
     font-weight: bold;
     display: flex;
@@ -172,7 +173,9 @@ export const TableHeader = styled(TableHeaderComp, {
 const TableHeaderWrapperComp = (props: React.PropsWithChildren<{ className?: string }>) => (
   <div {...props} className={clsx(TABLE_CLASSES.TH_WRAPPER, props.className)} />
 );
-export const TableHeaderWrapper = styled(TableHeaderWrapperComp)``;
+export const TableHeaderWrapper = styled(TableHeaderWrapperComp)`
+  ${tableCellHeaderWrapperStyle}
+`;
 
 const TableBodyComp = (props: React.PropsWithChildren<{ className?: string }>) => (
   <tbody {...props} className={clsx(TABLE_CLASSES.TBODY, props.className)} />
@@ -224,6 +227,7 @@ const TableCellWrapperComp = (
 export const TableCellWrapper = styled(TableCellWrapperComp, {
   shouldForwardProp: (prop) => isPropValid(prop),
 })`
+  ${tableCellHeaderWrapperStyle}
   background: ${(props) => (props.selected ? COLORS.BACKGROUND_SELECTED : 'transparent')};
 `;
 
