@@ -99,7 +99,7 @@ export const TableV8 = <TData extends object>({
   withStripes = false,
   withTabs = false,
 }: ReactTableProps<TData>) => {
-  const tableMeta = useReactTable({
+  const reactTable = useReactTable({
     columnResizeMode: 'onChange',
     columns,
     data,
@@ -126,7 +126,7 @@ export const TableV8 = <TData extends object>({
         <TableStyled withSideBorders={withSideBorders}>
           {withHeaders && (
             <TableHead>
-              {tableMeta.getHeaderGroups().map((headerGroup, headerIndex) => (
+              {reactTable.getHeaderGroups().map((headerGroup, headerIndex) => (
                 <TableRow key={headerGroup.id} index={headerIndex} withStripes={withStripes}>
                   {headerGroup.headers.map((header) => {
                     const canSort = enableSorting && header.column.getCanSort();
@@ -180,7 +180,7 @@ export const TableV8 = <TData extends object>({
           )}
 
           <TableBody>
-            {tableMeta.getRowModel().rows.map((row, rowIndex) => (
+            {reactTable.getRowModel().rows.map((row, rowIndex) => (
               <TableRow
                 index={rowIndex}
                 key={row.id}
@@ -208,16 +208,16 @@ export const TableV8 = <TData extends object>({
       </TableContainerInner>
       {withPagination && (
         <TablePaginationV8
-          canNextPage={tableMeta.getCanNextPage()}
-          canPreviousPage={tableMeta.getCanPreviousPage()}
-          nextPage={tableMeta.nextPage}
-          pageCount={tableMeta.getPageCount()}
-          pageIndex={tableMeta.getState().pagination.pageIndex}
-          pageSize={tableMeta.getState().pagination.pageSize}
-          previousPage={tableMeta.previousPage}
-          resetPageIndex={tableMeta.resetPageIndex}
-          setPageIndex={tableMeta.setPageIndex}
-          setPageSize={tableMeta.setPageSize}
+          canNextPage={reactTable.getCanNextPage()}
+          canPreviousPage={reactTable.getCanPreviousPage()}
+          nextPage={reactTable.nextPage}
+          pageCount={reactTable.getPageCount()}
+          pageIndex={reactTable.getState().pagination.pageIndex}
+          pageSize={reactTable.getState().pagination.pageSize}
+          previousPage={reactTable.previousPage}
+          resetPageIndex={reactTable.resetPageIndex}
+          setPageIndex={reactTable.setPageIndex}
+          setPageSize={reactTable.setPageSize}
           showPageSizeOptions={showPageSizeOptions}
         />
       )}
