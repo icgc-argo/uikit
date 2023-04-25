@@ -71,6 +71,11 @@ const tableCellHeaderWrapperStyle = css`
   width: 100%;
 `;
 
+const tableHeaderWrapperStyle = css`
+  font-weight: bold;
+  display: flex;
+`;
+
 const TableContainerComp = (props: React.PropsWithChildren<{ className?: string }>) => (
   <div {...props} className={clsx(TABLE_CLASSES.TABLE_CONTAINER, props.className)} />
 );
@@ -117,10 +122,6 @@ export const TableStyled = styled(TableComp, {
   border-spacing: 0;
   border-collapse: separate;
   width: 100%;
-  .${TABLE_CLASSES.TH_WRAPPER}, .${TABLE_CLASSES.SORT_BUTTON} {
-    font-weight: bold;
-    display: flex;
-  }
 `;
 
 const TableHeadComp = (props: React.PropsWithChildren<{ className?: string }>) => (
@@ -128,7 +129,7 @@ const TableHeadComp = (props: React.PropsWithChildren<{ className?: string }>) =
 );
 export const TableHead = styled(TableHeadComp)`
   .${TABLE_CLASSES.TR} {
-    background: ${COLORS.BACKGROUND} !important;
+    background: ${COLORS.BACKGROUND};
   }
 `;
 
@@ -159,7 +160,7 @@ export const TableHeader = styled(TableHeaderComp, {
   ${(props) =>
     props.canSort &&
     `
-      padding: 0 !important; // padding messes up box-shadow
+      padding: 0; // padding messes up box-shadow
   `}
   &:last-of-type .${TABLE_CLASSES.RESIZER} {
     // stop horizontal scrolling
@@ -175,6 +176,7 @@ const TableHeaderWrapperComp = (props: React.PropsWithChildren<{ className?: str
 );
 export const TableHeaderWrapper = styled(TableHeaderWrapperComp)`
   ${tableCellHeaderWrapperStyle}
+  ${tableHeaderWrapperStyle}
 `;
 
 const TableBodyComp = (props: React.PropsWithChildren<{ className?: string }>) => (
@@ -291,6 +293,7 @@ const SortButtonComp = (
 export const SortButton = styled(SortButtonComp, {
   shouldForwardProp: (prop) => isPropValid(prop),
 })`
+  ${tableHeaderWrapperStyle}
   background: none;
   border: 0 none;
   width: 100%;
