@@ -50,6 +50,7 @@ export type ReactTableCustomProps = {
   className?: string;
   enableColumnResizing?: boolean;
   enableSorting?: boolean;
+  initialState?: InitialTableState;
   LoaderComponent?: any;
   loading?: boolean;
   manualPagination?: boolean;
@@ -71,5 +72,4 @@ export type ReactTableCustomProps = {
   withSideBorders?: boolean;
   withStripes?: boolean;
   withTabs?: boolean;
-  initialState?: InitialTableState;
 };
