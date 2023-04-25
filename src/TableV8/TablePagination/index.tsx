@@ -78,12 +78,12 @@ export const TablePaginationV8 = ({
               }
             `}
             onChange={(pageSizeValue: string) => {
-              setPageSize(() => Number(pageSizeValue));
+              setPageSize(() => parseInt(pageSizeValue));
               resetPageIndex();
             }}
             options={pageSizeOptions.map((option: number) => ({
-              content: option.toString(),
-              value: option.toString(),
+              content: option,
+              value: option,
             }))}
             popupPosition={POPUP_POSITIONS.UP}
             value={pageSize.toString()}
