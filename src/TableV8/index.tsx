@@ -215,6 +215,7 @@ export const TableV8 = <TData extends object>({
           pageIndex={tableMeta.getState().pagination.pageIndex}
           pageSize={tableMeta.getState().pagination.pageSize}
           previousPage={tableMeta.previousPage}
+          resetPageIndex={tableMeta.resetPageIndex}
           setPageIndex={tableMeta.setPageIndex}
           setPageSize={tableMeta.setPageSize}
           showPageSizeOptions={showPageSizeOptions}

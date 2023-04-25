@@ -44,6 +44,7 @@ export const TablePaginationV8 = ({
   pageSize,
   pageSizeOptions = [5, 10, 20, 25, 50, 100],
   previousPage,
+  resetPageIndex,
   setPageIndex,
   setPageSize,
   showPageSizeOptions,
@@ -56,6 +57,7 @@ export const TablePaginationV8 = ({
   pageSize: number;
   pageSizeOptions?: number[];
   previousPage: () => void;
+  resetPageIndex: (defaultState?: boolean) => void;
   setPageIndex: (updater: Updater<number>) => void;
   setPageSize: (updater: Updater<number>) => void;
   showPageSizeOptions?: boolean;
@@ -75,7 +77,10 @@ export const TablePaginationV8 = ({
                 min-width: 70px;
               }
             `}
-            onChange={(pageSizeValue: string) => setPageSize(() => Number(pageSizeValue))}
+            onChange={(pageSizeValue: string) => {
+              setPageSize(() => Number(pageSizeValue));
+              resetPageIndex();
+            }}
             options={pageSizeOptions.map((option: number) => ({
               content: option.toString(),
               value: option.toString(),
