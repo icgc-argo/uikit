@@ -17,24 +17,24 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { PropsWithChildren, useState } from 'react';
 import { Checkbox } from '../../form/Checkbox';
+import { PropsWithChildren, useState } from 'react';
 import { TableCellWrapper } from '../styled';
 
 export const TableRowSelectionCheckbox = ({
   checked,
-  id,
   onChange,
+  value,
 }: {
   checked: boolean;
-  id: string;
-  onChange: (id: string) => void;
+  onChange: (value?: string) => void;
+  value: string;
 }) => (
   <Checkbox
     aria-label="table-row-select"
     checked={checked}
-    onChange={() => onChange(id)}
-    value={id}
+    onChange={() => onChange(value)}
+    value={value}
   />
 );
 

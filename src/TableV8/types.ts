@@ -50,6 +50,7 @@ export type ReactTableCustomProps = {
   className?: string;
   enableColumnResizing?: boolean;
   enableSorting?: boolean;
+  initialState?: InitialTableState;
   LoaderComponent?: any;
   loading?: boolean;
   manualPagination?: boolean;

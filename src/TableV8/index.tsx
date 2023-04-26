@@ -215,6 +215,7 @@ export const TableV8 = <TData extends object>({
           pageIndex={reactTable.getState().pagination.pageIndex}
           pageSize={reactTable.getState().pagination.pageSize}
           previousPage={reactTable.previousPage}
+          resetPageIndex={reactTable.resetPageIndex}
           setPageIndex={reactTable.setPageIndex}
           setPageSize={reactTable.setPageSize}
           showPageSizeOptions={showPageSizeOptions}
