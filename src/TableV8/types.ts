@@ -17,7 +17,13 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { OnChangeFn, PaginationState, SortingState } from '@tanstack/react-table';
+import {
+  InitialTableState,
+  OnChangeFn,
+  PaginationState,
+  RowSelectionState,
+  SortingState,
+} from '@tanstack/react-table';
 
 export type TableSortedChangeFunction = (
   additive: boolean,
@@ -44,14 +50,18 @@ export type ReactTableCustomProps = {
   className?: string;
   enableColumnResizing?: boolean;
   enableSorting?: boolean;
+  initialState?: InitialTableState;
   LoaderComponent?: any;
   loading?: boolean;
   manualPagination?: boolean;
+  manualRowSelection?: boolean;
   manualSorting?: boolean;
   onPaginationChange?: OnChangeFn<PaginationState>;
+  onRowSelectionChange?: OnChangeFn<RowSelectionState>;
   onSortingChange?: OnChangeFn<SortingState>;
   pageCount?: number;
   paginationState?: PaginationState;
+  rowSelectionState?: RowSelectionState;
   showPageSizeOptions?: boolean;
   sortingState?: SortingState;
   withFilters?: boolean;

@@ -79,6 +79,7 @@ export const TableV8 = <TData extends object>({
   data = [],
   enableColumnResizing = false,
   enableSorting = false,
+  initialState = {},
   LoaderComponent = Loader,
   loading = false,
   manualPagination = false,
@@ -98,23 +99,23 @@ export const TableV8 = <TData extends object>({
   withStripes = false,
   withTabs = false,
 }: ReactTableProps<TData>) => {
-  const table = useReactTable({
+  const reactTable = useReactTable({
     columnResizeMode: 'onChange',
     columns,
     data,
     enableColumnResizing,
     enableSorting,
     getCoreRowModel: getCoreRowModel(),
-    initialState: { pagination: { pageSize: DEFAULT_TABLE_PAGE_SIZE } },
-    ...(manualPagination
+    initialState: { pagination: { pageSize: DEFAULT_TABLE_PAGE_SIZE }, ...initialState },
+    ...(withPagination && manualPagination
       ? { manualPagination, onPaginationChange, pageCount }
       : { getPaginationRowModel: getPaginationRowModel() }),
-    ...(manualSorting
+    ...(enableSorting && manualSorting
       ? { manualSorting, onSortingChange }
       : { getSortedRowModel: getSortedRowModel() }),
     state: {
-      ...(manualPagination ? { pagination: paginationState } : {}),
-      ...(manualSorting ? { sorting: sortingState } : {}),
+      ...(withPagination && manualPagination ? { pagination: paginationState } : {}),
+      ...(enableSorting && manualSorting ? { sorting: sortingState } : {}),
       ...(withPagination ? {} : singlePagePaginationState),
     },
   });
@@ -125,7 +126,7 @@ export const TableV8 = <TData extends object>({
         <TableStyled withSideBorders={withSideBorders}>
           {withHeaders && (
             <TableHead>
-              {table.getHeaderGroups().map((headerGroup, headerIndex) => (
+              {reactTable.getHeaderGroups().map((headerGroup, headerIndex) => (
                 <TableRow key={headerGroup.id} index={headerIndex} withStripes={withStripes}>
                   {headerGroup.headers.map((header) => {
                     const canSort = enableSorting && header.column.getCanSort();
@@ -179,7 +180,7 @@ export const TableV8 = <TData extends object>({
           )}
 
           <TableBody>
-            {table.getRowModel().rows.map((row, rowIndex) => (
+            {reactTable.getRowModel().rows.map((row, rowIndex) => (
               <TableRow
                 index={rowIndex}
                 key={row.id}
@@ -207,15 +208,16 @@ export const TableV8 = <TData extends object>({
       </TableContainerInner>
       {withPagination && (
         <TablePaginationV8
-          canNextPage={table.getCanNextPage()}
-          canPreviousPage={table.getCanPreviousPage()}
-          nextPage={table.nextPage}
-          pageCount={table.getPageCount()}
-          pageIndex={table.getState().pagination.pageIndex}
-          pageSize={table.getState().pagination.pageSize}
-          previousPage={table.previousPage}
-          setPageIndex={table.setPageIndex}
-          setPageSize={table.setPageSize}
+          canNextPage={reactTable.getCanNextPage()}
+          canPreviousPage={reactTable.getCanPreviousPage()}
+          nextPage={reactTable.nextPage}
+          pageCount={reactTable.getPageCount()}
+          pageIndex={reactTable.getState().pagination.pageIndex}
+          pageSize={reactTable.getState().pagination.pageSize}
+          previousPage={reactTable.previousPage}
+          resetPageIndex={reactTable.resetPageIndex}
+          setPageIndex={reactTable.setPageIndex}
+          setPageSize={reactTable.setPageSize}
           showPageSizeOptions={showPageSizeOptions}
         />
       )}
