@@ -18,8 +18,7 @@
  */
 
 import { Checkbox } from '../../form/Checkbox';
-import { PropsWithChildren, useState } from 'react';
-import { TableCellWrapper } from '../styled';
+import { useState } from 'react';
 
 export const TableRowSelectionCheckbox = ({
   checked,
@@ -94,10 +93,3 @@ export function useTableRowSelection({
     unselectedRows,
   };
 }
-
-export const RowSelectionCell = ({
-  children,
-  isSelected,
-}: PropsWithChildren<{
-  isSelected: boolean;
-}>) => <TableCellWrapper selected={isSelected}>{children}</TableCellWrapper>;
