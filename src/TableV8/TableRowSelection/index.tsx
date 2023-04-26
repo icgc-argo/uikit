@@ -22,18 +22,18 @@ import { Checkbox } from '../../form/Checkbox';
 
 export const TableRowSelectionCheckbox = ({
   checked,
-  id,
   onChange,
+  value,
 }: {
   checked: boolean;
-  id: string;
-  onChange: (id: string) => void;
+  onChange: (value?: string) => void;
+  value: string;
 }) => (
   <Checkbox
     aria-label="table-row-select"
     checked={checked}
-    onChange={() => onChange(id)}
-    value={id}
+    onChange={() => onChange(value)}
+    value={value}
   />
 );
 
