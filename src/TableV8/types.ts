@@ -72,5 +72,4 @@ export type ReactTableCustomProps = {
   withSideBorders?: boolean;
   withStripes?: boolean;
   withTabs?: boolean;
-  initialState?: InitialTableState;
 };
