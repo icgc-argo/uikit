@@ -18,7 +18,7 @@ UIKit:
 
 Consumer project:
 
-- `npm i <root_path_to_uikit>`
+- `npm i <root_path_to_uikit>/dist --legacy-peer-deps`
 
 Notes:
 

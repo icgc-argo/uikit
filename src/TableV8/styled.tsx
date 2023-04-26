@@ -22,6 +22,7 @@ import isPropValid from '@emotion/is-prop-valid';
 import { styled } from '../ThemeProvider';
 import colors from '../theme/defaultTheme/colors';
 import { DnaLoader } from '../DnaLoader';
+import { css } from '@emotion/react';
 
 export const TABLE_CLASSES = {
   LOADING_COMPONENT: 'rt-loading',
@@ -48,6 +49,32 @@ const COLORS = {
   BACKGROUND: colors.white,
   BORDER: colors.grey_2,
 };
+
+const tableCellHeaderStyle = css`
+  padding: 0;
+  &:not(:last-of-type) {
+    border-right: 1px solid ${COLORS.BORDER};
+  }
+`;
+
+const tableCellHeaderWrapperStyle = css`
+  padding: 2px 8px;
+  font-family: Work Sans, sans-serif;
+  font-size: 12px;
+  line-height: 1.33;
+  min-height: 28px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+`;
+
+const tableHeaderWrapperStyle = css`
+  font-weight: bold;
+  display: flex;
+`;
 
 const TableContainerComp = (props: React.PropsWithChildren<{ className?: string }>) => (
   <div {...props} className={clsx(TABLE_CLASSES.TABLE_CONTAINER, props.className)} />
@@ -95,29 +122,6 @@ export const TableStyled = styled(TableComp, {
   border-spacing: 0;
   border-collapse: separate;
   width: 100%;
-  .${TABLE_CLASSES.TH}, .${TABLE_CLASSES.TD} {
-    padding: 0;
-    &:not(:last-of-type) {
-      border-right: 1px solid ${COLORS.BORDER};
-    }
-  }
-  .${TABLE_CLASSES.TH_WRAPPER}, .${TABLE_CLASSES.TD_WRAPPER} {
-    padding: 2px 8px;
-    font-family: Work Sans, sans-serif;
-    font-size: 12px;
-    line-height: 1.33;
-    min-height: 28px;
-    text-align: left;
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    height: 100%;
-    width: 100%;
-  }
-  .${TABLE_CLASSES.TH_WRAPPER}, .${TABLE_CLASSES.SORT_BUTTON} {
-    font-weight: bold;
-    display: flex;
-  }
 `;
 
 const TableHeadComp = (props: React.PropsWithChildren<{ className?: string }>) => (
@@ -125,7 +129,7 @@ const TableHeadComp = (props: React.PropsWithChildren<{ className?: string }>) =
 );
 export const TableHead = styled(TableHeadComp)`
   .${TABLE_CLASSES.TR} {
-    background: ${COLORS.BACKGROUND} !important;
+    background: ${COLORS.BACKGROUND};
   }
 `;
 
@@ -143,6 +147,7 @@ const TableHeaderComp = (
 export const TableHeader = styled(TableHeaderComp, {
   shouldForwardProp: (prop) => isPropValid(prop) && !['width'].includes(prop),
 })`
+  ${tableCellHeaderStyle}
   border-bottom: 1px solid ${COLORS.BORDER};
   position: relative;
   width: ${(props) => `${props.width || 1}px`};
@@ -155,7 +160,7 @@ export const TableHeader = styled(TableHeaderComp, {
   ${(props) =>
     props.canSort &&
     `
-      padding: 0 !important; // padding messes up box-shadow
+      padding: 0; // padding messes up box-shadow
   `}
   &:last-of-type .${TABLE_CLASSES.RESIZER} {
     // stop horizontal scrolling
@@ -169,7 +174,10 @@ export const TableHeader = styled(TableHeaderComp, {
 const TableHeaderWrapperComp = (props: React.PropsWithChildren<{ className?: string }>) => (
   <div {...props} className={clsx(TABLE_CLASSES.TH_WRAPPER, props.className)} />
 );
-export const TableHeaderWrapper = styled(TableHeaderWrapperComp)``;
+export const TableHeaderWrapper = styled(TableHeaderWrapperComp)`
+  ${tableCellHeaderWrapperStyle}
+  ${tableHeaderWrapperStyle}
+`;
 
 const TableBodyComp = (props: React.PropsWithChildren<{ className?: string }>) => (
   <tbody {...props} className={clsx(TABLE_CLASSES.TBODY, props.className)} />
@@ -209,6 +217,7 @@ const TableCellComp = (props: React.PropsWithChildren<{ className?: string; widt
 export const TableCell = styled(TableCellComp, {
   shouldForwardProp: (prop) => isPropValid(prop) && !['width'].includes(prop),
 })`
+  ${tableCellHeaderStyle}
   width: ${(props) => `${props.width || 1}px`};
   height: inherit; // needed for cell wrapper to fill height
 `;
@@ -220,6 +229,7 @@ const TableCellWrapperComp = (
 export const TableCellWrapper = styled(TableCellWrapperComp, {
   shouldForwardProp: (prop) => isPropValid(prop),
 })`
+  ${tableCellHeaderWrapperStyle}
   background: ${(props) => (props.selected ? COLORS.BACKGROUND_SELECTED : 'transparent')};
 `;
 
@@ -283,6 +293,7 @@ const SortButtonComp = (
 export const SortButton = styled(SortButtonComp, {
   shouldForwardProp: (prop) => isPropValid(prop),
 })`
+  ${tableHeaderWrapperStyle}
   background: none;
   border: 0 none;
   width: 100%;

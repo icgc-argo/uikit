@@ -18,9 +18,11 @@
  */
 
 import { css } from '@emotion/react';
-import { useState } from 'react';
+import { PropsWithChildren, useState } from 'react';
 import { Tab, Tabs } from '../../Tabs';
-import { styled } from '../../ThemeProvider';
+import { styled, useTheme } from '../../ThemeProvider';
+import { ThemeColorNames } from '../../theme/types';
+import { TableHeaderWrapper } from '../styled';
 
 export type TableTabsInput = { label: string; value: string; color: string }[];
 export type TableTabsHandler = (e: any, value: string) => void;
@@ -85,3 +87,22 @@ export const TableTabs = ({
     ))}
   </Tabs>
 );
+
+// use this component to make the table header match the tab color
+export const TableHeaderWithBackground = ({
+  children,
+  fill,
+}: PropsWithChildren<{ fill: keyof ThemeColorNames }>) => {
+  const theme = useTheme();
+  return (
+    <TableHeaderWrapper
+      css={css`
+        background: ${theme.colors[fill]};
+        justify-content: center;
+        text-transform: uppercase;
+      `}
+    >
+      {children}
+    </TableHeaderWrapper>
+  );
+};
