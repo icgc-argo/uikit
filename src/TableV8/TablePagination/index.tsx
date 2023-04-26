@@ -77,8 +77,8 @@ export const TablePaginationV8 = ({
                 min-width: 70px;
               }
             `}
-            onChange={() => {
-              setPageSize(pageSize);
+            onChange={(value: string) => {
+              setPageSize(parseInt(value));
               resetPageIndex();
             }}
             options={pageSizeOptions.map((option: number) => ({
