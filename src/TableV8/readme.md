@@ -6,7 +6,7 @@ This component uses [React-Table 8 API](https://tanstack.com/table/v8), with som
 
 Tables must be entirely client-side or server-side - don't mix and match.
 
-| Type        | Data loaded?                                  | Actions (filters, pages, sorting)               | State management                          | Default or optional           | Example                                                                   |
+| Type        | Data loaded?                                  | Actions (filters, pages, sorting)               | State management                          | Default or optional           | Example: Sorting                                                          |
 | ----------- | --------------------------------------------- | ----------------------------------------------- | ----------------------------------------- | ----------------------------- | ------------------------------------------------------------------------- |
 | Client-side | All data is loaded at once                    | Data is organized in the browser by React Table | State managed by React Table              | Default (except for filters)  | Add the enableSorting prop                                                |
 | Server-side | Only load the data that's currently displayed | Organize data on the server                     | State has to be managed outside the table | Optional (except for filters) | Add enableSorting, manualSorting, sortingState, and onSortingChange props |
@@ -48,7 +48,8 @@ Tables must be entirely client-side or server-side - don't mix and match.
   - The columns array must have the type `ColumnDef<MyDataShape>[]`. This is a partial type that comes from the React Table library.
   - The type `MyDataShape` must have all potential data properties that can appear in the table. It's used as a partial type.
   - Generics aren't accepted as arguments by `ColumnDef`.
-- If using server-side features/manual state management: add custom types that suit your table, e.g. `const myTableSortingState = SortingState & { id: myTableFields }`
+  - Avoid putting React components in the data. If you want to show a React component in a table cell, you can add it in the `cell` property of the column definition.
+- If using server-side features/manual state management: add custom types that suit your table, e.g. `type MyTableSortingState = SortingState & { id: MyTableIds }`.
 
 ## Developing new features
 
