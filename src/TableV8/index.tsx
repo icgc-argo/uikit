@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 The Ontario Institute for Cancer Research. All rights reserved
+ * Copyright (c) 2023 The Ontario Institute for Cancer Research. All rights reserved
  *
  * This program and the accompanying materials are made available under the terms of
  * the GNU Affero General Public License v3.0. You should have received a copy of the
@@ -21,11 +21,10 @@ import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
+  getPaginationRowModel,
   getSortedRowModel,
-  SortingState,
   useReactTable,
 } from '@tanstack/react-table';
-import { useState } from 'react';
 import {
   Loader,
   Resizer,
@@ -39,7 +38,11 @@ import {
   TableRow,
   TableCellWrapper,
   TableHeaderWrapper,
+  TableContainerInner,
 } from './styled';
+import { TablePaginationV8 } from './TablePagination';
+import { TableTabs, TableTabsHandler, TableTabsInput } from './TableTabs';
+import { ReactTableCustomProps } from './types';
 
 // IMPORTANT
 // react table v8 is headless and we made our own UI.
@@ -47,131 +50,177 @@ import {
 
 declare module '@tanstack/table-core' {
   interface ColumnMeta<TData extends unknown, TValue> {
+    columnTabs?: {
+      activeTab: string;
+      handleTabs: TableTabsHandler;
+      tabs: TableTabsInput;
+    };
     customCell?: boolean;
     customHeader?: boolean;
+    multiSortIds?: string[];
   }
 }
-
-export type ReactTableCustomProps = {
-  className?: string;
-  LoaderComponent?: any;
-  loading?: boolean;
-  manualSorting?: boolean;
-  withHeaders?: boolean;
-  withResize?: boolean;
-  withRowBorder?: boolean;
-  withRowHighlight?: boolean;
-  withSideBorders?: boolean;
-  withSorting?: boolean;
-  withStripes?: boolean;
-};
 
 interface ReactTableProps<TData> extends ReactTableCustomProps {
   columns?: ColumnDef<TData>[];
   data?: TData[];
 }
 
+export const DEFAULT_TABLE_PAGE_SIZE = 20;
+
+// if not using pagination, put all rows on one page.
+const singlePagePaginationState = {
+  pagination: { pageIndex: 0, pageSize: Number.MAX_SAFE_INTEGER },
+};
+
 export const TableV8 = <TData extends object>({
   className = '',
   columns = [],
   data = [],
+  enableColumnResizing = false,
+  enableSorting = false,
+  initialState = {},
   LoaderComponent = Loader,
   loading = false,
+  manualPagination = false,
   manualSorting = false,
+  onPaginationChange,
+  onSortingChange,
+  pageCount,
+  paginationState = null,
+  showPageSizeOptions = false,
+  sortingState = null,
+  withFilters = false,
   withHeaders = false,
-  withResize = false,
+  withPagination = false,
   withRowBorder = false,
   withRowHighlight = false,
   withSideBorders = false,
-  withSorting = false,
   withStripes = false,
+  withTabs = false,
 }: ReactTableProps<TData>) => {
-  const [sortingState, setSortingState] = useState<SortingState>([]);
-
-  const table = useReactTable({
+  const reactTable = useReactTable({
     columnResizeMode: 'onChange',
     columns,
     data,
-    enableColumnResizing: withResize,
-    enableSorting: withSorting,
+    enableColumnResizing,
+    enableSorting,
     getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    manualSorting,
-    onSortingChange: setSortingState,
+    initialState: { pagination: { pageSize: DEFAULT_TABLE_PAGE_SIZE }, ...initialState },
+    ...(withPagination && manualPagination
+      ? { manualPagination, onPaginationChange, pageCount }
+      : { getPaginationRowModel: getPaginationRowModel() }),
+    ...(enableSorting && manualSorting
+      ? { manualSorting, onSortingChange }
+      : { getSortedRowModel: getSortedRowModel() }),
     state: {
-      sorting: sortingState,
+      ...(withPagination && manualPagination ? { pagination: paginationState } : {}),
+      ...(enableSorting && manualSorting ? { sorting: sortingState } : {}),
+      ...(withPagination ? {} : singlePagePaginationState),
     },
   });
 
   return (
     <TableContainer className={className}>
-      <TableStyled withSideBorders={withSideBorders}>
-        {withHeaders && (
-          <TableHead>
-            {table.getHeaderGroups().map((headerGroup, headerIndex) => (
-              <TableRow key={headerGroup.id} index={headerIndex} withStripes={withStripes}>
-                {headerGroup.headers.map((header) => {
-                  const canSort = withSorting && header.column.getCanSort();
-                  const isCustom = header.column.columnDef.meta?.customHeader;
-                  const headerContents = header.isPlaceholder
-                    ? null
-                    : flexRender(header.column.columnDef.header, header.getContext());
+      <TableContainerInner withFilters={withFilters} withTabs={withTabs}>
+        <TableStyled withSideBorders={withSideBorders}>
+          {withHeaders && (
+            <TableHead>
+              {reactTable.getHeaderGroups().map((headerGroup, headerIndex) => (
+                <TableRow key={headerGroup.id} index={headerIndex} withStripes={withStripes}>
+                  {headerGroup.headers.map((header) => {
+                    const canSort = enableSorting && header.column.getCanSort();
+                    const isCustomHeader = header.column.columnDef.meta?.customHeader;
+                    const headerContents = header.isPlaceholder
+                      ? null
+                      : flexRender(header.column.columnDef.header, header.getContext());
 
-                  return (
-                    <TableHeader
-                      key={header.id}
-                      colSpan={header.colSpan}
-                      width={header.getSize()}
-                      sorted={header.column.getIsSorted()}
-                      canSort={canSort}
-                    >
-                      <SortButton
+                    const {
+                      activeTab = '',
+                      handleTabs = () => {},
+                      tabs = [],
+                    } = header.column.columnDef.meta?.columnTabs || {};
+
+                    return (
+                      <TableHeader
+                        key={header.id}
+                        colSpan={header.colSpan}
+                        width={header.getSize()}
+                        sorted={header.column.getIsSorted()}
                         canSort={canSort}
-                        onClick={header.column.getToggleSortingHandler()}
                       >
-                        {isCustom ? (
-                          headerContents
-                        ) : (
-                          <TableHeaderWrapper>{headerContents}</TableHeaderWrapper>
+                        {!!tabs.length && (
+                          <TableTabs activeTab={activeTab} handleTabs={handleTabs} tabs={tabs} />
                         )}
-                      </SortButton>
-                      {header.column.getCanResize() && (
-                        <Resizer
-                          onMouseDown={header.getResizeHandler()}
-                          onTouchStart={header.getResizeHandler()}
-                          className={`resizer ${header.column.getIsResizing() ? 'isResizing' : ''}`}
-                        />
+                        <SortButton
+                          canSort={canSort}
+                          onClick={header.column.getToggleSortingHandler()}
+                        >
+                          {isCustomHeader ? (
+                            headerContents
+                          ) : (
+                            <TableHeaderWrapper>{headerContents}</TableHeaderWrapper>
+                          )}
+                        </SortButton>
+                        {header.column.getCanResize() && (
+                          <Resizer
+                            onMouseDown={header.getResizeHandler()}
+                            onTouchStart={header.getResizeHandler()}
+                            className={`resizer ${
+                              header.column.getIsResizing() ? 'isResizing' : ''
+                            }`}
+                          />
+                        )}
+                      </TableHeader>
+                    );
+                  })}
+                </TableRow>
+              ))}
+            </TableHead>
+          )}
+
+          <TableBody>
+            {reactTable.getRowModel().rows.map((row, rowIndex) => (
+              <TableRow
+                index={rowIndex}
+                key={row.id}
+                withRowBorder={withRowBorder}
+                withRowHighlight={withRowHighlight}
+                withStripes={withStripes}
+              >
+                {row.getVisibleCells().map((cell) => {
+                  const isCustomCell = cell.column.columnDef.meta?.customCell;
+                  const cellContents = flexRender(cell.column.columnDef.cell, cell.getContext());
+                  return (
+                    <TableCell key={cell.id} width={cell.column.getSize()}>
+                      {isCustomCell ? (
+                        cellContents
+                      ) : (
+                        <TableCellWrapper>{cellContents}</TableCellWrapper>
                       )}
-                    </TableHeader>
+                    </TableCell>
                   );
                 })}
               </TableRow>
             ))}
-          </TableHead>
-        )}
-
-        <TableBody>
-          {table.getRowModel().rows.map((row, rowIndex) => (
-            <TableRow
-              index={rowIndex}
-              key={row.id}
-              withRowBorder={withRowBorder}
-              withRowHighlight={withRowHighlight}
-              withStripes={withStripes}
-            >
-              {row.getVisibleCells().map((cell) => {
-                const isCustom = cell.column.columnDef.meta?.customCell;
-                const cellContents = flexRender(cell.column.columnDef.cell, cell.getContext());
-                return (
-                  <TableCell key={cell.id} width={cell.column.getSize()}>
-                    {isCustom ? cellContents : <TableCellWrapper>{cellContents}</TableCellWrapper>}
-                  </TableCell>
-                );
-              })}
-            </TableRow>
-          ))}
-        </TableBody>
-      </TableStyled>
+          </TableBody>
+        </TableStyled>
+      </TableContainerInner>
+      {withPagination && (
+        <TablePaginationV8
+          canNextPage={reactTable.getCanNextPage()}
+          canPreviousPage={reactTable.getCanPreviousPage()}
+          nextPage={reactTable.nextPage}
+          pageCount={reactTable.getPageCount()}
+          pageIndex={reactTable.getState().pagination.pageIndex}
+          pageSize={reactTable.getState().pagination.pageSize}
+          previousPage={reactTable.previousPage}
+          resetPageIndex={reactTable.resetPageIndex}
+          setPageIndex={reactTable.setPageIndex}
+          setPageSize={reactTable.setPageSize}
+          showPageSizeOptions={showPageSizeOptions}
+        />
+      )}
       <LoaderComponent $loading={loading} />
     </TableContainer>
   );

@@ -27,7 +27,17 @@ export { default as overtureLogo } from './assets/overture-logo.svg';
 export { default as ThemeProvider, styled } from './ThemeProvider';
 export { default as useTheme } from './utils/useTheme';
 export { default as colors } from './theme/defaultTheme/colors';
-export { ColumnDef, createColumnHelper } from '@tanstack/react-table';
+export {
+  CellContext,
+  ColumnDef,
+  ColumnSort,
+  createColumnHelper,
+  OnChangeFn,
+  PaginationState,
+  Row,
+  SortingFnOption,
+  SortingState,
+} from '@tanstack/react-table';
 
 // single point of export ensures lib export works correctly
 export * from './Affix';
@@ -86,7 +96,12 @@ export * from './SystemAlert';
 export * from './Table';
 export * from './TableV8';
 export * from './TableV8/SimpleTable';
+export * from './TableV8/TableFilters';
+export * from './TableV8/TablePagination';
+export * from './TableV8/TableRowSelection';
+export * from './TableV8/TableTabs';
 export * from './TableV8/styled';
+export * from './TableV8/types';
 export * from './Tabs';
 export * from './Tag';
 export * from './theme/types';

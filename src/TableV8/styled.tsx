@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 The Ontario Institute for Cancer Research. All rights reserved
+ * Copyright (c) 2023 The Ontario Institute for Cancer Research. All rights reserved
  *
  * This program and the accompanying materials are made available under the terms of
  * the GNU Affero General Public License v3.0. You should have received a copy of the
@@ -22,6 +22,7 @@ import isPropValid from '@emotion/is-prop-valid';
 import { styled } from '../ThemeProvider';
 import colors from '../theme/defaultTheme/colors';
 import { DnaLoader } from '../DnaLoader';
+import { css } from '@emotion/react';
 
 export const TABLE_CLASSES = {
   LOADING_COMPONENT: 'rt-loading',
@@ -29,6 +30,7 @@ export const TABLE_CLASSES = {
   RESIZER: 'rt-resizer',
   SORT_BUTTON: 'rt-sort-button',
   TABLE_CONTAINER: 'rt-table-container',
+  TABLE_CONTAINER_INNER: 'rt-table-container-inner',
   TABLE: 'rt-table',
   TBODY: 'rt-tbody',
   TD_WRAPPER: 'rt-td-wrapper',
@@ -43,20 +45,65 @@ export const TABLE_CLASSES = {
 const COLORS = {
   BACKGROUND_HIGHLIGHT: colors.grey_3,
   BACKGROUND_SECONDARY: colors.grey_4,
+  BACKGROUND_SELECTED: colors.secondary_4,
   BACKGROUND: colors.white,
   BORDER: colors.grey_2,
 };
 
+const tableCellHeaderStyle = css`
+  padding: 0;
+  &:not(:last-of-type) {
+    border-right: 1px solid ${COLORS.BORDER};
+  }
+`;
+
+const tableCellHeaderWrapperStyle = css`
+  padding: 2px 8px;
+  font-family: Work Sans, sans-serif;
+  font-size: 12px;
+  line-height: 1.33;
+  min-height: 28px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+`;
+
+const tableHeaderWrapperStyle = css`
+  font-weight: bold;
+  display: flex;
+`;
+
 const TableContainerComp = (props: React.PropsWithChildren<{ className?: string }>) => (
   <div {...props} className={clsx(TABLE_CLASSES.TABLE_CONTAINER, props.className)} />
 );
-export const TableContainer = styled(TableContainerComp)`
+export const TableContainer = styled(TableContainerComp, {
+  // naming conflict with <Table />
+  shouldForwardProp: (prop) => isPropValid(prop),
+})`
   width: 100%;
-  max-width: 100%;
-  overflow-x: auto;
   position: relative;
   box-sizing: border-box;
   background: ${COLORS.BACKGROUND};
+`;
+
+const TableContainerInnerComp = (
+  props: React.PropsWithChildren<{ className?: string; withFilters?: boolean; withTabs?: boolean }>,
+) => <div {...props} className={clsx(TABLE_CLASSES.TABLE_CONTAINER_INNER, props.className)} />;
+export const TableContainerInner = styled(TableContainerInnerComp, {
+  shouldForwardProp: (prop) => isPropValid(prop),
+})`
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  ${(props) =>
+    props.withFilters &&
+    `
+      min-height: 250px;
+  `}
+  ${(props) => props.withTabs && `padding-top: 30px;`}
 `;
 
 const TableComp = (
@@ -72,34 +119,19 @@ export const TableStyled = styled(TableComp, {
   border: solid 1px ${COLORS.BORDER};
   border-right-width: ${(props) => `${props.withSideBorders ? '1' : '0'}px`};
   border-left-width: ${(props) => `${props.withSideBorders ? '1' : '0'}px`};
-  border-collapse: collapse;
+  border-spacing: 0;
+  border-collapse: separate;
   width: 100%;
-  .${TABLE_CLASSES.TH}, .${TABLE_CLASSES.TD} {
-    padding: 0;
-    &:not(:last-of-type) {
-      border-right: 1px solid ${COLORS.BORDER};
-    }
-  }
-  .${TABLE_CLASSES.TH_WRAPPER}, .${TABLE_CLASSES.TD_WRAPPER} {
-    padding: 2px 8px;
-    font-family: Work Sans, sans-serif;
-    font-size: 12px;
-    line-height: 1.33;
-    min-height: 28px;
-    text-align: left;
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-  }
-  .${TABLE_CLASSES.TH_WRAPPER}, .${TABLE_CLASSES.SORT_BUTTON} {
-    font-weight: bold;
-  }
 `;
 
 const TableHeadComp = (props: React.PropsWithChildren<{ className?: string }>) => (
   <thead {...props} className={clsx(TABLE_CLASSES.THEAD, props.className)} />
 );
-export const TableHead = styled(TableHeadComp)``;
+export const TableHead = styled(TableHeadComp)`
+  .${TABLE_CLASSES.TR} {
+    background: ${COLORS.BACKGROUND};
+  }
+`;
 
 // the TH element should only for table structure.
 // use TableHeaderWrapper for additional styling within the TH.
@@ -115,12 +147,10 @@ const TableHeaderComp = (
 export const TableHeader = styled(TableHeaderComp, {
   shouldForwardProp: (prop) => isPropValid(prop) && !['width'].includes(prop),
 })`
+  ${tableCellHeaderStyle}
   border-bottom: 1px solid ${COLORS.BORDER};
   position: relative;
   width: ${(props) => `${props.width || 1}px`};
-  &:last-of-type {
-    overflow-x: hidden; // stop resizer from adding horizontal scrollbar
-  }
   transition: box-shadow 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   ${(props) =>
     props.sorted &&
@@ -130,16 +160,24 @@ export const TableHeader = styled(TableHeaderComp, {
   ${(props) =>
     props.canSort &&
     `
-      padding: 0 !important; // padding messes up box-shadow
-     
+      padding: 0; // padding messes up box-shadow
   `}
+  &:last-of-type .${TABLE_CLASSES.RESIZER} {
+    // stop horizontal scrolling
+    width: 6px;
+    padding: 0;
+    right: 0;
+  }
 `;
 
 // import this to add custom styles to a table header
 const TableHeaderWrapperComp = (props: React.PropsWithChildren<{ className?: string }>) => (
   <div {...props} className={clsx(TABLE_CLASSES.TH_WRAPPER, props.className)} />
 );
-export const TableHeaderWrapper = styled(TableHeaderWrapperComp)``;
+export const TableHeaderWrapper = styled(TableHeaderWrapperComp)`
+  ${tableCellHeaderWrapperStyle}
+  ${tableHeaderWrapperStyle}
+`;
 
 const TableBodyComp = (props: React.PropsWithChildren<{ className?: string }>) => (
   <tbody {...props} className={clsx(TABLE_CLASSES.TBODY, props.className)} />
@@ -158,6 +196,7 @@ const TableRowComp = (
 export const TableRow = styled(TableRowComp, {
   shouldForwardProp: (prop) => isPropValid(prop),
 })`
+  height: 1px; // needed for cell wrapper to fill height
   background: ${(props) =>
     props.index % 2 && props.withStripes ? COLORS.BACKGROUND_SECONDARY : COLORS.BACKGROUND};
   border-bottom: ${(props) => (props.withRowBorder ? `1px solid ${COLORS.BORDER}` : '0 none')};
@@ -178,16 +217,21 @@ const TableCellComp = (props: React.PropsWithChildren<{ className?: string; widt
 export const TableCell = styled(TableCellComp, {
   shouldForwardProp: (prop) => isPropValid(prop) && !['width'].includes(prop),
 })`
+  ${tableCellHeaderStyle}
   width: ${(props) => `${props.width || 1}px`};
+  height: inherit; // needed for cell wrapper to fill height
 `;
 
 // import this to add custom styles to a table cell
-const TableCellWrapperComp = (props: React.PropsWithChildren<{ className?: string }>) => (
-  <div {...props} className={clsx(TABLE_CLASSES.TD_WRAPPER, props.className)} />
-);
+const TableCellWrapperComp = (
+  props: React.PropsWithChildren<{ className?: string; selected?: boolean }>,
+) => <div {...props} className={clsx(TABLE_CLASSES.TD_WRAPPER, props.className)} />;
 export const TableCellWrapper = styled(TableCellWrapperComp, {
   shouldForwardProp: (prop) => isPropValid(prop),
-})``;
+})`
+  ${tableCellHeaderWrapperStyle}
+  background: ${(props) => (props.selected ? COLORS.BACKGROUND_SELECTED : 'transparent')};
+`;
 
 const ResizerComp = (
   props: React.PropsWithChildren<{
@@ -249,10 +293,14 @@ const SortButtonComp = (
 export const SortButton = styled(SortButtonComp, {
   shouldForwardProp: (prop) => isPropValid(prop),
 })`
+  ${tableHeaderWrapperStyle}
   background: none;
   border: 0 none;
   width: 100%;
   height: 100%;
+  .${TABLE_CLASSES.TH_WRAPPER} {
+    font-size: 13px;
+  }
   ${(props) =>
     props.canSort &&
     `
