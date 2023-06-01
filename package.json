@@ -26,8 +26,8 @@
     "publish-uikit": "cd dist && npm publish --access public"
   },
   "peerDependencies": {
-    "react": "17.x.x",
-    "react-dom": "17.x.x"
+    "react": "18.x.x",
+    "react-dom": "18.x.x"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.7.2",
@@ -74,18 +74,17 @@
     "@storybook/testing-library": "^0.0.13",
     "@svgr/webpack": "^6.3.1",
     "@types/lodash": "^4.14.138",
-    "@types/react": "^17",
+    "@types/react": "^18.2.7",
     "@types/react-dom": "^17",
-    "@types/react-table": "6.8.5",
     "babel-loader": "^8.0.5",
     "babel-preset-env": "^1.7.0",
     "husky": "^2.2.0",
     "plop": "^2.3.0",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
-    "react": "^17.0.2",
+    "react": "^18.2.0",
     "react-docgen-typescript-loader": "^3.7.2",
-    "react-dom": "^17.0.2",
+    "react-dom": "^18.2.0",
     "react-json-view": "^1.21.3",
     "ts-node-dev": "^1.1.8",
     "ttypescript": "^1.5.13",
