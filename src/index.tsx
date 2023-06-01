@@ -89,7 +89,6 @@ export * from './PageLayout';
 export * from './PercentageBar';
 export * from './PercentBar';
 export * from './Pipe';
-export * from './Portal';
 export * from './Progress';
 export * from './SubMenu';
 export * from './SystemAlert';
