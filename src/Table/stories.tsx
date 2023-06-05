@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 The Ontario Institute for Cancer Research. All rights reserved
+ * Copyright (c) 2023 The Ontario Institute for Cancer Research. All rights reserved
  *
  * This program and the accompanying materials are made available under the terms of
  * the GNU Affero General Public License v3.0. You should have received a copy of the
@@ -17,182 +17,174 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { action } from '@storybook/addon-actions';
-import { boolean, select } from '@storybook/addon-knobs';
+import { useTheme } from '@emotion/react';
+import { boolean } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import { SelectTable, Table, TableVariant } from '.';
+import { Table } from '.';
+import { Button } from '../Button';
+import { ThemeColorNames } from '../theme/types';
 import readme from './readme.md';
-import selectTableDoc from './selectTable.md';
+import { TableCellWrapper, TableHeaderWrapper } from './styled';
+import { useTableTabs } from './TableTabs';
 
-export const TABLE_VARIANTS: { [k in TableVariant]: k } = {
-  DEFAULT: 'DEFAULT',
-  STATIC: 'STATIC',
+enum TabNames {
+  FRUIT = 'Fruit',
+  VEGETABLES = 'Vegetables',
+}
+
+const TAB_COLORS: { [k: string]: keyof ThemeColorNames } = {
+  [TabNames.FRUIT]: 'accent1_3',
+  [TabNames.VEGETABLES]: 'accent2_3',
 };
+
+const tabsTableData = [
+  {
+    citrus: 'orange',
+    berries: 'strawberry',
+    leafy: 'lettuce',
+    root: 'potato',
+  },
+];
+
+const basicTableColumns = [
+  {
+    accessorKey: 'fruit',
+    cell: ({ cell, row }) => {
+      return (
+        <TableCellWrapper
+        // add custom styles based on the content & metadata of the cell
+        // css={css`
+        //   background: ${row.index % 2 ? 'red' : 'blue'};
+        // `}
+        >
+          {cell.getValue()}
+        </TableCellWrapper>
+      );
+    },
+    header: () => {
+      return (
+        <TableHeaderWrapper
+        // add custom styles
+        // css={css`
+        //   background: green;
+        // `}
+        >
+          Cells & header with custom CSS
+        </TableHeaderWrapper>
+      );
+    },
+    meta: {
+      customCell: true,
+      customHeader: true,
+    },
+  },
+  {
+    header: 'Cells with buttons. Sorting disabled',
+    accessorKey: 'vegetables',
+    cell: ({ cell }) => <Button>{cell.getValue()}</Button>,
+    enableSorting: false,
+  },
+  {
+    header: 'Basic cells',
+    accessorKey: 'protein',
+  },
+];
+
+const basicTableData = [
+  { fruit: 'strawberries', vegetables: 'carrots', protein: 'lamb' },
+  {
+    fruit: 'apples',
+    vegetables: 'celery',
+    protein: 'a variety of meats and cheeses, as well as vegetarian options',
+  },
+  { fruit: 'bananas', vegetables: 'lettuce', protein: 'chicken' },
+  { fruit: 'oranges', vegetables: 'beets', protein: 'tofu' },
+  { fruit: 'mangoes', vegetables: 'onions', protein: 'eggs' },
+];
 
 storiesOf(`Table`, module)
   .add(
-    'Basic',
+    'Basic, with client-side sorting',
     () => {
       const knobs = {
-        sortable: boolean('sortable', true),
+        enableColumnResizing: boolean('enableColumnResizing', false),
+        enableSorting: boolean('enableSorting', true),
         loading: boolean('loading', false),
-        showPagination: boolean('showPagination', false),
-        showPaginationTop: boolean('showPaginationTop', false),
-        showPaginationBottom: boolean('showPaginationBottom', false),
-        stripped: boolean('stripped', true),
-        withResizeBlur: boolean('withResizeBlur', false),
+        withHeaders: boolean('withHeaders', true),
         withRowBorder: boolean('withRowBorder', false),
-        withOutsideBorder: boolean('withOutsideBorder', false),
-        cellAlignment: select('cellAlignment', ['top', 'center', 'bottom'], 'center'),
+        withRowHighlight: boolean('withRowHighlight', false),
+        withSideBorders: boolean('withSideBorders', false),
+        withStripes: boolean('withStripes', false),
       };
-      const containerRef = React.createRef<HTMLDivElement>();
-      return (
-        <div ref={containerRef}>
-          <Table
-            {...knobs}
-            parentRef={containerRef}
-            data={[
-              { id: 1, prop2: 5, prop3: 'some text 1' },
-              {
-                id: 2,
-                prop2: 4,
-                prop3:
-                  'a large section of text that will probably be big enough to demonstrate the vertical alignment of cells',
-              },
-              { id: 3, prop2: 3, prop3: 'some text 3' },
-              { id: 4, prop2: 2, prop3: 'some text 4' },
-              { id: 5, prop2: 1, prop3: 'some text 5' },
-            ]}
-            columns={[
-              {
-                sortable: false,
-                Header: 'ID',
-                accessor: 'id',
-              },
-              {
-                Header: 'Property 2',
-                accessor: 'prop2',
-              },
-              {
-                Header: 'Property 3',
-                accessor: 'prop3',
-              },
-            ]}
-          />
-        </div>
-      );
+      return <Table {...knobs} data={basicTableData} columns={basicTableColumns} />;
     },
     { info: { text: readme } },
   )
   .add(
-    'Variants',
+    'Column tabs',
     () => {
       const knobs = {
-        variant: select('variant', TABLE_VARIANTS, TABLE_VARIANTS.DEFAULT),
+        enableColumnResizing: boolean('enableColumnResizing', false),
+        enableSorting: boolean('enableSorting', false),
+        loading: boolean('loading', false),
+        withHeaders: boolean('withHeaders', true),
+        withRowBorder: boolean('withRowBorder', false),
+        withRowHighlight: boolean('withRowHighlight', false),
+        withSideBorders: boolean('withSideBorders', false),
+        withStripes: boolean('withStripes', false),
       };
-      const containerRef = React.createRef<HTMLDivElement>();
-      return (
-        <div ref={containerRef}>
-          <Table
-            {...knobs}
-            parentRef={containerRef}
-            data={[
-              { id: 1, prop2: 5, prop3: 'some text 1' },
-              { id: 2, prop2: 4, prop3: 'some text 2' },
-              { id: 3, prop2: 3, prop3: 'some text 3' },
-              { id: 4, prop2: 2, prop3: 'some text 4' },
-              { id: 5, prop2: 1, prop3: 'some text 5' },
-            ]}
-            columns={[
-              {
-                sortable: false,
-                Header: 'ID',
-                accessor: 'id',
-              },
-              {
-                Header: 'Property 2',
-                accessor: 'prop2',
-              },
-              {
-                Header: 'Property 3',
-                accessor: 'prop3',
-              },
-            ]}
-          />
-        </div>
-      );
+      const theme = useTheme();
+      const { activeTableTab, handleActiveTableTab } = useTableTabs(TabNames.FRUIT);
+      const tableColumns = [
+        {
+          header: () => (
+            <TableHeaderWrapper
+            // css doesn't work in storybook
+            // css={css`
+            //   background: ${theme.colors[TAB_COLORS[activeTableTab]]};
+            // `}
+            >
+              {activeTableTab}
+            </TableHeaderWrapper>
+          ),
+          id: 'food',
+          columns: [
+            ...(activeTableTab === TabNames.FRUIT
+              ? [
+                  { header: 'Citrus', accessorKey: 'citrus' },
+                  { header: 'Berries', accessorKey: 'berries' },
+                ]
+              : []),
+            ...(activeTableTab === TabNames.VEGETABLES
+              ? [
+                  { header: 'Leafy', accessorKey: 'leafy' },
+                  { header: 'Root', accessorKey: 'root' },
+                ]
+              : []),
+          ],
+          meta: {
+            columnTabs: {
+              activeTab: activeTableTab,
+              handleTabs: handleActiveTableTab,
+              tabs: [
+                {
+                  label: TabNames.FRUIT,
+                  value: TabNames.FRUIT,
+                  color: theme.colors[TAB_COLORS.Fruit],
+                },
+                {
+                  label: TabNames.VEGETABLES,
+                  value: TabNames.VEGETABLES,
+                  color: theme.colors[TAB_COLORS.Vegetables],
+                },
+              ],
+            },
+            customHeader: true,
+          },
+        },
+      ];
+      return <Table {...knobs} data={tabsTableData} columns={tableColumns} withHeaders withTabs />;
     },
     { info: { text: readme } },
-  )
-  .add(
-    'SelectTable',
-    () => {
-      const containerRef = React.createRef<HTMLDivElement>();
-      return (
-        <div ref={containerRef}>
-          <SelectTable
-            //props to control selection
-            keyField="idField"
-            parentRef={containerRef}
-            isSelected={(idField) => idField === 'id_2'}
-            toggleSelection={action('toggle')}
-            toggleAll={action('toggleAll')}
-            //basic table props
-            data={[
-              { idField: 'id_1', prop2: 5, prop3: 'some text 1' },
-              { idField: 'id_2', prop2: 4, prop3: 'some text 2' },
-              { idField: 'id_3', prop2: 3, prop3: 'some text 3' },
-              { idField: 'id_4', prop2: 2, prop3: 'some text 4' },
-              { idField: 'id_5', prop2: 1, prop3: 'some text 5' },
-            ]}
-            columns={[
-              {
-                sortable: false,
-                Header: 'ID',
-                accessor: 'idField',
-              },
-              {
-                Header: 'Property 2',
-                accessor: 'prop2',
-              },
-              {
-                Header: 'Property 3',
-                accessor: 'prop3',
-              },
-            ]}
-          />
-        </div>
-      );
-    },
-    {
-      info: {
-        text: `${readme} ${selectTableDoc}`,
-      },
-    },
-  )
-  .add('No Data', () => {
-    const containerRef = React.createRef<HTMLDivElement>();
-    return (
-      <div ref={containerRef}>
-        <Table
-          parentRef={containerRef}
-          columns={[
-            {
-              sortable: false,
-              Header: 'ID',
-              accessor: 'idField',
-            },
-            {
-              Header: 'Property 2',
-              accessor: 'prop2',
-            },
-            {
-              Header: 'Property 3',
-              accessor: 'prop3',
-            },
-          ]}
-        />
-      </div>
-    );
-  });
+  );

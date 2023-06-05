@@ -16,7 +16,7 @@
  * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
+'use client';
 import defaultTheme from './theme/defaultTheme';
 export type UikitTheme = typeof defaultTheme;
 
@@ -89,19 +89,17 @@ export * from './PageLayout';
 export * from './PercentageBar';
 export * from './PercentBar';
 export * from './Pipe';
-export * from './Portal';
 export * from './Progress';
 export * from './SubMenu';
 export * from './SystemAlert';
 export * from './Table';
-export * from './TableV8';
-export * from './TableV8/SimpleTable';
-export * from './TableV8/TableFilters';
-export * from './TableV8/TablePagination';
-export * from './TableV8/TableRowSelection';
-export * from './TableV8/TableTabs';
-export * from './TableV8/styled';
-export * from './TableV8/types';
+export * from './Table/SimpleTable';
+export * from './Table/TableFilters';
+export * from './Table/TablePagination';
+export * from './Table/TableRowSelection';
+export * from './Table/TableTabs';
+export * from './Table/styled';
+export * from './Table/types';
 export * from './Tabs';
 export * from './Tag';
 export * from './theme/types';

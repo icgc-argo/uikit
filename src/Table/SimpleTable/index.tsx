@@ -17,34 +17,46 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/** @jsxImportSource @emotion/react */
-
 import { css } from '@emotion/react';
-import { Table } from '../../Table';
+import { Table } from '../';
 
+type SimpleTableData = { [key: string]: any };
 type MappedTableData = Array<{ key: string; val: any }>;
+type SimpleTableProps = {
+  className?: string;
+  data: SimpleTableData;
+};
 
-export const SimpleTable = ({ data }) => {
-  const tableData: MappedTableData = Object.keys(data).map((k) => ({ key: k, val: data[k] }));
+const columns = [
+  {
+    accessorKey: 'key',
+  },
+  {
+    accessorKey: 'val',
+    cell: ({ renderValue }) => renderValue(),
+  },
+];
+
+const mapSimpleTableData = (data: SimpleTableData): MappedTableData =>
+  Object.keys(data).map((k) => ({ key: k, val: data[k] }));
+
+export const SimpleTable = ({ className = '', data }: SimpleTableProps) => {
+  const tableData = mapSimpleTableData(data);
 
   return (
-    <div
+    <Table
+      className={className}
+      columns={columns}
+      data={tableData}
+      withSideBorders
+      withStripes
       css={css`
-        width: 100%;
+        .rt-td {
+          flex: 100 0 auto;
+          white-space: unset;
+          width: 100px;
+        }
       `}
-    >
-      <Table
-        highlight={false}
-        TheadComponent={(props) => null}
-        parentRef={{ current: null }}
-        showPagination={false}
-        withOutsideBorder
-        data={tableData}
-        columns={[
-          { sortable: false, accessor: 'key', style: { whiteSpace: 'unset' } },
-          { accessor: 'val', style: { whiteSpace: 'unset' } },
-        ]}
-      />
-    </div>
+    />
   );
 };

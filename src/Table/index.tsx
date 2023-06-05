@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 The Ontario Institute for Cancer Research. All rights reserved
+ * Copyright (c) 2023 The Ontario Institute for Cancer Research. All rights reserved
  *
  * This program and the accompanying materials are made available under the terms of
  * the GNU Affero General Public License v3.0. You should have received a copy of the
@@ -17,261 +17,211 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import get from 'lodash/get';
-import isEmpty from 'lodash/isEmpty';
-import * as React from 'react';
-import { TableProps } from 'react-table-v6';
-import selectTable, {
-  SelectAllInputComponentProps,
-  SelectInputComponentProps,
-  SelectTableAdditionalProps,
-} from 'react-table-v6/lib/hoc/selectTable';
-import { DnaLoader } from '../DnaLoader';
-import { Checkbox } from '../form/Checkbox';
-import { useElementDimension } from '../utils/Hook/useElementDimension';
-import { NoDataComponent as DefaultNoDataComponent } from './NoDataComponent';
-import { StyledTable, StyledTableProps } from './styledComponent';
-import { TablePagination } from './TablePagination';
+import {
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
+} from '@tanstack/react-table';
+import {
+  Loader,
+  Resizer,
+  SortButton,
+  TableStyled,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableCellWrapper,
+  TableHeaderWrapper,
+  TableContainerInner,
+} from './styled';
+import { TablePaginationV8 } from './TablePagination';
+import { TableTabs, TableTabsHandler, TableTabsInput } from './TableTabs';
+import { ReactTableCustomProps } from './types';
 
-export { TableActionBar, TablePagination } from './TablePagination';
+// IMPORTANT
+// react table v8 is headless and we made our own UI.
+// see the readme & stories for help.
 
-export type TableVariant = 'DEFAULT' | 'STATIC';
-export type TableDataBase = {
-  [k: string]: any;
+declare module '@tanstack/table-core' {
+  interface ColumnMeta<TData extends unknown, TValue> {
+    columnTabs?: {
+      activeTab: string;
+      handleTabs: TableTabsHandler;
+      tabs: TableTabsInput;
+    };
+    customCell?: boolean;
+    customHeader?: boolean;
+    multiSortIds?: string[];
+  }
+}
+
+interface ReactTableProps<TData> extends ReactTableCustomProps {
+  columns?: ColumnDef<TData>[];
+  data?: TData[];
+}
+
+export const DEFAULT_TABLE_PAGE_SIZE = 20;
+
+// if not using pagination, put all rows on one page.
+const singlePagePaginationState = {
+  pagination: { pageIndex: 0, pageSize: Number.MAX_SAFE_INTEGER },
 };
 
-export const DefaultTrComponent = ({ rowInfo, primaryKey, selectedIds, ...props }: any) => {
-  const thisRowId = get(rowInfo, `original.${primaryKey}`);
-  const selected = selectedIds.some((id) => id === thisRowId);
-  return (
-    <div
-      {...props}
-      role="row"
-      className={`rt-tr ${props.className} ${selected ? 'selected' : ''}`}
-    />
-  );
-};
-
-export const DefaultLoadingComponent = ({
-  loading,
-  loadingText,
-}: {
-  loading?: boolean;
-  loadingText?: string;
-}) => (
-  <div
-    role="alert"
-    aria-busy="true"
-    className={`-loading ${loading ? '-active' : ''}`}
-    style={{ display: 'flex', alignItems: 'center' }}
-  >
-    <div
-      className="-loading-inner"
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        transform: 'none',
-        top: 'initial',
-      }}
-    >
-      <DnaLoader />
-    </div>
-  </div>
-);
-
-export type TableColumnConfig<Data extends TableDataBase> = TableProps<Data>['columns'][0] & {
-  accessor?: TableProps<Data>['columns'][0]['accessor'] | keyof Data;
-  Cell?: TableProps<Data>['columns'][0]['Cell'] | ((c: { original: Data }) => React.ReactNode);
-  style?: React.CSSProperties;
-};
-export function Table<Data extends TableDataBase>({
-  variant = 'DEFAULT',
-  withRowBorder = variant === 'STATIC',
-  withOutsideBorder,
-  cellAlignment,
-  stripped = variant === 'DEFAULT',
-  highlight = variant === 'DEFAULT',
-  showPagination = variant === 'DEFAULT',
-  sortable = variant === 'DEFAULT',
-  resizable = variant === 'DEFAULT',
+export const Table = <TData extends object>({
   className = '',
-  PaginationComponent = TablePagination,
-  LoadingComponent = DefaultLoadingComponent,
-  NoDataComponent = DefaultNoDataComponent,
-  columns,
-  data,
-  getTableProps = ({ data }) => {
-    if (isEmpty(data)) {
-      return {
-        style: {
-          opacity: 0.3,
-        },
-      };
-    } else {
-      return {};
-    }
-  },
-  parentRef,
-  withResizeBlur = false,
-  ...rest
-}: Partial<TableProps<Data>> & {
-  variant?: TableVariant;
-  highlight?: boolean;
-  stripped?: boolean;
-  selectedIds?: Array<any>;
-  primaryKey?: string;
-  columns: Array<TableColumnConfig<Data>>; //columns is required
-  parentRef: React.RefObject<HTMLElement>;
-  withResizeBlur?: boolean;
-} & StyledTableProps) {
-  const TrComponent = rest.TrComponent || DefaultTrComponent;
-  const getTrProps = rest.getTrProps || (() => ({}));
-
-  // these are props passed by SelectTable. Defaults are not exposed in props for encapsulation
-  const selectedIds = rest.selectedIds || [];
-  const isSelectTable = rest.isSelectTable || false;
-  const primaryKey = rest.primaryKey || 'id';
-
-  // react-table needs an explicit pixel width to handle horizontal scroll properly.
-  // This syncs up the component's width to its container.
-  const { width, resizing } = useElementDimension(parentRef);
-
-  return (
-    <StyledTable
-      style={{
-        // this is written with style object because css prop somehow only applies to the header
-        transition: 'all 0.25s',
-        filter: resizing && withResizeBlur ? 'blur(8px)' : 'blur(0px)',
-        width,
-      }}
-      withRowBorder={withRowBorder}
-      withOutsideBorder={withOutsideBorder}
-      cellAlignment={cellAlignment}
-      getTableProps={getTableProps}
-      columns={columns}
-      data={data}
-      isSelectTable={isSelectTable}
-      className={`${className} ${stripped ? '-striped' : ''} ${highlight ? '-highlight' : ''}`}
-      TrComponent={(props) => (
-        <TrComponent {...props} primaryKey={primaryKey} selectedIds={selectedIds} />
-      )}
-      LoadingComponent={LoadingComponent}
-      getTrProps={(state, rowInfo, column) => ({
-        rowInfo,
-        ...getTrProps(state, rowInfo, column),
-      })}
-      minRows={0}
-      PaginationComponent={PaginationComponent}
-      NoDataComponent={NoDataComponent}
-      showPagination={isEmpty(data) ? false : showPagination}
-      getNoDataProps={(x) => x}
-      sortable={sortable}
-      resizable={resizable}
-      {...rest}
-    />
-  );
-}
-
-/**
- * SelectTable provides the row selection capability with the
- * selectTable HOC.
- */
-const SelectTableCheckbox: React.ComponentType<
-  SelectInputComponentProps & SelectAllInputComponentProps
-> = ({ checked, onClick, id }) => (
-  // @ts-ignore aria-label not supported by ts
-  <Checkbox
-    value={id}
-    checked={checked}
-    onChange={() => onClick(id, null, null)}
-    aria-label="table-select"
-  />
-);
-
-const TableWithSelect = selectTable(Table);
-
-export function useSelectTableSelectionState<TableEntry = {}>({
-  selectionKeyField,
-  totalEntriesCount,
-}: {
-  totalEntriesCount: number;
-  selectionKeyField: keyof TableEntry;
-}) {
-  const [allRowsSelected, setAllRowsSelected] = React.useState(false);
-  const [selectedRows, setSelectedRows] = React.useState<string[]>([]);
-  const [unselectedRows, setUnselectedRows] = React.useState<string[]>([]);
-
-  const selectionStringToRowId = (selectionString: string) =>
-    // react table prepends the word `select-` to the selected objectIds
-    selectionString.replace('select-', '');
-
-  const setSelectedRowIds = (selectionString: string[]) =>
-    setSelectedRows(selectionString.map(selectionStringToRowId));
-
-  const setUnselectedRowIds = (selectionString: string[]) =>
-    setUnselectedRows(selectionString.map(selectionStringToRowId));
-
-  const toggleHandler: React.ComponentProps<typeof SelectTable>['toggleSelection'] = (
-    selectionString,
-  ) => {
-    const rowId = selectionStringToRowId(selectionString);
-    const notMatchesSelectionString = (id: string) => id !== rowId;
-    if (allRowsSelected) {
-      setUnselectedRowIds(
-        unselectedRows.includes(rowId)
-          ? unselectedRows.filter(notMatchesSelectionString)
-          : [...unselectedRows, rowId],
-      );
-    } else {
-      setSelectedRowIds(
-        selectedRows.includes(rowId)
-          ? selectedRows.filter(notMatchesSelectionString)
-          : [...selectedRows, rowId],
-      );
-    }
-  };
-  const toggleAllHandler: React.ComponentProps<typeof SelectTable>['toggleAll'] = () => {
-    setSelectedRowIds([]);
-    setUnselectedRowIds([]);
-    setAllRowsSelected(!allRowsSelected);
-  };
-  const isSelected: React.ComponentProps<typeof SelectTable>['isSelected'] = (objectId) =>
-    allRowsSelected ? !unselectedRows.includes(objectId) : selectedRows.includes(objectId);
-
-  const selectedRowsCount = allRowsSelected
-    ? totalEntriesCount - unselectedRows.length
-    : selectedRows.length;
-
-  return {
-    selectionKeyField,
-    selectedRows,
-    unselectedRows,
-    allRowsSelected,
-    toggleHandler,
-    toggleAllHandler,
-    isSelected,
-    selectedRowsCount,
-  };
-}
-
-export function SelectTable<Data extends TableDataBase>(
-  props: Partial<TableProps<Data>> &
-    Partial<SelectTableAdditionalProps> & {
-      columns: Array<TableColumnConfig<Data>>; //columns is required
-      parentRef: React.RefObject<HTMLElement>;
-      withResizeBlur?: boolean;
+  columns = [],
+  data = [],
+  enableColumnResizing = false,
+  enableSorting = false,
+  initialState = {},
+  LoaderComponent = Loader,
+  loading = false,
+  manualPagination = false,
+  manualSorting = false,
+  onPaginationChange,
+  onSortingChange,
+  pageCount,
+  paginationState = null,
+  showPageSizeOptions = false,
+  sortingState = null,
+  withFilters = false,
+  withHeaders = false,
+  withPagination = false,
+  withRowBorder = false,
+  withRowHighlight = false,
+  withSideBorders = false,
+  withStripes = false,
+  withTabs = false,
+}: ReactTableProps<TData>) => {
+  const reactTable = useReactTable({
+    columnResizeMode: 'onChange',
+    columns,
+    data,
+    enableColumnResizing,
+    enableSorting,
+    getCoreRowModel: getCoreRowModel(),
+    initialState: { pagination: { pageSize: DEFAULT_TABLE_PAGE_SIZE }, ...initialState },
+    ...(withPagination && manualPagination
+      ? { manualPagination, onPaginationChange, pageCount }
+      : { getPaginationRowModel: getPaginationRowModel() }),
+    ...(enableSorting && manualSorting
+      ? { manualSorting, onSortingChange }
+      : { getSortedRowModel: getSortedRowModel() }),
+    state: {
+      ...(withPagination && manualPagination ? { pagination: paginationState } : {}),
+      ...(enableSorting && manualSorting ? { sorting: sortingState } : {}),
+      ...(withPagination ? {} : singlePagePaginationState),
     },
-) {
-  const { isSelected, data, keyField } = props;
-  const selectedIds = (data || []).map((data) => data[keyField]).filter(isSelected);
+  });
+
   return (
-    <TableWithSelect
-      {...props}
-      isSelectTable
-      primaryKey={keyField}
-      selectedIds={selectedIds}
-      SelectInputComponent={SelectTableCheckbox}
-      SelectAllInputComponent={SelectTableCheckbox}
-    />
+    <TableContainer className={className}>
+      <TableContainerInner withFilters={withFilters} withTabs={withTabs}>
+        <TableStyled withSideBorders={withSideBorders}>
+          {withHeaders && (
+            <TableHead>
+              {reactTable.getHeaderGroups().map((headerGroup, headerIndex) => (
+                <TableRow key={headerGroup.id} index={headerIndex} withStripes={withStripes}>
+                  {headerGroup.headers.map((header) => {
+                    const canSort = enableSorting && header.column.getCanSort();
+                    const isCustomHeader = header.column.columnDef.meta?.customHeader;
+                    const headerContents = header.isPlaceholder
+                      ? null
+                      : flexRender(header.column.columnDef.header, header.getContext());
+
+                    const {
+                      activeTab = '',
+                      handleTabs = () => {},
+                      tabs = [],
+                    } = header.column.columnDef.meta?.columnTabs || {};
+
+                    return (
+                      <TableHeader
+                        key={header.id}
+                        colSpan={header.colSpan}
+                        width={header.getSize()}
+                        sorted={header.column.getIsSorted()}
+                        canSort={canSort}
+                      >
+                        {!!tabs.length && (
+                          <TableTabs activeTab={activeTab} handleTabs={handleTabs} tabs={tabs} />
+                        )}
+                        <SortButton
+                          canSort={canSort}
+                          onClick={header.column.getToggleSortingHandler()}
+                        >
+                          {isCustomHeader ? (
+                            headerContents
+                          ) : (
+                            <TableHeaderWrapper>{headerContents}</TableHeaderWrapper>
+                          )}
+                        </SortButton>
+                        {header.column.getCanResize() && (
+                          <Resizer
+                            onMouseDown={header.getResizeHandler()}
+                            onTouchStart={header.getResizeHandler()}
+                            className={`resizer ${
+                              header.column.getIsResizing() ? 'isResizing' : ''
+                            }`}
+                          />
+                        )}
+                      </TableHeader>
+                    );
+                  })}
+                </TableRow>
+              ))}
+            </TableHead>
+          )}
+
+          <TableBody>
+            {reactTable.getRowModel().rows.map((row, rowIndex) => (
+              <TableRow
+                index={rowIndex}
+                key={row.id}
+                withRowBorder={withRowBorder}
+                withRowHighlight={withRowHighlight}
+                withStripes={withStripes}
+              >
+                {row.getVisibleCells().map((cell) => {
+                  const isCustomCell = cell.column.columnDef.meta?.customCell;
+                  const cellContents = flexRender(cell.column.columnDef.cell, cell.getContext());
+                  return (
+                    <TableCell key={cell.id} width={cell.column.getSize()}>
+                      {isCustomCell ? (
+                        cellContents
+                      ) : (
+                        <TableCellWrapper>{cellContents}</TableCellWrapper>
+                      )}
+                    </TableCell>
+                  );
+                })}
+              </TableRow>
+            ))}
+          </TableBody>
+        </TableStyled>
+      </TableContainerInner>
+      {withPagination && (
+        <TablePaginationV8
+          canNextPage={reactTable.getCanNextPage()}
+          canPreviousPage={reactTable.getCanPreviousPage()}
+          nextPage={reactTable.nextPage}
+          pageCount={reactTable.getPageCount()}
+          pageIndex={reactTable.getState().pagination.pageIndex}
+          pageSize={reactTable.getState().pagination.pageSize}
+          previousPage={reactTable.previousPage}
+          resetPageIndex={reactTable.resetPageIndex}
+          setPageIndex={reactTable.setPageIndex}
+          setPageSize={reactTable.setPageSize}
+          showPageSizeOptions={showPageSizeOptions}
+        />
+      )}
+      <LoaderComponent $loading={loading} />
+    </TableContainer>
   );
-}
+};
