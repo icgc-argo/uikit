@@ -20,18 +20,14 @@
 import { Interpolation, ThemeContext, ThemeProvider as EmotionThemeProvider } from '@emotion/react';
 import { CreateStyled, default as emotionStyled } from '@emotion/styled';
 import * as React from 'react';
-
 import defaultTheme from '../theme/defaultTheme';
 
-const themes = {
-  default: defaultTheme,
-};
-
-const ThemeProvider: React.ComponentType<
-  React.PropsWithChildren<{ theme?: keyof typeof themes }>
-> = ({ theme = 'default', children }) => {
+const ThemeProvider: React.ComponentType<React.PropsWithChildren<{ theme?: any }>> = ({
+  theme = defaultTheme,
+  children,
+}) => {
   return (
-    <EmotionThemeProvider theme={themes[theme]}>
+    <EmotionThemeProvider theme={theme}>
       <link
         href={'https://fonts.googleapis.com/css?family=Work+Sans:300,400,600&display=swap'}
         rel="stylesheet"
