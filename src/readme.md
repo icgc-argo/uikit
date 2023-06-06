@@ -16,6 +16,16 @@ const App = () => (
 );
 ```
 
+Please import Work Sans font, 300, 400 and 600 weights.
+eg.
+
+```javascript
+<link
+  href={'https://fonts.googleapis.com/css?family=Work+Sans:300,400,600&display=swap'}
+  rel="stylesheet"
+/>
+```
+
 - Built with [Emotion.sh](https://emotion.sh/docs/introduction)
 - All component import paths matches [Storybook](https://argo-ui-storybook.netlify.com) structure under `uikit`
   - ex: `import Table from '@icgc-argo/uikit/table`
