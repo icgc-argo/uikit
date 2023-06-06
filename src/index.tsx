@@ -19,7 +19,7 @@
 'use client';
 import defaultTheme from './theme/defaultTheme';
 export type UikitTheme = typeof defaultTheme;
-
+export { defaultTheme };
 export { css } from '@emotion/react';
 export { default as isPropValid } from '@emotion/is-prop-valid';
 export { default as noDataSvg } from './assets/noData.svg';
