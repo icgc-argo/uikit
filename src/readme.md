@@ -10,7 +10,7 @@ Basic setup:
 import { ThemeProvider } from '@icgc-argo/uikit';
 
 const App = () => (
-  <ThemeProvider>
+  <ThemeProvider theme={themeObject}>
     <YourAwesomeApp />
   </ThemeProvider>
 );
@@ -24,6 +24,24 @@ eg.
   href={'https://fonts.googleapis.com/css?family=Work+Sans:300,400,600&display=swap'}
   rel="stylesheet"
 />
+```
+
+Use @emotion/react and @emotion/styled packages in consumer project
+Ensure these are peer deps and versions match.
+
+## Typescript
+
+You can extend the theme type in your project by declaration merging like so:
+
+```
+import { ARGOThemeType } from '@icgc-argo/uikit';
+
+declare module '@icgc-argo/uikit' {
+	interface ARGOTheme {
+    customProperty: string
+  }
+}
+
 ```
 
 - Built with [Emotion.sh](https://emotion.sh/docs/introduction)
