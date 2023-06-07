@@ -17,14 +17,15 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 'use client';
-import defaultTheme from './theme/defaultTheme';
-export type UikitTheme = typeof defaultTheme;
-export { defaultTheme };
+// TODO rename to ARGO theme
+export { default as defaultTheme } from './theme/defaultTheme';
+
+//export type UikitTheme = typeof defaultTheme;
 export { css } from '@emotion/react';
 export { default as isPropValid } from '@emotion/is-prop-valid';
 export { default as noDataSvg } from './assets/noData.svg';
 export { default as overtureLogo } from './assets/overture-logo.svg';
-export { default as ThemeProvider, styled } from './ThemeProvider';
+export { default as ThemeProvider, styled, Theme as ARGOThemeType } from './ThemeProvider';
 export { default as useTheme } from './utils/useTheme';
 export { default as colors } from './theme/defaultTheme/colors';
 export {

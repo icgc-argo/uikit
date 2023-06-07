@@ -22,7 +22,9 @@ import { CreateStyled, default as emotionStyled } from '@emotion/styled';
 import * as React from 'react';
 import defaultTheme from '../theme/defaultTheme';
 
-const ThemeProvider: React.ComponentType<React.PropsWithChildren<{ theme?: any }>> = ({
+export type Theme = typeof defaultTheme;
+
+const ThemeProvider: React.ComponentType<React.PropsWithChildren<{ theme?: Theme }>> = ({
   theme = defaultTheme,
   children,
 }) => {
@@ -32,7 +34,7 @@ const ThemeProvider: React.ComponentType<React.PropsWithChildren<{ theme?: any }
 export default ThemeProvider;
 
 declare module '@emotion/react' {
-  export interface Theme {
+  interface Theme {
     colors: typeof defaultTheme.colors;
     typography: typeof defaultTheme.typography;
     shadows: typeof defaultTheme.shadows;
@@ -49,6 +51,5 @@ declare module '@emotion/react' {
 
 export type CssInterpolation = Interpolation<Theme>;
 
-export type Theme = typeof defaultTheme;
 export const useTheme = () => React.useContext(ThemeContext as React.Context<Theme>);
 export const styled: CreateStyled = emotionStyled;
