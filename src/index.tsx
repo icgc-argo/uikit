@@ -49,6 +49,7 @@ export * from './ClipboardCopyField';
 export * from './Container';
 export * from './ContentMenu';
 export * from './ContentPlaceholder';
+export * from './DataCallout';
 export * from './DnaLoader';
 export * from './DropdownButton';
 export * from './DropdownPanel';
