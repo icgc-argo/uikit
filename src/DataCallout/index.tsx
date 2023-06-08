@@ -56,7 +56,8 @@ export const DataCallout: ComponentType<{
   title: string;
   urlData: { text: string; href: string };
   children: React.ReactNode;
-}> = ({ iconName, iconFill, circleFill, title, urlData, children }) => {
+  className?: string;
+}> = ({ iconName, iconFill, circleFill, title, urlData, children, className }) => {
   return (
     <div
       css={css`
@@ -68,61 +69,44 @@ export const DataCallout: ComponentType<{
         height: 100%;
         margin: 0 5%;
       `}
+      className={className}
     >
-      <div
+      <CircleContainer fill={circleFill}>
+        <Icon name={iconName} fill={iconFill} />
+      </CircleContainer>
+      <Typography
+        color="primary"
+        variant="subtitle"
         css={css`
-          display: flex;
-          flex-direction: column;
-          align-items: center;
+          margin-bottom: 5px;
         `}
+        as="h2"
       >
-        <CircleContainer fill={circleFill}>
-          <Icon name={iconName} fill={iconFill} />
-        </CircleContainer>
-        <Typography
-          color="primary"
-          variant="subtitle"
-          css={css`
-            margin-bottom: 5px;
-          `}
-          as="h2"
-        >
-          {title}
-        </Typography>
-        <Typography as="p">{children}</Typography>
-      </div>
+        {title}
+      </Typography>
+      <Typography as="p">{children}</Typography>
 
-      <div
+      <Link
+        href={urlData.href}
+        underline={false}
         css={css`
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: space-between;
-          text-align: center;
+          margin: 0 15px;
         `}
+        target="_blank"
       >
-        <Link
-          href={urlData.href}
-          underline={false}
-          css={css`
-            margin: 0 15px;
-          `}
-          target="_blank"
-        >
-          <Button css={css({ padding: '6px 12px', marginBottom: '20px' })}>
-            {urlData.text}
-            <Icon
-              name="external"
-              fill="white"
-              width="13px"
-              height="13px"
-              css={css({
-                marginLeft: '10px',
-              })}
-            />
-          </Button>
-        </Link>
-      </div>
+        <Button css={css({ padding: '6px 12px', marginBottom: '20px' })}>
+          {urlData.text}
+          <Icon
+            name="external"
+            fill="white"
+            width="13px"
+            height="13px"
+            css={css({
+              marginLeft: '10px',
+            })}
+          />
+        </Button>
+      </Link>
     </div>
   );
 };
