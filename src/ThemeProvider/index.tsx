@@ -20,31 +20,11 @@
 import { Interpolation, ThemeContext, ThemeProvider as EmotionThemeProvider } from '@emotion/react';
 import { CreateStyled, default as emotionStyled } from '@emotion/styled';
 import * as React from 'react';
-
 import defaultTheme from '../theme/defaultTheme';
 
-const themes = {
-  default: defaultTheme,
-};
-
-const ThemeProvider: React.ComponentType<
-  React.PropsWithChildren<{ theme?: keyof typeof themes }>
-> = ({ theme = 'default', children }) => {
-  return (
-    <EmotionThemeProvider theme={themes[theme]}>
-      <link
-        href={'https://fonts.googleapis.com/css?family=Work+Sans:300,400,600&display=swap'}
-        rel="stylesheet"
-      />
-      {children}
-    </EmotionThemeProvider>
-  );
-};
-
-export default ThemeProvider;
-
+// this declaration merge is for typings in uikit local project to work
 declare module '@emotion/react' {
-  export interface Theme {
+  interface Theme {
     colors: typeof defaultTheme.colors;
     typography: typeof defaultTheme.typography;
     shadows: typeof defaultTheme.shadows;
@@ -59,8 +39,29 @@ declare module '@emotion/react' {
   }
 }
 
+export interface Theme {
+  colors: typeof defaultTheme.colors;
+  typography: typeof defaultTheme.typography;
+  shadows: typeof defaultTheme.shadows;
+  button: typeof defaultTheme.button;
+  appBar: typeof defaultTheme.appBar;
+  titleBar: typeof defaultTheme.titleBar;
+  input: typeof defaultTheme.input;
+  multiSelect: typeof defaultTheme.multiSelect;
+  radiocheckbox: typeof defaultTheme.radiocheckbox;
+  progress: typeof defaultTheme.progress;
+  checkbox: typeof defaultTheme.checkbox;
+}
+const ThemeProvider: React.ComponentType<React.PropsWithChildren<{ theme?: Theme }>> = ({
+  theme = defaultTheme,
+  children,
+}) => {
+  return <EmotionThemeProvider theme={theme}>{children}</EmotionThemeProvider>;
+};
+
+export default ThemeProvider;
+
 export type CssInterpolation = Interpolation<Theme>;
 
-export type Theme = typeof defaultTheme;
 export const useTheme = () => React.useContext(ThemeContext as React.Context<Theme>);
 export const styled: CreateStyled = emotionStyled;

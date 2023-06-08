@@ -26,13 +26,14 @@
     "publish-uikit": "cd dist && npm publish --access public"
   },
   "peerDependencies": {
+    "@emotion/react": "^11.11.0",
     "react": "18.x.x",
     "react-dom": "18.x.x"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.7.2",
-    "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
     "@tanstack/react-table": "^8.7.6",
     "clsx": "^1.0.4",
     "color": "^3.1.2",
