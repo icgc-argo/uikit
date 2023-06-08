@@ -74,6 +74,7 @@ import question_circle from './collection/question_circle';
 import bug from './collection/bug';
 import filter from './collection/filter';
 import legend from './collection/legend';
+import external from './collection/external';
 
 /**
  * Icon path and property lookup object
@@ -137,6 +138,7 @@ export const Icons = {
   bug,
   filter,
   legend,
+  external,
 };
 
 export type UikitIconNames = keyof typeof Icons;
