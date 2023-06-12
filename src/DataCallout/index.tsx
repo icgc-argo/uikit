@@ -64,10 +64,10 @@ export const DataCallout: ComponentType<{
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        justify-content: start;
         text-align: center;
         height: 100%;
-        margin: 0 5%;
+        padding: 0 5%;
       `}
       className={className}
     >
@@ -78,19 +78,28 @@ export const DataCallout: ComponentType<{
         color="primary"
         variant="subtitle"
         css={css`
+          margin-top: 16px;
           margin-bottom: 5px;
         `}
         as="h2"
       >
         {title}
       </Typography>
-      <Typography as="p">{children}</Typography>
+      <Typography
+        as="p"
+        css={css`
+          margin: 14px 0;
+        `}
+      >
+        {children}
+      </Typography>
 
       <Link
         href={urlData.href}
         underline={false}
         css={css`
           margin: 0 15px;
+          margin-top: auto;
         `}
         target="_blank"
       >
