@@ -19,7 +19,7 @@
 'use client';
 
 export { default as defaultTheme } from './theme/defaultTheme';
-export { css } from '@emotion/react';
+export { css, Global } from '@emotion/react';
 export { default as isPropValid } from '@emotion/is-prop-valid';
 export { default as noDataSvg } from './assets/noData.svg';
 export { default as overtureLogo } from './assets/overture-logo.svg';
