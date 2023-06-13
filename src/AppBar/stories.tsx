@@ -64,21 +64,16 @@ storiesOf('AppBar', module)
         <Section>
           <Logo DomComponent={LinkToHome} />
           <MenuGroup>
-            <MenuItem DomComponent={LinkToExploration}>Exploration</MenuItem>
-            <MenuItem DomComponent={LinkToAnalysis}>Analysis</MenuItem>
-            <MenuItem DomComponent={LinkToFileRepo} active>
-              File Repository
-            </MenuItem>
+            <MenuItem>Exploration</MenuItem>
+            <MenuItem>Analysis</MenuItem>
+            <MenuItem active>File Repository</MenuItem>
           </MenuGroup>
         </Section>
         <Section />
         <Section>
           <MenuGroup>
-            <MenuItem DomComponent={LinkToSubmission} active>
-              Submission System
-            </MenuItem>
+            <MenuItem active>Submission System</MenuItem>
             <MenuItem
-              DomComponent={UserBadgeDom}
               dropdownMenu={
                 <DropdownMenu>
                   <DropdownMenuItem active>Profile & Tokens</DropdownMenuItem>

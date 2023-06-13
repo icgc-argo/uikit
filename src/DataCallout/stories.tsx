@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 The Ontario Institute for Cancer Research. All rights reserved
+ * Copyright (c) 2023 The Ontario Institute for Cancer Research. All rights reserved
  *
  * This program and the accompanying materials are made available under the terms of
  * the GNU Affero General Public License v3.0. You should have received a copy of the
@@ -17,22 +17,23 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import { storiesOf } from '@storybook/react';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { DataCallout } from './index';
 
-// Portal that support server rendering
-export class Portal extends React.Component<React.PropsWithChildren<{ selector: string }>> {
-  element: HTMLElement;
-  componentDidMount() {
-    this.element = document.querySelector(this.props.selector);
-    this.forceUpdate();
-  }
-
-  render() {
-    if (this.element === undefined) {
-      return null;
-    }
-
-    return ReactDOM.createPortal(this.props.children, this.element);
-  }
-}
+storiesOf(`DataCallout`, module).add('Basic', () => (
+  <div>
+    <DataCallout
+      iconName={'workflow'}
+      iconFill={'accent2_dark'}
+      circleFill={'accent2_3'}
+      title={'Data Analysis Workflows'}
+      urlData={{
+        text: 'About our Workflows',
+        href: 'I am a hyperlink',
+      }}
+    >
+      ARGO RPDC uniformly analyzes molecular data against the <b>GRCh38 Human Reference Genome.</b>
+    </DataCallout>
+  </div>
+));

@@ -22,12 +22,12 @@ import React from 'react';
 import { SimpleTable } from './index';
 
 storiesOf(`SimpleTable`, module).add('Basic', () => {
-  const fruitData = {
-    Bananas: 39,
-    Peaches: 194,
-    Oranges: 13,
-    Pears: 8,
-    Lemons: 1,
+  const vegetableData = {
+    Asparagus: 24,
+    Tomatoes: 152,
+    Lettuce: 33,
+    Peppers: 5,
+    'Green Beans': 75,
   };
-  return <SimpleTable data={fruitData} />;
+  return <SimpleTable data={vegetableData} />;
 });
