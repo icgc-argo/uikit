@@ -27,7 +27,7 @@ import { Typography } from '../Typography';
 import { ThemeColorNames } from '../theme/types';
 import { css, useTheme } from '..';
 
-export const CircleContainer: ComponentType<{
+const CircleContainer: ComponentType<{
   fill: keyof ThemeColorNames;
   children: React.ReactNode;
 }> = ({ fill, children }) => {
