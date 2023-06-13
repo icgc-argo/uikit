@@ -34,41 +34,40 @@ const CircleContainer: ComponentType<{
   const theme = useTheme();
   return (
     <div
-      css={css`
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 44px;
-        width: 44px;
-        background-color: ${theme.colors[fill]};
-        border-radius: 100%;
-      `}
+      css={css({
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '44px',
+        width: '44px',
+        backgroundColor: theme.colors[fill],
+        borderRadius: '100%',
+      })}
     >
       {children}
     </div>
   );
 };
 
-export const DataCallout: ComponentType<{
+export const DataCallout: React.PropsWithChildren<{
   iconName: UikitIconNames;
   iconFill: keyof ThemeColorNames;
   circleFill: keyof ThemeColorNames;
   title: string;
   urlData: { text: string; href: string };
-  children: React.ReactNode;
   className?: string;
 }> = ({ iconName, iconFill, circleFill, title, urlData, children, className }) => {
   return (
     <div
-      css={css`
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: start;
-        text-align: center;
-        height: 100%;
-        padding: 0 5%;
-      `}
+      css={css({
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'start',
+        textAlign: 'center',
+        height: '100%',
+        padding: '0 5%',
+      })}
       className={className}
     >
       <CircleContainer fill={circleFill}>
@@ -77,19 +76,19 @@ export const DataCallout: ComponentType<{
       <Typography
         color="primary"
         variant="subtitle"
-        css={css`
-          margin-top: 16px;
-          margin-bottom: 5px;
-        `}
+        css={css({
+          marginTop: '16px',
+          marginBottom: '5px',
+        })}
         as="h2"
       >
         {title}
       </Typography>
       <Typography
         as="p"
-        css={css`
-          margin: 14px 0;
-        `}
+        css={css({
+          margin: '14px 0',
+        })}
       >
         {children}
       </Typography>
@@ -97,10 +96,10 @@ export const DataCallout: ComponentType<{
       <Link
         href={urlData.href}
         underline={false}
-        css={css`
-          margin: 0 15px;
-          margin-top: auto;
-        `}
+        css={css({
+          margin: '0 15px',
+          marginTop: 'auto',
+        })}
         target="_blank"
       >
         <Button css={css({ padding: '6px 12px', marginBottom: '20px' })}>
