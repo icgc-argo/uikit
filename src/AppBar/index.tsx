@@ -41,7 +41,7 @@ import {
 export const UserBadge = ({
   firstName = '',
   lastName = '',
-  title = null,
+  title = '',
   showGreeting = true,
   ...otherProps
 }) => {
@@ -120,39 +120,17 @@ export const AppBarMenuItem = React.forwardRef<
     active?: boolean;
     id?: string;
     className?: string;
-    DomComponent?: React.ComponentType;
-    dropdownMenu?: React.ReactNode;
     children?: React.ReactNode;
   }
->(
-  (
-    {
-      children,
-      className,
-      id,
-      active = false,
-      DomComponent = ({ active, ...others }: { active: boolean }) => <a {...others} />,
-      dropdownMenu,
-    },
-    forwardedRef,
-  ) => {
-    const ref = (forwardedRef || React.createRef()) as React.RefObject<HTMLDivElement>;
-    const [isDropdownOpen, setDropdownOpen] = React.useState(false);
+>(({ children, className, id, active = false }, forwardedRef) => {
+  const ref = (forwardedRef || React.createRef()) as React.RefObject<HTMLDivElement>;
 
-    useClickAway({
-      domElementRef: ref,
-      onClickAway: () => setDropdownOpen(false),
-      onElementClick: () => setDropdownOpen(!isDropdownOpen),
-    });
-
-    return (
-      <MenuItemContainer className={className} id={id} ref={ref} active={active}>
-        <MenuItemContent bold>{children}</MenuItemContent>
-        {isDropdownOpen && dropdownMenu}
-      </MenuItemContainer>
-    );
-  },
-);
+  return (
+    <MenuItemContainer className={className} id={id} ref={ref} active={active}>
+      <MenuItemContent bold>{children}</MenuItemContent>
+    </MenuItemContainer>
+  );
+});
 
 export const AppBar = AppBarContainer;
 
