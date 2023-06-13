@@ -49,72 +49,71 @@ const CircleContainer: ComponentType<{
   );
 };
 
-export const DataCallout: React.PropsWithChildren<{
+export const DataCallout: React.FC<{
   iconName: UikitIconNames;
   iconFill: keyof ThemeColorNames;
   circleFill: keyof ThemeColorNames;
   title: string;
   urlData: { text: string; href: string };
   className?: string;
-}> = ({ iconName, iconFill, circleFill, title, urlData, children, className }) => {
-  return (
-    <div
+  children: React.ReactNode;
+}> = ({ iconName, iconFill, circleFill, title, urlData, className, children }) => (
+  <div
+    css={css({
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'start',
+      textAlign: 'center',
+      height: '100%',
+      padding: '0 5%',
+    })}
+    className={className}
+  >
+    <CircleContainer fill={circleFill}>
+      <Icon name={iconName} fill={iconFill} />
+    </CircleContainer>
+    <Typography
+      color="primary"
+      variant="subtitle"
       css={css({
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'start',
-        textAlign: 'center',
-        height: '100%',
-        padding: '0 5%',
+        marginTop: '16px',
+        marginBottom: '5px',
       })}
-      className={className}
+      as="h2"
     >
-      <CircleContainer fill={circleFill}>
-        <Icon name={iconName} fill={iconFill} />
-      </CircleContainer>
-      <Typography
-        color="primary"
-        variant="subtitle"
-        css={css({
-          marginTop: '16px',
-          marginBottom: '5px',
-        })}
-        as="h2"
-      >
-        {title}
-      </Typography>
-      <Typography
-        as="p"
-        css={css({
-          margin: '14px 0',
-        })}
-      >
-        {children}
-      </Typography>
+      {title}
+    </Typography>
+    <Typography
+      as="p"
+      css={css({
+        margin: '14px 0',
+      })}
+    >
+      {children}
+    </Typography>
 
-      <Link
-        href={urlData.href}
-        underline={false}
-        css={css({
-          margin: '0 15px',
-          marginTop: 'auto',
-        })}
-        target="_blank"
-      >
-        <Button css={css({ padding: '6px 12px', marginBottom: '20px' })}>
-          {urlData.text}
-          <Icon
-            name="external"
-            fill="white"
-            width="13px"
-            height="13px"
-            css={css({
-              marginLeft: '10px',
-            })}
-          />
-        </Button>
-      </Link>
-    </div>
-  );
-};
+    <Link
+      href={urlData.href}
+      underline={false}
+      css={css({
+        margin: '0 15px',
+        marginTop: 'auto',
+      })}
+      target="_blank"
+    >
+      <Button css={css({ padding: '6px 12px', marginBottom: '20px' })}>
+        {urlData.text}
+        <Icon
+          name="external"
+          fill="white"
+          width="13px"
+          height="13px"
+          css={css({
+            marginLeft: '10px',
+          })}
+        />
+      </Button>
+    </Link>
+  </div>
+);
