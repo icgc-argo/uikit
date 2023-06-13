@@ -120,23 +120,14 @@ export const AppBarMenuItem = React.forwardRef<
     active?: boolean;
     id?: string;
     className?: string;
-    dropdownMenu?: React.ReactNode;
     children?: React.ReactNode;
   }
->(({ children, className, id, active = false, dropdownMenu }, forwardedRef) => {
+>(({ children, className, id, active = false }, forwardedRef) => {
   const ref = (forwardedRef || React.createRef()) as React.RefObject<HTMLDivElement>;
-  const [isDropdownOpen, setDropdownOpen] = React.useState(false);
-
-  useClickAway({
-    domElementRef: ref,
-    onClickAway: () => setDropdownOpen(false),
-    onElementClick: () => setDropdownOpen(!isDropdownOpen),
-  });
 
   return (
     <MenuItemContainer className={className} id={id} ref={ref} active={active}>
       <MenuItemContent bold>{children}</MenuItemContent>
-      {isDropdownOpen && dropdownMenu}
     </MenuItemContainer>
   );
 });
