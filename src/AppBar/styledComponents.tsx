@@ -62,13 +62,18 @@ export const MenuGroupDisplay = styled('div')`
   }
 `;
 export const AppBarContainer = styled('div')`
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 100%;
+  align-items: center;
   min-height: 58px;
   background-color: ${({ theme }) => theme.colors.primary};
   border-bottom: 1px solid ${({ theme }) => theme.colors.grey};
+  position: sticky;
+  top: 0px;
+  z-index: 2;
+  padding: 0 18px;
 `;
 export const SectionDisplay = styled('div')`
   display: flex;
