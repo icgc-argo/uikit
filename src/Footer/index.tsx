@@ -30,6 +30,10 @@ import { Link as A } from '../Link';
 
 const Container = styled('footer')`
   ${({ theme }) => css(theme.typography.paragraph as any)};
+  background: #fff;
+  z-index: 1;
+  padding: 0 24px;
+  border-top: 1px solid ${({ theme }) => theme.colors.grey_2};
   font-size: 11px;
   min-height: 58px;
 
@@ -38,13 +42,33 @@ const Container = styled('footer')`
   }
 `;
 
+type FooterLink = { displayName: string } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
+
+type FooterProps = {
+  subtitle: string;
+  links: FooterLink[];
+  className: string;
+  Logo: React.FC;
+  otherProps: any;
+};
+
+const DefaultLogo: React.FC = () => (
+  <a href="https://www.oicr.on.ca/" target="_blank">
+    <img
+      alt="Logo for Ontario Institute for Cancer Research"
+      src={icgcLogo}
+      style={{ height: '42px' }}
+    />
+  </a>
+);
+
 export const Footer = ({
-  version = '[version]',
-  apiVersion = null,
+  subtitle = '',
   links = [],
   className = '',
+  Logo = DefaultLogo,
   ...otherProps
-}) => (
+}: FooterProps) => (
   <Container className={`footer ${className}`} {...otherProps}>
     <Row
       css={css`
@@ -60,10 +84,14 @@ export const Footer = ({
           align-items: center;
         `}
       >
-        © {new Date().getFullYear()} ICGC ARGO. All rights reserved.
-        <br />
-        ICGC ARGO Data Platform {version} {apiVersion && `- API ${apiVersion}`}
+        {/** copyright and ARGO logo */}
+        <div>
+          © {new Date().getFullYear()} ICGC ARGO. All rights reserved.
+          <br />
+          {subtitle}
+        </div>
       </Col>
+
       <Col
         md={7}
         css={css`
@@ -74,6 +102,7 @@ export const Footer = ({
           padding-left: 22px;
         `}
       >
+        {/** nav links */}
         <div>
           {links.map(({ displayName, href, target }, idx) => {
             if (idx !== links.length - 1) {
@@ -95,22 +124,9 @@ export const Footer = ({
           })}
         </div>
 
-        <div
-          css={css`
-            display: flex;
-            align-items: center;
-            flex-direction: row-reverse;
-            line-height: 0;
-            margin-left: 16px;
-          `}
-        >
-          <a href="https://www.oicr.on.ca/" target="_blank">
-            <img
-              alt="Ontario Institute for Cancer Research"
-              src={icgcLogo}
-              style={{ height: '42px' }}
-            />
-          </a>
+        {/** right side logo eg. OICR, RDPC */}
+        <div>
+          <Logo />
         </div>
       </Col>
     </Row>
