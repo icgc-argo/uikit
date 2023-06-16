@@ -19,7 +19,7 @@
 
 /** @jsxImportSource @emotion/react */
 
-import React from 'react';
+import React, { ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '../ThemeProvider';
 import { Icon } from '../Icon';
@@ -45,14 +45,14 @@ const Container = styled('footer')`
 type FooterLink = { displayName: string } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 type FooterProps = {
-  subtitle: string;
-  links: FooterLink[];
-  className: string;
-  Logo: React.FC;
-  otherProps: any;
+  subtitle?: string;
+  links?: FooterLink[];
+  className?: string;
+  Logo?: ReactNode;
+  otherProps?: any;
 };
 
-const DefaultLogo: React.FC = () => (
+const DefaultLogo = () => (
   <a href="https://www.oicr.on.ca/" target="_blank">
     <img
       alt="Logo for Ontario Institute for Cancer Research"
@@ -66,7 +66,7 @@ export const Footer = ({
   subtitle = '',
   links = [],
   className = '',
-  Logo = DefaultLogo,
+  Logo = <DefaultLogo />,
   ...otherProps
 }: FooterProps) => (
   <Container className={`footer ${className}`} {...otherProps}>
@@ -125,9 +125,7 @@ export const Footer = ({
         </div>
 
         {/** right side logo eg. OICR, RDPC */}
-        <div>
-          <Logo />
-        </div>
+        <div>{Logo}</div>
       </Col>
     </Row>
   </Container>
