@@ -1,38 +1,36 @@
 {
-  "compilerOptions": {
-    "target": "ES6",
-    "module": "ES6",
-    "lib": ["dom", "dom.iterable", "esnext"],
+	"compilerOptions": {
+		"target": "ES6",
+		"module": "ES6",
+		"lib": ["dom", "dom.iterable", "esnext"],
 
-    "strict": false,
-    "skipLibCheck": true,
-    "allowJs": false,
-    "jsxImportSource": "@emotion/react",
+		"strict": false,
+		"skipLibCheck": true,
+		"allowJs": false,
+		"jsxImportSource": "@emotion/react",
 
-    "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
-    "downlevelIteration": true,
-    "sourceMap": true,
-    "allowSyntheticDefaultImports": true,
-    "declaration": true,
-    "types": ["@emotion/react/types/css-prop"],
+		"forceConsistentCasingInFileNames": true,
+		"esModuleInterop": true,
+		"downlevelIteration": true,
+		"sourceMap": true,
+		"allowSyntheticDefaultImports": true,
+		"declaration": true,
+		"types": ["@emotion/react/types/css-prop"],
 
-    "moduleResolution": "node",
-    "isolatedModules": false,
-    "noEmit": true,
-    "jsx": "preserve"
-  },
-  "exclude": [
-    "node_modules",
-    "scripts /*",
-    "**/*.test.ts",
-    "**/testSetup.*",
-    "**/*.test.*",
-    "**/testUtil.*",
-    "**/plopfile.js",
-    "**/*.stories.*",
-    "**/stories.*"
-  ],
-  "include": [".storybook/storybook-env.d.ts", "./src/**/*"],
-  "references": [{ "path": "./tsconfig.vite.json" }]
+		"moduleResolution": "node",
+		"isolatedModules": false,
+		"noEmit": true,
+		"jsx": "preserve"
+	},
+	"exclude": [
+		"node_modules",
+		"scripts /*",
+		"**/*.test.ts",
+		"**/testSetup.*",
+		"**/*.test.*",
+		"**/testUtil.*",
+		"**/plopfile.js"
+	],
+	"include": ["./src/**/*"],
+	"references": [{ "path": "./tsconfig.vite.json" }]
 }
