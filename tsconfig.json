@@ -1,25 +1,26 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES6",
+    "module": "ES6",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": false,
-    "skipLibCheck": true,
+
     "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": false,
-    "esModuleInterop": true,
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    "resolveJsonModule": false,
-    "isolatedModules": false,
-    "jsx": "preserve",
+    "skipLibCheck": true,
+    "allowJs": false,
     "jsxImportSource": "@emotion/react",
+
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
     "downlevelIteration": true,
-    "outDir": "./dist",
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "declaration": true,
-    "types": ["@emotion/react/types/css-prop"]
+    "types": ["@emotion/react/types/css-prop"],
+
+    "moduleResolution": "node",
+    "isolatedModules": false,
+    "noEmit": true,
+    "jsx": "preserve"
   },
   "exclude": [
     "node_modules",
@@ -32,5 +33,6 @@
     "**/*.stories.*",
     "**/stories.*"
   ],
-  "include": [".storybook/storybook-env.d.ts", "./src/**/*"]
+  "include": [".storybook/storybook-env.d.ts", "./src/**/*"],
+  "references": [{ "path": "./tsconfig.vite.json" }]
 }

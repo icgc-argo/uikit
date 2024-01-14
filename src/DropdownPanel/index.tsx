@@ -506,7 +506,7 @@ export const DropdownPanel = ({
   open?: boolean;
   setOpen?: (open?: boolean | any) => void;
   focusFirst?: () => void;
-  buttonRef?: React.Ref<HTMLInputElement>;
+  buttonRef?: React.Ref<HTMLButtonElement>;
   panelRef?: React.Ref<HTMLElement>;
   handleEsc?: (event?: any) => void;
   handleBlur?: (event?: any) => void;
@@ -520,7 +520,7 @@ export const DropdownPanel = ({
   // Debouncing setOpen to prevent double-triggering when closing the panel
   const debouncedSetOpen = debounce(_setOpen, 100);
   const [triggerHovered, setTriggerHovered] = useState(false);
-  const _buttonRef = (buttonRef || useRef<HTMLInputElement>(null)) as RefObject<HTMLInputElement>;
+  const _buttonRef = (buttonRef || useRef<HTMLButtonElement>(null)) as RefObject<HTMLButtonElement>;
   const _panelRef = (panelRef || useRef<HTMLElement>(null)) as RefObject<HTMLElement>;
 
   // Close dropdown panel when the 'escape' key is pressed

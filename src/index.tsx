@@ -23,10 +23,11 @@ export { css, Global } from '@emotion/react';
 export { default as isPropValid } from '@emotion/is-prop-valid';
 export { default as noDataSvg } from './assets/noData.svg';
 export { default as overtureLogo } from './assets/overture-logo.svg';
-export { default as ThemeProvider, styled, Theme as ARGOTheme } from './ThemeProvider';
+export { default as ThemeProvider, styled } from './ThemeProvider';
+export type { Theme as ARGOTheme } from './ThemeProvider';
 export { default as useTheme } from './utils/useTheme';
 export { default as colors } from './theme/defaultTheme/colors';
-export {
+export type {
   CellContext,
   ColumnDef,
   ColumnSort,

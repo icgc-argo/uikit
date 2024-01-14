@@ -52,6 +52,7 @@ export interface Theme {
   progress: typeof defaultTheme.progress;
   checkbox: typeof defaultTheme.checkbox;
 }
+
 const ThemeProvider: React.ComponentType<React.PropsWithChildren<{ theme?: Theme }>> = ({
   theme = defaultTheme,
   children,
