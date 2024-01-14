@@ -29,11 +29,8 @@
 		"**/testSetup.*",
 		"**/*.test.*",
 		"**/testUtil.*",
-		"**/plopfile.js",
-		"**/*.stories.*",
-		"**/stories.*",
-		".storybook"
+		"**/plopfile.js"
 	],
-	"include": [".storybook/storybook-env.d.ts", "./src/**/*"],
+	"include": ["./src/**/*"],
 	"references": [{ "path": "./tsconfig.vite.json" }]
 }

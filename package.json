@@ -80,7 +80,7 @@
 		"react-dom": "^18.2.0",
 		"react-json-view": "^1.21.3",
 		"storybook": "^7.6.8",
-		"typescript": "^5.3.3",
+		"typescript": "^5.3.2",
 		"vite": "^5.0.8",
 		"vite-plugin-dts": "^3.7.0"
 	}

@@ -1,10 +1,14 @@
+// Vite TS used by build process (not build artifact) & Storybook
 {
-  "compilerOptions": {
-    "composite": true,
-    "skipLibCheck": true,
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true
-  },
-  "include": ["vite.config.ts"]
+	"compilerOptions": {
+		"composite": true,
+		"skipLibCheck": true,
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"allowSyntheticDefaultImports": true,
+		"jsxImportSource": "@emotion/react",
+		"jsx": "preserve"
+	},
+	// used by Storybook
+	"include": ["vite.config.ts", ".storybook/*", "./src/**/*"]
 }
