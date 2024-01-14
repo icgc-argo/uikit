@@ -36,7 +36,7 @@ const TableFilterableHeader = ({
   setOpen,
 }: PropsWithChildren<{
   active?: boolean;
-  buttonRef?: Ref<HTMLInputElement>;
+  buttonRef?: Ref<HTMLButtonElement>;
   focusFirst?: () => void;
   handleBlur?: (event?: any) => void;
   header: string;
@@ -117,7 +117,7 @@ export const TableTextFilterHeader = ({
   panelLegend?: string;
 }) => {
   const [open, setOpen] = useState(false);
-  const buttonRef = useRef<HTMLInputElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const panelRef = useRef<HTMLElement>(null);
 
@@ -188,7 +188,7 @@ export const TableListFilterHeader = ({
       })),
     [filterOptions, activeFilters],
   );
-  const buttonRef = useRef<HTMLInputElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLElement>(null);
 
   // Close dropdown panel when tabbing out of it
