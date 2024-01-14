@@ -3,12 +3,15 @@
   "version": "3.0.1",
   "description": "ARGO UI component library",
   "type": "module",
-  "main": "index.js",
+  "module": "index.js",
   "types": "index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/icgc-argo/uikit"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && npm run build::assets",

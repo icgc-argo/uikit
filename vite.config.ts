@@ -10,8 +10,11 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.tsx'),
       name: 'ARGO-UIKit',
-      fileName: 'uikit',
+      fileName: 'index',
       formats: ['es'],
+    },
+    rollupOptions: {
+      external: ['react', 'react/jsx-runtime'],
     },
   },
 });
