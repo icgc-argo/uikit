@@ -18,48 +18,34 @@
  */
 
 import { action } from '@storybook/addon-actions';
-import React from 'react';
-import { Tab, Tabs } from '.';
-import { Typography } from '../Typography';
-
-function TabContainer(props) {
-	return (
-		<Typography component="div" style={{ padding: 8 * 3 }}>
-			{props.children}
-		</Typography>
-	);
-}
-
-// forwardRef is used to display the source in storybook
-const SimpleTabs = React.forwardRef(() => {
-	const [value, setValue] = React.useState(0);
-
-	function handleChange(event, newValue) {
-		setValue(newValue);
-		action('tab foucs changed')(event, newValue);
-	}
-
-	return (
-		<div>
-			<Tabs value={value} onChange={handleChange}>
-				<Tab value="0" label="Item One" />
-				<Tab value="1" label="Item Two" />
-				<Tab value="2" label="Item Three" />
-				<Tab empty style={{ flexDirection: 'row-reverse' }}>
-					<button>Child of empty tab</button>
-				</Tab>
-			</Tabs>
-			{value === 0 && <TabContainer>Item One</TabContainer>}
-			{value === 1 && <TabContainer>Item Two</TabContainer>}
-			{value === 2 && <TabContainer>Item Three</TabContainer>}
-		</div>
-	);
-});
+import { select, text } from '@storybook/addon-knobs';
+import { TOAST_INTERACTION, TOAST_VARIANTS, Toast } from '.';
 
 export default {
-	component: Tab,
+	component: Toast,
 };
 
 export const Basic = () => ({
-	render: () => <SimpleTabs />,
+	render: () => {
+		const variant = select('variant', [undefined, ...Object.values(TOAST_VARIANTS)], undefined);
+		const interactionType = select(
+			'interactionType',
+			[undefined, ...Object.values(TOAST_INTERACTION)],
+			TOAST_INTERACTION.NONE,
+		);
+		const title = text('title', 'Hipster Ipsum');
+		const content = text(
+			'content',
+			'Lorem ipsum dolor amet helvetica post-ironic fingerstache trust fund pitchfork tofu venmo live-edge',
+		);
+		return (
+			<Toast
+				variant={variant}
+				title={title}
+				content={content}
+				onInteraction={action('onInteraction')}
+				interactionType={interactionType}
+			/>
+		);
+	},
 });

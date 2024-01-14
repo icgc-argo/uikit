@@ -17,18 +17,37 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { select, text } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
-import React from 'react';
-import { Banner, BANNER_SIZE, BANNER_VARIANTS } from '.';
+/** @jsxImportSource @emotion/react */
 
-storiesOf(`Banner`, module).add('Basic', () => {
-  const variant = select('variant', [undefined, ...Object.values(BANNER_VARIANTS)], undefined);
-  const size = select('size', [undefined, ...Object.values(BANNER_SIZE)], undefined);
-  const title = text('title', 'Hipster Ipsum');
-  const content = text(
-    'content',
-    'Lorem ipsum dolor amet helvetica post-ironic fingerstache trust fund pitchfork tofu venmo live-edge',
-  );
-  return <Banner variant={variant} title={title} content={content} size={size} />;
+import { css } from '@emotion/react';
+import { boolean, select, text } from '@storybook/addon-knobs';
+import defaultTheme from '../../theme/defaultTheme';
+import { UikitIconNames, Icons as icons } from '../icons';
+import { InteractiveIcon } from './index';
+
+export default {
+	component: InteractiveIcon,
+};
+
+export const Basic = () => ({
+	render: () => {
+		const knobs = {
+			text: text('value', 'confused?'),
+			fill: select('fill', [null, '#00f', ...Object.keys(defaultTheme.colors)], null),
+			name: select('name', Object.keys(icons) as UikitIconNames[], 'question'),
+			disabled: boolean('disabled', false),
+			position: select('position', ['top', 'bottom', 'left', 'right'], 'bottom'),
+		};
+		return (
+			<div
+				css={css`
+					margin-top: 20px;
+					display: flex;
+					justify-content: center;
+				`}
+			>
+				<InteractiveIcon html={<span>{knobs.text}</span>} {...knobs}></InteractiveIcon>
+			</div>
+		);
+	},
 });

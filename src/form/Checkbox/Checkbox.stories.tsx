@@ -17,17 +17,33 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
-import React from 'react';
-import { SimpleTable } from './index';
+import { action } from '@storybook/addon-actions';
+import { boolean, radios } from '@storybook/addon-knobs';
+import { Checkbox, STYLEDCHECKBOX_SIZES } from '.';
 
-storiesOf(`SimpleTable`, module).add('Basic', () => {
-  const vegetableData = {
-    Asparagus: 24,
-    Tomatoes: 152,
-    Lettuce: 33,
-    Peppers: 5,
-    'Green Beans': 75,
-  };
-  return <SimpleTable data={vegetableData} />;
+const createKnobs = () => {
+	const checked = boolean('checked', false);
+	const disabled = boolean('disabled', false);
+	const size = radios('size', STYLEDCHECKBOX_SIZES, STYLEDCHECKBOX_SIZES.MD);
+
+	return {
+		checked,
+		disabled,
+		size,
+	};
+};
+
+export default {
+	component: Checkbox,
+};
+
+export const Basic = () => ({
+	render: () => (
+		<Checkbox
+			value="example"
+			{...createKnobs()}
+			onChange={action('onchange')}
+			aria-label="checkbox"
+		/>
+	),
 });

@@ -17,31 +17,12 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { action } from '@storybook/addon-actions';
-import { select, text } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
-import React from 'react';
-import { Toast, TOAST_INTERACTION, TOAST_VARIANTS } from '.';
+import { GoogleLogin } from './index';
 
-storiesOf(`Toast`, module).add('Basic', () => {
-  const variant = select('variant', [undefined, ...Object.values(TOAST_VARIANTS)], undefined);
-  const interactionType = select(
-    'interactionType',
-    [undefined, ...Object.values(TOAST_INTERACTION)],
-    TOAST_INTERACTION.NONE,
-  );
-  const title = text('title', 'Hipster Ipsum');
-  const content = text(
-    'content',
-    'Lorem ipsum dolor amet helvetica post-ironic fingerstache trust fund pitchfork tofu venmo live-edge',
-  );
-  return (
-    <Toast
-      variant={variant}
-      title={title}
-      content={content}
-      onInteraction={action('onInteraction')}
-      interactionType={interactionType}
-    />
-  );
+export default {
+	component: GoogleLogin,
+};
+
+export const Basic = () => ({
+	render: () => <GoogleLogin link="/">Skeleton</GoogleLogin>,
 });

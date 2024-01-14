@@ -17,8 +17,21 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
-import { GoogleLogin } from './index';
-import React from 'react';
+import { SimpleTable } from './index';
 
-storiesOf(`GoogleLogin`, module).add('Basic', () => <GoogleLogin link="/">Skeleton</GoogleLogin>);
+export default {
+	component: SimpleTable,
+};
+
+export const Basic = () => ({
+	render: () => {
+		const vegetableData = {
+			Asparagus: 24,
+			Tomatoes: 152,
+			Lettuce: 33,
+			Peppers: 5,
+			'Green Beans': 75,
+		};
+		return <SimpleTable data={vegetableData} />;
+	},
+});

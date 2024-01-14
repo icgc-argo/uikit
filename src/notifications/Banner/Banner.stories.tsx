@@ -17,24 +17,22 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
-import React from 'react';
-import { Radio } from '.';
-import { boolean, button } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { select, text } from '@storybook/addon-knobs';
+import { BANNER_SIZE, BANNER_VARIANTS, Banner } from '.';
 
-const createKnobs = () => {
-  const checked = boolean('checked', false);
-  const ariaChecked = boolean('checked', false);
-  const disabled = boolean('disabled', false);
-
-  return {
-    checked,
-    'aria-checked': ariaChecked.toString(),
-    disabled,
-  };
+export default {
+	component: Banner,
 };
 
-storiesOf(`form/Radio`, module).add('Basic', () => (
-  <Radio {...createKnobs()} onChange={action('radio on change')} aria-label="radio" />
-));
+export const Basic = () => ({
+	render: () => {
+		const variant = select('variant', [undefined, ...Object.values(BANNER_VARIANTS)], undefined);
+		const size = select('size', [undefined, ...Object.values(BANNER_SIZE)], undefined);
+		const title = text('title', 'Hipster Ipsum');
+		const content = text(
+			'content',
+			'Lorem ipsum dolor amet helvetica post-ironic fingerstache trust fund pitchfork tofu venmo live-edge',
+		);
+		return <Banner variant={variant} title={title} content={content} size={size} />;
+	},
+});

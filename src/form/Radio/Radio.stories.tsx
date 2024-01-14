@@ -17,29 +17,26 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { storiesOf } from '@storybook/react';
-import React from 'react';
-import { Checkbox, STYLEDCHECKBOX_SIZES } from '.';
-import { boolean, radios } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import { boolean } from '@storybook/addon-knobs';
+import { Radio } from '.';
 
 const createKnobs = () => {
-  const checked = boolean('checked', false);
-  const disabled = boolean('disabled', false);
-  const size = radios('size', STYLEDCHECKBOX_SIZES, STYLEDCHECKBOX_SIZES.MD);
+	const checked = boolean('checked', false);
+	const ariaChecked = boolean('checked', false);
+	const disabled = boolean('disabled', false);
 
-  return {
-    checked,
-    disabled,
-    size,
-  };
+	return {
+		checked,
+		'aria-checked': ariaChecked.toString(),
+		disabled,
+	};
 };
 
-storiesOf(`form/Checkbox`, module).add('Basic', () => (
-  <Checkbox
-    value="example"
-    {...createKnobs()}
-    onChange={action('onchange')}
-    aria-label="checkbox"
-  />
-));
+export default { component: Radio };
+
+export const Basic = () => ({
+	render: () => (
+		<Radio {...createKnobs()} onChange={action('radio on change')} aria-label="radio" />
+	),
+});
