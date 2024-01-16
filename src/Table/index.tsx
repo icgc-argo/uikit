@@ -140,6 +140,7 @@ export const Table = <TData extends object>({
                       colSpan: header.colSpan,
                       width: header.getSize(),
                       sorted: header.column.getIsSorted(),
+                      getSortingHandler: () => header.column.getToggleSortingHandler(),
                       canSort,
                     };
 
