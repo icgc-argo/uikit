@@ -89,6 +89,25 @@ export const TableContainer = styled(TableContainerComp, {
   background: ${COLORS.BACKGROUND};
 `;
 
+/*
+ * stop cells from having overlapping border if we have side borders on our container
+ */
+const sideBordersStyle = css`
+  border-right: 1px solid ${colors.grey_2};
+  border-left: 1px solid ${colors.grey_2};
+
+  table,
+  tr td:first-child,
+  tr th:first-child {
+    border-left: none;
+  }
+  table,
+  tr td:last-child,
+  tr th:last-child {
+    border-right: none;
+  }
+`;
+
 const TableContainerInnerComp = (
   props: React.PropsWithChildren<{
     className?: string;
@@ -103,7 +122,7 @@ export const TableContainerInner = styled(TableContainerInnerComp, {
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
-  ${(props) => props.withSideBorders && `border-right: 1px solid ${colors.grey_2}`};
+  ${(props) => props.withSideBorders && sideBordersStyle};
   ${(props) =>
     props.withFilters &&
     `
