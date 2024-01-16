@@ -20,7 +20,7 @@
     "build::ts": "tsc -p ./tsconfig.json",
     "build::babel": "babel ./src --extensions .tsx,.ts,.js --out-dir ./dist",
     "clean": "rm -rf dist && mkdir dist",
-    "declarations": "tsc --emitDeclarationOnly",
+    "declarations": "ttsc --emitDeclarationOnly",
     "watch": "npm run clean && npm run build::assets && (npm run build::babel -- --watch --source-maps=inline & npm run declarations -- --watch)",
     "build": "npm run clean && npm run build::assets && npm run declarations && npm run build::babel",
     "publish-uikit": "cd dist && npm publish --access public"
