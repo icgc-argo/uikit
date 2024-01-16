@@ -169,11 +169,7 @@ export const Table = <TData extends object>({
                             canSort={canSort}
                             onClick={header.column.getToggleSortingHandler()}
                           >
-                            {isCustomHeader ? (
-                              headerContents
-                            ) : (
-                              <TableHeaderWrapper>{headerContents}</TableHeaderWrapper>
-                            )}
+                            <TableHeaderWrapper>{headerContents}</TableHeaderWrapper>
                           </SortButton>
                           {header.column.getCanResize() && (
                             <Resizer
