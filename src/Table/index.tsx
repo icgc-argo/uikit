@@ -122,7 +122,11 @@ export const Table = <TData extends object>({
 
   return (
     <TableContainer className={className}>
-      <TableContainerInner withFilters={withFilters} withTabs={withTabs}>
+      <TableContainerInner
+        withFilters={withFilters}
+        withTabs={withTabs}
+        withSideBorders={withSideBorders}
+      >
         <TableStyled withSideBorders={withSideBorders}>
           {withHeaders && (
             <TableHead>

@@ -90,7 +90,12 @@ export const TableContainer = styled(TableContainerComp, {
 `;
 
 const TableContainerInnerComp = (
-  props: React.PropsWithChildren<{ className?: string; withFilters?: boolean; withTabs?: boolean }>,
+  props: React.PropsWithChildren<{
+    className?: string;
+    withFilters?: boolean;
+    withTabs?: boolean;
+    withSideBorders?: boolean;
+  }>,
 ) => <div {...props} className={clsx(TABLE_CLASSES.TABLE_CONTAINER_INNER, props.className)} />;
 export const TableContainerInner = styled(TableContainerInnerComp, {
   shouldForwardProp: (prop) => isPropValid(prop),
@@ -98,6 +103,7 @@ export const TableContainerInner = styled(TableContainerInnerComp, {
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
+  ${(props) => props.withSideBorders && `border-right: 1px solid ${colors.grey_2}`};
   ${(props) =>
     props.withFilters &&
     `
