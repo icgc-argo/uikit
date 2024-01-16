@@ -131,9 +131,20 @@ export const Table = <TData extends object>({
                   {headerGroup.headers.map((header) => {
                     const canSort = enableSorting && header.column.getCanSort();
                     const isCustomHeader = header.column.columnDef.meta?.customHeader;
+                    const tableHeaderProps = {
+                      key: header.id,
+                      colSpan: header.colSpan,
+                      width: header.getSize(),
+                      sorted: header.column.getIsSorted(),
+                      canSort,
+                    };
+
                     const headerContents = header.isPlaceholder
                       ? null
-                      : flexRender(header.column.columnDef.header, header.getContext());
+                      : flexRender(header.column.columnDef.header, {
+                          ...tableHeaderProps,
+                          ...header.getContext(),
+                        });
 
                     const {
                       activeTab = '',
@@ -141,38 +152,36 @@ export const Table = <TData extends object>({
                       tabs = [],
                     } = header.column.columnDef.meta?.columnTabs || {};
 
-                    return (
-                      <TableHeader
-                        key={header.id}
-                        colSpan={header.colSpan}
-                        width={header.getSize()}
-                        sorted={header.column.getIsSorted()}
-                        canSort={canSort}
-                      >
-                        {!!tabs.length && (
-                          <TableTabs activeTab={activeTab} handleTabs={handleTabs} tabs={tabs} />
-                        )}
-                        <SortButton
-                          canSort={canSort}
-                          onClick={header.column.getToggleSortingHandler()}
-                        >
-                          {isCustomHeader ? (
-                            headerContents
-                          ) : (
-                            <TableHeaderWrapper>{headerContents}</TableHeaderWrapper>
+                    if (isCustomHeader) {
+                      return headerContents;
+                    } else {
+                      return (
+                        <TableHeader {...tableHeaderProps}>
+                          {!!tabs.length && (
+                            <TableTabs activeTab={activeTab} handleTabs={handleTabs} tabs={tabs} />
                           )}
-                        </SortButton>
-                        {header.column.getCanResize() && (
-                          <Resizer
-                            onMouseDown={header.getResizeHandler()}
-                            onTouchStart={header.getResizeHandler()}
-                            className={`resizer ${
-                              header.column.getIsResizing() ? 'isResizing' : ''
-                            }`}
-                          />
-                        )}
-                      </TableHeader>
-                    );
+                          <SortButton
+                            canSort={canSort}
+                            onClick={header.column.getToggleSortingHandler()}
+                          >
+                            {isCustomHeader ? (
+                              headerContents
+                            ) : (
+                              <TableHeaderWrapper>{headerContents}</TableHeaderWrapper>
+                            )}
+                          </SortButton>
+                          {header.column.getCanResize() && (
+                            <Resizer
+                              onMouseDown={header.getResizeHandler()}
+                              onTouchStart={header.getResizeHandler()}
+                              className={`resizer ${
+                                header.column.getIsResizing() ? 'isResizing' : ''
+                              }`}
+                            />
+                          )}
+                        </TableHeader>
+                      );
+                    }
                   })}
                 </TableRow>
               ))}
@@ -190,14 +199,22 @@ export const Table = <TData extends object>({
               >
                 {row.getVisibleCells().map((cell) => {
                   const isCustomCell = cell.column.columnDef.meta?.customCell;
-                  const cellContents = flexRender(cell.column.columnDef.cell, cell.getContext());
-                  return (
-                    <TableCell key={cell.id} width={cell.column.getSize()}>
-                      {isCustomCell ? (
-                        cellContents
-                      ) : (
-                        <TableCellWrapper>{cellContents}</TableCellWrapper>
-                      )}
+
+                  const tableCellProps = {
+                    key: cell.id,
+                    width: cell.column.getSize(),
+                  };
+
+                  const cellContents = flexRender(cell.column.columnDef.cell, {
+                    ...tableCellProps,
+                    ...cell.getContext(),
+                  });
+
+                  return isCustomCell ? (
+                    cellContents
+                  ) : (
+                    <TableCell {...tableCellProps}>
+                      <TableCellWrapper>{cellContents}</TableCellWrapper>
                     </TableCell>
                   );
                 })}
