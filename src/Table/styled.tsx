@@ -97,13 +97,13 @@ const sideBordersStyle = css`
   border-left: 1px solid ${colors.grey_2};
 
   table,
-  tr td:first-child,
-  tr th:first-child {
+  tr td:first-of-type,
+  tr th:first-of-type {
     border-left: none;
   }
   table,
-  tr td:last-child,
-  tr th:last-child {
+  tr td:last-of-type,
+  tr th:last-of-type {
     border-right: none;
   }
 `;
