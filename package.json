@@ -87,8 +87,8 @@
     "react-dom": "^18.2.0",
     "react-json-view": "^1.21.3",
     "ts-node-dev": "^1.1.8",
-    "ttypescript": "^1.5.13",
-    "typescript": "<4.8",
+    "ttypescript": "^1.5.15",
+    "typescript": "4.8",
     "webpack": "^5.75.0"
   },
   "prettier": {
